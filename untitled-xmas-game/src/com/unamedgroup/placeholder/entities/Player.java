@@ -36,6 +36,7 @@ public class Player extends Entity {
 		}else if(input.right.down) {
 			setX(getX() + speed);
 		}
+		
 		// Utilizar esse código para centralizar a câmera no centralizado quando existir um mapa
 //		Game.camera.setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , World.WIDTH * World.TILE_SIZE - Game.WIDTH));
 //		Game.camera.setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , World.HEIGHT * World.TILE_SIZE - Game.HEIGHT));

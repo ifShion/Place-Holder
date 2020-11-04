@@ -12,9 +12,9 @@ import java.util.Random;
 
 import javax.swing.JFrame;
 
-import com.unamedgroup.placeholder.entities.Entity;
-import com.unamedgroup.placeholder.entities.Player;
-import com.unamedgroup.placeholder.world.Camera;
+import com.unamedgroup.placeholder.entities.*;
+import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.world.*;
 
 /**
  * Inicializa o jogo, comanda as ações q o projeto fará dependendo 
@@ -50,6 +50,8 @@ public class Game extends Canvas implements Runnable {
 
 	/*----------------------------------------------------------------*/
 	public static Camera camera;
+
+	public static SpriteSheet spriteTeste;
 	/*----------------------------------------------------------------*/
 	//Adicionei uma lista q deve conter todas as entidades do jogo para executar seu tick e render
 	public static List<Entity> entities;
@@ -69,7 +71,9 @@ public class Game extends Canvas implements Runnable {
 		
 		camera = new Camera();
 
-		entities = new ArrayList<>();
+		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
+
+		entities = new ArrayList<>(10);
 		player = new Player(WIDTH/2, HEIGHT/2, 16, 16, null, 1, 2, this, input);
 		entities.add(player);
 	}
@@ -122,12 +126,14 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		/**/
 		//Desenho pixelado
-
 		//Essa linha embaixo organiza as entidades na lista em ordem crescente de profundidade,
 		//logo, o parâmetro depth de toda entidade irá ditar se ele é renderizado em cima de outra entidade.
 		entities.sort((e1, e2) -> Integer.compare(e1.depth, e2.depth));
 		for (Entity entity : entities) entity.render(g);
-		
+
+		//Essa linha desenha uma imagem, nesse caso, foi um recorte da Sprite Sheet
+		g.drawImage(spriteTeste.getSprite(80, 0, 48, 16), 30, 10, null);
+
 		g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 		//Desenho não pixelado (multiplicar as dimensões pela SCALE do jogo.)
