@@ -24,17 +24,18 @@ public class Player extends Entity {
 	}
 	
 	public void tick() {
-		//Alteração: troquei clicked por down pq fica melhor
+		//Alteração: mudei para o personagem ander na diagonal tbm, não tá pronto pq ele anda
+		//muito rápido na diagonal, mas é só pra teste e a solução é fácil
 		if(input.up.down) {
 			setY(getY() - speed);
-		}else if(input.right.down) {
-			setX(getX() + speed);
 		}else if(input.down.down) {
 			setY(getY() + speed);
-		}else if(input.left.down) {
-			setX(getX() - speed);
 		}
-
+		if(input.left.down) {
+			setX(getX() - speed);
+		}else if(input.right.down) {
+			setX(getX() + speed);
+		}
 		// Utilizar esse código para centralizar a câmera no centralizado quando existir um mapa
 //		Game.camera.setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , World.WIDTH * World.TILE_SIZE - Game.WIDTH));
 //		Game.camera.setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , World.HEIGHT * World.TILE_SIZE - Game.HEIGHT));
