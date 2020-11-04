@@ -6,10 +6,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JFrame;
 
+import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.world.Camera;
 
@@ -48,7 +51,8 @@ public class Game extends Canvas implements Runnable {
 	/*----------------------------------------------------------------*/
 	public static Camera camera;
 	/*----------------------------------------------------------------*/
-	//Criar lista de Entidades para melhor gerenciamento de ticks e render
+	//Adicionei uma lista q deve conter todas as entidades do jogo para executar seu tick e render
+	public static List<Entity> entities;
 	public static Player player;
 	/*----------------------------------------------------------------*/
 	
@@ -64,7 +68,10 @@ public class Game extends Canvas implements Runnable {
 		initFrame();
 		
 		camera = new Camera();
+
+		entities = new ArrayList<>();
 		player = new Player(WIDTH/2, HEIGHT/2, 16, 16, null, 1, 2, this, input);
+		entities.add(player);
 	}
 
 	public static void main(String[] args) {
@@ -95,8 +102,8 @@ public class Game extends Canvas implements Runnable {
 	 */
 	public void tick() {
 		input.tick();
-
-		player.tick();
+		//Implemetei o código para iterar todas entidades
+		entities.forEach(entity -> entity.tick());
 	}
 
 	/**
@@ -115,7 +122,11 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		/**/
 		//Desenho pixelado
-		player.render(g);
+
+		//Essa linha embaixo organiza as entidades na lista em ordem crescente de profundidade,
+		//logo, o parâmetro depth de toda entidade irá ditar se ele é renderizado em cima de outra entidade.
+		entities.sort((e1, e2) -> Integer.compare(e1.depth, e2.depth));
+		for (Entity entity : entities) entity.render(g);
 		
 		g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);

@@ -1,0 +1,13 @@
+TODO:
++ Criar classe controladora de sprite sheets
+- Classe World de leitura e tradução de mapa
+- [Definir macânica de jogo, então não vou falar nada muito expecífico ainda]
+- Colisão com tiles
+
+== Depois de definirmos macânicas ==
++ Nome do jogo e do grupo
++ Pesquisa e escrita do trabalho escrito
++ Design de inimigos
++ Level design 
+
+Vamos pra cima!
