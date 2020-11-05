@@ -27,6 +27,7 @@ Plataforma (
 			explode depois que morre;
 			Avança depois que te vê
 			Projetil(Parabola ou Reta);
+
 		}
 
 		Boss(){
@@ -34,10 +35,12 @@ Plataforma (
 			Estagio 1(){
 				Ataques basicos de corpo a corpo e laçamentos de curta distancia
 				Ataques lentos
+
 			}
 			Estagio 2(){
 				Maior movimentação
 				Padrões de movimento iguais porém mais rapidos
+				
 			}
 		}
 	}
@@ -70,6 +73,7 @@ Top Down com sistema de batalha (
 			Arqueiro
 			Espadachim
 			Mini Boss (Ensina a derrotar o boss)
+
 		}
 
 		Boss(){
@@ -77,6 +81,7 @@ Top Down com sistema de batalha (
 			Sala simples e fechada.
 			Ponto fraco baseado no item usado pelo personagem
 			O boneco atiraria bolas de neve na direção do jogador
+
 		}
 	}
 );
@@ -94,6 +99,7 @@ Run and Gun (
 			Atiram no jogador
 			Atiram para frente
 			Não atiram, mas viajam rotas definidas
+
 		}
 
 		Boss(){
@@ -105,22 +111,25 @@ Run and Gun (
 			Estagio 1(){
 				Ataques basicos
 				Poucos minions
+
 			}
 			Estagio 2(){
 				Ataques múltiplos
 				Muitos minions
 				Ataques padronizados
+
 			}
 			Estagio 3(){
 				Ataques múltiplos rápidos
 				Area denial
 				Minions
+
 			}
 		}
 	}
 );
 
-Stealth(
+Stealth (
 	Luigi's Ghost Mansion(Série de salas retangulares com paredes){
 		Item ????
 
@@ -131,6 +140,7 @@ Stealth(
 		Meio labirinto
 		Escuro
 		inimigos com lanteninha
+
 	}
 ); 
 
@@ -140,26 +150,52 @@ SEXTA missão: tower-defense(
 		Controle botãoDeCancelar;
 		Controle direcional;
 
-		Torres(){		
-			Alpha(){
-
+		Torres(){
+			//As torres dependem muito dos itens dos caras, então vou deixar em branco	
+			/* Exemplo de torres
+			* Arco e flecha (alvo único, rápido)
+			* Morteiro de enfeite de árvore (Splash damage, lento)
+			* Guarita de biscoitos na estrada
+			* Canhão (alvo único, lento)
+			* Forte de bolinha de neve ??? (lento, dá debuff no inimigo)
+			* 
+			*/
+			Alpha(Item){
+				level1()
+				level2()
+				level3()
 			}
-			Bravo(){
-
+			Bravo(Item){
+				level1()
+				level2()
+				level3()
 			}
-			Charlie(){
-
+			Charlie(Item){
+				level1()
+				level2()
+				level3()
 			}
-			Delta(){
-
+			Delta(Item){
+				level1()
+				level2()
+				level3()
 			}
-			Echo(){
-
+			Echo(Item){
+				level1()
+				level2()
+				level3()
 			}
 		}
 
 		Inimigos(){
-			
+			Mais rápido, menos vida
+			Mais lento, mais vida
+			Spawna [minions] quando cai
+			Normal, pouca vida
+			Normal, vida média
+			Normal, muita vida
+			[minions] rápidos, pouquíssima vida
+
 		}
 	}
 );
