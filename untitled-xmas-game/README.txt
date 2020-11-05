@@ -7,10 +7,10 @@ Cada criança revela parte da historia. A história completa só seria descobert
 //---CRIANÇAS---///
 
 [Alpha] - 
-
-
-
-
+[Bravo] -
+[Charlie] - 
+[Delta] - 
+[Echo] - 
 
 //---MISSÕES--///
 
@@ -28,6 +28,7 @@ Plataforma (
 			Avança depois que te vê
 			Projetil(Parabola ou Reta);
 		}
+
 		Boss(){
 		//Estagio definido pela quantidade de vida
 			Estagio 1(){
@@ -43,31 +44,32 @@ Plataforma (
 );
 
 Mini-Games (
-	Overcooked(){
+	Overcooked(Sala pequena com poucos obstáculos){
 		Item ????
 		Item inventario;
+
 		// Sala de maquinas em crise, personagem tem que correr para consertar tudo evitar que a sala exploda e montar seu item
-		MINI-GAME GUITAR HERO (Apertar a tecla e vc apertar o botão)
+		MINI_GAME GUITAR HERO (Apertar a tecla e vc apertar o botão)
 		MINI_GAME LABIRINTO (caixa com um item dentro, vc tem que girar o item dentro do labirinto pra ele cair)
-		MINI_GAME 
+		MINI_GAME REAÇÃO (tipo um Hit the Squirl, mas com menos alvos e mais rápido)
+		MINI_GAME SAFE ZONE (sei lá o nome, mas é tipo a pescaria do Stardew Valley)
+		MINI_GAME ORGANIZAR COISA (Tem uma caixa com bolinha colorida e tem q separar por cor)
+		MINI_GAME
 	}	
 );
 
-
-Top Down com sistema de batalha 
-	Zelda(){
+Top Down com sistema de batalha (
+	Zelda(Coleção de salas interligadas){
 		Item ????
 		Controle botãoDeUsarItem;
 		Controle botãoDeInteração;
 		Controle direcional;
 
-		Coleção de salas interligadas.		
-
 		Inimigos(){
 			Espinhos - encosta e dá dano
 			Arqueiro
 			Espadachim
-			MiniBoss(Ensina a derrotar o boss)
+			Mini Boss (Ensina a derrotar o boss)
 		}
 
 		Boss(){
@@ -77,13 +79,90 @@ Top Down com sistema de batalha
 			O boneco atiraria bolas de neve na direção do jogador
 		}
 	}
+);
 
+Run and Gun (
+	Contra(Plataforma linear//caminho único){
+		Item ????
 
+		Controle botãoDeAtaque;
+		Controle botãoDePulo;
+		Controle direcional;
 
-Run and Gun (Contra): 
-Stealth(): Meio labirinto, escuro, inimigos com lanteninha. 
+		Inimigos(){
+			Não atiram, mas avançam para o jogador
+			Atiram no jogador
+			Atiram para frente
+			Não atiram, mas viajam rotas definidas
+		}
 
-SEXTA missão: tower-defense
+		Boss(){
+			Grande
+			Atira padrões únicos
+			Summona minions
+
+			//Estagio definido pela quantidade de vida
+			Estagio 1(){
+				Ataques basicos
+				Poucos minions
+			}
+			Estagio 2(){
+				Ataques múltiplos
+				Muitos minions
+				Ataques padronizados
+			}
+			Estagio 3(){
+				Ataques múltiplos rápidos
+				Area denial
+				Minions
+			}
+		}
+	}
+);
+
+Stealth(
+	Luigi's Ghost Mansion(Série de salas retangulares com paredes){
+		Item ????
+
+		Controle botãoDeTiroStun;
+		Controle botãoDeCorrida;
+		Controle direcional;
+
+		Meio labirinto
+		Escuro
+		inimigos com lanteninha
+	}
+); 
+
+SEXTA missão: tower-defense(
+	Kingdom Rush(Uma rota com espaços para torre){
+		Controle botãoDeSeleção;
+		Controle botãoDeCancelar;
+		Controle direcional;
+
+		Torres(){		
+			Alpha(){
+
+			}
+			Bravo(){
+
+			}
+			Charlie(){
+
+			}
+			Delta(){
+
+			}
+			Echo(){
+
+			}
+		}
+
+		Inimigos(){
+			
+		}
+	}
+);
 
 
 //---ARTE---//
