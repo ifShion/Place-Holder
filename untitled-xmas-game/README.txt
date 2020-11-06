@@ -1,8 +1,8 @@
 //---MECANICAS DE JOGO---///
-Há no total 5 missões a serem cumpridas e cada missão será destinada a uma criança e a uma região do mapa diferente. 
+Há no total 5 missões a serem cumpridas e cada missão será destinada a uma criança e a uma região diferente do mapa. 
 
 //---HISTORIA---//
-Cada criança revela parte da historia. A história completa só seria descoberta ao platinar tudo que há para fazer com cada criança.
+Cada criança possui sua história que juntas formam todo background do jogo. Caso jogador perca uma das crianças ele não conseguirá descobrie tudo o que aconteceu.
 
 //---CRIANÇAS---///
 
