@@ -1,9 +1,9 @@
 TODO:
+- Orgamizar Game State
 - Classe World de leitura e tradução de mapa
 - [Definir macânica de jogo, então não vou falar nada muito expecífico ainda]
 - Colisão com tiles
 
-== Depois de definirmos macânicas ==
 + Nome do jogo e do grupo
 + Pesquisa e escrita do trabalho escrito
 + Design de inimigos
