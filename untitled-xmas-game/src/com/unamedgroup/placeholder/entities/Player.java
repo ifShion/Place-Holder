@@ -48,8 +48,7 @@ public class Player extends Entity {
 	}
 	
 	public void render(Graphics g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(super.getX() - Game.camera.getX() , super.getY() - Game.camera.getY(), super.getWidth() , super.getHeight());
+		super.render(g);
 	}
 
 }

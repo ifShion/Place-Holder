@@ -80,7 +80,7 @@ public class Game extends Canvas implements Runnable {
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
 
 		entities = new ArrayList<>(10);
-		player = new Player(WIDTH/2, HEIGHT/2, 16, 16, null, 1, 2);
+		player = new Player(WIDTH/2, HEIGHT/2, 16, 16, spriteTeste.getSprite(7 * World.TILE_SIZE, 0 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), 1, 2);
 		entities.add(player);
 
 		worldTeste = new World("/worldTest.png");
