@@ -2,8 +2,6 @@ package com.unamedgroup.placeholder.main;
 
 import java.util.ArrayList;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-
 import com.unamedgroup.placeholder.interfaces.State;
 import com.unamedgroup.placeholder.graphics.states.*;
 
@@ -16,7 +14,6 @@ public class StateManager implements State{
 
     public static ArrayList<State> states = new ArrayList<>();
     public static int currentState = 0;
-
     /**
      * CADA STATE CRIADO DEVE SER LISTADO NESSE CONTRUTOR
      */

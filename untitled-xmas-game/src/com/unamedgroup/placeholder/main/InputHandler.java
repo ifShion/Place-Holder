@@ -14,8 +14,8 @@ import java.util.List;
 public class InputHandler implements KeyListener {
 	public class Key {
 		public int presses, absorbs;
-		public boolean down;//Usado para teclas q ficarão pressionadas por muito tempo (como as teclas de navegação do personagem)
-		public boolean clicked;//Usado para teclas q são precionadas por um único toque (como a tecla de menu)
+		public boolean down;			//Usado para teclas q ficarão pressionadas por muito tempo (como as teclas de navegação do personagem)
+		public boolean clicked;			//Usado para teclas q são precionadas por um único toque (como a tecla de menu)
 
 		public Key() {
 			keys.add(this);
@@ -64,8 +64,8 @@ public class InputHandler implements KeyListener {
 		}
 	}
 
-	public InputHandler(Game game) {
-		game.addKeyListener(this);
+	public InputHandler(Display display) {
+		display.setKeyListener(this);
 	}
 
 	public void keyPressed(KeyEvent ke) {

@@ -1,8 +1,6 @@
 package com.unamedgroup.placeholder.main;
 
-import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -10,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.JFrame;
 
 import com.unamedgroup.placeholder.entities.*;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
@@ -26,16 +23,16 @@ import com.unamedgroup.placeholder.world.*;
  * ...
  */
 
-public class Game extends Canvas implements Runnable {
+public class Game implements Runnable {
 	private static final long serialVersionUID = 3L;
 
-	public static final String NAME = "Place Holder";
-	public static InputHandler input; // input vai controlar toda entrada de comandos do jogador.
-	public static StateManager stateManager; // stateManager vai gerenciar toda tela de pintura do jogo.
+	public static final String NAME = "Place Holder";	// Titulo da jogo
+	private static Display display; 					// Janela do jogo
+	public static InputHandler input; 					// input vai controlar toda entrada de comandos do jogador.
+	public static StateManager stateManager;		 	// stateManager vai gerenciar toda tela de pintura do jogo.
 	/*---------------------------------------------------------------*/
-	//Inicializando variáveis do Canvas
-	public static JFrame frame;
-	public boolean isFullScreen;
+	//Inicializando variáveis do Display
+	public boolean isFullScreen;						// Estado do tela
 	private Thread thread;
 	private boolean isRunning;
 	public static final int WIDTH = 200;
@@ -54,7 +51,7 @@ public class Game extends Canvas implements Runnable {
 	// Adicionei um objeto de teste para construir o mundo com colisão
 	public static World worldTeste;
 
-	public static SpriteSheet spriteTeste;
+	public static SpriteSheet spriteTeste;				 
 	/*----------------------------------------------------------------*/
 	//Adicionei uma lista q deve conter todas as entidades do jogo para executar seu tick e render
 	public static List<Entity> entities;
@@ -62,21 +59,19 @@ public class Game extends Canvas implements Runnable {
 	/*----------------------------------------------------------------*/
 	
 	/**
-	 * Inicializa todas as variáveis e obejetos do jogo, como as entidades,
+	 * Inicializa todas as variáveis e objetos do jogo, como as entidades,
 	 * menus e sprites.
 	 */
 	public Game() {
-		rand = new Random();
-		input = new InputHandler(this);
+		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
+		input = new InputHandler(display);
 		stateManager = new StateManager();
 		stateManager.init();
+		rand = new Random();
 
-		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));//fullscreen
-		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		initFrame();
+		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //fullscreen
 		
 		camera = new Camera();
-
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
 
 		entities = new ArrayList<>(10);
@@ -91,23 +86,6 @@ public class Game extends Canvas implements Runnable {
 		game.start();
 	}
 
-	/**
-	 * Cria e configura a janela do projeto.
-	 */
-	
-	private void initFrame() {
-		frame = new JFrame(Game.NAME);
-		frame.add(this);
-		// frame.setUndecorated(true); //fullscreen
-		frame.setResizable(false);
-		frame.pack();
-		frame.setAlwaysOnTop(true);
-
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-	}
-
 	/*----------------------------------------------------------------*/
 	/**
 	 * Executa todas as ações e macânicas de jogo.
@@ -116,32 +94,32 @@ public class Game extends Canvas implements Runnable {
 		if(!stateManager.currentStateExist()) return;
 		stateManager.tick();
 		input.tick();
-		
 	}
 
 	/**
 	 * Desenha na tela os gráficos do jogo.
 	 */
 	public void render() {
-		BufferStrategy bs = this.getBufferStrategy();
+		BufferStrategy bs = display.getBufferStrategy();
 		if (bs == null) {
-			this.createBufferStrategy(3);
-			requestFocus();
-			return;
+			display.createBufferStrategy();
+			bs = display.getBufferStrategy();
+			//requestFocus();
 		}
+
 		Graphics g = image.getGraphics();
+
 		// Plano de fundo
 		g.setColor(new Color(45, 45, 40));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
-		if(stateManager.currentStateExist())
+		// Passa o renderizador para o State corrente
+		if(stateManager.currentStateExist())	
 			stateManager.render(g);
-	
 		g = bs.getDrawGraphics();
 		
-		
-		g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 		//Desenho não pixelado (multiplicar as dimensões pela SCALE do jogo.)
+		g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 		
 		g.dispose();
 		bs.show();
