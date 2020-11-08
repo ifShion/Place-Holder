@@ -9,7 +9,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.awt.Graphics2D;
 
+import javax.sound.sampled.SourceDataLine;
 import javax.swing.JFrame;
 
 import com.unamedgroup.placeholder.entities.*;
@@ -22,6 +24,7 @@ import com.unamedgroup.placeholder.world.*;
  * 
  * @version alpha 1.0
  * @author Daniel Neves
+ * @author Nathan Ferraz
  * ...
  */
 
@@ -29,7 +32,8 @@ public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 
 	public static final String NAME = "Place Holder";
-	private InputHandler input = new InputHandler(this);// input vai controlar toda entrada de comandos do jogador.
+	public static InputHandler input; // input vai controlar toda entrada de comandos do jogador.
+	public static StateManager stateManager; // stateManager vai gerenciar toda tela de pintura do jogo.
 	/*---------------------------------------------------------------*/
 	//Inicializando variáveis do Canvas
 	public static JFrame frame;
@@ -39,8 +43,6 @@ public class Game extends Canvas implements Runnable {
 	public static final int WIDTH = 200;
 	public static final int HEIGHT = 160;
 	public static final int SCALE = 2;
-
-	public static String gameState = "MAIN MENU";
 
 	public boolean isPaused;
 	/*---------------------------------------------------------------*/
@@ -65,6 +67,9 @@ public class Game extends Canvas implements Runnable {
 	public Game() {
 		rand = new Random();
 		input = new InputHandler(this);
+		stateManager = new StateManager();
+		stateManager.init();
+
 		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));//fullscreen
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		initFrame();
@@ -105,9 +110,10 @@ public class Game extends Canvas implements Runnable {
 	 * Executa todas as ações e macânicas de jogo.
 	 */
 	public void tick() {
+		if(!stateManager.currentStateExist()) return;
+		stateManager.tick();
 		input.tick();
-		//Implemetei o código para iterar todas entidades
-		entities.forEach(entity -> entity.tick());
+		
 	}
 
 	/**
@@ -124,19 +130,16 @@ public class Game extends Canvas implements Runnable {
 		// Plano de fundo
 		g.setColor(new Color(45, 45, 40));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
-		/**/
-		//Desenho pixelado
-		//Essa linha embaixo organiza as entidades na lista em ordem crescente de profundidade,
-		//logo, o parâmetro depth de toda entidade irá ditar se ele é renderizado em cima de outra entidade.
-		entities.sort((e1, e2) -> Integer.compare(e1.depth, e2.depth));
-		for (Entity entity : entities) entity.render(g);
 
-		//Essa linha desenha uma imagem, nesse caso, foi um recorte da Sprite Sheet
-		g.drawImage(spriteTeste.getSprite(80, 0, 48, 16), 30, 10, null);
+		if(stateManager.currentStateExist())
+			stateManager.render(g);
 
 		g = bs.getDrawGraphics();
+		
+		
 		g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 		//Desenho não pixelado (multiplicar as dimensões pela SCALE do jogo.)
+		
 		g.dispose();
 		bs.show();
 	}
