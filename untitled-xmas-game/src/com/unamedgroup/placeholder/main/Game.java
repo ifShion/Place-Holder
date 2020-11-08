@@ -9,9 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.awt.Graphics2D;
 
-import javax.sound.sampled.SourceDataLine;
 import javax.swing.JFrame;
 
 import com.unamedgroup.placeholder.entities.*;
@@ -29,7 +27,7 @@ import com.unamedgroup.placeholder.world.*;
  */
 
 public class Game extends Canvas implements Runnable {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3L;
 
 	public static final String NAME = "Place Holder";
 	public static InputHandler input; // input vai controlar toda entrada de comandos do jogador.
@@ -52,6 +50,9 @@ public class Game extends Canvas implements Runnable {
 
 	/*----------------------------------------------------------------*/
 	public static Camera camera;
+
+	// Adicionei um objeto de teste para construir o mundo com colisão
+	public static World worldTeste;
 
 	public static SpriteSheet spriteTeste;
 	/*----------------------------------------------------------------*/
@@ -79,8 +80,10 @@ public class Game extends Canvas implements Runnable {
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
 
 		entities = new ArrayList<>(10);
-		player = new Player(WIDTH/2, HEIGHT/2, 16, 16, null, 1, 2, this, input);
+		player = new Player(WIDTH/2, HEIGHT/2, 16, 16, null, 1, 2);
 		entities.add(player);
+
+		worldTeste = new World("/worldTest.png");
 	}
 
 	public static void main(String[] args) {
@@ -133,7 +136,7 @@ public class Game extends Canvas implements Runnable {
 
 		if(stateManager.currentStateExist())
 			stateManager.render(g);
-
+	
 		g = bs.getDrawGraphics();
 		
 		
