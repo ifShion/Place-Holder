@@ -1,6 +1,5 @@
 TODO:
 + Organizar maneira de fazer vários mapas acessíveis
-+ Mudar a posição da lista de entidades para diferentes game_states
 + Mudar a classe Player para abstrata e criar classes para os diferentes players
 + Começar a ciar inimigos base para cada fase
 + Associar controles de cada personagem com uma ação (teste)

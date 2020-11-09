@@ -3,37 +3,56 @@ package com.unamedgroup.placeholder.entities;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Comparator;
+
+import javax.imageio.ImageIO;
 
 import com.unamedgroup.placeholder.main.Game;
 
 public abstract class Entity {
-	/*Inicializar os sprites iniciais de todas entidades aqui*/
-	
-	protected double x;
-	protected double y;
-	private double width;
-	private double height;
-	
+	/* Inicializar os sprites iniciais de todas entidades aqui */
+
+	protected double x; // Coordenada X na tela
+	protected double y; // Coordenada Y na tela
+	protected double width; // Largura do sprite
+	protected double height; // Altura do Sprite
+	protected double sx = 0; // Coordenada X dentro do arquivo de Imagem
+	protected double sy = 0; // Coordenada Y dentro do arquivo de Imagem
+
 	public double speed;
-	
+
 	private BufferedImage sprite;
-	
-	 private int maskX;
-	 private int maskY;
-	 private int maskW;
-	 private int maskH;
-	 
-	 public int depth;
-	
-	public Entity(int x , int y , int width , int height , BufferedImage sprite , int depth , int speed){
-		
+
+	private int maskX;
+	private int maskY;
+	private int maskW;
+	private int maskH;
+
+	public int depth;
+
+	public Entity(int x, int y, int width, int height, BufferedImage sprite, int depth, int speed) {
+		init(x, y, width, height, depth, speed);
+		this.sprite = sprite;
+	}
+	// Utilizei a sobrecarga para poder mandar só o caminho em vez de criar um objeto de imagem onde for usar a entidade - @natescom
+	public Entity(int x, int y, int width, int height, String sprite, int depth, int speed) {
+		init(x, y, width, height, depth, speed);
+		try {
+			this.sprite = ImageIO.read(getClass().getResource(sprite));
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("ERRO: CAMINHO '"+sprite+"' não encontrado");
+		}
+	}
+
+	// Fiz esse init para poder usar uma sobrecarga no construtor - @natescom //
+	private void init(int x, int y, int width, int height, int depth, int speed){
 		this.x = x;
 		this.y = y;
 		this.width = width;
-		this.height = height;
-		this.sprite = sprite;
-		
+		this.height = height;	
+
 		this.maskX = 0;
 		this.maskY = 0;
 		this.maskW = width;
@@ -43,6 +62,7 @@ public abstract class Entity {
 		this.speed = speed;
 	}
 	
+
 	/*Getters e Setters*/
 	public double getSpeed() {
 		return speed;
@@ -99,6 +119,16 @@ public abstract class Entity {
 		this.maskH = maskH;
 	 }
 	 
+
+	public BufferedImage getSprite() {
+		return this.sprite;
+	}
+
+	public void setSprite(BufferedImage sprite) {
+		this.sprite = sprite;
+	}
+
+
 	 public static Comparator<Entity> nodeSorter = new Comparator<Entity>() {
 			
 			@Override
@@ -129,7 +159,16 @@ public abstract class Entity {
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(sprite , this.getX() - Game.camera.getX() , this.getY() - Game.camera.getY() , null);
+		g.drawImage(sprite,
+			this.getX() - Game.camera.getX(),
+			this.getY() - Game.camera.getY(),
+			(int) (this.getX() - Game.camera.getX()+width),
+			(int) (this.getY() - Game.camera.getY()+height),
+			(int) sx,
+			(int) sy,
+			(int) (sx+width),
+			(int) (sy+height),
+			null);
 
 	}
 	

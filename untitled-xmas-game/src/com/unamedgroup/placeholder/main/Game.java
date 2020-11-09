@@ -54,7 +54,7 @@ public class Game implements Runnable {
 	public static SpriteSheet spriteTeste;				 
 	/*----------------------------------------------------------------*/
 	//Adicionei uma lista q deve conter todas as entidades do jogo para executar seu tick e render
-	public static List<Entity> entities;
+	public static List<Entity> entities = new ArrayList<>();	
 	public static Player player;
 	/*----------------------------------------------------------------*/
 	
@@ -74,7 +74,7 @@ public class Game implements Runnable {
 		camera = new Camera();
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
 
-		entities = new ArrayList<>(10);
+		//entities = new ArrayList<>(10);
 		player = new Player(WIDTH/2, HEIGHT/2, 16, 16, spriteTeste.getSprite(7 * World.TILE_SIZE, 0 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), 1, 2);
 		entities.add(player);
 
