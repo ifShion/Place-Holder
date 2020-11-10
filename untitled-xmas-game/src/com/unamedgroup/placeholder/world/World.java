@@ -19,7 +19,7 @@ import com.unamedgroup.placeholder.world.tiles.*;
  * TODO: Resolver esse problema. Talevz fazer essa classe abstrata ??????
  * @author Daniel Neves
  */
-public class World {
+public abstract class World {
     public static Tile[] tiles;
 	public static int WIDTH , HEIGHT;
 	public static final int TILE_SIZE = 16;
@@ -49,8 +49,8 @@ public class World {
 					case 0xFFFFFFFF://branco
 						tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.SOLID_TILE);
 						break;
-					case 0xFF0000FF://Azul
-                        tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE);
+					case 0xFFFFFF00://AMARELO
+                        tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.DOOR_TILE);
 						break;
 					default:
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE);

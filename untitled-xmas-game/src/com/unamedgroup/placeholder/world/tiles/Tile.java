@@ -15,6 +15,7 @@ public abstract class Tile {
 	//Sprites dos tiles do mapa
     public static BufferedImage FREE_TILE = Game.spriteTeste.getSprite(World.TILE_SIZE * 3 , 0, World.TILE_SIZE , World.TILE_SIZE);
 	public static BufferedImage SOLID_TILE = Game.spriteTeste.getSprite(World.TILE_SIZE * 2 , 0, World.TILE_SIZE, World.TILE_SIZE);
+	public static BufferedImage DOOR_TILE = Game.spriteTeste.getSprite(World.TILE_SIZE * 5 , 0, World.TILE_SIZE, World.TILE_SIZE);
 	
 	private BufferedImage sprite;
 	protected int x , y;
@@ -32,6 +33,14 @@ public abstract class Tile {
 		this.sprite = sprite;
 	}
 	
+	public double calculateDistance(int x1 , int x2 , int y1 , int y2) {
+		double distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2 , 2));
+		return distance;
+	}
+
+	public void tick() {
+
+	}
 
 	public void render(Graphics g) {
 		//if(show)
