@@ -2,12 +2,8 @@ package com.unamedgroup.placeholder.entities;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Comparator;
 
-import javax.imageio.ImageIO;
-
+import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
 
 public abstract class Entity {
@@ -17,12 +13,13 @@ public abstract class Entity {
 	protected double y; // Coordenada Y na tela
 	protected double width; // Largura do sprite
 	protected double height; // Altura do Sprite
-	protected double sx = 0; // Coordenada X dentro do arquivo de Imagem
-	protected double sy = 0; // Coordenada Y dentro do arquivo de Imagem
+	protected double spriteX = 0; // Coordenada X dentro do arquivo de Imagem
+	protected double spriteY = 0; // Coordenada Y dentro do arquivo de Imagem
 
 	public double speed;
 
-	private BufferedImage sprite;
+	private SpriteSheet sprite;
+	private Animation animation;
 
 	private int maskX;
 	private int maskY;
@@ -31,27 +28,20 @@ public abstract class Entity {
 
 	public int depth;
 
-	public Entity(int x, int y, int width, int height, BufferedImage sprite, int depth, int speed) {
-		init(x, y, width, height, depth, speed);
-		this.sprite = sprite;
-	}
-	// Utilizei a sobrecarga para poder mandar só o caminho em vez de criar um objeto de imagem onde for usar a entidade - @natescom
-	public Entity(int x, int y, int width, int height, String sprite, int depth, int speed) {
-		init(x, y, width, height, depth, speed);
-		try {
-			this.sprite = ImageIO.read(getClass().getResource(sprite));
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("ERRO: CAMINHO '"+sprite+"' não encontrado");
-		}
+	// Utilizei a sobrecarga para poder mandar sï¿½ o caminho em vez de criar um objeto de imagem onde for usar a entidade - @natescom
+	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int numSpritesX, int numSpritesY, int depth, int speed) {
+		init(x, y, width, height, spriteSheet, depth, speed);
+		animation = new Animation(this, 20, numSpritesX, numSpritesY);
 	}
 
 	// Fiz esse init para poder usar uma sobrecarga no construtor - @natescom //
-	private void init(int x, int y, int width, int height, int depth, int speed){
+	private void init(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed){
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;	
+
+		this.sprite = spriteSheet;
 
 		this.maskX = 0;
 		this.maskY = 0;
@@ -64,6 +54,11 @@ public abstract class Entity {
 	
 
 	/*Getters e Setters*/
+
+	public SpriteSheet getSprite() {
+		return sprite;
+	}
+
 	public double getSpeed() {
 		return speed;
 	}
@@ -119,29 +114,6 @@ public abstract class Entity {
 		this.maskH = maskH;
 	 }
 	 
-
-	public BufferedImage getSprite() {
-		return this.sprite;
-	}
-
-	public void setSprite(BufferedImage sprite) {
-		this.sprite = sprite;
-	}
-
-
-	 public static Comparator<Entity> nodeSorter = new Comparator<Entity>() {
-			
-			@Override
-			public int compare(Entity n0,Entity n1) {
-				if(n1.depth < n0.depth)
-					return +1;
-				if(n1.depth > n0.depth)
-					return -1;
-				return 0;
-			}
-			
-		};
-	 
 	 public double calculateDistance(int x1 , int x2 , int y1 , int y2) {
 		 double distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2 , 2));
 		 return distance;
@@ -155,21 +127,20 @@ public abstract class Entity {
 	}
 	
 	public void tick() {
-		
+		animation.tick();
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(sprite,
+		g.drawImage(sprite.getSpriteSheet(),
 			this.getX() - Game.camera.getX(),
 			this.getY() - Game.camera.getY(),
 			(int) (this.getX() - Game.camera.getX()+width),
 			(int) (this.getY() - Game.camera.getY()+height),
-			(int) sx,
-			(int) sy,
-			(int) (sx+width),
-			(int) (sy+height),
+			(int) spriteX,
+			(int) spriteY,
+			(int) (spriteX+width),
+			(int) (spriteY+height),
 			null);
-
 	}
 	
 }

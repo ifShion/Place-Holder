@@ -1,26 +1,26 @@
 package com.unamedgroup.placeholder.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
-import java.awt.image.BufferedImage;
-
+import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.world.Camera;
 import com.unamedgroup.placeholder.world.World;
+
 /**
- * É bom essa classe ser abstrata tbm já q vai ter 5 personagens
- * Classe de teste
+ * É bom essa classe ser abstrata tbm já q vai ter 5 personagens Classe de teste
  * 
- * O objetivo dessa classe agora é adaptarmo-na para se tornar uma classe abstrata, já que 
- * teremos 6 jogadores físicos no jogo (incluindo tower defense)
+ * O objetivo dessa classe agora é adaptarmo-na para se tornar uma classe
+ * abstrata, já que teremos 6 jogadores físicos no jogo (incluindo tower
+ * defense)
+ * 
  * @author Daniel Neves
  *
  */
 public class Player extends Entity {
-	
-	public Player(int x, int y, int width, int height, BufferedImage sprite, int depth, int speed) {
-		super(x, y, width, height, sprite, depth, speed);
+
+	public Player(int x, int y, int width, int height, SpriteSheet sprite, int numSpritesX, int numSpritesY, int depth, int speed) {
+		super(x, y, width, height, sprite, numSpritesX, numSpritesY, depth, speed);
 		
 	}
 	
