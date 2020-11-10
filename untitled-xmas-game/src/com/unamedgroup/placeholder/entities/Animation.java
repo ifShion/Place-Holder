@@ -4,41 +4,39 @@ package com.unamedgroup.placeholder.entities;
  * 
  * @author Nathan
  */
-public class Animation {
-    private int animationSpeed; // Velocidade da troca de sprites em sprites/seconds
-    Entity entity;
-
-    private int numSpritesX;    // Numero de sprites horizontalmente
-    private int numSpritesY;    // Numero de sprites verticalmente
-    private int currentSpriteX; // Indice do sprite horizontal que est� sendo desenhado
-    private int currentSpriteY; // Indice do sprite vertical que est� sendo desenhado
-
-    private int width;
-    private int height;
-    
+public abstract class Animation {
+    protected int width;          // Largura do sprite
+    protected int height;         // Altura do sprite
+	protected double spriteX = 0; // Coordenada X dentro do arquivo de Imagem
+    protected double spriteY = 0; // Coordenada Y dentro do arquivo de Imagem
+    private int animationSpeed;   // Velocidade da troca de sprites em sprites/seconds
+    private int numSpritesX;      // Numero de sprites horizontalmente
+    private int numSpritesY;      // Numero de sprites verticalmente
+    private int currentSpriteX;   // Indice do sprite horizontal que est� sendo desenhado
+    private int currentSpriteY;   // Indice do sprite vertical que est� sendo desenhado
 
     /**
      * Entidade dinamica � usada para instanciar entitys com anima��es
-     * @param entity Entidade que está executando a animação
+     *
      * @param animationSpeed Velocidade da anima��o
+     * @param width Largura do Sprite
+     * @param height Altura do Sprite
+     * @param numSpritesX Número de sprites horizontalmente
+     * @param numSpritesY Número de sprites verticalmente
      */
-    public Animation(Entity entity, int animationSpeed, int numSpritesX, int numSpritesY) {
-        init(animationSpeed, entity, numSpritesX, numSpritesY);
-
-    }
-
-    private void init(int animationSpeed, Entity entity, int numSpritesX, int numSpritesY){
+    public Animation(int animationSpeed, int width,int height, int numSpritesX, int numSpritesY) {
+       
         this.animationSpeed = animationSpeed;
-        this.entity = entity;
 
-        this.width = entity.getWidth();
-        this.height = entity.getHeight();
+        this.width = width;
+        this.height = height;
 
         this.numSpritesX = numSpritesX;
         this.numSpritesY = numSpritesY;
+
     }
 
-    private int tick=0;
+    private int tick=0; // Tick é atualização de tela
     
     public void tick(){
         /**
@@ -65,7 +63,7 @@ public class Animation {
         if(currentSpriteX>=numSpritesX){
             currentSpriteX=0;
         }
-        entity.spriteX=(int)width*currentSpriteX;
+        spriteX=(int)width*currentSpriteX;
     }
     /**
      * Pula para o pr�ximo sprite da coluna
@@ -75,7 +73,7 @@ public class Animation {
         if(currentSpriteY>=numSpritesY){
             currentSpriteY=0;
         }
-        entity.spriteY=(int)height*currentSpriteY;
+        spriteY=(int)height*currentSpriteY;
     }
     /**
      * Pula para o sprite da linha e da coluna selecionada
@@ -87,8 +85,8 @@ public class Animation {
         if(j>numSpritesY){
             j=j%numSpritesY;
         }
-        entity.spriteX=(int)width*i;
-        entity.spriteY=(int)height*j;
+        spriteX=(int)width*i;
+        spriteY=(int)height*j;
     }
 
     public int getSpriteVeloticy() {
@@ -97,4 +95,6 @@ public class Animation {
     public void setSpriteVeloticy(int spriteVeloticy) {
         this.animationSpeed = spriteVeloticy;
     }
+
+    
 }

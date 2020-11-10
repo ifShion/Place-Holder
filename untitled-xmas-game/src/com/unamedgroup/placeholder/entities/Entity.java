@@ -6,20 +6,14 @@ import java.awt.Rectangle;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
 
-public abstract class Entity {
+public class Entity extends Animation {
 	/* Inicializar os sprites iniciais de todas entidades aqui */
-
-	protected double x; // Coordenada X na tela
-	protected double y; // Coordenada Y na tela
-	protected double width; // Largura do sprite
-	protected double height; // Altura do Sprite
-	protected double spriteX = 0; // Coordenada X dentro do arquivo de Imagem
-	protected double spriteY = 0; // Coordenada Y dentro do arquivo de Imagem
-
+    protected double x;           // Coordenada X na tela
+	protected double y;           // Coordenada Y na tela
 	public double speed;
 
+	//private Animation animation;
 	private SpriteSheet sprite;
-	private Animation animation;
 
 	private int maskX;
 	private int maskY;
@@ -28,19 +22,11 @@ public abstract class Entity {
 
 	public int depth;
 
-	// Utilizei a sobrecarga para poder mandar s� o caminho em vez de criar um objeto de imagem onde for usar a entidade - @natescom
-	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int numSpritesX, int numSpritesY, int depth, int speed) {
-		init(x, y, width, height, spriteSheet, depth, speed);
-		animation = new Animation(this, 20, numSpritesX, numSpritesY);
-	}
-
-	// Fiz esse init para poder usar uma sobrecarga no construtor - @natescom //
-	private void init(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed){
+	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed){
+		super(animationSpeed, width, height, spriteSheet.getSpriteSheet().getWidth()/width, spriteSheet.getSpriteSheet().getHeight()/height);
 		this.x = x;
 		this.y = y;
-		this.width = width;
-		this.height = height;	
-
+		
 		this.sprite = spriteSheet;
 
 		this.maskX = 0;
@@ -51,7 +37,7 @@ public abstract class Entity {
 		this.depth = depth;
 		this.speed = speed;
 	}
-	
+
 
 	/*Getters e Setters*/
 
@@ -126,20 +112,16 @@ public abstract class Entity {
 		return e1Mask.intersects(e2Mask);
 	}
 	
-	public void tick() {
-		animation.tick();
-	}
-	
 	public void render(Graphics g) {
 		g.drawImage(sprite.getSpriteSheet(),
-			this.getX() - Game.camera.getX(),
-			this.getY() - Game.camera.getY(),
-			(int) (this.getX() - Game.camera.getX()+width),
-			(int) (this.getY() - Game.camera.getY()+height),
-			(int) spriteX,
-			(int) spriteY,
-			(int) (spriteX+width),
-			(int) (spriteY+height),
+			this.getX() - Game.camera.getX(),					// Coordenada X na tela
+			this.getY() - Game.camera.getY(),					// Coordenada Y na tela
+			(int) (this.getX() - Game.camera.getX()+width),		// Largura do Sprite
+			(int) (this.getY() - Game.camera.getY()+height),	// Altura do sprite
+			(int) spriteX,										// Coordenada X1 na imagem
+			(int) spriteY,										// Coordenada Y1 na imagem
+			(int) (spriteX+width),								// Coordenada X2 na imagem
+			(int) (spriteY+height),								// Coordenada Y2 na imagem
 			null);
 	}
 	

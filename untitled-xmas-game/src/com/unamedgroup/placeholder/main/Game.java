@@ -59,7 +59,7 @@ public class Game implements Runnable {
 	public static Room room;
 	public static Maps maps;
 
-	public static int currentMapID;
+	public static int currentMapID = 1001; 															// Conserta isso aqui depois DAN S2
 	public static boolean alternatingMaps;
 	/*----------------------------------------------------------------*/
 	//Adicionei uma lista q deve conter todas as entidades do jogo para executar seu tick e render
@@ -78,6 +78,8 @@ public class Game implements Runnable {
 	 * menus e sprites.
 	 */
 	public Game() {
+		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
+
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		input = new InputHandler(display);
 		stateManager = new StateManager();
@@ -87,13 +89,12 @@ public class Game implements Runnable {
 		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //fullscreen
 		
 		camera = new Camera();
-		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
-
-		//entities = new ArrayList<>(10);
+		
 		player = State_00.alpha;
 		entities.add(player);
 
 		maps = new Maps();
+		room = new Room("/worldTest.png");
 	}
 
 	public static void main(String[] args) {
@@ -113,6 +114,8 @@ public class Game implements Runnable {
 		if(!stateManager.currentStateExist()) return;
 		stateManager.tick();
 		input.tick();
+		room.tick();
+		
 	}
 
 	/**

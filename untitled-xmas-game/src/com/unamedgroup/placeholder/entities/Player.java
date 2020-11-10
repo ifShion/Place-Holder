@@ -19,8 +19,8 @@ import com.unamedgroup.placeholder.world.World;
  */
 public class Player extends Entity {
 
-	public Player(int x, int y, int width, int height, SpriteSheet sprite, int numSpritesX, int numSpritesY, int depth, int speed) {
-		super(x, y, width, height, sprite, numSpritesX, numSpritesY, depth, speed);
+	public Player(int x, int y, int width, int height, SpriteSheet sprite, int depth, int speed, int animationSpeed) {
+		super(x, y, width, height, sprite, depth, speed, animationSpeed);
 		
 	}
 	

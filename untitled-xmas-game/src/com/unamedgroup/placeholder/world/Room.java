@@ -11,10 +11,11 @@ import com.unamedgroup.placeholder.world.tiles.DoorTile;
 import com.unamedgroup.placeholder.world.tiles.Tile;
 
 public class Room extends World {
-    private Set<DoorTile> doors = new LinkedHashSet<>();
+    private Set<DoorTile> doors;
 
     public Room(String path) {
         super(path);
+        doors = new LinkedHashSet<>();
     }
     
     public void placeDoor(int x, int y, Player player, int destiny, int tpx, int tpy){
@@ -27,11 +28,13 @@ public class Room extends World {
                 placeDoor(3, 11, State_00.alpha, 1001, 5, 9);
                 placeDoor(5, 3, State_00.alpha, 1002, 4, 15);
                 placeDoor(9, 3, State_00.alpha, 1001, 9, 10);
+                break;
             case 1002:
                 placeDoor(6, 15, State_00.alpha, 1001, 7, 10);
                 placeDoor(12, 11, State_00.alpha, 1002, 8, 6);
                 placeDoor(12, 12, State_00.alpha, 1002, 8, 6);
                 placeDoor(13, 16, State_00.alpha, 1001, 8, 6);
+                break;
             default:
 
         }
@@ -39,6 +42,7 @@ public class Room extends World {
 
     public void tick(){
         createDoors();
+        doors.forEach(door-> door.tick());
     }
     @Override
     public void render(Graphics g) {

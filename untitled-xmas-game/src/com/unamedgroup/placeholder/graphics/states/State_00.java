@@ -19,7 +19,7 @@ import com.unamedgroup.placeholder.entities.Player;
 public class State_00 implements State {
     private int ID;
     //Trocar o Player para o protagonista específico
-    public static Player alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 1, 1, 2);
+    public static Player alpha;
 
     public State_00(int id){
         this.ID = id;
@@ -28,7 +28,7 @@ public class State_00 implements State {
 
     @Override
     public void init() {
-
+        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2,1);
     }
 
     @Override

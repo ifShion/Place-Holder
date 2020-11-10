@@ -32,6 +32,7 @@ public class DoorTile extends FreeTile {
 
     @Override
     public void tick() {
+
         super.tick();
         movePlayer();
     }
