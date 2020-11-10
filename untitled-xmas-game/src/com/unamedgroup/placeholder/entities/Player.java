@@ -18,19 +18,35 @@ import com.unamedgroup.placeholder.world.World;
  *
  */
 public class Player extends Entity {
-
-	public Player(int x, int y, int width, int height, SpriteSheet sprite, int depth, int speed, int animationSpeed) {
-		super(x, y, width, height, sprite, depth, speed, animationSpeed);
+	/**
+	 * Mudei a questão da animação. Toda a área ( int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY) do
+	 * construtor é decidada a ela. Mais detalhes em Entity:
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @param sprite
+	 * @param depth
+	 * @param speed
+	 * @param animationSpeed
+	 * @param numSpritesX
+	 * @param numSpritesY
+	 * @param initPosX
+	 * @param initPosY
+	 */
+	public Player(int x, int y, int width, int height, SpriteSheet sprite, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY) {
+		super(x, y, width, height, sprite, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY);
 		
 	}
 	
 	public void tick() {
+		super.tick();
 		//Alteração: mudei a condição para o personagem poder se mover. Implementando um sistema de colisão simples
 
-		boolean right = Game.input.right.down && World.isFree((int)(super.getX() + speed), super.getY());
-		boolean left = Game.input.left.down && World.isFree((int)(super.getX() - speed), super.getY());
-		boolean down = Game.input.down.down && World.isFree(super.getX(), (int)(super.getY() + speed));
-		boolean up = Game.input.up.down && World.isFree(super.getX(), (int)(super.getY() - speed));
+		boolean right = Game.input.right.down && Game.room.isFree((int)(super.getX() + speed), super.getY());
+		boolean left = Game.input.left.down && Game.room.isFree((int)(super.getX() - speed), super.getY());
+		boolean down = Game.input.down.down && Game.room.isFree(super.getX(), (int)(super.getY() + speed));
+		boolean up = Game.input.up.down && Game.room.isFree(super.getX(), (int)(super.getY() - speed));
 
 		if(up) {
 			setY(getY() - speed);
@@ -44,8 +60,8 @@ public class Player extends Entity {
 		}
 		
 		// Utilizar esse código para centralizar a câmera no centralizado quando existir um mapa
-		Game.camera.setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , World.WIDTH * World.TILE_SIZE - Game.WIDTH));
-		Game.camera.setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , World.HEIGHT * World.TILE_SIZE - Game.HEIGHT));
+		Game.camera.setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , Game.room.WIDTH * World.TILE_SIZE - Game.WIDTH));
+		Game.camera.setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , Game.room.HEIGHT * World.TILE_SIZE - Game.HEIGHT));
 	}
 	
 	public void render(Graphics g) {

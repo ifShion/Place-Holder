@@ -28,7 +28,7 @@ public class State_00 implements State {
 
     @Override
     public void init() {
-        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2,1);
+        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0);
     }
 
     @Override

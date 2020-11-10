@@ -4,17 +4,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.unamedgroup.placeholder.entities.*;
+import com.unamedgroup.placeholder.entities.Entity;
+import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.graphics.states.State_00;
-import com.unamedgroup.placeholder.world.*;
+import com.unamedgroup.placeholder.world.Camera;
+import com.unamedgroup.placeholder.world.Maps;
+import com.unamedgroup.placeholder.world.Room;
 
 /**
  * Inicializa o jogo, comanda as ações q o projeto fará dependendo 
@@ -59,10 +60,12 @@ public class Game implements Runnable {
 	public static Room room;
 	public static Maps maps;
 
-	public static int currentMapID = 1001; 															// Conserta isso aqui depois DAN S2
+	public static int currentMapID = 1001;	
+	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro mapa é só mudar isso, ou, quando tivermos um sistema de 
+	// save e load pronto, sobrescrever essa variável.
 	public static boolean alternatingMaps;
 	/*----------------------------------------------------------------*/
-	//Adicionei uma lista q deve conter todas as entidades do jogo para executar seu tick e render
+	//Adicionei um conjunto q deve conter todas as entidades do jogo para executar seu tick e render
 	public static Comparator<Entity> nodeSorter = (new Comparator<Entity>(){
 		public int compare(Entity o1, Entity o2) {
 			return o1.depth - o2.depth;
@@ -90,11 +93,12 @@ public class Game implements Runnable {
 		
 		camera = new Camera();
 		
+		//TODO: Quando for mudar o currentLevelID na mão, tem q mudar isso tbm ;-;
 		player = State_00.alpha;
 		entities.add(player);
 
 		maps = new Maps();
-		room = new Room("/worldTest.png");
+		alternatingMaps = true;
 	}
 
 	public static void main(String[] args) {
@@ -107,15 +111,15 @@ public class Game implements Runnable {
 	 * Executa todas as ações e macânicas de jogo.
 	 */
 	public void tick() {
-		entities.forEach(entity -> entity.tick());
-		if(Game.alternatingMaps)
+		if(!alternatingMaps) {
+			room.tick();
+			entities.forEach(entity -> entity.tick());
+		}else
 			maps.tick();
-
+		
 		if(!stateManager.currentStateExist()) return;
 		stateManager.tick();
 		input.tick();
-		room.tick();
-		
 	}
 
 	/**
@@ -136,11 +140,13 @@ public class Game implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
 		// Passa o renderizador para o State corrente
-		room.render(g);
-
+		if(!alternatingMaps)	
+			room.render(g);
+		
 		for (Entity entity : entities) entity.render(g);
 		if(stateManager.currentStateExist())	
 			stateManager.render(g);
+		
 		g = bs.getDrawGraphics();
 		
 		//Desenho não pixelado (multiplicar as dimensões pela SCALE do jogo.)

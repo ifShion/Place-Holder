@@ -1,44 +1,70 @@
 package com.unamedgroup.placeholder.entities;
 
+import com.unamedgroup.placeholder.world.World;
+
 /**
  * 
  * @author Nathan
  */
-public abstract class Animation {
-    protected int width;          // Largura do sprite
-    protected int height;         // Altura do sprite
-	protected double spriteX = 0; // Coordenada X dentro do arquivo de Imagem
-    protected double spriteY = 0; // Coordenada Y dentro do arquivo de Imagem
-    private int animationSpeed;   // Velocidade da troca de sprites em sprites/seconds
-    private int numSpritesX;      // Numero de sprites horizontalmente
-    private int numSpritesY;      // Numero de sprites verticalmente
-    private int currentSpriteX;   // Indice do sprite horizontal que est� sendo desenhado
-    private int currentSpriteY;   // Indice do sprite vertical que est� sendo desenhado
+public class Animation {
+    protected int width;          	// Largura do sprite
+    protected int height;         	// Altura do sprite
+    
+    private int initPosX;			//Posição inicial em X da sequência de Sprites
+    private int initPosY;			//Posição inicial em Y da sequência de Sprites
+	private double spriteX = 0; 	// Coordenada X dentro do arquivo de Imagem
+    private double spriteY = 0; 	// Coordenada Y dentro do arquivo de Imagem
+    private int animationSpeed;		// Velocidade da troca de sprites em sprites/seconds
+    private int numSpritesX;      	// Numero de sprites horizontalmente
+    private int numSpritesY;      	// Numero de sprites verticalmente
+    private int currentSpriteX;   	// Indice do sprite horizontal que est� sendo desenhado
+    private int currentSpriteY;   	// Indice do sprite vertical que est� sendo desenhado
+    
+    private int frame=0; // Tick é atualização de tela
 
     /**
-     * Entidade dinamica � usada para instanciar entitys com anima��es
+     * A classe recebe parâmetros para gerenciar a animação de entidade ou tile. Recebe a sprite sheet necessário, a 
+     * recorta e desenha na tela as sprites recortadas em ordem com o frequência dada (FPS)
      *
-     * @param animationSpeed Velocidade da anima��o
-     * @param width Largura do Sprite
-     * @param height Altura do Sprite
-     * @param numSpritesX Número de sprites horizontalmente
-     * @param numSpritesY Número de sprites verticalmente
+     * @param animationSpeed 	//Velocidade da animação (em FPS)
+     * @param width 			//Largura do Sprite
+     * @param height 			//Altura do Sprite
+     * @param numSpritesX 		//Número de sprites horizontalmente
+     * @param numSpritesY 		//Número de sprites verticalmente
+     * @param initPosX			//Offset de X para começo do recorte da sprite sheet
+     * @param initPosY			//Offset de Y para começo do recorte de sprite sheet
      */
-    public Animation(int animationSpeed, int width,int height, int numSpritesX, int numSpritesY) {
+    public Animation(int animationSpeed, int width,int height, int numSpritesX, int numSpritesY, int initPosX, int initPosY) {
        
         this.animationSpeed = animationSpeed;
 
         this.width = width;
         this.height = height;
 
+        this.initPosX = initPosX*World.TILE_SIZE;
+        this.initPosY = initPosY*World.TILE_SIZE;
         this.numSpritesX = numSpritesX;
         this.numSpritesY = numSpritesY;
 
     }
-
-    private int tick=0; // Tick é atualização de tela
     
-    public void tick(){
+    public int getInitPosX() {
+		return initPosX;
+	}
+
+	public int getInitPosY() {
+		return initPosY;
+	}
+
+	public double getSpriteX() {
+		return spriteX;
+	}
+	
+	public double getSpriteY() {
+		return spriteY;
+	}
+
+	public void tick(){
         /**
          * ESCREVA AQUI O PADR�O DE ANIMA��O DA ENTIDADE,
          * RECOMENDO USARMOS JAVA REFLECTION PARA PODER PASSAR 
@@ -47,11 +73,11 @@ public abstract class Animation {
          */
 
         //-----EXEMPLO DE ALGORITMO PARA ANIMAR-----//
-        if(tick>60/animationSpeed){
+        if(frame>60/animationSpeed){
             nextSpriteX();
-            tick = 0;
+            frame = 0;
         }else{
-            tick++;
+            frame++;
         }
     }
     
