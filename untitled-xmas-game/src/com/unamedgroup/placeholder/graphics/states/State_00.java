@@ -1,11 +1,11 @@
 package com.unamedgroup.placeholder.graphics.states;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
+import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.interfaces.State;
 import com.unamedgroup.placeholder.main.Game;
-import com.unamedgroup.placeholder.world.World;
-import com.unamedgroup.placeholder.entities.Player;
 
 /**
  * 
@@ -28,7 +28,10 @@ public class State_00 implements State {
 
     @Override
     public void init() {
-        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0);
+    	// Temos um problema aqui: se a gente colocar a speed do personagem um número quebrado, ele anda muito rápido pra um lado
+    	// e muito devagar pro outro ;-;. Ainda bem q esse sistema de movimentação é só um protótipo.
+        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 24, Game.spriteTeste, 4, 2, 1, 4, 2, 16, 16);
+        alpha.setMask(3, 12, 10, 12);
     }
 
     @Override
@@ -42,9 +45,6 @@ public class State_00 implements State {
 		//Desenho pixelado
 		//Essa linha embaixo organiza as entidades na lista em ordem crescente de profundidade,
 		//logo, o par�metro depth de toda entidade ir� ditar se ele � renderizado em cima de outra entidade.
-
-        //Essa linha desenha uma imagem, nesse caso, foi um recorte da Sprite Sheet
-		g.drawImage(Game.spriteTeste.getSprite(80, 0, 48, 16), 30, 10, null);
         
     }
     

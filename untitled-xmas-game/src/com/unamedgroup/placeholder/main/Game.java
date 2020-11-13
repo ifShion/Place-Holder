@@ -2,6 +2,7 @@ package com.unamedgroup.placeholder.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.Comparator;

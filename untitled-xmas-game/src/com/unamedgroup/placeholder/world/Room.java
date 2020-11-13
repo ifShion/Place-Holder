@@ -14,7 +14,8 @@ public class Room extends World {
     private Set<DoorTile> doors;
     private int ID;
     /**
-     * Constrói o mundo novo
+     * Constrói o mundo novo. É bom ter uma sprite sheet pr´pria para os tiles de cada mapa
+     * são muitos tiles
      * @param path
      * 
      * @author Daniel Neves

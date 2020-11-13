@@ -3,6 +3,7 @@ package com.unamedgroup.placeholder.entities;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.unamedgroup.placeholder.graphics.Animation;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
 
@@ -40,7 +41,7 @@ public class Entity {
 	 * @param initPosX			Detalhes em Animation
 	 * @param initPosY			Detalhes em Animation
 	 */
-	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY){
+	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, double speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY){
 		animation = new Animation(animationSpeed, width, height, numSpritesX, numSpritesY, initPosX, initPosY);
 		this.x = x;
 		this.y = y;
@@ -168,4 +169,3 @@ public class Entity {
 	}
 	
 }
-

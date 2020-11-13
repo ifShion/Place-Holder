@@ -18,6 +18,7 @@ import com.unamedgroup.placeholder.world.World;
  *
  */
 public class Player extends Entity {
+	
 	/**
 	 * Mudei a questão da animação. Toda a área ( int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY) do
 	 * construtor é decidada a ela. Mais detalhes em Entity:
@@ -34,19 +35,19 @@ public class Player extends Entity {
 	 * @param initPosX
 	 * @param initPosY
 	 */
-	public Player(int x, int y, int width, int height, SpriteSheet sprite, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY) {
+	public Player(int x, int y, int width, int height, SpriteSheet sprite, int depth, double speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY) {
 		super(x, y, width, height, sprite, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY);
 		
 	}
-	
+
 	public void tick() {
 		super.tick();
 		//Alteração: mudei a condição para o personagem poder se mover. Implementando um sistema de colisão simples
 
-		boolean right = Game.input.right.down && Game.room.isFree((int)(super.getX() + speed), super.getY());
-		boolean left = Game.input.left.down && Game.room.isFree((int)(super.getX() - speed), super.getY());
-		boolean down = Game.input.down.down && Game.room.isFree(super.getX(), (int)(super.getY() + speed));
-		boolean up = Game.input.up.down && Game.room.isFree(super.getX(), (int)(super.getY() - speed));
+		boolean right = Game.input.right.down && Game.room.isFree((int)(super.getX() + super.getMaskX() + speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH());
+		boolean left = Game.input.left.down && Game.room.isFree((int)(super.getX() + super.getMaskX() - speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH());
+		boolean down = Game.input.down.down && Game.room.isFree(super.getX() + super.getMaskX(), (int)(super.getY() + super.getMaskY() + speed), super.getMaskW(), super.getMaskH());
+		boolean up = Game.input.up.down && Game.room.isFree(super.getX() + super.getMaskX(), (int)(super.getY() + super.getMaskY() - speed), super.getMaskW(), super.getMaskH());
 
 		if(up) {
 			setY(getY() - speed);
@@ -66,6 +67,9 @@ public class Player extends Entity {
 	
 	public void render(Graphics g) {
 		super.render(g);
+//		g.setColor(Color.red);
+//		g.fillRect(super.getX() + super.getMaskX() - Game.camera.getX(), super.getY() + super.getMaskY() - Game.camera.getY(), super.getMaskW(), this.getMaskH());
+		
 	}
 
 }

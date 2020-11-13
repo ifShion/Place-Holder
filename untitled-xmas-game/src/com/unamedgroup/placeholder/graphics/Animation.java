@@ -1,12 +1,11 @@
-package com.unamedgroup.placeholder.entities;
-
-import com.unamedgroup.placeholder.world.World;
+package com.unamedgroup.placeholder.graphics;
 
 /**
  * 
  * @author Nathan
  */
 public class Animation {
+    // Mudei Animation para graphics, mas podem mudar tbm
     protected int width;          	// Largura do sprite
     protected int height;         	// Altura do sprite
     
@@ -41,8 +40,8 @@ public class Animation {
         this.width = width;
         this.height = height;
 
-        this.initPosX = initPosX*World.TILE_SIZE;
-        this.initPosY = initPosY*World.TILE_SIZE;
+        this.initPosX = initPosX;
+        this.initPosY = initPosY;
         this.numSpritesX = numSpritesX;
         this.numSpritesY = numSpritesY;
 
