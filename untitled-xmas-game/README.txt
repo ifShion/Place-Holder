@@ -1,3 +1,4 @@
+14/11/2020
 //---MECANICAS DE JOGO---///
 Há no total 5 missões a serem cumpridas e cada missão será destinada a uma criança e a uma região diferente do mapa. 
 
