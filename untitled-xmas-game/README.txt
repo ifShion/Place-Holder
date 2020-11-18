@@ -1,11 +1,34 @@
-14/11/2020
-//---MECANICAS DE JOGO---///
-Há no total 5 missões a serem cumpridas e cada missão será destinada a uma criança e a uma região diferente do mapa. 
+			Untitled Xmas Game
+				Notas
+=======================================================================
 
-//---HISTORIA---//
-Cada criança possui sua história que juntas formam todo background do jogo. Caso jogador perca uma das crianças ele não conseguirá descobrie tudo o que aconteceu.
+Esse arquivo contém detalhes do vir-a-ser do projeto com todas as 
+mecanicas necessárias a serem desenvolvidas e implementadas
 
-//---CRIANÇAS---///
+=======================================================================
+CONTEÚDO
+
+* DESCRIÇÃO
+* ROTEIRO
+* MISSÕES
+
+=======================================================================
+DESCRIÇÃO
+
+Há no total 5 missões a serem cumpridas sendo que cada uma será 
+destinada a uma criança e a uma região diferente do mapa. Cada missão
+terá seu próprio gênero e dará ao jogador um item necessário para 
+cumprir uma sexta e ultima missão. Controles simplificados definidos 
+por direcional, dois botões de ação e um de pausa
+
+=======================================================================
+ROTEIRO
+Cada criança possui sua história que juntas formam todo o background do 
+jogo. Caso jogador perca uma das crianças ele não conseguirá descobrirá
+tudo o que ocorreu.
+
+=======================================================================
+CRIANÇAS
 
 [Alpha] - 
 [Bravo] -
@@ -13,153 +36,119 @@ Cada criança possui sua história que juntas formam todo background do jogo. Ca
 [Delta] - 
 [Echo] - 
 
-//---MISSÕES--///
+=======================================================================
+MISSÕES
 
-Plataforma (
-	Hollow Knight( Mapa metroidvania.zip ){
-		Item ????
-		
-		Controle botãoDeAtaque;
-		Controle botãoDeEspecialGenerico;
-		Controle direcional;
+* PLATAFORMA:
+	Metroidvania estilo Hollow Knight
+	Item a ser resgatado: ???
+	Controles: Direcional, Ataque, Especial Generico
+	Inimigos: Pula
+		  Explode após morrer
+		  Avança depois que te vê
+		  Lança projetil em parabola ou reta
+	Boss: Estagios definido pela quantidade de vida
+		Estágio 1: Ataques básicos corpo a copor e lançamentos 
+		de curta distância
+		Estágio 2: Maior movimentação
+			   Padrão de movimento igual porem mais rápido
 
-		Inimigos(){
-			Inimigo que só pula;
-			explode depois que morre;
-			Avança depois que te vê
-			Projetil(Parabola ou Reta);
 
-		}
+* MINI-GAME:
+	Overcooked, uma sala pequena com alguns quebra-cabeças
+	Item a ser resgatado: ???
+	Sistema de inventario
 
-		Boss(){
-		//Estagio definido pela quantidade de vida
-			Estagio 1(){
-				Ataques basicos de corpo a corpo e laçamentos de curta distancia
-				Ataques lentos
+	Sala de maquinas em crise, personagem tem que correr para consertar
+	tudo evitar que a sala exploda e montar seu item
+	
+	Mini-games:
+		- GUITAR HERO (Apertar a tecla e vc apertar o botão)
+		- LABIRINTO (caixa com um item dentro, vc tem que girar o 
+		item dentro do labirinto pra ele cair)
+		- REAÇÃO (tipo um Hit the Squirl, mas com menos alvos e 
+		mais rápido)
+		- SAFE ZONE (sei lá o nome, mas é tipo a pescaria do 
+		Stardew Valley)
+		- ORGANIZAR COISA (Tem uma caixa com bolinha colorida e
+		tem que separar por cor)
 
-			}
-			Estagio 2(){
-				Maior movimentação
-				Padrões de movimento iguais porém mais rapidos
-				
-			}
-		}
-	}
-);
+* TOP DOWN:
+	Zelda, coleção de salas interligadas
+	Sistema de batalha
+	Item a ser resgatado: ???
+	Controles: Usar Item, Interação, Direcional;
+	Inimigos:
+		 Espinhos - encosta e dá dano
+		 Arqueiro
+		 Espadachim
+	       	 Mini Boss (Ensina a derrotar o boss)
+	
+	Boss: Boneco de neve maligno
+		Sala simples e fechada.
+		Ponto fraco baseado no item usado pelo personagem
+		O boneco atiraria bolas de neve na direção do jogador
 
-Mini-Games (
-	Overcooked(Sala pequena com poucos obstáculos){
-		Item ????
-		Item inventario;
+* RUN AND GUN:
+	Contra, Plataforma linear//caminho único
+	Item a ser resgatado: ???
+	Controles: Ataque, Pulo, Direcional;
+	Inimigos:
+		Não atiram, mas avançam para o jogador
+		Atiram no jogador
+		Atiram para frente
+		Não atiram, mas viajam rotas definidas
 
-		// Sala de maquinas em crise, personagem tem que correr para consertar tudo evitar que a sala exploda e montar seu item
-		MINI_GAME GUITAR HERO (Apertar a tecla e vc apertar o botão)
-		MINI_GAME LABIRINTO (caixa com um item dentro, vc tem que girar o item dentro do labirinto pra ele cair)
-		MINI_GAME REAÇÃO (tipo um Hit the Squirl, mas com menos alvos e mais rápido)
-		MINI_GAME SAFE ZONE (sei lá o nome, mas é tipo a pescaria do Stardew Valley)
-		MINI_GAME ORGANIZAR COISA (Tem uma caixa com bolinha colorida e tem q separar por cor)
-		MINI_GAME
-	}	
-);
+	Boss: Estagio definido pela quantidade de vida
+		Grande
+		Atira padrões únicos
+		Summona minions
 
-Top Down com sistema de batalha (
-	Zelda(Coleção de salas interligadas){
-		Item ????
-		Controle botãoDeUsarItem;
-		Controle botãoDeInteração;
-		Controle direcional;
+		Estagio 1:
+			Ataques basicos
+			Poucos minions
+		Estagio 2:
+			Ataques múltiplos
+			Muitos minions
+			Ataques padronizados
+		Estagio 3:
+			Ataques múltiplos rápidos
+			Area denial
+			Minions
+* STEALTH 
+	Luigi's Ghost Mansion, Série de salas retangulares com paredes
+	Item a ser resgatado: ???
+	Controles: botãoDeTiroStun, botãoDeCorrida, direcional;
 
-		Inimigos(){
-			Espinhos - encosta e dá dano
-			Arqueiro
-			Espadachim
-			Mini Boss (Ensina a derrotar o boss)
+	Meio labirinto
+	Escuro
+	Inimigos com lanteninha
 
-		}
 
-		Boss(){
-			*Boneco de neve maligno
-			Sala simples e fechada.
-			Ponto fraco baseado no item usado pelo personagem
-			O boneco atiraria bolas de neve na direção do jogador
 
-		}
-	}
-);
-
-Run and Gun (
-	Contra(Plataforma linear//caminho único){
-		Item ????
-
-		Controle botãoDeAtaque;
-		Controle botãoDePulo;
-		Controle direcional;
-
-		Inimigos(){
-			Não atiram, mas avançam para o jogador
-			Atiram no jogador
-			Atiram para frente
-			Não atiram, mas viajam rotas definidas
-
-		}
-
-		Boss(){
-			Grande
-			Atira padrões únicos
-			Summona minions
-
-			//Estagio definido pela quantidade de vida
-			Estagio 1(){
-				Ataques basicos
-				Poucos minions
-
-			}
-			Estagio 2(){
-				Ataques múltiplos
-				Muitos minions
-				Ataques padronizados
-
-			}
-			Estagio 3(){
-				Ataques múltiplos rápidos
-				Area denial
-				Minions
-
-			}
-		}
-	}
-);
-
-Stealth (
-	Luigi's Ghost Mansion(Série de salas retangulares com paredes){
-		Item ????
-
-		Controle botãoDeTiroStun;
-		Controle botãoDeCorrida;
-		Controle direcional;
-
-		Meio labirinto
-		Escuro
-		inimigos com lanteninha
-
-	}
-); 
-
-SEXTA missão: tower-defense(
-	Kingdom Rush(Uma rota com espaços para torre){
-		Controle botãoDeSeleção;
-		Controle botãoDeCancelar;
-		Controle direcional;
-
-		Torres(){
-			//As torres dependem muito dos itens dos caras, então vou deixar em branco	
+* SEXTA MISSÃO: tower-defense
+	Kingdom Rush, Uma rota com espaços para torre
+		Controles: Botão de Seleção, botão de cancelar, 
+			direcional;
+		Inimigos:
+			Mais rápido, menos vida
+			Mais lento, mais vida
+			Spawna [minions] quando cai
+			Normal, pouca vida
+			Normal, vida média
+			Normal, muita vida
+			[minions] rápidos, pouquíssima vida
+			
+		Torres: As torres dependem muito dos itens dos caras,
+			então vou deixar em branco	
 			/* Exemplo de torres
 			* Arco e flecha (alvo único, rápido)
-			* Morteiro de enfeite de árvore (Splash damage, lento)
+			* Morteiro de enfeite de árvore (Splash damage,
+			lento)
 			* Guarita de biscoitos na estrada
 			* Canhão (alvo único, lento)
-			* Forte de bolinha de neve ??? (lento, dá debuff no inimigo)
-			* 
+			* Forte de bolinha de neve ??? (lento, dá debuff
+			no inimigo)
 			*/
 			Alpha(Item){
 				level1()
@@ -187,20 +176,4 @@ SEXTA missão: tower-defense(
 				level3()
 			}
 		}
-
-		Inimigos(){
-			Mais rápido, menos vida
-			Mais lento, mais vida
-			Spawna [minions] quando cai
-			Normal, pouca vida
-			Normal, vida média
-			Normal, muita vida
-			[minions] rápidos, pouquíssima vida
-
-		}
-	}
-);
-
-
-//---ARTE---//
-Paleta
+=======================================================================
