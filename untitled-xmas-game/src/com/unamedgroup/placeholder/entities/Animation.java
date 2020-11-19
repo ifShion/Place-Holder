@@ -1,97 +1,144 @@
 package com.unamedgroup.placeholder.entities;
 
-import java.awt.image.BufferedImage;
+import com.unamedgroup.placeholder.world.World;
 
 /**
  * 
  * @author Nathan
+ * @author Daniel
  */
-public class Animation extends Entity {
-    private int animationSpeed; // Velocidade da troca de sprites em sprites/seconds
-    private int numSpritesX;    // Numero de sprites horizontalmente
-    private int numSpritesY;    // Numero de sprites verticalmente
-    private int currentSpriteX; // Indice do sprite horizontal que est sendo desenhado
-    private int currentSpriteY; // Indice do sprite vertical que est sendo desenhado
+public class Animation {
+    private boolean play;           
+
+    protected int width;          	// Largura do sprite
+    protected int height;         	// Altura do sprite
+    
+    private int initPosX;			// PosiÃ§Ã£o inicial em X da sequÃªncia de Sprites
+    private int initPosY;			// PosiÃ§Ã£o inicial em Y da sequÃªncia de Sprites
+	private double spriteX = 0; 	// Coordenada X dentro do arquivo de Imagem
+    private double spriteY = 0; 	// Coordenada Y dentro do arquivo de Imagem
+    private int animationSpeed;		// Velocidade da troca de sprites em sprites/seconds
+    private int numSpritesX;      	// Numero de sprites horizontalmente
+    private int numSpritesY;      	// Numero de sprites verticalmente
+    private int currentSpriteX;   	// Indice do sprite horizontal que estï¿½ sendo desenhado
+    private int currentSpriteY;   	// Indice do sprite vertical que estï¿½ sendo desenhado
+    
+    private int frame=0; // Tick Ã© atualizaÃ§Ã£o de tela
+
+    /**
+     * A classe recebe parÃ¢metros para gerenciar a animaÃ§Ã£o de entidade ou tile. Recebe a sprite sheet necessÃ¡rio, a 
+     * recorta e desenha na tela as sprites recortadas em ordem com o frequÃªncia dada (FPS)
+     *
+     * @param animationSpeed 	//Velocidade da animaÃ§Ã£o (em FPS)
+     * @param width 			//Largura do Sprite
+     * @param height 			//Altura do Sprite
+     * @param numSpritesX 		//NÃºmero de sprites horizontalmente
+     * @param numSpritesY 		//NÃºmero de sprites verticalmente
+     * @param initPosX			//Offset de X para comeÃ§o do recorte da sprite sheet
+     * @param initPosY			//Offset de Y para comeÃ§o do recorte de sprite sheet
+     */
+    public Animation(int animationSpeed, int width,int height, int numSpritesX, int numSpritesY, int initPosX, int initPosY) {
+       
+        this.animationSpeed = animationSpeed;
+
+        this.width = width;
+        this.height = height;
+
+        this.initPosX = initPosX*World.TILE_SIZE;
+        this.initPosY = initPosY*World.TILE_SIZE;
+        this.numSpritesX = numSpritesX;
+        this.numSpritesY = numSpritesY;
+
+    }
+    
+    public int getInitPosX() {
+		return initPosX;
+	}
+
+	public int getInitPosY() {
+		return initPosY;
+	}
+
+	public double getSpriteX() {
+		return spriteX;
+	}
+	
+	public double getSpriteY() {
+		return spriteY;
+    }
     
 
-    /**
-     * Entidade dinamica  usada para instanciar entitys com animaes
-     * @param x Coordenada X
-     * @param y Coordenada Y
-     * @param width Largura do sprite
-     * @param height Altura do sprite
-     * @param sprite Sprite (Carregue uma imagem em que cada sprite tenha o mesmo tamanho)
-     * @param depth Profundidade
-     * @param speed Velocidade do sprite
-     * @param animationSpeed Velocidade da animao
-     */
-    public Animation(int x, int y, int width, int height, BufferedImage sprite, int depth, int speed, int animationSpeed) {
-        super(x, y, width, height, sprite, depth, speed);
-        init(animationSpeed, width, height);
-
-    }
-    /**
-     * Entidade dinamica  usada para instanciar entitys com animaes
-     * @param x Coordenada X
-     * @param y Coordenada Y
-     * @param width Largura do sprite
-     * @param height Altura do sprite
-     * @param path Passe o caminho da imagem
-     * @param depth Profundidade
-     * @param speed Velocidade do sprite
-     * @param animationSpeed Velocidade da animao
-     */
-    public Animation(int x, int y, int width, int height, String path, int depth, int speed, int animationSpeed) {
-        super(x, y, width, height, path, depth, speed);
-        init(animationSpeed, width, height);
-
+    public boolean isPlay() {
+        return this.play;
     }
 
-    private void init(int animationSpeed, int width, int height){
-        this.animationSpeed = animationSpeed;
-        numSpritesX = super.getSprite().getWidth(null)/width;
-        numSpritesY = super.getSprite().getHeight(null)/height;
+    public boolean getPlay() {
+        return this.play;
     }
 
-    private int tick=0;
-    @Override
-    public void tick(){
+    public void setPlay(boolean play) {
+        this.play = play;
+    }
+
+
+	public void tick(){
         /**
-         * ESCREVA AQUI O PADRÃO DE ANIMAÇÃO DA ENTIDADE,
+         * ESCREVA AQUI O PADRï¿½O DE ANIMAï¿½ï¿½O DA ENTIDADE,
          * RECOMENDO USARMOS JAVA REFLECTION PARA PODER PASSAR 
-         * O COMPORTAMENTO POR PARAMETRO NO CONSTRUTOR E NÃO
+         * O COMPORTAMENTO POR PARAMETRO NO CONSTRUTOR E Nï¿½O
          * CRIAR CLASSES PARA CADA ENTIDADE DINAMICA 
          */
 
         //-----EXEMPLO DE ALGORITMO PARA ANIMAR-----//
-        if(tick>60/animationSpeed){
-            nextSpriteX();
-            tick = 0;
+        if(play){
+            if(frame>60/animationSpeed){
+                frame = 0;
+            }else if(frame == 0){
+                nextSpriteX();
+                frame++;
+            }else{
+                frame++;
+            }
         }else{
-            tick++;
-        }
+            frame = 0;
+        }    
     }
     
     /**
-     * Pula para o próximo sprite da linha
+     * Pula para o prï¿½ximo sprite da linha
      */
     public void nextSpriteX(){
         currentSpriteX++;
         if(currentSpriteX>=numSpritesX){
             currentSpriteX=0;
         }
-        sx=(int)width*currentSpriteX;
+        spriteX=(int)width*currentSpriteX;
     }
     /**
-     * Pula para o próximo sprite da coluna
+     * Pula para o prï¿½ximo sprite da coluna
      */
     public void nextSpriteY(){
         currentSpriteY++;
         if(currentSpriteY>=numSpritesY){
             currentSpriteY=0;
         }
-        sy=(int)height*currentSpriteY;
+        spriteY=(int)height*currentSpriteY;
     }
+
+    public void setSpriteX(int i){
+        if(i>numSpritesX){
+            i=i%numSpritesX;
+        }
+        spriteX=(int)width*i;
+    }
+
+    public void setSpriteY(int j){
+        if(j>numSpritesY){
+            j=j%numSpritesY;
+        }
+        spriteY=(int)height*j;
+    }
+
     /**
      * Pula para o sprite da linha e da coluna selecionada
      */
@@ -102,8 +149,8 @@ public class Animation extends Entity {
         if(j>numSpritesY){
             j=j%numSpritesY;
         }
-        sx=(int)width*i;
-        sy=(int)height*j;
+        spriteX=(int)width*i;
+        spriteY=(int)height*j;
     }
 
     public int getSpriteVeloticy() {
@@ -112,4 +159,6 @@ public class Animation extends Entity {
     public void setSpriteVeloticy(int spriteVeloticy) {
         this.animationSpeed = spriteVeloticy;
     }
+
+    
 }

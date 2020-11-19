@@ -4,14 +4,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Comparator;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
-
-import com.unamedgroup.placeholder.entities.*;
+import com.unamedgroup.placeholder.entities.Entity;
+import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.world.*;
+import com.unamedgroup.placeholder.graphics.states.*;
+import com.unamedgroup.placeholder.world.Camera;
+import com.unamedgroup.placeholder.world.Maps;
+import com.unamedgroup.placeholder.world.Room;
 
 /**
  * Inicializa o jogo, comanda as ações q o projeto fará dependendo 
@@ -23,6 +27,7 @@ import com.unamedgroup.placeholder.world.*;
  * ...
  */
 
+@SuppressWarnings("unused")
 public class Game implements Runnable {
 	private static final long serialVersionUID = 3L;
 
@@ -35,8 +40,8 @@ public class Game implements Runnable {
 	public boolean isFullScreen;						// Estado do tela
 	private Thread thread;
 	private boolean isRunning;
-	public static final int WIDTH = 200;
-	public static final int HEIGHT = 160;
+	public static final int WIDTH = 400;
+	public static final int HEIGHT = 300;
 	public static final int SCALE = 2;
 
 	public boolean isPaused;
@@ -49,13 +54,26 @@ public class Game implements Runnable {
 	public static Camera camera;
 
 	// Adicionei um objeto de teste para construir o mundo com colisão
-	public static World worldTeste;
 
 	public static SpriteSheet spriteTeste;				 
 	/*----------------------------------------------------------------*/
-	//Adicionei uma lista q deve conter todas as entidades do jogo para executar seu tick e render
-	public static List<Entity> entities = new ArrayList<>();	
-	public static Player player;
+	public static Room room;
+	public static Maps maps;
+
+	public static int currentMapID = 1001;	
+	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro mapa é só mudar isso, ou, quando tivermos um sistema de 
+	// save e load pronto, sobrescrever essa variável.
+	public static boolean alternatingMaps;
+	/*----------------------------------------------------------------*/
+	//Adicionei um conjunto q deve conter todas as entidades do jogo para executar seu tick e render
+	public static Comparator<Entity> nodeSorter = (new Comparator<Entity>(){
+		public int compare(Entity o1, Entity o2) {
+			return o1.depth - o2.depth;
+		};
+	});
+	public static Set<Entity> entities = new TreeSet<>(nodeSorter);	
+	public static Player player;	// Player é instanciado pelo State
+	
 	/*----------------------------------------------------------------*/
 	
 	/**
@@ -63,6 +81,8 @@ public class Game implements Runnable {
 	 * menus e sprites.
 	 */
 	public Game() {
+		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
+
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		input = new InputHandler(display);
 		stateManager = new StateManager();
@@ -72,13 +92,11 @@ public class Game implements Runnable {
 		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //fullscreen
 		
 		camera = new Camera();
-		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
-
-		//entities = new ArrayList<>(10);
-		player = new Player(WIDTH/2, HEIGHT/2, 16, 16, spriteTeste.getSprite(7 * World.TILE_SIZE, 0 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), 1, 2);
+		
 		entities.add(player);
 
-		worldTeste = new World("/worldTest.png");
+		maps = new Maps();
+		alternatingMaps = true;
 	}
 
 	public static void main(String[] args) {
@@ -91,6 +109,12 @@ public class Game implements Runnable {
 	 * Executa todas as ações e macânicas de jogo.
 	 */
 	public void tick() {
+		if(!alternatingMaps) {
+			room.tick();
+			entities.forEach(entity -> entity.tick());
+		}else
+			maps.tick();
+		
 		if(!stateManager.currentStateExist()) return;
 		stateManager.tick();
 		input.tick();
@@ -114,8 +138,13 @@ public class Game implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
 		// Passa o renderizador para o State corrente
+		if(!alternatingMaps)	
+			room.render(g);
+		
+		for (Entity entity : entities) entity.render(g);
 		if(stateManager.currentStateExist())	
 			stateManager.render(g);
+		
 		g = bs.getDrawGraphics();
 		
 		//Desenho não pixelado (multiplicar as dimensões pela SCALE do jogo.)

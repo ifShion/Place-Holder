@@ -1,41 +1,35 @@
 package com.unamedgroup.placeholder.graphics.states;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.unamedgroup.placeholder.entities.Animation;
 import com.unamedgroup.placeholder.entities.Entity;
+import com.unamedgroup.placeholder.entities.Player;
+import com.unamedgroup.placeholder.entities.players.Alpha;
+import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.interfaces.State;
 import com.unamedgroup.placeholder.main.Game;
-import com.unamedgroup.placeholder.main.StateManager;
 
+@SuppressWarnings("unused")
 public class State_01 implements State {
     private int ID;
-    public static List<Entity> entities;
-    private Animation patinho;
+    public static Alpha alpha;
 
     public State_01(int id){
         this.ID = id;
-        init();
+        alpha = new Alpha(Game.WIDTH/2, Game.HEIGHT/2, 64, 64, new SpriteSheet("/red-teste-spritesheet.png"), 4, 4, 5, 4, 4, 0, 0);
     }
 
 
     @Override
     public void init() {
-        entities = new ArrayList<>();
-        patinho = new Animation(50, 50, 44, 50, "/patinho.png", 1, 1, 10);
-        entities.add(patinho);
-
+        alpha = new Alpha(Game.WIDTH/2, Game.HEIGHT/2, 64, 64, new SpriteSheet("/red-teste-spritesheet.png"), 4, 4, 5, 4, 4, 0, 0);
+        Game.currentMapID = 1000;
+        Game.player = alpha;
     }
 
     @Override
     public void tick() {
-        if(Game.input.prime.clicked)
-            StateManager.setState(0);
-        entities.forEach(entity -> entity.tick());
-        
-
+         
     }
 
     @Override
@@ -43,9 +37,7 @@ public class State_01 implements State {
         /**/
 		//Desenho pixelado
 		//Essa linha embaixo organiza as entidades na lista em ordem crescente de profundidade,
-		//logo, o parâmetro depth de toda entidade irá ditar se ele é renderizado em cima de outra entidade.
-		entities.sort((e1, e2) -> Integer.compare(e1.depth, e2.depth));
-		for (Entity entity : entities) entity.render(g);
+		//logo, o parï¿½metro depth de toda entidade irï¿½ ditar se ele ï¿½ renderizado em cima de outra entidade.
 
         //Essa linha desenha uma imagem, nesse caso, foi um recorte da Sprite Sheet
 		g.drawImage(Game.spriteTeste.getSprite(80, 0, 48, 16), 50, 20, null);

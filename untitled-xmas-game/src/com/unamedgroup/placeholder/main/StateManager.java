@@ -13,13 +13,14 @@ import com.unamedgroup.placeholder.graphics.states.*;
 public class StateManager implements State{
 
     public static ArrayList<State> states = new ArrayList<>();
-    public static int currentState = 0;
+    public static int currentState = 2;
     /**
      * CADA STATE CRIADO DEVE SER LISTADO NESSE CONTRUTOR
      */
     public StateManager() {
         states.add(new State_00(states.size()));
         states.add(new State_01(states.size()));
+        states.add(new State_null(states.size()));
     }
 
     /**
@@ -29,6 +30,9 @@ public class StateManager implements State{
     public static void setState(int state){
         currentState = state;
         states.get(currentState).init();
+    }
+    public static State getCurrentState(){
+        return states.get(currentState);
     }
 
     /**

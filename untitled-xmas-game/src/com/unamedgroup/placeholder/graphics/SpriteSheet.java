@@ -20,6 +20,10 @@ public class SpriteSheet {
 		}
 	}
 	
+	public BufferedImage getSpriteSheet() {
+		return spriteSheet;
+	}
+
 	public BufferedImage getSprite(int x , int y , int width , int height) {
 		return spriteSheet.getSubimage(x, y, width, height);
 	}

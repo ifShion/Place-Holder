@@ -16,12 +16,17 @@ import com.unamedgroup.placeholder.world.tiles.*;
  * Já vejo um problema com essa classe, pq vamos precisar de diferentes files para os diferentes jogos
  * Por mais q ela funcione para determinar colisões, os sprites e comportamentos de tiles e entidades
  * especiais não conseguem sergerenciadas por aqui.
- * TODO: Resolver esse problema. Talevz fazer essa classe abstrata ??????
+ * 
  * @author Daniel Neves
  */
-public class World {
-    public static Tile[] tiles;
-	public static int WIDTH , HEIGHT;
+public abstract class World {
+	/*
+	 * Alterações: Mudei os atributos státicos, vai ser mais demorado chamá-los agora pq vai ter q chamar Gmae, mas
+	 * agora todos eles têm tamanhos e tiles diferentes e podemos cuidar de cada um separadamente, em vez de instanciar
+	 * um novo cada vez q mudar de sala
+	 */
+    public Tile[] tiles;
+	public int WIDTH , HEIGHT;
 	public static final int TILE_SIZE = 16;
 	public String path;
 	
@@ -49,8 +54,10 @@ public class World {
 					case 0xFFFFFFFF://branco
 						tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.SOLID_TILE);
 						break;
-					case 0xFF0000FF://Azul
-                        tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE);
+					case 0xFF0000FF://azul
+						Game.player.setX(xx*TILE_SIZE);
+						Game.player.setY(yy*TILE_SIZE);
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE);
 						break;
 					default:
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE);
@@ -82,7 +89,7 @@ public class World {
 	 * @return se o espaço que se pretende visitar é acessível
 	 */
 	
-	public static boolean isFreeDynamic( int xNext , int yNext , int width , int height) {
+	public boolean isFreeDynamic( int xNext , int yNext , int width , int height) {
 		
 		int x1 = xNext / (TILE_SIZE);
 		int y1 = yNext / (TILE_SIZE);
@@ -96,10 +103,10 @@ public class World {
 		int x4 = (xNext + width - 1) / TILE_SIZE;
 		int y4 = (yNext + height - 1) / TILE_SIZE;
 		
-		return !((tiles[x1 + y1 * World.WIDTH] instanceof SolidTile) ||
-				 (tiles[x2 + y2 * World.WIDTH] instanceof SolidTile) ||
-				 (tiles[x3 + y3 * World.WIDTH] instanceof SolidTile) ||
-				 (tiles[x4 + y4 * World.WIDTH] instanceof SolidTile));
+		return !((tiles[x1 + y1 * WIDTH] instanceof SolidTile) ||
+				 (tiles[x2 + y2 * WIDTH] instanceof SolidTile) ||
+				 (tiles[x3 + y3 * WIDTH] instanceof SolidTile) ||
+				 (tiles[x4 + y4 * WIDTH] instanceof SolidTile));
 	}
 	
 	/**
@@ -108,7 +115,7 @@ public class World {
 	 * @param yNext
 	 * @return se o espaço que se pretende visitar está livre
 	 */
-	public static boolean isFree( int xNext , int yNext) {
+	public boolean isFree( int xNext , int yNext) {
 		
 		int x1 = xNext / (TILE_SIZE);
 		int y1 = yNext / (TILE_SIZE);
@@ -122,10 +129,10 @@ public class World {
 		int x4 = (xNext + TILE_SIZE - 1) / TILE_SIZE;
 		int y4 = (yNext + TILE_SIZE - 1) / TILE_SIZE;
 		
-		return !((tiles[x1 + y1 * World.WIDTH] instanceof SolidTile) ||
-				 (tiles[x2 + y2 * World.WIDTH] instanceof SolidTile) ||
-				 (tiles[x3 + y3 * World.WIDTH] instanceof SolidTile) ||
-				 (tiles[x4 + y4 * World.WIDTH] instanceof SolidTile)); 
+		return !((tiles[x1 + y1 * WIDTH] instanceof SolidTile) ||
+				 (tiles[x2 + y2 * WIDTH] instanceof SolidTile) ||
+				 (tiles[x3 + y3 * WIDTH] instanceof SolidTile) ||
+				 (tiles[x4 + y4 * WIDTH] instanceof SolidTile)); 
 	}
 	/**
 	 * Método renderiza apenas os tiles que estão adjacentes e internos aos limites da tela do jogo
