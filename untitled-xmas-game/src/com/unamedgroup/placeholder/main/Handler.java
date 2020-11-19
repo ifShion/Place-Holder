@@ -18,6 +18,7 @@ public class Handler {
     /**
      * @param game
      * @param camera
+     * @param display
      * Recebe um parametro de game e camera para lidar com tudo que estiver lá, a partir daqui
      */
     Handler(Game game, Camera camera, Display display){
