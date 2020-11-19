@@ -1,0 +1,18 @@
+TODO:
++ Organizar maneira de fazer vários mapas acessíveis
++ Mudar a posição da lista de entidades para diferentes game_states
++ Mudar a classe Player para abstrata e criar classes para os diferentes players
++ Começar a ciar inimigos base para cada fase
++ Associar controles de cada personagem com uma ação (teste)
+- Organizar um jeito de criar Tiles com mesma propriedade, mas textura diferente
+- Sistema de save básico
+
+- Criar Tiles especiais e entidades de mapa
+- Arte do jogo (som, visual e game design)
+- Trabalhar a mecânica de cada protagonista
++ Nome do jogo e do grupo
++ Pesquisa e escrita do trabalho escrito
++ Design de inimigos
++ Level design 
+
+Vamos pra cima!
