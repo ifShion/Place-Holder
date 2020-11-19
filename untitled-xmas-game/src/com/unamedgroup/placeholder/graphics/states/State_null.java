@@ -6,8 +6,8 @@ import com.unamedgroup.placeholder.interfaces.State;
 import com.unamedgroup.placeholder.main.StateManager;
 
 // Uso esse State para instanciar a classe player em game
-// Ele é instanciado ao trocar de state
-// Esse state só é usado para trocar de state
+// Ele Ã© instanciado ao trocar de state
+// Esse state sÃ³ Ã© usado para trocar de state
 public class State_null implements State {
     public static int ID;
 
