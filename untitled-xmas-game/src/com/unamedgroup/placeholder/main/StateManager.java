@@ -26,11 +26,7 @@ public class StateManager implements State{
 
     /**
      * Utilize para trocar os State atual
-<<<<<<< HEAD
      * Ao trocar toda as variaváis do state serão reinicializadas
-=======
-     * Ao trocar toda as variav�is do state ser�o reinicializadas
->>>>>>> 3cb0c4947f7fd2177dd73e57f32254260bfd68f6
      */
     public static void setState(int state){
         currentState = state;
@@ -41,11 +37,7 @@ public class StateManager implements State{
     }
 
     /**
-<<<<<<< HEAD
      * Verifica a existência de um estado atual
-=======
-     * Verifica a exist�ncia de um estado atual
->>>>>>> 3cb0c4947f7fd2177dd73e57f32254260bfd68f6
      * @return Retorna se existe um estado atual
      */
     public boolean currentStateExist(){

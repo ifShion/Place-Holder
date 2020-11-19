@@ -43,7 +43,7 @@ public class Game implements Runnable {
 	public static final int WIDTH = 400;
 	public static final int HEIGHT = 300;
 	public static final int SCALE = 2;
-
+	
 	public boolean isPaused;
 	/*---------------------------------------------------------------*/
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
