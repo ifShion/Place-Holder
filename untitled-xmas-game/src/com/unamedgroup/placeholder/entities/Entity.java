@@ -45,11 +45,7 @@ public class Entity {
 	 * @param initPosY			Detalhes em Animation
 	 * @param handler  			para comunicar com outras classes
 	 */
-<<<<<<< HEAD
 	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler){
-=======
-	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, double speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY){
->>>>>>> 3cb0c4947f7fd2177dd73e57f32254260bfd68f6
 		animation = new Animation(animationSpeed, width, height, numSpritesX, numSpritesY, initPosX, initPosY);
 		this.x = x;
 		this.y = y;

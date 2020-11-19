@@ -6,12 +6,8 @@ package com.unamedgroup.placeholder.graphics;
  * @author Daniel
  */
 public class Animation {
-<<<<<<< HEAD:untitled-xmas-game/src/com/unamedgroup/placeholder/graphics/Animation.java
-    // Mudei Animation para graphics, mas podem mudar tbm
-=======
     private boolean play;           
 
->>>>>>> ca1088b122644bf4a48715ff0fd9d62d071dde69:untitled-xmas-game/src/com/unamedgroup/placeholder/entities/Animation.java
     protected int width;          	// Largura do sprite
     protected int height;         	// Altura do sprite
     
