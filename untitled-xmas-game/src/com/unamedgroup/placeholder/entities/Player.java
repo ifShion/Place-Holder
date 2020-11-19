@@ -9,7 +9,6 @@ import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.Camera;
 import com.unamedgroup.placeholder.world.World;
 
-import org.xml.sax.HandlerBase;
 
 /**
  * É bom essa classe ser abstrata tbm já q vai ter 5 personagens Classe de teste
@@ -77,8 +76,8 @@ public class Player extends Entity {
 		}
 		
 		// Utilizar esse código para centralizar a câmera no centralizado quando existir um mapa
-		handler.getCamera().setX(Camera.clamp(super.getX() - handler.getGame().WIDTH/2 , 0 , handler.getGame().room.WIDTH * World.TILE_SIZE - handler.getGame().WIDTH));
-		handler.getCamera().setY(Camera.clamp(super.getY() - handler.getGame().HEIGHT/2 , 0 , handler.getGame().room.HEIGHT * World.TILE_SIZE - handler.getGame().HEIGHT));
+		handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().room.WIDTH * World.TILE_SIZE - Game.WIDTH));
+		handler.getCamera().setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , handler.getGame().room.HEIGHT * World.TILE_SIZE - Game.HEIGHT));
 	}
 	
 	public void render(Graphics g) {

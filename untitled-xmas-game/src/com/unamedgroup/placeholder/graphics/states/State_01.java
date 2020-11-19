@@ -27,7 +27,7 @@ public class State_01 implements State {
     @Override
     public void init() {
         //alpha = new Alpha(Game.WIDTH/2, Game.HEIGHT/2, 64, 64, new SpriteSheet("/red-teste-spritesheet.png"), 4, 4, 5, 4, 4, 0, 0, handler);
-        Game.currentMapID = 1000;
+        handler.getGame().currentMapID = 1000;
         Game.player = alpha;
     }
 

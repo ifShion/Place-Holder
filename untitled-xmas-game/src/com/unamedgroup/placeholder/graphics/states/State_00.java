@@ -40,7 +40,7 @@ public class State_00 implements State {
     	// e muito devagar pro outro ;-;. Ainda bem q esse sistema de movimentação é só um protótipo.
         alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 24, Game.spriteTeste, 4, 2, 1, 4, 2, 16, 16, handler);
         alpha.setMask(3, 12, 10, 12);
-        Game.currentMapID = 1001;
+        handler.getGame().currentMapID = 1001;
         Game.player = alpha;
     }
 

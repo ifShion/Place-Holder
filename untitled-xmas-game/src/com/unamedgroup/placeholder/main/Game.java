@@ -33,7 +33,7 @@ public class Game implements Runnable {
 	private static final long serialVersionUID = 3L;
 
 	public static final String NAME = "Place Holder";	// Titulo da jogo
-	private static Display display; 					// Janela do jogo
+	private Display display; 					// Janela do jogo
 	public Handler handler;								// Uma classe para fazer a comunicação entre diferentes classes
 	/*---------------------------------------------------------------*/
 	//Inicializando variáveis do Display
@@ -51,19 +51,19 @@ public class Game implements Runnable {
 	public static Random rand;
 
 	/*----------------------------------------------------------------*/
-	private static Camera camera;
+	private Camera camera;
 
 	// Adicionei um objeto de teste para construir o mundo com colisão
 
 	public static SpriteSheet spriteTeste;				 
 	/*----------------------------------------------------------------*/
-	public static Room room;
+	public Room room;
 	public Maps maps;
 
-	public static int currentMapID = 1001;	
+	public int currentMapID = 1001;	
 	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro mapa é só mudar isso, ou, quando tivermos um sistema de 
 	// save e load pronto, sobrescrever essa variável.
-	public static boolean alternatingMaps;
+	public boolean alternatingMaps;
 	/*----------------------------------------------------------------*/
 	//Adicionei um conjunto q deve conter todas as entidades do jogo para executar seu tick e render
 	public static Comparator<Entity> nodeSorter = (new Comparator<Entity>(){

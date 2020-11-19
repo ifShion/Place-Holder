@@ -14,6 +14,7 @@ public class Handler {
     private StateManager stateManager; // stateManager vai gerenciar toda tela de pintura do jogo.
     private Game game;
     private Camera camera;
+    private Display display;
 
     /**
      * @param game
@@ -24,6 +25,7 @@ public class Handler {
     Handler(Game game, Camera camera, Display display){
         this.game = game;
         this.camera = camera;
+        this.display = display;
         inputHandler = new InputHandler(game, display);
         stateManager = new StateManager(this);
         stateManager.init();
@@ -32,7 +34,7 @@ public class Handler {
     public void tick(){
         inputHandler.tick();
         if(!stateManager.currentStateExist()) return;
-		    stateManager.tick();
+		stateManager.tick();
     }
 
     public void render(Graphics g){
@@ -70,6 +72,14 @@ public class Handler {
 
     public void setCamera(Camera camera) {
         this.camera = camera;
+    }
+
+    public Display getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Display display) {
+        this.display = display;
     }
     
 }

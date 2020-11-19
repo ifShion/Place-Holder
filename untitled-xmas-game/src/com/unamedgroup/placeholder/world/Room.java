@@ -6,7 +6,6 @@ import java.util.Set;
 
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.states.State_00;
-import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.tiles.DoorTile;
 import com.unamedgroup.placeholder.world.tiles.Tile;
@@ -55,7 +54,7 @@ public class Room extends World {
      */
     public void createDoors(){
         doors = new LinkedHashSet<>();
-        switch(Game.currentMapID){
+        switch(handler.getGame().currentMapID){
             case 1001:
                 placeDoor(3, 11, State_00.alpha, 1001, 5, 9);
                 placeDoor(5, 3, State_00.alpha, 1002, 4, 15);
