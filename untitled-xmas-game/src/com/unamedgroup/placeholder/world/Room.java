@@ -16,7 +16,8 @@ public class Room extends World {
     private int ID;
     private Handler handler;
     /**
-     * Constrói o mundo novo
+     * Constrói o mundo novo. É bom ter uma sprite sheet pr´pria para os tiles de cada mapa
+     * são muitos tiles
      * @param path
      * @param ID
      * @param handler

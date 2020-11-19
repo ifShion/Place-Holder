@@ -1,6 +1,4 @@
-package com.unamedgroup.placeholder.entities;
-
-import com.unamedgroup.placeholder.world.World;
+package com.unamedgroup.placeholder.graphics;
 
 /**
  * 
@@ -8,8 +6,12 @@ import com.unamedgroup.placeholder.world.World;
  * @author Daniel
  */
 public class Animation {
+<<<<<<< HEAD:untitled-xmas-game/src/com/unamedgroup/placeholder/graphics/Animation.java
+    // Mudei Animation para graphics, mas podem mudar tbm
+=======
     private boolean play;           
 
+>>>>>>> ca1088b122644bf4a48715ff0fd9d62d071dde69:untitled-xmas-game/src/com/unamedgroup/placeholder/entities/Animation.java
     protected int width;          	// Largura do sprite
     protected int height;         	// Altura do sprite
     
@@ -44,8 +46,8 @@ public class Animation {
         this.width = width;
         this.height = height;
 
-        this.initPosX = initPosX*World.TILE_SIZE;
-        this.initPosY = initPosY*World.TILE_SIZE;
+        this.initPosX = initPosX;
+        this.initPosY = initPosY;
         this.numSpritesX = numSpritesX;
         this.numSpritesY = numSpritesY;
 
