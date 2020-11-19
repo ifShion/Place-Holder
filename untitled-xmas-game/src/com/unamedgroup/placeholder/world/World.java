@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.unamedgroup.placeholder.main.Game;
+import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.tiles.*;
 
 /**
@@ -29,12 +30,15 @@ public abstract class World {
 	public int WIDTH , HEIGHT;
 	public static final int TILE_SIZE = 16;
 	public String path;
+	private Handler handler;
 	
 	/**
 	 * Recebe um caminho até um arquivo de imagem q contem os dados do mapa a ser construído;
 	 * @param path
+	 * @param handler
 	 */
-	public World(String path) {
+	public World(String path, Handler handler) {
+		this.handler = handler;
 		this.path = path;
 		try {
 			BufferedImage map = ImageIO.read(getClass().getResource(path));
@@ -49,18 +53,18 @@ public abstract class World {
 					pixelAtual = pixels[xx + (yy * WIDTH)];
 					switch(pixelAtual) {
 					case 0xFF000000://preto
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE);
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE, handler);
 						break;
 					case 0xFFFFFFFF://branco
-						tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.SOLID_TILE);
+						tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.SOLID_TILE, handler);
 						break;
 					case 0xFF0000FF://azul
 						Game.player.setX(xx*TILE_SIZE);
 						Game.player.setY(yy*TILE_SIZE);
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE);
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE, handler);
 						break;
 					default:
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE);
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE, handler);
 						break;
 					}
 
@@ -89,7 +93,7 @@ public abstract class World {
 	 * @return se o espaço que se pretende visitar é acessível
 	 */
 	
-	public boolean isFreeDynamic( int xNext , int yNext , int width , int height) {
+	public boolean isFree( int xNext , int yNext , int width , int height) {
 		
 		int x1 = xNext / (TILE_SIZE);
 		int y1 = yNext / (TILE_SIZE);
@@ -115,7 +119,7 @@ public abstract class World {
 	 * @param yNext
 	 * @return se o espaço que se pretende visitar está livre
 	 */
-	public boolean isFree( int xNext , int yNext) {
+	/*public boolean isFree( int xNext , int yNext) {
 		
 		int x1 = xNext / (TILE_SIZE);
 		int y1 = yNext / (TILE_SIZE);
@@ -133,15 +137,15 @@ public abstract class World {
 				 (tiles[x2 + y2 * WIDTH] instanceof SolidTile) ||
 				 (tiles[x3 + y3 * WIDTH] instanceof SolidTile) ||
 				 (tiles[x4 + y4 * WIDTH] instanceof SolidTile)); 
-	}
+	}*/
 	/**
 	 * Método renderiza apenas os tiles que estão adjacentes e internos aos limites da tela do jogo
 	 * @param g
 	 */
 	public void render(Graphics g) {
 		
-		int xStart = Game.camera.getX() >> 4;
-		int yStart = Game.camera.getY() >> 4;
+		int xStart = handler.getCamera().getX() >> 4;
+		int yStart = handler.getCamera().getY() >> 4;
 
 		int xFinal = xStart + (Game.WIDTH >> 3);
 		int yFinal = yStart + (Game.HEIGHT >> 4);

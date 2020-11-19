@@ -64,7 +64,7 @@ public class InputHandler implements KeyListener {
 		}
 	}
 
-	public InputHandler(Display display) {
+	public InputHandler(Game game, Display display) {
 		display.setKeyListener(this);
 	}
 

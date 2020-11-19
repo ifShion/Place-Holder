@@ -8,21 +8,25 @@ import com.unamedgroup.placeholder.entities.players.Alpha;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.interfaces.State;
 import com.unamedgroup.placeholder.main.Game;
+import com.unamedgroup.placeholder.main.Handler;
 
 @SuppressWarnings("unused")
 public class State_01 implements State {
     private int ID;
     public static Alpha alpha;
+    private Handler handler;
 
-    public State_01(int id){
+    public State_01(int id, Handler handler){
         this.ID = id;
-        alpha = new Alpha(Game.WIDTH/2, Game.HEIGHT/2, 64, 64, new SpriteSheet("/red-teste-spritesheet.png"), 4, 4, 5, 4, 4, 0, 0);
+        this.handler = handler;
+        alpha = new Alpha(Game.WIDTH/2, Game.HEIGHT/2, 64, 64, new SpriteSheet("/red-teste-spritesheet.png"), 4, 4, 5, 4, 4, 0, 0, handler);
+        alpha.setMask(24, 24, 16, 34);
     }
 
 
     @Override
     public void init() {
-        alpha = new Alpha(Game.WIDTH/2, Game.HEIGHT/2, 64, 64, new SpriteSheet("/red-teste-spritesheet.png"), 4, 4, 5, 4, 4, 0, 0);
+        //alpha = new Alpha(Game.WIDTH/2, Game.HEIGHT/2, 64, 64, new SpriteSheet("/red-teste-spritesheet.png"), 4, 4, 5, 4, 4, 0, 0, handler);
         Game.currentMapID = 1000;
         Game.player = alpha;
     }

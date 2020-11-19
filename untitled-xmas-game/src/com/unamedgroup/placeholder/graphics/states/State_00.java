@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import com.unamedgroup.placeholder.interfaces.State;
 import com.unamedgroup.placeholder.main.Game;
+import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.World;
 import com.unamedgroup.placeholder.entities.Player;
 
@@ -20,15 +21,19 @@ public class State_00 implements State {
     private int ID;
     //Trocar o Player para o protagonista específico
     public static Player alpha;
+	private int id2;
+	private Handler handler;
 
-    public State_00(int id){
-        this.ID = id;
-        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0);
+    public State_00(int id, Handler handler){
+        id2 = id;
+		this.ID = id;
+		this.handler = handler;
+        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0, handler);
     }
 
     @Override
     public void init() {
-        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0);
+        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0, handler);
         Game.currentMapID = 1001;
         Game.player = alpha;
     }

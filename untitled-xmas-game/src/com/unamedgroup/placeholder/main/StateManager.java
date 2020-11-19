@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.awt.Graphics;
 import com.unamedgroup.placeholder.interfaces.State;
 import com.unamedgroup.placeholder.graphics.states.*;
+import com.unamedgroup.placeholder.main.*;
 
 
 /**
@@ -17,10 +18,10 @@ public class StateManager implements State{
     /**
      * CADA STATE CRIADO DEVE SER LISTADO NESSE CONTRUTOR
      */
-    public StateManager() {
-        states.add(new State_00(states.size()));
-        states.add(new State_01(states.size()));
-        states.add(new State_null(states.size()));
+    public StateManager(Handler handler) {
+        states.add(new State_00(states.size(), handler));
+        states.add(new State_01(states.size(), handler));
+        states.add(new State_null(states.size(), handler));
     }
 
     /**

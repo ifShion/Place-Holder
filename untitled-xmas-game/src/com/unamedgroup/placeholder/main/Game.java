@@ -33,8 +33,7 @@ public class Game implements Runnable {
 
 	public static final String NAME = "Place Holder";	// Titulo da jogo
 	private static Display display; 					// Janela do jogo
-	public static InputHandler input; 					// input vai controlar toda entrada de comandos do jogador.
-	public static StateManager stateManager;		 	// stateManager vai gerenciar toda tela de pintura do jogo.
+	public Handler handler;								// Uma classe para fazer a comunicação entre diferentes classes
 	/*---------------------------------------------------------------*/
 	//Inicializando variáveis do Display
 	public boolean isFullScreen;						// Estado do tela
@@ -51,14 +50,14 @@ public class Game implements Runnable {
 	public static Random rand;
 
 	/*----------------------------------------------------------------*/
-	public static Camera camera;
+	private static Camera camera;
 
 	// Adicionei um objeto de teste para construir o mundo com colisão
 
 	public static SpriteSheet spriteTeste;				 
 	/*----------------------------------------------------------------*/
 	public static Room room;
-	public static Maps maps;
+	public Maps maps;
 
 	public static int currentMapID = 1001;	
 	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro mapa é só mudar isso, ou, quando tivermos um sistema de 
@@ -84,19 +83,21 @@ public class Game implements Runnable {
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
-		input = new InputHandler(display);
-		stateManager = new StateManager();
-		stateManager.init();
 		rand = new Random();
+		init();
 
 		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //fullscreen
 		
-		camera = new Camera();
-		
 		entities.add(player);
 
-		maps = new Maps();
+		
 		alternatingMaps = true;
+	}
+
+	private void init(){
+		camera = new Camera();
+		handler = new Handler(this, camera, display);
+		maps = new Maps(handler);
 	}
 
 	public static void main(String[] args) {
@@ -115,9 +116,7 @@ public class Game implements Runnable {
 		}else
 			maps.tick();
 		
-		if(!stateManager.currentStateExist()) return;
-		stateManager.tick();
-		input.tick();
+		handler.tick();
 	}
 
 	/**
@@ -142,8 +141,8 @@ public class Game implements Runnable {
 			room.render(g);
 		
 		for (Entity entity : entities) entity.render(g);
-		if(stateManager.currentStateExist())	
-			stateManager.render(g);
+		if(handler.getStateManager().currentStateExist())	
+			handler.getStateManager().render(g);
 		
 		g = bs.getDrawGraphics();
 		

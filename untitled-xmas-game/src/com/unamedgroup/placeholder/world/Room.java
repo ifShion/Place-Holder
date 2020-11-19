@@ -7,23 +7,27 @@ import java.util.Set;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.states.State_00;
 import com.unamedgroup.placeholder.main.Game;
+import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.tiles.DoorTile;
 import com.unamedgroup.placeholder.world.tiles.Tile;
 
 public class Room extends World {
     private Set<DoorTile> doors;
     private int ID;
+    private Handler handler;
     /**
      * Constrói o mundo novo
      * @param path
-     * 
+     * @param ID
+     * @param handler
      * @author Daniel Neves
      */
     
-    public Room(String path, int ID) {
-        super(path);
+    public Room(String path, int ID, Handler handler) {
+        super(path, handler);
         
         this.ID = ID;
+        this.handler = handler;
     }
     
     public int getID() {
@@ -42,7 +46,7 @@ public class Room extends World {
      */
     public void placeDoor(int x, int y, Player player, int destiny, int tpx, int tpy){
     	System.out.println("Room.placeDoor()");
-        doors.add(new DoorTile(x * World.TILE_SIZE, y * World.TILE_SIZE, Tile.DOOR_TILE, player, destiny, tpx * World.TILE_SIZE, tpy * World.TILE_SIZE));
+        doors.add(new DoorTile(x * World.TILE_SIZE, y * World.TILE_SIZE, Tile.DOOR_TILE, player, destiny, tpx * World.TILE_SIZE, tpy * World.TILE_SIZE, handler));
     }
 
     /**

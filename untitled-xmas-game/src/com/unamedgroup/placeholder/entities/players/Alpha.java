@@ -2,12 +2,13 @@ package com.unamedgroup.placeholder.entities.players;
 
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.main.Handler;
 
 public class Alpha extends Player {
     
 
-    public Alpha(int x, int y, int width, int height, SpriteSheet sprite, int depth, int speed, int animationSpeed,int numSpritesX, int numSpritesY, int initPosX, int initPosY) {
-        super(x, y, width, height, sprite, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY);
+    public Alpha(int x, int y, int width, int height, SpriteSheet sprite, int depth, int speed, int animationSpeed,int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
+        super(x, y, width, height, sprite, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
         walking = false;
         status = "";
     }

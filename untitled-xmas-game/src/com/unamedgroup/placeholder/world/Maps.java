@@ -3,7 +3,7 @@ package com.unamedgroup.placeholder.world;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.unamedgroup.placeholder.main.Game;
+import com.unamedgroup.placeholder.main.Handler;
 
 /**
  * Essa parte do código é muito interessante. Oq ele faz aqui é cadastrar e armazenar todos os mapas do jogo
@@ -20,20 +20,22 @@ import com.unamedgroup.placeholder.main.Game;
  */
 public class Maps {
     private Map<Integer, Room> maps;
+    private Handler handler;
 
-    public Maps() {
+    public Maps(Handler handler) {
+        this.handler = handler;
         maps = new LinkedHashMap<>();
-        maps.put(1000, new Room("/worldnull.png", 1000));     // Coloquei esse como um mapa vazio so para fins de teste @nathan
-        maps.put(1001, new Room("/worldTest.png", 1001));
-        maps.put(1002, new Room("/worldTest2.png", 1002));
+        maps.put(1000, new Room("/worldnull.png", 1000, handler));     // Coloquei esse como um mapa vazio so para fins de teste @nathan
+        maps.put(1001, new Room("/worldTest.png", 1001, handler));
+        maps.put(1002, new Room("/worldTest2.png", 1002, handler));
 
     }
 
     public void tick(){
-        Game.alternatingMaps = false;
-        Game.room = maps.get(Game.currentMapID);
-        System.out.println(maps.get(Game.currentMapID).path + " // " + Game.currentMapID);
-        Game.room.createDoors();
+        handler.getGame().alternatingMaps = false;
+        handler.getGame().room = maps.get(handler.getGame().currentMapID);
+        System.out.println(maps.get(handler.getGame().currentMapID).path + " // " + handler.getGame().currentMapID);
+        handler.getGame().room.createDoors();
     }
 
     public Map<Integer, Room> getMaps() {

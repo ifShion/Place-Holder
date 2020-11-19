@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
+import com.unamedgroup.placeholder.main.Handler;
 
 public class Entity {
 	/* Inicializar os sprites iniciais de todas entidades aqui */
@@ -16,8 +17,8 @@ public class Entity {
 	private SpriteSheet sprite;
 	private boolean animated;
 
-	private int width;
-	private int height;
+	protected int width;
+	protected int height;
 
 	private int maskX;
 	private int maskY;
@@ -25,6 +26,8 @@ public class Entity {
 	private int maskH;
 
 	public int depth;
+
+	protected Handler handler;
 	/**
 	 * Detalhes dos parÂmetros:
 	 * @param x					posição de x da entidade
@@ -39,8 +42,9 @@ public class Entity {
 	 * @param numSpritesY		Detalhes em Animation
 	 * @param initPosX			Detalhes em Animation
 	 * @param initPosY			Detalhes em Animation
+	 * @param handler  			para comunicar com outras classes
 	 */
-	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY){
+	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler){
 		animation = new Animation(animationSpeed, width, height, numSpritesX, numSpritesY, initPosX, initPosY);
 		this.x = x;
 		this.y = y;
@@ -58,6 +62,8 @@ public class Entity {
 		
 		this.depth = depth;
 		this.speed = speed;
+
+		this.handler = handler;
 	}
 
 	/**
@@ -166,10 +172,10 @@ public class Entity {
 	public void render(Graphics g) {
 		if(animated)
 			g.drawImage(sprite.getSpriteSheet(),
-				this.getX() - Game.camera.getX(),					// Coordenada X na tela
-				this.getY() - Game.camera.getY(),					// Coordenada Y na tela
-				(int) (this.getX() - Game.camera.getX()+width),		// Largura do Sprite
-				(int) (this.getY() - Game.camera.getY()+height),	// Altura do sprite
+				this.getX() - handler.getCamera().getX(),					// Coordenada X na tela
+				this.getY() - handler.getCamera().getY(),					// Coordenada Y na tela
+				(int) (this.getX() - handler.getCamera().getX()+width),		// Largura do Sprite
+				(int) (this.getY() - handler.getCamera().getY()+height),	// Altura do sprite
 				(int) animation.getSpriteX() + animation.getInitPosX(),	// Coordenada X1 na imagem
 				(int) animation.getSpriteY() + animation.getInitPosY(),	// Coordenada Y1 na imagem
 				(int) (animation.getSpriteX() + animation.getInitPosX()+width),	// Coordenada X2 na imagem
