@@ -34,7 +34,7 @@ public class Game implements Runnable {
 
 	public static final String NAME = "Place Holder";	// Titulo da jogo
 	private Display display; 					// Janela do jogo
-	public Handler handler;								// Uma classe para fazer a comunicação entre diferentes classes
+	private Handler handler;								// Uma classe para fazer a comunicação entre diferentes classes
 	/*---------------------------------------------------------------*/
 	//Inicializando variáveis do Display
 	public boolean isFullScreen;						// Estado do tela
