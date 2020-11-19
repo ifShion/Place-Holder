@@ -130,6 +130,16 @@ public class Entity {
 		return maskH;
 	}
 	 
+
+	public Animation getAnimation() {
+		return this.animation;
+	}
+
+	public void setAnimation(Animation animation) {
+		this.animation = animation;
+	}
+
+
 	 public void setMask(int maskX , int maskY , int maskW , int maskH) {
 		this.maskX = maskX;
 		this.maskY = maskY;

@@ -12,7 +12,7 @@ import java.util.TreeSet;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.graphics.states.State_00;
+import com.unamedgroup.placeholder.graphics.states.*;
 import com.unamedgroup.placeholder.world.Camera;
 import com.unamedgroup.placeholder.world.Maps;
 import com.unamedgroup.placeholder.world.Room;
@@ -40,8 +40,8 @@ public class Game implements Runnable {
 	public boolean isFullScreen;						// Estado do tela
 	private Thread thread;
 	private boolean isRunning;
-	public static final int WIDTH = 200;
-	public static final int HEIGHT = 160;
+	public static final int WIDTH = 400;
+	public static final int HEIGHT = 300;
 	public static final int SCALE = 2;
 
 	public boolean isPaused;
@@ -72,7 +72,7 @@ public class Game implements Runnable {
 		};
 	});
 	public static Set<Entity> entities = new TreeSet<>(nodeSorter);	
-	public static Player player;
+	public static Player player;	// Player é instanciado pelo State
 	
 	/*----------------------------------------------------------------*/
 	
@@ -93,8 +93,6 @@ public class Game implements Runnable {
 		
 		camera = new Camera();
 		
-		//TODO: Quando for mudar o currentLevelID na mão, tem q mudar isso tbm ;-;
-		player = State_00.alpha;
 		entities.add(player);
 
 		maps = new Maps();

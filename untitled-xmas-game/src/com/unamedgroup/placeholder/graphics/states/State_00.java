@@ -23,17 +23,19 @@ public class State_00 implements State {
 
     public State_00(int id){
         this.ID = id;
-        init();
+        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0);
     }
 
     @Override
     public void init() {
         alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0);
+        Game.currentMapID = 1001;
+        Game.player = alpha;
     }
 
     @Override
     public void tick() {
-
+        
     }
 
     @Override
@@ -44,7 +46,7 @@ public class State_00 implements State {
 		//logo, o par�metro depth de toda entidade ir� ditar se ele � renderizado em cima de outra entidade.
 
         //Essa linha desenha uma imagem, nesse caso, foi um recorte da Sprite Sheet
-		g.drawImage(Game.spriteTeste.getSprite(80, 0, 48, 16), 30, 10, null);
+		//g.drawImage(Game.spriteTeste.getSprite(80, 0, 48, 16), 30, 10, null);
         
     }
     
