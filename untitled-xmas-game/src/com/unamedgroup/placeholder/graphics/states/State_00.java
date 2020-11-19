@@ -23,20 +23,26 @@ public class State_00 implements State {
 
     public State_00(int id){
         this.ID = id;
-        init();
+        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0);
     }
 
     @Override
     public void init() {
+<<<<<<< HEAD
     	// Temos um problema aqui: se a gente colocar a speed do personagem um número quebrado, ele anda muito rápido pra um lado
     	// e muito devagar pro outro ;-;. Ainda bem q esse sistema de movimentação é só um protótipo.
         alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 24, Game.spriteTeste, 4, 2, 1, 4, 2, 16, 16);
         alpha.setMask(3, 12, 10, 12);
+=======
+        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0);
+        Game.currentMapID = 1001;
+        Game.player = alpha;
+>>>>>>> ca1088b122644bf4a48715ff0fd9d62d071dde69
     }
 
     @Override
     public void tick() {
-
+        
     }
 
     @Override
@@ -45,6 +51,12 @@ public class State_00 implements State {
 		//Desenho pixelado
 		//Essa linha embaixo organiza as entidades na lista em ordem crescente de profundidade,
 		//logo, o par�metro depth de toda entidade ir� ditar se ele � renderizado em cima de outra entidade.
+<<<<<<< HEAD
+=======
+
+        //Essa linha desenha uma imagem, nesse caso, foi um recorte da Sprite Sheet
+		//g.drawImage(Game.spriteTeste.getSprite(80, 0, 48, 16), 30, 10, null);
+>>>>>>> ca1088b122644bf4a48715ff0fd9d62d071dde69
         
     }
     

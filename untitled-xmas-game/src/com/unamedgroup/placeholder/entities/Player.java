@@ -18,7 +18,12 @@ import com.unamedgroup.placeholder.world.World;
  *
  */
 public class Player extends Entity {
+<<<<<<< HEAD
 	
+=======
+	protected String status;		// Ainda estou testando esse argumento, utilizo para definir a animação em uma classe filha
+	protected boolean walking;
+>>>>>>> ca1088b122644bf4a48715ff0fd9d62d071dde69
 	/**
 	 * Mudei a questão da animação. Toda a área ( int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY) do
 	 * construtor é decidada a ela. Mais detalhes em Entity:
@@ -49,15 +54,25 @@ public class Player extends Entity {
 		boolean down = Game.input.down.down && Game.room.isFree(super.getX() + super.getMaskX(), (int)(super.getY() + super.getMaskY() + speed), super.getMaskW(), super.getMaskH());
 		boolean up = Game.input.up.down && Game.room.isFree(super.getX() + super.getMaskX(), (int)(super.getY() + super.getMaskY() - speed), super.getMaskW(), super.getMaskH());
 
+		if(up||down||left||right){
+			walking = true;
+		}else{
+			walking = false;
+		}
+
 		if(up) {
 			setY(getY() - speed);
+			status = "up";
 		}else if(down) {
 			setY(getY() + speed);
+			status = "down";
 		}
 		if(left) {
 			setX(getX() - speed);
+			status = "left";
 		}else if(right) {
 			setX(getX() + speed);
+			status = "right";
 		}
 		
 		// Utilizar esse código para centralizar a câmera no centralizado quando existir um mapa

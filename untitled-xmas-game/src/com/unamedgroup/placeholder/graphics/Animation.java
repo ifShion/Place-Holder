@@ -3,14 +3,20 @@ package com.unamedgroup.placeholder.graphics;
 /**
  * 
  * @author Nathan
+ * @author Daniel
  */
 public class Animation {
+<<<<<<< HEAD:untitled-xmas-game/src/com/unamedgroup/placeholder/graphics/Animation.java
     // Mudei Animation para graphics, mas podem mudar tbm
+=======
+    private boolean play;           
+
+>>>>>>> ca1088b122644bf4a48715ff0fd9d62d071dde69:untitled-xmas-game/src/com/unamedgroup/placeholder/entities/Animation.java
     protected int width;          	// Largura do sprite
     protected int height;         	// Altura do sprite
     
-    private int initPosX;			//Posição inicial em X da sequência de Sprites
-    private int initPosY;			//Posição inicial em Y da sequência de Sprites
+    private int initPosX;			// Posição inicial em X da sequência de Sprites
+    private int initPosY;			// Posição inicial em Y da sequência de Sprites
 	private double spriteX = 0; 	// Coordenada X dentro do arquivo de Imagem
     private double spriteY = 0; 	// Coordenada Y dentro do arquivo de Imagem
     private int animationSpeed;		// Velocidade da troca de sprites em sprites/seconds
@@ -61,7 +67,21 @@ public class Animation {
 	
 	public double getSpriteY() {
 		return spriteY;
-	}
+    }
+    
+
+    public boolean isPlay() {
+        return this.play;
+    }
+
+    public boolean getPlay() {
+        return this.play;
+    }
+
+    public void setPlay(boolean play) {
+        this.play = play;
+    }
+
 
 	public void tick(){
         /**
@@ -72,12 +92,18 @@ public class Animation {
          */
 
         //-----EXEMPLO DE ALGORITMO PARA ANIMAR-----//
-        if(frame>60/animationSpeed){
-            nextSpriteX();
-            frame = 0;
+        if(play){
+            if(frame>60/animationSpeed){
+                frame = 0;
+            }else if(frame == 0){
+                nextSpriteX();
+                frame++;
+            }else{
+                frame++;
+            }
         }else{
-            frame++;
-        }
+            frame = 0;
+        }    
     }
     
     /**
@@ -100,6 +126,21 @@ public class Animation {
         }
         spriteY=(int)height*currentSpriteY;
     }
+
+    public void setSpriteX(int i){
+        if(i>numSpritesX){
+            i=i%numSpritesX;
+        }
+        spriteX=(int)width*i;
+    }
+
+    public void setSpriteY(int j){
+        if(j>numSpritesY){
+            j=j%numSpritesY;
+        }
+        spriteY=(int)height*j;
+    }
+
     /**
      * Pula para o sprite da linha e da coluna selecionada
      */
