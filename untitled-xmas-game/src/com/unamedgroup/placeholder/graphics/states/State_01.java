@@ -4,13 +4,15 @@ import java.awt.Graphics;
 
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.interfaces.State;
-import com.unamedgroup.placeholder.main.Game;
+import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.main.StateManager;
 
 public class State_01 implements State {
     private int ID;
+    private Handler handler;
 
-    public State_01(int id){
+    public State_01(int id, Handler handler){
+        this.handler = handler;
         this.ID = id;
     }
 
@@ -23,9 +25,9 @@ public class State_01 implements State {
 
     @Override
     public void tick() {
-        if(Game.input.prime.clicked)
+        if(handler.getInputHandler().prime.clicked)
             StateManager.setState(0);
-        Game.entities.forEach(entity -> entity.tick());
+        handler.getGame().entities.forEach(entity -> entity.tick());
         
 
     }
@@ -35,12 +37,12 @@ public class State_01 implements State {
         /**/
 		//Desenho pixelado
 		//Essa linha embaixo organiza as entidades na lista em ordem crescente de profundidade,
-		//logo, o parâmetro depth de toda entidade irá ditar se ele é renderizado em cima de outra entidade.
-		Game.entities.sort((e1, e2) -> Integer.compare(e1.depth, e2.depth));
-		for (Entity entity : Game.entities) entity.render(g);
+		//logo, o parï¿½metro depth de toda entidade irï¿½ ditar se ele ï¿½ renderizado em cima de outra entidade.
+		handler.getGame().entities.sort((e1, e2) -> Integer.compare(e1.depth, e2.depth));
+		for (Entity entity : handler.getGame().entities) entity.render(g);
 
         //Essa linha desenha uma imagem, nesse caso, foi um recorte da Sprite Sheet
-		g.drawImage(Game.spriteTeste.getSprite(80, 0, 48, 16), 50, 20, null);
+		g.drawImage(handler.getGame().spriteTeste.getSprite(80, 0, 48, 16), 50, 20, null);
         
     }
     

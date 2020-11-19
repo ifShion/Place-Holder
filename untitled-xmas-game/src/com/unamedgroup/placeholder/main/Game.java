@@ -30,8 +30,7 @@ public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 3L;
 
 	public static final String NAME = "Place Holder";
-	public static InputHandler input; // input vai controlar toda entrada de comandos do jogador.
-	public static StateManager stateManager; // stateManager vai gerenciar toda tela de pintura do jogo.
+	private Handler handler;  //Classe para relacionar entre classes
 	/*---------------------------------------------------------------*/
 	//Inicializando variáveis do Canvas
 	public static JFrame frame;
@@ -67,20 +66,17 @@ public class Game extends Canvas implements Runnable {
 	 */
 	public Game() {
 		rand = new Random();
-		input = new InputHandler(this);
-		stateManager = new StateManager();
-		stateManager.init();
 
 		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));//fullscreen
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		initFrame();
+		init();
 		
-		camera = new Camera();
+		
 
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
 
 		entities = new ArrayList<>(10);
-		player = new Player(WIDTH/2, HEIGHT/2, 16, 16, spriteTeste.getSprite(7 * World.TILE_SIZE, 0 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), 1, 2);
+		player = new Player(WIDTH/2, HEIGHT/2, 16, 16, spriteTeste.getSprite(7 * World.TILE_SIZE, 0 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), 1, 2, handler);
 		entities.add(player);
 
 		worldTeste = new World("/worldTest.png");
@@ -92,10 +88,10 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Cria e configura a janela do projeto.
+	 * Cria e configura a janela do projeto e o Handler.
 	 */
 	
-	private void initFrame() {
+	private void init() {
 		frame = new JFrame(Game.NAME);
 		frame.add(this);
 		// frame.setUndecorated(true); //fullscreen
@@ -106,6 +102,12 @@ public class Game extends Canvas implements Runnable {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+
+		//Inicializando a câmera
+		camera = new Camera();
+
+		//Inicializa o Handler
+		handler = new Handler(this, camera);
 	}
 
 	/*----------------------------------------------------------------*/
@@ -113,10 +115,8 @@ public class Game extends Canvas implements Runnable {
 	 * Executa todas as ações e macânicas de jogo.
 	 */
 	public void tick() {
-		if(!stateManager.currentStateExist()) return;
-		stateManager.tick();
-		input.tick();
-		
+		if(!handler.getStateManager().currentStateExist()) return;
+		handler.tick();
 	}
 
 	/**
@@ -134,8 +134,8 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(new Color(45, 45, 40));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
-		if(stateManager.currentStateExist())
-			stateManager.render(g);
+		if(handler.getStateManager().currentStateExist())
+			handler.render(g);
 	
 		g = bs.getDrawGraphics();
 		
