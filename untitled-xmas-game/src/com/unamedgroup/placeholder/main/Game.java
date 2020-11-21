@@ -16,7 +16,7 @@ import com.unamedgroup.placeholder.graphics.states.*;
 import com.unamedgroup.placeholder.world.Camera;
 import com.unamedgroup.placeholder.world.Maps;
 import com.unamedgroup.placeholder.world.Room;
-
+// euler esteve aq haha
 /**
  * Inicializa o jogo, comanda as ações q o projeto fará dependendo 
  * do estado do jogo.
