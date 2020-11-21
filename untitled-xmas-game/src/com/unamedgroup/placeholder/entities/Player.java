@@ -60,6 +60,40 @@ public class Player extends Entity {
 			walking = false;
 		}
 
+		// Eu resolvi o problema de caminhar na diagonal (ainda tem alguns bugs) - Daniel Nogueira 
+		boolean flag=false;  //variável para usar caso dois botôes estarem sendo apertados ao mesmo tempo
+
+		if (up && left && !right && !down){
+			setY(getY() - (speed-(speed*0.45)));
+			setX(getX() - (speed-(speed*0.45)));
+			status = "left";
+			flag=true;
+		}
+		if (up && right && !left && !down){
+			setY(getY() - (speed-(speed*0.45)));
+			setX(getX() + (speed-(speed*0.2)));
+			status = "right";
+			flag=true;
+		}
+		if (down && left && !right && !up){
+			setY(getY() + (speed-(speed*0.2)));
+			setX(getX() - (speed-(speed*0.45)));
+			status = "left";
+			flag=true;
+		}
+		if (down && right && !left && !up){
+			setY(getY() + (speed-(speed*0.2)));
+			setX(getX() + (speed-(speed*0.2)));
+			status = "right";
+			flag=true;
+		}
+
+		if (flag) {
+			handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().room.WIDTH * World.TILE_SIZE - Game.WIDTH));
+			handler.getCamera().setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , handler.getGame().room.HEIGHT * World.TILE_SIZE - Game.HEIGHT));
+			return;  //caso os dois botões tenham sido apertados, o método acaba
+		}
+
 		if(up) {
 			setY(getY() - speed);
 			status = "up";

@@ -33,26 +33,24 @@ public class Game implements Runnable {
 	private static final long serialVersionUID = 3L;
 
 	public static final String NAME = "Place Holder";	// Titulo da jogo
-	private Display display; 					// Janela do jogo
-	private Handler handler;								// Uma classe para fazer a comunicação entre diferentes classes
+	private Display display; 							// Janela do jogo
+	private Handler handler;							// Uma classe para fazer a comunicação entre diferentes classes
 	/*---------------------------------------------------------------*/
 	//Inicializando variáveis do Display
 	public boolean isFullScreen;						// Estado do tela
-	private Thread thread;
-	private boolean isRunning;
-	public static final int WIDTH = 400;
-	public static final int HEIGHT = 300;
+	private Thread thread;								// Thread onde o jogo roda
+	private boolean isRunning;							// Booleano para verificar se o jogo está rodando
+	public static final int WIDTH = 400;				// Variável que define a largura da tela do jogo
+	public static final int HEIGHT = 300;				// Variável que define a altura da tela do jogo
 	public static final int SCALE = 2;
 	
-	public boolean isPaused;
+	public boolean isPaused;							// Booleano para verificar se o jogo está pausado ou não
 	/*---------------------------------------------------------------*/
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
 
 	public static Random rand;
 
-	/*----------------------------------------------------------------*/
-	private Camera camera;
-
+	/*----------------------------------------------------------------*/							
 	// Adicionei um objeto de teste para construir o mundo com colisão
 
 	public static SpriteSheet spriteTeste;				 
@@ -96,8 +94,7 @@ public class Game implements Runnable {
 	}
 
 	private void init(){
-		camera = new Camera();
-		handler = new Handler(this, camera, display);
+		handler = new Handler(this, display);
 		maps = new Maps(handler);
 	}
 

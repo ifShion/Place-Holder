@@ -64,6 +64,12 @@ public class InputHandler implements KeyListener {
 		}
 	}
 
+
+	/**
+	 * Cria uma instância de Input Handler
+	 * @param game
+	 * @param display
+	 */
 	public InputHandler(Game game, Display display) {
 		display.setKeyListener(this);
 	}
