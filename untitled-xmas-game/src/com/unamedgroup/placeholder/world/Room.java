@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import com.unamedgroup.placeholder.entities.Player;
+import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.graphics.states.State_00;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.tiles.DoorTile;
@@ -14,6 +15,7 @@ public class Room extends World {
     private Set<DoorTile> doors;
     private int ID;
     private Handler handler;
+    private SpriteSheet map;
     /**
      * Constrói o mundo novo. É bom ter uma sprite sheet pr´pria para os tiles de cada mapa
      * são muitos tiles
@@ -23,15 +25,20 @@ public class Room extends World {
      * @author Daniel Neves
      */
     
-    public Room(String path, int ID, Handler handler) {
+    public Room(String path, int ID, String map, Handler handler) {
         super(path, handler);
         
+        this.map = new SpriteSheet(map);
         this.ID = ID;
         this.handler = handler;
     }
     
     public int getID() {
 		return ID;
+	}
+    
+    public SpriteSheet getMap() {
+		return map;
 	}
     
     /**

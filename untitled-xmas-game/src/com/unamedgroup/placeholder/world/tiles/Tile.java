@@ -17,8 +17,6 @@ public abstract class Tile {
 	
 	//Sprites dos tiles do mapa
     //Sprites de puro teste. Não faço ideia de como vai ser o bg ainda
-    public static BufferedImage FREE_TILE = Game.spriteTeste.getSprite(World.TILE_SIZE * 0 , 0, World.TILE_SIZE , World.TILE_SIZE);
-	public static BufferedImage SOLID_TILE = Game.spriteTeste.getSprite(World.TILE_SIZE * 1 , 0, World.TILE_SIZE, World.TILE_SIZE);
 	public static BufferedImage DOOR_TILE = Game.spriteTeste.getSprite(World.TILE_SIZE * 2 , 0, World.TILE_SIZE, World.TILE_SIZE);
 	
 	private BufferedImage sprite;

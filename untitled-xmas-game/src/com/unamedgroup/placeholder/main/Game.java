@@ -40,9 +40,9 @@ public class Game implements Runnable {
 	public boolean isFullScreen;						// Estado do tela
 	private Thread thread;								// Thread onde o jogo roda
 	private boolean isRunning;							// Booleano para verificar se o jogo está rodando
-	public static final int WIDTH = 400;				// Variável que define a largura da tela do jogo
-	public static final int HEIGHT = 300;				// Variável que define a altura da tela do jogo
-	public static final int SCALE = 2;
+	public static final int WIDTH = 240;				// Variável que define a largura da tela do jogo
+	public static final int HEIGHT = 160;				// Variável que define a altura da tela do jogo
+	public static final int SCALE = 3;
 	
 	public boolean isPaused;							// Booleano para verificar se o jogo está pausado ou não
 	/*---------------------------------------------------------------*/
@@ -53,12 +53,13 @@ public class Game implements Runnable {
 	/*----------------------------------------------------------------*/							
 	// Adicionei um objeto de teste para construir o mundo com colisão
 
-	public static SpriteSheet spriteTeste;				 
+	public static SpriteSheet spriteTeste;	
+	public SpriteSheet currentMap;
 	/*----------------------------------------------------------------*/
 	public Room room;
 	public Maps maps;
-
 	public int currentMapID = 1001;	
+	
 	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro mapa é só mudar isso, ou, quando tivermos um sistema de 
 	// save e load pronto, sobrescrever essa variável.
 	public boolean alternatingMaps;
@@ -80,6 +81,8 @@ public class Game implements Runnable {
 	 */
 	public Game() {
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
+		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
+		
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();

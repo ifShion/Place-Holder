@@ -25,9 +25,9 @@ public class Maps {
     public Maps(Handler handler) {
         this.handler = handler;
         maps = new LinkedHashMap<>();
-        maps.put(1000, new Room("/worldnull.png", 1000, handler));     // Coloquei esse como um mapa vazio so para fins de teste @nathan
-        maps.put(1001, new Room("/worldTest.png", 1001, handler));
-        maps.put(1002, new Room("/worldTest2.png", 1002, handler));
+        maps.put(1000, new Room("/worldnull.png", 1000, "/spriteSheetMapa1.png", handler));     // Coloquei esse como um mapa vazio so para fins de teste @nathan
+        maps.put(1001, new Room("/worldTest.png", 1001, "/spriteSheetMapa1.png", handler));
+        maps.put(1002, new Room("/worldTest2.png", 1002, "/spriteSheetMapa1.png", handler));
 
     }
 
@@ -35,6 +35,7 @@ public class Maps {
         handler.getGame().alternatingMaps = false;
         handler.getGame().room = maps.get(handler.getGame().currentMapID);
         System.out.println(maps.get(handler.getGame().currentMapID).path + " // " + handler.getGame().currentMapID);
+        handler.getGame().currentMap = handler.getGame().maps.getMaps().get(handler.getGame().currentMapID).getMap();
         handler.getGame().room.createDoors();
     }
 

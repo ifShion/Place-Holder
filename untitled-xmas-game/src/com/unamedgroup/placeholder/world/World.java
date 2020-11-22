@@ -58,19 +58,105 @@ public abstract class World {
 					pixelAtual = pixels[xx + (yy * WIDTH)];
 					switch(pixelAtual) {
 					case 0xFF000000://preto
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE, handler);
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
 						break;
 					case 0xFFFFFFFF://branco
-						tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.SOLID_TILE, handler);
+						/*
+						 * if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
+							pixels[xx - 1 + ((yy - 1)* WIDTH)] == 0xFFFFFFFF && // esquerda, cima
+							pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
+							pixels[xx + 1 + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // direita, cima
+							pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
+							pixels[xx + 1 + ((yy + 1) * WIDTH)] == 0xFFFFFFFF && //direita, baixo
+							pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF && // baixo
+							pixels[xx - 1 + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo, esquerda
+						 */
+						
+						if(xx == 0 || yy == 0 || xx == WIDTH -1 || yy == HEIGHT -1) {
+							tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+									handler.getGame().currentMap.getSprite(1 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+						}else {
+							//essa linha abaixo é para testes
+							tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+									handler.getGame().currentMap.getSprite(10 * TILE_SIZE, 0 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+							if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
+									pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
+									pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
+									pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF && // baixo
+									pixels[xx - 1 + ((yy + 1) * WIDTH)] == 0xFF000000) { // baixo, esquerda
+								tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+										handler.getGame().currentMap.getSprite(9 * TILE_SIZE, 0 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+							}
+							if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
+									pixels[xx - 1 + ((yy - 1)* WIDTH)] == 0xFF000000 && // esquerda, cima
+									pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
+									pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
+									pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo
+								tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+										handler.getGame().currentMap.getSprite(11 * TILE_SIZE, 0 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+							}
+							if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
+									pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
+									pixels[xx + 1 + ((yy - 1) * WIDTH)] == 0xFF000000 && // direita, cima
+									pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
+									pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo
+								tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+										handler.getGame().currentMap.getSprite(11 * TILE_SIZE, 2 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+							}
+							if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
+									pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
+									pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
+									pixels[xx + 1 + ((yy + 1) * WIDTH)] == 0xFF000000 && //direita, baixo
+									pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo
+								tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+										handler.getGame().currentMap.getSprite(9 * TILE_SIZE, 2 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+							}
+							if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
+									pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
+									pixels[xx + 1 + (yy * WIDTH)] == 0xFF000000 && // direita
+									pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo
+								tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+										handler.getGame().currentMap.getSprite(2 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+							}
+							if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
+									pixels[xx + ((yy - 1) * WIDTH)] == 0xFF000000 && // cima
+									pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
+									pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo
+								tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+										handler.getGame().currentMap.getSprite(1 * TILE_SIZE, 0 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+							}
+							if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
+									pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
+									pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
+									pixels[xx + ((yy + 1) * WIDTH)] == 0xFF000000) { // baixo
+								tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+										handler.getGame().currentMap.getSprite(1 * TILE_SIZE, 2 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+							}
+							if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
+									pixels[xx + ((yy - 1) * WIDTH)] == 0xFF000000 && // cima
+									pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
+									pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo
+								tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+										handler.getGame().currentMap.getSprite(1 * TILE_SIZE, 0 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+							}
+							if(pixels[xx - 1 + (yy * WIDTH)] == 0xFF000000 && // esquerda
+									pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
+									pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
+									pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo
+								tiles[xx + (yy * WIDTH)] = new SolidTile(xx * TILE_SIZE, yy * TILE_SIZE,
+										handler.getGame().currentMap.getSprite(0 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+							}
+						}
 						break;
 					case 0xFF0000FF://azul
 						Game.player.setX(xx*TILE_SIZE);
 						Game.player.setY(yy*TILE_SIZE);
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE, handler);
-						break;
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						break;
 					default:
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE , yy * TILE_SIZE , Tile.FREE_TILE, handler);
-						break;
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						break;
 					}
 
 				}
@@ -157,7 +243,7 @@ public abstract class World {
 		int yStart = handler.getCamera().getY() >> 4;
 
 		int xFinal = xStart + (Game.WIDTH >> 3);
-		int yFinal = yStart + (Game.HEIGHT >> 4);
+		int yFinal = yStart + (Game.HEIGHT >> 3);
 
 		for (int xx = xStart; xx <= xFinal; xx++) {
 			for (int yy = yStart; yy <= yFinal; yy++) {
