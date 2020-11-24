@@ -35,9 +35,6 @@ public class State_00 implements State {
 
     @Override
     public void init() {
-        alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0, handler);
-    	// Temos um problema aqui: se a gente colocar a speed do personagem um número quebrado, ele anda muito rápido pra um lado
-    	// e muito devagar pro outro ;-;. Ainda bem q esse sistema de movimentação é só um protótipo.
         alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 24, Game.spriteTeste, 4, 2, 1, 4, 2, 16, 16, handler);
         alpha.setMask(3, 12, 10, 12);
         handler.getGame().currentMapID = 1001;
