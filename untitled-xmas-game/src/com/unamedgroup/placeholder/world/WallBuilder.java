@@ -263,50 +263,6 @@ public class WallBuilder {
 				tiles[xx + (yy * WIDTH)] = new SolidTile(xx * World.TILE_SIZE, yy * World.TILE_SIZE,
 						handler.getGame().currentMap.getSprite(6 * World.TILE_SIZE, 1 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), handler);
 			}
-			if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
-					pixels[xx - 1 + ((yy - 1)* WIDTH)] == 0xFF000000 && // esquerda, cima
-					pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
-					pixels[xx + 1 + ((yy - 1) * WIDTH)] == 0xFF000000 && // direita, cima
-					pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
-					pixels[xx + 1 + ((yy + 1) * WIDTH)] == 0xFFFFFFFF && //direita, baixo
-					pixels[xx + ((yy + 1) * WIDTH)] == 0xFF000000 && // baixo
-					pixels[xx - 1 + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo, esquerda
-				tiles[xx + (yy * WIDTH)] = new SolidTile(xx * World.TILE_SIZE, yy * World.TILE_SIZE,
-						handler.getGame().currentMap.getSprite(10 * World.TILE_SIZE, 0 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), handler);
-			}
-			if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
-					pixels[xx - 1 + ((yy - 1)* WIDTH)] == 0xFF000000 && // esquerda, cima
-					pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
-					pixels[xx + 1 + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // direita, cima
-					pixels[xx + 1 + (yy * WIDTH)] == 0xFF000000 && // direita
-					pixels[xx + 1 + ((yy + 1) * WIDTH)] == 0xFFFFFFFF && //direita, baixo
-					pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF && // baixo
-					pixels[xx - 1 + ((yy + 1) * WIDTH)] == 0xFF000000) { // baixo, esquerda
-				tiles[xx + (yy * WIDTH)] = new SolidTile(xx * World.TILE_SIZE, yy * World.TILE_SIZE,
-						handler.getGame().currentMap.getSprite(9 * World.TILE_SIZE, 1 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), handler);
-			}
-			if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
-					pixels[xx - 1 + ((yy - 1)* WIDTH)] == 0xFFFFFFFF && // esquerda, cima
-					pixels[xx + ((yy - 1) * WIDTH)] == 0xFF000000 && // cima
-					pixels[xx + 1 + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // direita, cima
-					pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
-					pixels[xx + 1 + ((yy + 1) * WIDTH)] == 0xFF000000 && //direita, baixo
-					pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF && // baixo
-					pixels[xx - 1 + ((yy + 1) * WIDTH)] == 0xFF000000) { // baixo, esquerda
-				tiles[xx + (yy * WIDTH)] = new SolidTile(xx * World.TILE_SIZE, yy * World.TILE_SIZE,
-						handler.getGame().currentMap.getSprite(10 * World.TILE_SIZE, 2 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), handler);
-			}
-			if(pixels[xx - 1 + (yy * WIDTH)] == 0xFF000000 && // esquerda
-					pixels[xx - 1 + ((yy - 1)* WIDTH)] == 0xFFFFFFFF && // esquerda, cima
-					pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
-					pixels[xx + 1 + ((yy - 1) * WIDTH)] == 0xFF000000 && // direita, cima
-					pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
-					pixels[xx + 1 + ((yy + 1) * WIDTH)] == 0xFF000000 && //direita, baixo
-					pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF && // baixo
-					pixels[xx - 1 + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo, esquerda
-				tiles[xx + (yy * WIDTH)] = new SolidTile(xx * World.TILE_SIZE, yy * World.TILE_SIZE,
-						handler.getGame().currentMap.getSprite(11 * World.TILE_SIZE, 1 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), handler);
-			}
 			// T juntor fino
 			if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
 					pixels[xx - 1 + ((yy - 1)* WIDTH)] == 0xFF000000 && // esquerda, cima

@@ -13,11 +13,7 @@ import com.unamedgroup.placeholder.world.World;
  * @author Daniel Neves
  */
 public abstract class Tile {
-    public boolean animated = false;
-	
-	//Sprites dos tiles do mapa
-    //Sprites de puro teste. Não faço ideia de como vai ser o bg ainda
-	public static BufferedImage DOOR_TILE = Game.spriteTeste.getSprite(World.TILE_SIZE * 2 , 0, World.TILE_SIZE, World.TILE_SIZE);
+	public boolean animated = false;
 	
 	private BufferedImage sprite;
 	private SpriteSheet spriteSheet;

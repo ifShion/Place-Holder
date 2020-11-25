@@ -7,6 +7,7 @@ import java.util.Set;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.graphics.states.State_00;
+import com.unamedgroup.placeholder.graphics.states.State_01;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.tiles.DoorTile;
 import com.unamedgroup.placeholder.world.tiles.Tile;
@@ -53,10 +54,10 @@ public class Room extends World {
      */
     public void placeDoor(int x, int y, Player player, int destiny, int tpx, int tpy){
     	System.out.println("Room.placeDoor()");
-        doors.add(new DoorTile(x * World.TILE_SIZE, y * World.TILE_SIZE, Tile.DOOR_TILE, player, destiny, tpx * World.TILE_SIZE, tpy * World.TILE_SIZE, handler));
+        doors.add(new DoorTile(x * World.TILE_SIZE, y * World.TILE_SIZE, handler.getGame().room.getMap().getSprite(16, 16, 16, 16), player, destiny, tpx * World.TILE_SIZE, tpy * World.TILE_SIZE, handler));
     }
 
-    /**
+    /**                     
      * Cria os Tiles de portas
      */
     public void createDoors(){
@@ -72,6 +73,9 @@ public class Room extends World {
                 placeDoor(12, 11, State_00.alpha, 1002, 8, 6);
                 placeDoor(12, 12, State_00.alpha, 1002, 8, 6);
                 placeDoor(13, 16, State_00.alpha, 1001, 8, 6);
+                break;
+            case 1000:
+                placeDoor(50, 10, State_01.alpha, 1000, 50, 5);
                 break;
             default:
 

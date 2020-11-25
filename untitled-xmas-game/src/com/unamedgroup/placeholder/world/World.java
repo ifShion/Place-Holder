@@ -58,9 +58,17 @@ public abstract class World {
 					pixelAtual = pixels[xx + (yy * WIDTH)];
 					switch(pixelAtual) {
 					case 0xFF000000://preto
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
-								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+						/*
+						if(xx%3==0 && yy%3==0){
+							tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+								handler.getGame().currentMap.getSprite(12 * TILE_SIZE, 0 * TILE_SIZE, TILE_SIZE*3, TILE_SIZE*3), handler);
+						}else{
+							tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE, null, handler);
+						}*/
 						break;
+						
 					case 0xFFFFFFFF://branco
 						/*
 						 * if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda

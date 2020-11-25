@@ -21,7 +21,7 @@ public class DoorTile extends FreeTile {
         x = x/World.TILE_SIZE;
         y = y/World.TILE_SIZE;
         //Cria as portas do mapa, de fato. Isso faz com q aqueles pixels amarelos na imagem sejam apenas para referência
-        handler.getGame().room.tiles[x + (y * Game.WIDTH)] = new FreeTile(x * World.TILE_SIZE , y * World.TILE_SIZE , Tile.DOOR_TILE, handler);
+        handler.getGame().room.tiles[x + (y * handler.getGame().room.WIDTH)] = new FreeTile(x * World.TILE_SIZE , y * World.TILE_SIZE, sprite , handler);
         
         this.destiny = destiny;
         this.tpx = tpx;
@@ -31,7 +31,7 @@ public class DoorTile extends FreeTile {
     }
 
     public void movePlayer() {
-        if(super.calculateDistance(super.x, Game.player.getX(), super.y, Game.player.getY()) < 16) {
+        if(super.calculateDistance(super.x, handler.getGame().player.getX() + handler.getGame().player.getMaskX(), super.y, handler.getGame().player.getY() + handler.getGame().player.getMaskY()) < 16) {
         	System.out.println("DoorTile.movePlayer()");
             handler.getGame().alternatingMaps = true;
             Game.entities = new TreeSet<>(Game.nodeSorter);
