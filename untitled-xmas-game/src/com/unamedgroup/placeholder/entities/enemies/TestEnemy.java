@@ -7,7 +7,11 @@ import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.interfaces.GravityEffected;
 import com.unamedgroup.placeholder.main.Handler;
-
+/**
+ * Esse inimigo caminha de um lado para outro de uma plataforma sem cair dela.
+ * @author Daniel Neves
+ *
+ */
 public class TestEnemy extends Enemy implements GravityEffected {
 
 	private double vspd;
@@ -20,7 +24,7 @@ public class TestEnemy extends Enemy implements GravityEffected {
 
 	public void tick() {
 		super.tick();
-		
+		// sempre que inimigo alcança o limite de uma plataforma, ele segue o caminho inverso
 		if(right && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed) , super.getY(), super.getMaskW(), super.getMaskH())) {
 			x+=speed;
 			if(handler.getGame().room.isFree(super.getX() + super.getMaskX() + 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() + super.getMaskX() + (int)speed , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {

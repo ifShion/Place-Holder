@@ -21,12 +21,6 @@ public class Alpha extends Player implements GravityEffected {
         if(walking){
             super.getAnimation().setPlay(true);
             switch (status) {
-                case "up":
-                super.getAnimation().setSpriteY(3);
-                    break;
-                case "down":
-                super.getAnimation().setSpriteY(0);
-                    break;
                 case "right":
                 super.getAnimation().setSpriteY(2);    
                     break;
@@ -48,6 +42,7 @@ public class Alpha extends Player implements GravityEffected {
 	public void fall() {
 		vspd+=GravityEffected.GRAVITY;
 		
+		// sitema de pulo do personagem. Ele não pode pular duas vezes nem segurar o botão para pular assim q alcançar o chão
 		if(handler.getInputHandler().prime.down && !pressedDown && !handler.getGame().room.isFree((int)x + super.getMaskX(),(int)(y+1) + super.getMaskY(), super.getMaskW(),super.getMaskH())) {
 			jump = true;
 			pressedDown = true;
@@ -55,11 +50,13 @@ public class Alpha extends Player implements GravityEffected {
 			pressedDown = false;
 		}
 
+		// altura que o jogador pula
         if(!handler.getGame().room.isFree((int)x + super.getMaskX(),(int)(y+1) + super.getMaskY(), super.getMaskW(),super.getMaskH()) && jump) {
             vspd = -7.5;
             jump = false;
         }
 		
+        // verifica se o local para onde o jogador está subindo ou caindo para está disponível
 		if(!handler.getGame().room.isFree((int)x + super.getMaskX(),(int)(y+vspd) + super.getMaskY(),super.getMaskW(),super.getMaskH())) {
 			int signVsp = 0;
 			if(vspd >= 0) {
@@ -68,8 +65,10 @@ public class Alpha extends Player implements GravityEffected {
 				signVsp = -1;
 			}
 			
+			// impossibilita o jogador atingir velocidades de queda muito altas
 			if(vspd > 17) vspd = 17;
 			
+			// impossibilita o jogador se enterrar no chão
 			while(handler.getGame().room.isFree((int)x + super.getMaskX(),(int)(y+signVsp) + super.getMaskY(),super.getMaskW(),super.getMaskH())) {
 				y+=signVsp;
 			}

@@ -2,17 +2,22 @@ package com.unamedgroup.placeholder.entities;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.List;
 
 import com.unamedgroup.placeholder.graphics.Animation;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Handler;
+import com.unamedgroup.placeholder.world.Node;
+import com.unamedgroup.placeholder.world.Vector2i;
+import com.unamedgroup.placeholder.world.World;
 
 public class Entity {
 	/* Inicializar os sprites iniciais de todas entidades aqui */
     protected double x;           // Coordenada X na tela
 	protected double y;           // Coordenada Y na tela
 	public double speed;
-
+	protected List<Node> path;	  // caminho feito pelo algoritmo de A*
+	
 	private Animation animation;
 	private SpriteSheet sprite;
 	private boolean animated;
@@ -153,16 +158,57 @@ public class Entity {
 		this.maskH = maskH;
 	 }
 	 
+	 /**
+	  * Calcula a distância euclidiana entre dois pontos
+	  * @param x1
+	  * @param x2
+	  * @param y1
+	  * @param y2
+	  * @return
+	  */
 	 public double calculateDistance(int x1 , int x2 , int y1 , int y2) {
 		 double distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2 , 2));
 		 return distance;
 	 }
-	 
+	 /**
+	  * Verifica se duas entidades se colidem
+	  * @param e1
+	  * @param e2
+	  * @return se duas entidades estão se colidindo
+	  */
 	public static boolean isColliding(Entity e1,Entity e2){
 		Rectangle e1Mask = new Rectangle(e1.getX() + e1.getMaskX() , e1.getY() + e1.getMaskY() , e1.getMaskW() , e1.getMaskH());
 		Rectangle e2Mask = new Rectangle(e2.getX() + e2.getMaskX() , e2.getY() + e2.getMaskY() , e2.getMaskW() , e2.getMaskH());
 		
 		return e1Mask.intersects(e2Mask);
+	}
+	
+	/**
+	 * Executa o algoritmo A* e procura um caminho favorável até o jogador
+	 * @param path
+	 */
+	public void followPath(List<Node> path) {
+		if(path != null) {
+			if(path.size() > 0) {
+				Vector2i target = path.get(path.size() - 1).tile;
+				if(x < target.x * World.TILE_SIZE && handler.getGame().room.isFree((int)x + 1 , (int)y, maskW, maskH)) {
+					x+=speed;
+				}else if(x > target.x * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() - 1 , this.getY(),maskW, maskH)) {
+					x-=speed;
+				}
+				
+				if(y < target.y * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() , this.getY() + 1, maskW, maskH)) {
+					y+=speed;
+				}else if(y > target.y * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() , this.getY() - 1, maskW, maskH)) {
+					y-=speed;
+				}
+				
+				if(x == target.x * World.TILE_SIZE && y == target.y * World.TILE_SIZE) {
+					path.remove(path.size() - 1);
+				}
+				
+			}
+		}
 	}
 	
 	public void tick(){
@@ -172,13 +218,13 @@ public class Entity {
 	public void render(Graphics g) {
 		if(animated)
 			g.drawImage(sprite.getSpriteSheet(),
-				this.getX() - handler.getCamera().getX(),					// Coordenada X na tela
-				this.getY() - handler.getCamera().getY(),					// Coordenada Y na tela
-				(int) (this.getX() - handler.getCamera().getX()+width),		// Largura do Sprite
-				(int) (this.getY() - handler.getCamera().getY()+height),	// Altura do sprite
-				(int) animation.getSpriteX() + animation.getInitPosX(),	// Coordenada X1 na imagem
-				(int) animation.getSpriteY() + animation.getInitPosY(),	// Coordenada Y1 na imagem
-				(int) (animation.getSpriteX() + animation.getInitPosX()+width),	// Coordenada X2 na imagem
+				this.getX() - handler.getCamera().getX(),							// Coordenada X na tela
+				this.getY() - handler.getCamera().getY(),							// Coordenada Y na tela
+				(int) (this.getX() - handler.getCamera().getX()+width),				// Largura do Sprite
+				(int) (this.getY() - handler.getCamera().getY()+height),			// Altura do sprite
+				(int) animation.getSpriteX() + animation.getInitPosX(),				// Coordenada X1 na imagem
+				(int) animation.getSpriteY() + animation.getInitPosY(),				// Coordenada Y1 na imagem
+				(int) (animation.getSpriteX() + animation.getInitPosX()+width),		// Coordenada X2 na imagem
 				(int) (animation.getSpriteY() + animation.getInitPosY()+height),	// Coordenada Y2 na imagem
 				null);
 	}

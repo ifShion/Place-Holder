@@ -4,14 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import java.util.TreeSet;
 
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
+import com.unamedgroup.placeholder.entities.Projectile;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.world.Maps;
 import com.unamedgroup.placeholder.world.Room;
@@ -66,9 +67,10 @@ public class Game implements Runnable {
 	public static Comparator<Entity> nodeSorter = (new Comparator<Entity>(){
 		public int compare(Entity o1, Entity o2) {
 			return o1.depth - o2.depth;
-		};
+		}
 	});
 	public static List<Entity> entities = new LinkedList<>();	
+	public static List<Projectile> projectiles = new ArrayList<>();  
 	private Player player;	// Player é instanciado pelo State
 	
 	/*----------------------------------------------------------------*/
@@ -117,8 +119,8 @@ public class Game implements Runnable {
 		if(statesUseMaps){
 			if(!alternatingMaps) {
 				room.tick();
-				entities.sort(nodeSorter);
-				entities.forEach(entity -> entity.tick());
+				for (Entity entity : entities) entity.tick();
+				for (int i = 0; i < projectiles.size(); i++) projectiles.get(i).tick();
 			}else
 				maps.tick();
 		}
@@ -145,7 +147,9 @@ public class Game implements Runnable {
 		if(!alternatingMaps)	
 			room.render(g);
 		
+		entities.sort(nodeSorter);
 		for (Entity entity : entities) entity.render(g);
+		for (int i = 0; i < projectiles.size(); i++) projectiles.get(i).render(g);
 		if(handler.getStateManager().currentStateExist())	
 			handler.getStateManager().render(g);
 		

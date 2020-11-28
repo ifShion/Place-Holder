@@ -1,5 +1,10 @@
 package com.unamedgroup.placeholder.world;
 
+/**
+ * Cria um vetor a partir das coordenadas de um objeto
+ * @author Daniel Neves
+ *
+ */
 public class Vector2i {
 
 	public int x,y;
