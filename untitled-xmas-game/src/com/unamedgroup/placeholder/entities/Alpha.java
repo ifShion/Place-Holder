@@ -67,6 +67,9 @@ public class Alpha extends Player implements GravityEffected {
 			}else {
 				signVsp = -1;
 			}
+			
+			if(vspd > 17) vspd = 17;
+			
 			while(handler.getGame().room.isFree((int)x + super.getMaskX(),(int)(y+signVsp) + super.getMaskY(),super.getMaskW(),super.getMaskH())) {
 				y+=signVsp;
 			}

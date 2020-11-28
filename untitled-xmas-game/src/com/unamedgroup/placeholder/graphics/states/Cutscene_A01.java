@@ -23,7 +23,6 @@ public class Cutscene_A01 extends State {
 		missao = new Toast("Alpha",Game.WIDTH/2,50,5,CustomFont.getFont("rumbletumble.TTF",  45));
 		local = new Label("No armazém dos", Game.WIDTH/2, 110, CustomFont.getFont("K26ToyBlocks123.ttf", 20), Color.white, true);
 		local2 = new Label("Brinquedos", Game.WIDTH/2, 130, CustomFont.getFont("K26ToyBlocks123.ttf", 20), Color.white, true);
-        
     }
     
     @Override

@@ -39,9 +39,9 @@ public class State_00 extends State {
 
     @Override
     public void init() {
-        handler.getGame().setCurrentMapID(1001);
-        handler.getGame().setPlayer(alpha);
+    	handler.getGame().setPlayer(alpha);
         handler.getGame().updateEntities();
+        handler.getGame().setCurrentMapID(1001);
         missao.doit();
         local.doit();
         local2.doit();

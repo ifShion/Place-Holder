@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.entities.enemies.TestEnemy;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
@@ -28,7 +27,7 @@ import com.unamedgroup.placeholder.world.tiles.Tile;
  */
 public abstract class World {
 	/*
-	 * Alterações: Mudei os atributos státicos, vai ser mais demorado chamá-los
+.	 * Alterações: Mudei os atributos státicos, vai ser mais demorado chamá-los
 	 * agora pq vai ter q chamar Gmae, mas agora todos eles têm tamanhos e tiles
 	 * diferentes e podemos cuidar de cada um separadamente, em vez de instanciar um
 	 * novo cada vez q mudar de sala
@@ -76,7 +75,7 @@ public abstract class World {
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						
 						break;
 					case 0xFFFF0000: //vermelho
-						Enemy e = new TestEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 2, 3, 4, 1, 0, 0, handler);
+						TestEnemy e = new TestEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 2, 3, 4, 1, 0, 0, handler);
 						Game.entities.add(e);
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);

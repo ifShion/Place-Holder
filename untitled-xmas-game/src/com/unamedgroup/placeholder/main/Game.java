@@ -2,19 +2,17 @@ package com.unamedgroup.placeholder.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import java.util.TreeSet;
 
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.graphics.states.*;
-import com.unamedgroup.placeholder.world.Camera;
 import com.unamedgroup.placeholder.world.Maps;
 import com.unamedgroup.placeholder.world.Room;
 
@@ -70,7 +68,7 @@ public class Game implements Runnable {
 			return o1.depth - o2.depth;
 		};
 	});
-	public static Set<Entity> entities = new TreeSet<>(nodeSorter);	
+	public static List<Entity> entities = new LinkedList<>();	
 	private Player player;	// Player é instanciado pelo State
 	
 	/*----------------------------------------------------------------*/
@@ -102,7 +100,7 @@ public class Game implements Runnable {
 	 * É util caso eu troque de jogador em mudanças de state
 	 */
 	public void updateEntities(){
-		entities = new TreeSet<>(nodeSorter);
+		entities = new LinkedList<>();
 		entities.add(player);
 	}
 	public static void main(String[] args) {
@@ -119,6 +117,7 @@ public class Game implements Runnable {
 		if(statesUseMaps){
 			if(!alternatingMaps) {
 				room.tick();
+				entities.sort(nodeSorter);
 				entities.forEach(entity -> entity.tick());
 			}else
 				maps.tick();
