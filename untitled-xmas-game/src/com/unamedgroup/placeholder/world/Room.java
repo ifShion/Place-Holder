@@ -6,11 +6,8 @@ import java.util.Set;
 
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.graphics.states.State_00;
-import com.unamedgroup.placeholder.graphics.states.State_01;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.tiles.DoorTile;
-import com.unamedgroup.placeholder.world.tiles.Tile;
 
 public class Room extends World {
     private Set<DoorTile> doors;
@@ -47,14 +44,12 @@ public class Room extends World {
      * teleportar qualquer entidade tbm
      * @param x
      * @param y
-     * @param player
      * @param destiny
      * @param tpx
      * @param tpy
      */
-    public void placeDoor(int x, int y, Player player, int destiny, int tpx, int tpy){
-    	System.out.println("Room.placeDoor()");
-        doors.add(new DoorTile(x * World.TILE_SIZE, y * World.TILE_SIZE, handler.getGame().room.getMap().getSprite(16, 16, 16, 16), player, destiny, tpx * World.TILE_SIZE, tpy * World.TILE_SIZE, handler));
+    public void placeDoor(int x, int y, int destiny, int tpx, int tpy){
+        doors.add(new DoorTile(x * World.TILE_SIZE, y * World.TILE_SIZE, handler.getGame().room.getMap().getSprite(16, 16, 16, 16), destiny, tpx * World.TILE_SIZE, tpy * World.TILE_SIZE, handler));
     }
 
     /**                     
@@ -62,20 +57,20 @@ public class Room extends World {
      */
     public void createDoors(){
         doors = new LinkedHashSet<>();
-        switch(handler.getGame().currentMapID){
+        switch(handler.getGame().getCurrentMapID()){
             case 1001:
-                placeDoor(3, 11, State_00.alpha, 1001, 5, 9);
-                placeDoor(5, 3, State_00.alpha, 1002, 4, 15);
-                placeDoor(9, 3, State_00.alpha, 1001, 9, 10);
+                placeDoor(3, 11, 1001, 5, 9);
+                placeDoor(5, 3, 1002, 4, 15);
+                placeDoor(9, 3, 1001, 9, 10);
                 break;
             case 1002:
-                placeDoor(6, 15, State_00.alpha, 1001, 7, 10);
-                placeDoor(12, 11, State_00.alpha, 1002, 8, 6);
-                placeDoor(12, 12, State_00.alpha, 1002, 8, 6);
-                placeDoor(13, 16, State_00.alpha, 1001, 8, 6);
+                placeDoor(6, 15, 1001, 7, 10);
+                placeDoor(12, 11, 1002, 8, 6);
+                placeDoor(12, 12, 1002, 8, 6);
+                placeDoor(13, 16, 1001, 8, 6);
                 break;
             case 1000:
-                placeDoor(50, 10, State_01.alpha, 1000, 50, 5);
+                placeDoor(50, 10, 1000, 50, 5);
                 break;
             default:
 

@@ -24,7 +24,6 @@ import com.unamedgroup.placeholder.world.Room;
  * 
  * @version alpha 1.0
  * @author Daniel Neves
- * @author Nathan Ferraz
  * ...
  */
 
@@ -58,7 +57,7 @@ public class Game implements Runnable {
 	/*----------------------------------------------------------------*/
 	public Room room;
 	public Maps maps;
-	public int currentMapID = 1001;	
+	private int currentMapID;	
 	
 	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro mapa é só mudar isso, ou, quando tivermos um sistema de 
 	// save e load pronto, sobrescrever essa variável.
@@ -71,7 +70,7 @@ public class Game implements Runnable {
 		};
 	});
 	public static Set<Entity> entities = new TreeSet<>(nodeSorter);	
-	public static Player player;	// Player é instanciado pelo State
+	private Player player;	// Player é instanciado pelo State
 	
 	/*----------------------------------------------------------------*/
 	
@@ -82,7 +81,6 @@ public class Game implements Runnable {
 	public Game() {
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
-		
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();
@@ -91,8 +89,6 @@ public class Game implements Runnable {
 		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //fullscreen
 		
 		entities.add(player);
-
-		
 		alternatingMaps = true;
 	}
 
@@ -101,6 +97,14 @@ public class Game implements Runnable {
 		maps = new Maps(handler);
 	}
 
+	/**
+	 * Atualiza a lista de entidades 
+	 * É util caso eu troque de jogador em mudanças de state
+	 */
+	public void updateEntities(){
+		entities = new TreeSet<>(nodeSorter);
+		entities.add(player);
+	}
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.start();
@@ -214,5 +218,36 @@ public class Game implements Runnable {
 				ticks = 0;
 			}
 		}
+	}
+
+
+	/**
+	 * Getters and Setters
+	 */
+	
+	public int getCurrentMapID() {
+		return this.currentMapID;
+	}
+
+	public void setCurrentMapID(int currentMapID) {
+		this.currentMapID = currentMapID;
+	}
+
+	/**
+	 * Troca o ID do mapa corrente e ativa a condição para trocar de mapa
+	 * @param mapId
+	 */
+	public void changeCurrentMapID(int mapId){
+		alternatingMaps = true;
+		currentMapID = mapId;
+	}
+
+
+	public Player getPlayer() {
+		return this.player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 }

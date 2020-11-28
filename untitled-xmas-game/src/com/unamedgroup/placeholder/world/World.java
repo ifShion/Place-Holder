@@ -84,8 +84,8 @@ public abstract class World {
 						new WallBuilder(xx, yy, pixels, tiles, WIDTH, HEIGHT, handler);
 						break;
 					case 0xFF0000FF://azul
-						Game.player.setX(xx*TILE_SIZE);
-						Game.player.setY(yy*TILE_SIZE);
+						handler.getGame().getPlayer().setX(xx*TILE_SIZE);
+						handler.getGame().getPlayer().setY(yy*TILE_SIZE);
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						break;
 					default:
