@@ -117,7 +117,7 @@ public class Player extends Entity {
 	public void render(Graphics g) {
 		super.render(g);
 		g.setColor(Color.red);
-		g.fillRect((int)(x-handler.getCamera().getX()+super.getMaskX()),(int) (y-handler.getCamera().getY()+super.getMaskY()), super.getMaskW(), super.getMaskH());
+		//g.fillRect((int)(x-handler.getCamera().getX()+super.getMaskX()),(int) (y-handler.getCamera().getY()+super.getMaskY()), super.getMaskW(), super.getMaskH());
 	}
 
 }

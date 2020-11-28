@@ -62,6 +62,7 @@ public class Game implements Runnable {
 	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro mapa é só mudar isso, ou, quando tivermos um sistema de 
 	// save e load pronto, sobrescrever essa variável.
 	public boolean alternatingMaps;
+	public boolean statesUseMaps;	
 	/*----------------------------------------------------------------*/
 	//Adicionei um conjunto q deve conter todas as entidades do jogo para executar seu tick e render
 	public static Comparator<Entity> nodeSorter = (new Comparator<Entity>(){
@@ -88,7 +89,6 @@ public class Game implements Runnable {
 
 		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //fullscreen
 		
-		entities.add(player);
 		alternatingMaps = true;
 	}
 
@@ -115,12 +115,13 @@ public class Game implements Runnable {
 	 * Executa todas as ações e macânicas de jogo.
 	 */
 	public void tick() {
-		if(!alternatingMaps) {
-			room.tick();
-			entities.forEach(entity -> entity.tick());
-		}else
-			maps.tick();
-		
+		if(statesUseMaps){
+			if(!alternatingMaps) {
+				room.tick();
+				entities.forEach(entity -> entity.tick());
+			}else
+				maps.tick();
+		}
 		handler.tick();
 	}
 
@@ -230,6 +231,7 @@ public class Game implements Runnable {
 	}
 
 	public void setCurrentMapID(int currentMapID) {
+		statesUseMaps = true;
 		this.currentMapID = currentMapID;
 	}
 

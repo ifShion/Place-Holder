@@ -5,10 +5,14 @@ import java.awt.Graphics2D;
 
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.graphics.screen_components.Toast;
 import com.unamedgroup.placeholder.interfaces.State;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.World;
+
+import font.CustomFont;
+
 import com.unamedgroup.placeholder.entities.Player;
 
 /**
@@ -22,6 +26,7 @@ import com.unamedgroup.placeholder.entities.Player;
  @SuppressWarnings("unused")
 public class State_00 extends State {
     private Player alpha;
+    private Toast missao, local, local2;
 
     public State_00(int id, Handler handler){
 		super(id, handler);
@@ -29,6 +34,10 @@ public class State_00 extends State {
         alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 24, new SpriteSheet("/testSpriteSheet1.png"), 4, 2, 1, 4, 2, 16, 16, handler);
         alpha.setMask(3, 12, 10, 12);
         handler.getGame().setPlayer(alpha);
+
+        missao = new Toast("Alpha",handler.getGame().WIDTH/2,30, 10, CustomFont.getFont("rumbletumble.TTF", 45));
+        local = new Toast("No armazém dos", handler.getGame().WIDTH/2, 120,13, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
+        local2 = new Toast("Brinquedos", handler.getGame().WIDTH/2, 140,13, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
     }
 
     @Override
@@ -36,6 +45,9 @@ public class State_00 extends State {
         handler.getGame().setCurrentMapID(1001);
         handler.getGame().setPlayer(alpha);
         handler.getGame().updateEntities();
+        missao.doit();
+        local.doit();
+        local2.doit();
     }
 
     @Override
@@ -48,8 +60,9 @@ public class State_00 extends State {
 
     @Override
     public void render(Graphics g) {
-       
-        
+        missao.draw((Graphics2D)g);
+        local.draw((Graphics2D)g);
+        local2.draw((Graphics2D)g);
     }
     
 }

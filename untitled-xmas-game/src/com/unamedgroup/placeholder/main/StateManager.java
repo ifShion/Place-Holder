@@ -19,6 +19,7 @@ public class StateManager{
     public StateManager(Handler handler) {
         states.add(new State_00(states.size(), handler));
         states.add(new State_01(states.size(), handler));
+        states.add(new Cutscene_A01(states.size(), handler));
     }
 
     /**
