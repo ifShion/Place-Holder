@@ -115,6 +115,7 @@ public class Game implements Runnable {
 	 * Executa todas as ações e macânicas de jogo.
 	 */
 	public void tick() {
+		handler.tick();
 		if(statesUseMaps){
 			if(!alternatingMaps) {
 				room.tick();
@@ -122,7 +123,6 @@ public class Game implements Runnable {
 			}else
 				maps.tick();
 		}
-		handler.tick();
 	}
 
 	/**

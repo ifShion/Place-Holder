@@ -49,7 +49,7 @@ public class Room extends World {
      * @param tpy
      */
     public void placeDoor(int x, int y, int destiny, int tpx, int tpy){
-        doors.add(new DoorTile(x * World.TILE_SIZE, y * World.TILE_SIZE, handler.getGame().room.getMap().getSprite(16, 16, 16, 16), destiny, tpx * World.TILE_SIZE, tpy * World.TILE_SIZE, handler));
+        doors.add(new DoorTile(x * World.TILE_SIZE, y * World.TILE_SIZE, handler.getGame().room.getMap().getSprite(12 * World.TILE_SIZE, 0 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), destiny, tpx * World.TILE_SIZE, tpy * World.TILE_SIZE, handler));
     }
 
     /**                     

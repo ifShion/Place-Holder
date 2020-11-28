@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 
 import com.unamedgroup.placeholder.graphics.screen_components.Label;
 import com.unamedgroup.placeholder.graphics.screen_components.Toast;
-import com.unamedgroup.placeholder.interfaces.State;
+import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
 import font.CustomFont;
@@ -20,9 +20,9 @@ public class Cutscene_A01 extends State {
     private Label local2;
     public Cutscene_A01(int id, Handler handler) {
         super(id, handler);   
-        missao = new Toast("Alpha",handler.getGame().WIDTH/2,50,5,CustomFont.getFont("rumbletumble.TTF",  45));
-        local = new Label("No armazém dos", handler.getGame().WIDTH/2, 110, CustomFont.getFont("K26ToyBlocks123.ttf", 20), Color.white, true);
-        local2 = new Label("Brinquedos", handler.getGame().WIDTH/2, 130, CustomFont.getFont("K26ToyBlocks123.ttf", 20), Color.white, true);
+		missao = new Toast("Alpha",Game.WIDTH/2,50,5,CustomFont.getFont("rumbletumble.TTF",  45));
+		local = new Label("No armazém dos", Game.WIDTH/2, 110, CustomFont.getFont("K26ToyBlocks123.ttf", 20), Color.white, true);
+		local2 = new Label("Brinquedos", Game.WIDTH/2, 130, CustomFont.getFont("K26ToyBlocks123.ttf", 20), Color.white, true);
         
     }
     

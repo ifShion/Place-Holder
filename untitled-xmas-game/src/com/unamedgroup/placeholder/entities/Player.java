@@ -51,10 +51,8 @@ public class Player extends Entity {
 
 		boolean right = handler.getInputHandler().right.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH());
 		boolean left = handler.getInputHandler().left.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH());;
-		boolean down = handler.getInputHandler().down.down && handler.getGame().room.isFree(super.getX() + super.getMaskX(), (int)(super.getY() + super.getMaskY() + speed), super.getMaskW(), super.getMaskH());;
-		boolean up = handler.getInputHandler().up.down && handler.getGame().room.isFree(super.getX() + super.getMaskX(), (int)(super.getY() + super.getMaskY() - speed), super.getMaskW(), super.getMaskH());;
 
-		if(up||down||left||right){
+		if(left||right){
 			walking = true;
 		}else{
 			walking = false;
@@ -63,44 +61,12 @@ public class Player extends Entity {
 		// Eu resolvi o problema de caminhar na diagonal (ainda tem alguns bugs) - Daniel Nogueira 
 		boolean flag=false;  //variável para usar caso dois botôes estarem sendo apertados ao mesmo tempo
 
-		if (up && left && !right && !down){
-			setY(getY() - (speed-(speed*0.45)));
-			setX(getX() - (speed-(speed*0.45)));
-			status = "left";
-			flag=true;
-		}
-		if (up && right && !left && !down){
-			setY(getY() - (speed-(speed*0.45)));
-			setX(getX() + (speed-(speed*0.2)));
-			status = "right";
-			flag=true;
-		}
-		if (down && left && !right && !up){
-			setY(getY() + (speed-(speed*0.2)));
-			setX(getX() - (speed-(speed*0.45)));
-			status = "left";
-			flag=true;
-		}
-		if (down && right && !left && !up){
-			setY(getY() + (speed-(speed*0.2)));
-			setX(getX() + (speed-(speed*0.2)));
-			status = "right";
-			flag=true;
-		}
-
 		if (flag) {
 			handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().room.WIDTH * World.TILE_SIZE - Game.WIDTH));
 			handler.getCamera().setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , handler.getGame().room.HEIGHT * World.TILE_SIZE - Game.HEIGHT));
 			return;  //caso os dois botões tenham sido apertados, o método acaba
 		}
 
-		if(up) {
-			setY(getY() - speed);
-			status = "up";
-		}else if(down) {
-			setY(getY() + speed);
-			status = "down";
-		}
 		if(left) {
 			setX(getX() - speed);
 			status = "left";
@@ -116,8 +82,8 @@ public class Player extends Entity {
 	
 	public void render(Graphics g) {
 		super.render(g);
-		g.setColor(Color.red);
-		//g.fillRect((int)(x-handler.getCamera().getX()+super.getMaskX()),(int) (y-handler.getCamera().getY()+super.getMaskY()), super.getMaskW(), super.getMaskH());
+//		g.setColor(Color.red);
+//		g.fillRect((int)(x-handler.getCamera().getX()+super.getMaskX()),(int) (y-handler.getCamera().getY()+super.getMaskY()), super.getMaskW(), super.getMaskH());
 	}
 
 }

@@ -2,7 +2,7 @@ package com.unamedgroup.placeholder.main;
 
 import java.util.ArrayList;
 import java.awt.Graphics;
-import com.unamedgroup.placeholder.interfaces.State;
+
 import com.unamedgroup.placeholder.graphics.states.*;
 
 /**

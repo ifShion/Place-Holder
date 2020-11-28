@@ -1,6 +1,9 @@
 package com.unamedgroup.placeholder.world.tiles;
 
 import java.awt.image.BufferedImage;
+import java.util.TreeSet;
+
+import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.World;
 
@@ -27,8 +30,8 @@ public class DoorTile extends FreeTile {
     public void movePlayer() {
         if(super.calculateDistance(super.x, handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskX(), super.y, handler.getGame().getPlayer().getY() + handler.getGame().getPlayer().getMaskY()) < 16) {
         	System.out.println("DoorTile.movePlayer()");
-            //Game.entities = new TreeSet<>(Game.nodeSorter);
-            //Game.entities.add(player);
+//            Game.entities = new TreeSet<>(Game.nodeSorter);
+//            Game.entities.add(handler.getGame().getPlayer());
             handler.getGame().updateEntities(); // o metodo updateEntities substitui as linhas de codigo acima
             handler.getGame().changeCurrentMapID(destiny);
             handler.getGame().getPlayer().setX(tpx);

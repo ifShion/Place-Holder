@@ -6,9 +6,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.unamedgroup.placeholder.entities.Enemy;
+import com.unamedgroup.placeholder.entities.enemies.TestEnemy;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
-import com.unamedgroup.placeholder.world.tiles.*;
+import com.unamedgroup.placeholder.world.tiles.FreeTile;
+import com.unamedgroup.placeholder.world.tiles.SolidTile;
+import com.unamedgroup.placeholder.world.tiles.Tile;
 
 /**
  * Essa classe traduz uma imagem e converte suas representações em pixels em
@@ -60,37 +64,26 @@ public abstract class World {
 					case 0xFF000000://preto
 					tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 						handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
-						/*
-						if(xx%3==0 && yy%3==0){
-							tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
-								handler.getGame().currentMap.getSprite(12 * TILE_SIZE, 0 * TILE_SIZE, TILE_SIZE*3, TILE_SIZE*3), handler);
-						}else{
-							tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE, null, handler);
-						}*/
 						break;
 						
 					case 0xFFFFFFFF://branco
-						/*
-						 * if(pixels[xx - 1 + (yy * WIDTH)] == 0xFFFFFFFF && // esquerda
-							pixels[xx - 1 + ((yy - 1)* WIDTH)] == 0xFFFFFFFF && // esquerda, cima
-							pixels[xx + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // cima
-							pixels[xx + 1 + ((yy - 1) * WIDTH)] == 0xFFFFFFFF && // direita, cima
-							pixels[xx + 1 + (yy * WIDTH)] == 0xFFFFFFFF && // direita
-							pixels[xx + 1 + ((yy + 1) * WIDTH)] == 0xFFFFFFFF && //direita, baixo
-							pixels[xx + ((yy + 1) * WIDTH)] == 0xFFFFFFFF && // baixo
-							pixels[xx - 1 + ((yy + 1) * WIDTH)] == 0xFFFFFFFF) { // baixo, esquerda
-						 */
-						
 						new WallBuilder(xx, yy, pixels, tiles, WIDTH, HEIGHT, handler);
 						break;
 					case 0xFF0000FF://azul
 						handler.getGame().getPlayer().setX(xx*TILE_SIZE);
 						handler.getGame().getPlayer().setY(yy*TILE_SIZE);
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
-								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						break;
+								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						
+						break;
+					case 0xFFFF0000: //vermelho
+						Enemy e = new TestEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 2, 3, 4, 1, 0, 0, handler);
+						Game.entities.add(e);
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
 					default:
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
-								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						break;
+								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						
+						break;
 					}
 
 				}

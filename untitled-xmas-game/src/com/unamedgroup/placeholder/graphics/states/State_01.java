@@ -2,11 +2,10 @@ package com.unamedgroup.placeholder.graphics.states;
 
 import java.awt.Graphics;
 
+import com.unamedgroup.placeholder.entities.Alpha;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
-import com.unamedgroup.placeholder.entities.players.Alpha;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.interfaces.State;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
@@ -31,10 +30,7 @@ public class State_01 extends State {
 
     @Override
     public void tick() {
-         if(handler.getInputHandler().prime.clicked){
-             handler.getStateManager().setState(0);
-             handler.getGame().changeCurrentMapID(handler.getGame().getCurrentMapID());
-         }
+
     }
 
     @Override

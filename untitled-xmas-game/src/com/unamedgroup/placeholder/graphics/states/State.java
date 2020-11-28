@@ -1,4 +1,4 @@
-package com.unamedgroup.placeholder.interfaces;
+package com.unamedgroup.placeholder.graphics.states;
 
 import java.awt.Graphics;
 
