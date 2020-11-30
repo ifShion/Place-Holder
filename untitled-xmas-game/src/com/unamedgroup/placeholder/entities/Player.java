@@ -22,7 +22,7 @@ import com.unamedgroup.placeholder.world.World;
  */
 public class Player extends Entity {
 	protected String status;		// Ainda estou testando esse argumento, utilizo para definir a animação em uma classe filha
-	protected boolean walking;
+	protected boolean animated;
 	/**
 	 * Mudei a questão da animação. Toda a área ( int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY) do
 	 * construtor é decidada a ela. Mais detalhes em Entity:
@@ -43,6 +43,8 @@ public class Player extends Entity {
 
 	public Player(int x, int y, int width, int height, SpriteSheet sprite, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler){
 		super(x, y, width, height, sprite, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
+		
+		this.animated = true;
 	}
 
 	public void tick() {
@@ -51,13 +53,7 @@ public class Player extends Entity {
 
 		boolean right = handler.getInputHandler().right.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH());
 		boolean left = handler.getInputHandler().left.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH());;
-
-		if(left||right){
-			walking = true;
-		}else{
-			walking = false;
-		}
-
+		
 		// Eu resolvi o problema de caminhar na diagonal (ainda tem alguns bugs) - Daniel Nogueira 
 		boolean flag=false;  //variável para usar caso dois botôes estarem sendo apertados ao mesmo tempo
 
@@ -69,10 +65,12 @@ public class Player extends Entity {
 
 		if(left) {
 			setX(getX() - speed);
-			status = "left";
+			status = "idle";
 		}else if(right) {
 			setX(getX() + speed);
 			status = "right";
+		}else {
+			status = "idle";
 		}
 		
 		// Utilizar esse código para centralizar a câmera no centralizado quando existir um mapa

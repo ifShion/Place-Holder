@@ -51,7 +51,9 @@ public class Game implements Runnable {
 	/*----------------------------------------------------------------*/							
 	// Adicionei um objeto de teste para construir o mundo com colisão
 
-	public static SpriteSheet spriteTeste;	
+	public static SpriteSheet spriteTeste;
+	public static SpriteSheet alphaTeste;
+	public static SpriteSheet nutCrackerTest;
 	public SpriteSheet currentMap;
 	/*----------------------------------------------------------------*/
 	public Room room;
@@ -81,6 +83,8 @@ public class Game implements Runnable {
 	 */
 	public Game() {
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
+		alphaTeste = new SpriteSheet("/alphaTest.png");
+		nutCrackerTest = new SpriteSheet("/nutCracker.png");
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);

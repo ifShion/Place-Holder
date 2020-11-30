@@ -84,13 +84,13 @@ public abstract class World {
 						break;
 					case 0xFFFF8000: //laranja
 						TrackerEnemy te = new TrackerEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 2, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
-						te.setMask(3, 20, 10, 8);
+						te.setMask(3, 4, 10, 8);
 						Game.entities.add(te);
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
 						break;
 					case 0xFF00FF00: //verde
-						CannonEnemy ce = new CannonEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 24, 32, -2, Game.spriteTeste, 1, 2, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
+						CannonEnemy ce = new CannonEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 24, 32, -2, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
 						Game.entities.add(ce);
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);

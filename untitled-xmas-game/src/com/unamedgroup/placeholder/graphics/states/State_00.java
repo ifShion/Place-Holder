@@ -28,13 +28,13 @@ public class State_00 extends State {
     public State_00(int id, Handler handler){
 		super(id, handler);
         //alpha = new Player(Game.WIDTH/2, Game.HEIGHT/2, 16, 16, Game.spriteTeste, 4, 2, 5, 4, 1, 2, 0, handler);
-        alpha = new Alpha(Game.WIDTH/2, Game.HEIGHT/2, 16, 24, Game.spriteTeste, 4, 3, 1, 4, 2, 16, 16, handler);
-        alpha.setMask(3, 12, 10, 12);
+        alpha = new Alpha(Game.WIDTH/2, Game.HEIGHT/2, 16, 24, Game.alphaTeste, 4, 3, 1, 4, 2, 0, 0, handler);
+        alpha.setMask(5, 3, 8, 21);
         handler.getGame().setPlayer(alpha);
 
-        missao = new Toast("Alpha",handler.getGame().WIDTH/2,30, 10, CustomFont.getFont("rumbletumble.TTF", 45));
-        local = new Toast("No armazém dos", handler.getGame().WIDTH/2, 120,13, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
-        local2 = new Toast("Brinquedos", handler.getGame().WIDTH/2, 140,13, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
+		missao = new Toast("Alpha",Game.WIDTH/2,30, 10, CustomFont.getFont("rumbletumble.TTF", 45));
+		local = new Toast("No armazém dos", Game.WIDTH/2, 120,13, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
+		local2 = new Toast("Brinquedos", Game.WIDTH/2, 140,13, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
     }
 
     @Override
@@ -45,10 +45,6 @@ public class State_00 extends State {
         missao.doit();
         local.doit();
         local2.doit();
-    }
-
-    @Override
-    public void tick() {
     }
 
     @Override

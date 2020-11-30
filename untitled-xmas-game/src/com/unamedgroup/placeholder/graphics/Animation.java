@@ -56,6 +56,14 @@ public class Animation {
 	public int getInitPosY() {
 		return initPosY;
 	}
+	
+	public int getNumSpritesX() {
+		return numSpritesX;
+	}
+	
+	public int getNumSpritesY() {
+		return numSpritesY;
+	}
 
 	public double getSpriteX() {
 		return spriteX;
@@ -65,6 +73,13 @@ public class Animation {
 		return spriteY;
     }
     
+	public void setNumSpritesX(int numSpritesX) {
+		this.numSpritesX = numSpritesX;
+	}
+	
+	public void setNumSpritesY(int numSpritesY) {
+		this.numSpritesY = numSpritesY;
+	}
 
     public boolean isPlay() {
         return this.play;

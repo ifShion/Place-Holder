@@ -38,9 +38,11 @@ public class CannonBullet extends Projectile {
 	
 	@Override
 	public void tick() {
+		super.tick();		
+		super.getAnimation().setPlay(true);
+
 		range++;
 		x = x + (super.getSpeed() * direction);
-		//depois de percorrer certa distância ou quando atinge um tile sólido, a bala se destrói 
 		if(range > maxRange || !handler.getGame().room.isFree(super.getX() + (int)(speed * direction), super.getY(), super.getMaskW(), super.getMaskH())) {
 			super.destroyProjectile();
 		}
@@ -49,8 +51,8 @@ public class CannonBullet extends Projectile {
 	@Override
 	public void render(Graphics g) {
 		super.render(g);
-		g.setColor(Color.BLUE);
-		g.fillRect(super.getX() + super.getMaskX() - handler.getCamera().getX(), super.getY() + super.getMaskY() - handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
+//		g.setColor(Color.BLUE);
+//		g.fzillRect(super.getX() + super.getMaskX() - handler.getCamera().getX(), super.getY() + super.getMaskY() - handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
 	}
 	
 }
