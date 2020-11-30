@@ -49,6 +49,14 @@ public class Animation {
 
     }
     
+    public int getWidth() {
+		return width;
+	}
+    
+    public int getHeight() {
+		return height;
+	}
+    
     public int getInitPosX() {
 		return initPosX;
 	}

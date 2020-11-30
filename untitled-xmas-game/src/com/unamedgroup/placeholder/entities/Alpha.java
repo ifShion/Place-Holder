@@ -23,6 +23,7 @@ public class Alpha extends Player implements GravityEffected {
 		if (animated && !inTheAir) {
 			super.getAnimation().setPlay(true);
 			int facingIdle = ((super.direction == 1) ? 0 : 2);
+			super.setHeight(24);
 			switch (status) {
 			case "idle":
 				super.getAnimation().setNumSpritesX(4);
@@ -69,7 +70,7 @@ public class Alpha extends Player implements GravityEffected {
 			pressedDown = false;
 		}
 
-		if(vspd != 0.4022 && !inTheAir) {
+		if(vspd != GravityEffected.GRAVITY && !inTheAir) {
 			inTheAir = true;
 			super.getAnimation().setSpriteX(0);
 		}
@@ -95,14 +96,15 @@ public class Alpha extends Player implements GravityEffected {
 			}
 
 			// impossibilita o jogador atingir velocidades de queda muito altas
-			if (vspd > 5)
-				vspd = 5;
+			if (vspd > 4.7)
+				vspd = 4.7;
 
 			// impossibilita o jogador se enterrar no chão
 			while (handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + signVsp) + super.getMaskY(),
 					super.getMaskW(), super.getMaskH())) {
 				y += signVsp;
 			}
+			// cai no chão
 			vspd = 0;
 			super.setSpeed(3);
 			this.inTheAir = false;
@@ -110,18 +112,16 @@ public class Alpha extends Player implements GravityEffected {
 			if (vspd <= 0) {
 				// subindo
 				super.getAnimation().setHeight(32);
+				super.setHeight(32);
 				super.getAnimation().setNumSpritesX(3);
 				super.getAnimation().setSpriteY(facingJump);
-				super.getAnimation().setWidth(16);
-				super.getAnimation().setHeight(36);
-				super.getAnimation().setSpriteVeloticy(20);
+				super.getAnimation().setSpriteVeloticy(8);
 			} else {
 				// descendo
 				super.getAnimation().setHeight(32);
+				super.setHeight(32);
 				super.getAnimation().setNumSpritesX(3);
 				super.getAnimation().setSpriteY(facingJump + 1);
-				super.getAnimation().setWidth(16);
-				super.getAnimation().setHeight(36);
 				super.getAnimation().setSpriteVeloticy(6);
 			}
 		}
