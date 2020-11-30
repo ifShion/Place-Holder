@@ -23,6 +23,7 @@ import com.unamedgroup.placeholder.world.World;
 public class Player extends Entity {
 	protected String status;		// Ainda estou testando esse argumento, utilizo para definir a animação em uma classe filha
 	protected boolean animated;
+	protected int direction;
 	/**
 	 * Mudei a questão da animação. Toda a área ( int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY) do
 	 * construtor é decidada a ela. Mais detalhes em Entity:
@@ -45,6 +46,7 @@ public class Player extends Entity {
 		super(x, y, width, height, sprite, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
 		
 		this.animated = true;
+		this.direction = 1;
 	}
 
 	public void tick() {
@@ -65,10 +67,12 @@ public class Player extends Entity {
 
 		if(left) {
 			setX(getX() - speed);
-			status = "idle";
+			status = "left";
+			direction = -1;
 		}else if(right) {
 			setX(getX() + speed);
 			status = "right";
+			direction = 1;
 		}else {
 			status = "idle";
 		}
