@@ -69,13 +69,17 @@ public class Alpha extends Player implements GravityEffected {
 			pressedDown = false;
 		}
 
+		if(vspd != 0.4022 && !inTheAir) {
+			inTheAir = true;
+			super.getAnimation().setSpriteX(0);
+		}
+		
 		// altura que o jogador pula
 		if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(),
 				super.getMaskW(), super.getMaskH()) && jump) {
 			// impulso
-			inTheAir = true;
-			super.getAnimation().setSpriteX(0);
 			vspd = -7.5;
+			super.setSpeed(2.5);
 			jump = false;
 		}
 
@@ -91,8 +95,8 @@ public class Alpha extends Player implements GravityEffected {
 			}
 
 			// impossibilita o jogador atingir velocidades de queda muito altas
-			if (vspd > 6.2)
-				vspd = 6.2;
+			if (vspd > 5)
+				vspd = 5;
 
 			// impossibilita o jogador se enterrar no chão
 			while (handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + signVsp) + super.getMaskY(),
@@ -100,9 +104,10 @@ public class Alpha extends Player implements GravityEffected {
 				y += signVsp;
 			}
 			vspd = 0;
+			super.setSpeed(3);
 			this.inTheAir = false;
 		}else {
-			if (vspd < 0) {
+			if (vspd <= 0) {
 				// subindo
 				super.getAnimation().setHeight(32);
 				super.getAnimation().setNumSpritesX(3);
