@@ -2,9 +2,11 @@ package com.unamedgroup.placeholder.world;
 
 import java.awt.Graphics;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.Set;
 
+import com.unamedgroup.placeholder.entities.enemies.CannonEnemy;
+import com.unamedgroup.placeholder.entities.enemies.HuggerEnemy;
+import com.unamedgroup.placeholder.entities.enemies.TrackerEnemy;
 import com.unamedgroup.placeholder.entities.enemies.WalkerEnemy;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
@@ -55,15 +57,23 @@ public class Room extends World {
     }
 
     /**                     
-     * Cria os Tiles de portas
+     * Cria as Entidades presentes nas salas.
+     * As cores no Mundo não são mais necessárias para inicializar novas entidades no mapa, ao invés disso, usaremos as variáveis
+     * abaixo, bastando apenas enviar suas posições e possíveis especificações.
+     * No entanto, as cores na imagem do mapa podem ser usadas como referência para tomada de decisão de onde e como posicionar as entidades.
+     * Ao criar uma nova entidade instanciada numa sala, será tbm necesssário criar um método nessa claasse com suas especificações e as
+     * variáveis da sua criação devem ser passadas como parâmetros do método.
+     * Possíveis spawners não fazem parte da taxa de iteração das entidades, mas poderão tbm ser instanciados ou modificados aqui.
      */
     public void createEntities(){
         doors = new LinkedHashSet<>();
         switch(handler.getGame().getCurrentMapID()){
             case 1001:
+            	createNewTrackerEnemy(5, 4);
+            	createNewHuggerEnemy(22, 60);
                 placeDoor(3, 11, 1001, 5, 9);
                 placeDoor(5, 3, 1002, 4, 15);
-                placeDoor(9, 3, 1001, 9, 10);
+                placeDoor(9, 3, 1001, 9, 14);
                 break;
             case 1002:
                 placeDoor(6, 15, 1001, 7, 10);
@@ -87,6 +97,28 @@ public class Room extends World {
     public void render(Graphics g) {
         super.render(g);
     }
+    
+    private void createNewCannonEnemy(int x, int y, int direction) {
+    	CannonEnemy cr = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
+		Game.entities.add(cr);
+	}
+    
+    private void createNewHuggerEnemy(int x, int y) {
+    	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
+		Game.entities.add(he);
+	}
+    
+    private void createNewTrackerEnemy(int x, int y) {
+    	TrackerEnemy te = new TrackerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 2, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
+		te.setMask(3, 4, 10, 8);
+		Game.entities.add(te);
+    }
+    
+    private void createNewWalkerEnemy(int x, int y) {
+    	WalkerEnemy e = new WalkerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
+		Game.entities.add(e);
+	}
+    
     //Modifiquei a condição de igualdade dos mapas para comparar seus arquivos de imagem, se forem os
     //mesmos arquivos, então eles são iguais. Pode ser útil no futuro.
     @Override

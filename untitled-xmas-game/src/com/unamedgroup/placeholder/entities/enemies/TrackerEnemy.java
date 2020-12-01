@@ -55,7 +55,7 @@ public class TrackerEnemy extends Enemy {
 					followDelay = 0;
 					//cria os vetores que vão guiar o inimigo para o jogador
 					Vector2i start = new Vector2i((int) x/World.TILE_SIZE , (int) y/World.TILE_SIZE);
-					Vector2i end = new Vector2i((int) handler.getGame().getPlayer().getX()/World.TILE_SIZE , (int) handler.getGame().getPlayer().getY()/World.TILE_SIZE);
+					Vector2i end = new Vector2i((int) (handler.getGame().getPlayer().getX() + 8)/World.TILE_SIZE , (int) (handler.getGame().getPlayer().getY() + 8)/World.TILE_SIZE);
 					path = new AStar(handler).findPath(handler.getGame().room , start , end);
 				}
 				// faz com q o inimigo não se mova a todo tick e fique muito rápido

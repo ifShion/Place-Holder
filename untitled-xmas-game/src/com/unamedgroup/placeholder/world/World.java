@@ -77,37 +77,6 @@ public abstract class World {
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						
 						break;
-					case 0xFFFF0000: //vermelho
-						WalkerEnemy e = new WalkerEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
-						Game.entities.add(e);
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
-								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
-						break;
-					case 0xFFFF8000: //laranja
-						TrackerEnemy te = new TrackerEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 2, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
-						te.setMask(3, 4, 10, 8);
-						Game.entities.add(te);
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
-								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
-						break;
-					case 0xFF00FF00: //verde
-						CannonEnemy cl = new CannonEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 24, 32, -2, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
-						Game.entities.add(cl);
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
-								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
-						break;
-					case 0xFF00FFFF: //ciano
-						CannonEnemy cr = new CannonEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 24, 32, 2, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
-						Game.entities.add(cr);
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
-								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
-						break;
-					case 0xFFFF00FF: //magenta
-						HuggerEnemy he = new HuggerEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
-						Game.entities.add(he);
-						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
-								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
-						break;
 					default:
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						
