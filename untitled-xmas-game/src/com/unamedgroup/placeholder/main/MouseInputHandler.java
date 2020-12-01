@@ -3,6 +3,10 @@ package com.unamedgroup.placeholder.main;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
+/**
+ * Classe para escutar eventos de mouse
+ * @author Daniel Nogueira
+ */
 public class MouseInputHandler implements MouseListener {
 
     private StateManager stateManager;
