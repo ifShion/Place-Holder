@@ -36,7 +36,7 @@ public class State_02 extends State {
     }
 
     public void tick(){
-        
+        //handler.getMouseInputHandler().mouseClicked(handler.getDisplay());
     }
 
 }

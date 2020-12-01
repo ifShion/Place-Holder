@@ -66,6 +66,6 @@ public class Display {
     }
 
     public void setMouseListener(MouseListener ls){
-        jframe.addMouseListener(ls);
+        canvas.addMouseListener(ls);
     }
 }
