@@ -12,7 +12,7 @@ import com.unamedgroup.placeholder.graphics.states.*;
 public class StateManager{
 
     private static ArrayList<State> states = new ArrayList<>();
-    private static int currentState = 0;
+    private static int currentState = 3;
 
     /**
      * CADA STATE CRIADO DEVE SER LISTADO NESSE CONTRUTOR

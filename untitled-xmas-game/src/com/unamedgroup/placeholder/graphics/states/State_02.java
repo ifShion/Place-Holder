@@ -51,7 +51,8 @@ public class State_02 extends State {
      * @return
      */
     public boolean isInBox(Botao b, int x, int y){
-        return (x >= (b.getX()*3) && x <= ((b.getX() + b.getWidth())*handler.getGame().SCALE) && y >= (b.getY()*3) && y <= ((b.getY() + b.getHeight())*handler.getGame().SCALE));
+        return (x >= (b.getX()*handler.getGame().SCALE) && x <= ((b.getX() + b.getWidth())*handler.getGame().SCALE) &&
+            y >= (b.getY()*handler.getGame().SCALE) && y <= ((b.getY() + b.getHeight())*handler.getGame().SCALE));
     }
 
     public Botao getBotaoJogar(){
