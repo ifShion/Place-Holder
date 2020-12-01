@@ -18,6 +18,11 @@ public class Cutscene_A01 extends State {
     private Toast missao;
     private Label local;
     private Label local2;
+
+    /**
+     * @param id
+     * @param handler
+     */
     public Cutscene_A01(int id, Handler handler) {
         super(id, handler);   
 		missao = new Toast("Alpha",Game.WIDTH/2,50,5,CustomFont.getFont("rumbletumble.TTF",  45));
@@ -34,9 +39,8 @@ public class Cutscene_A01 extends State {
 
     @Override
     public void tick() {
-        
         if(handler.getInputHandler().secondary.clicked)
-        handler.getStateManager().setState(0);
+            handler.getStateManager().setState(0);
         super.tick();
     }
     

@@ -15,6 +15,7 @@ public class Handler {
     private Game game;                 // guarda uma referência à classe jogo
     private Camera camera;             // cria um objeto câmera
     private Display display;           // cria um objeto display que lida com tudo em relação ao display
+    private MouseInputHandler mouseInputHandler;       // input para o mouse
 
     /**
      * @param game
@@ -25,16 +26,18 @@ public class Handler {
         this.game = game;
         this.camera = new Camera();
         this.display = display;
-        inputHandler = new InputHandler(game, display);
+        inputHandler = new InputHandler(display);
         stateManager = new StateManager(this);
         stateManager.init();
+        mouseInputHandler = new MouseInputHandler(stateManager, display);
     }
 
     public void tick(){
         inputHandler.tick();
+        
         //Em caso de não existência de um estado, ele simplesmente não usa o método tick() por retornar a função
         if(!stateManager.currentStateExist()) return; 
-		stateManager.tick();
+        stateManager.tick();
     }
 
     public void render(Graphics g){
@@ -81,5 +84,12 @@ public class Handler {
     public void setDisplay(Display display) {
         this.display = display;
     }
-    
+
+    public MouseInputHandler getMouseInputHandler() {
+        return mouseInputHandler;
+    }
+
+    public void setMouseInputHandler(MouseInputHandler mouseInputHandler) {
+        this.mouseInputHandler = mouseInputHandler;
+    }
 }

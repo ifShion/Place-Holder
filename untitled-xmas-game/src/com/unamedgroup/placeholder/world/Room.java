@@ -3,8 +3,6 @@ package com.unamedgroup.placeholder.world;
 import java.awt.Graphics;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
-import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.tiles.DoorTile;
@@ -15,7 +13,7 @@ public class Room extends World {
     private Handler handler;
     private SpriteSheet map;
     /**
-     * Constrói o mundo novo. É bom ter uma sprite sheet pr´pria para os tiles de cada mapa
+     * Constrói o mundo novo. É bom ter uma sprite sheet própria para os tiles de cada mapa
      * são muitos tiles
      * @param path
      * @param ID

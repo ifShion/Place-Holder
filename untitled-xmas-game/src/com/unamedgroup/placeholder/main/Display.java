@@ -4,12 +4,12 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
-
+import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 
 
 /**
- * Contém todas as propriedades da Janela
+ * Contï¿½m todas as propriedades da Janela
  * 
  * @author Nathan
  */
@@ -38,7 +38,7 @@ public class Display {
         jframe.pack();
         
         jframe.setVisible(true);
-        jframe.setResizable(false);
+        //jframe.setResizable(false);
         jframe.setAlwaysOnTop(true);
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,5 +63,9 @@ public class Display {
 
     public void setKeyListener(KeyListener k1){
         jframe.addKeyListener(k1);
+    }
+
+    public void setMouseListener(MouseListener ls){
+        jframe.addMouseListener(ls);
     }
 }

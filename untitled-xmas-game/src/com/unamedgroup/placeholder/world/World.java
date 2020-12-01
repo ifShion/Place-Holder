@@ -17,20 +17,20 @@ import com.unamedgroup.placeholder.world.tiles.Tile;
 
 /**
  * Essa classe traduz uma imagem e converte suas representações em pixels em
- * tiles no mmapa. Esse sistema interpreta cada cor da imagem e atribui a ela um
+ * tiles no mapa. Esse sistema interpreta cada cor da imagem e atribui a ela um
  * valor em Tile
  * 
  * Já vejo um problema com essa classe, pq vamos precisar de diferentes files
  * para os diferentes jogos Por mais q ela funcione para determinar colisões, os
  * sprites e comportamentos de tiles e entidades especiais não conseguem
- * sergerenciadas por aqui.
+ * ser gerenciadas por aqui.
  * 
  * @author Daniel Neves
  */
 public abstract class World {
 	/*
 .	 * Alterações: Mudei os atributos státicos, vai ser mais demorado chamá-los
-	 * agora pq vai ter q chamar Gmae, mas agora todos eles têm tamanhos e tiles
+	 * agora pq vai ter que chamar Game, mas agora todos eles têm tamanhos e tiles
 	 * diferentes e podemos cuidar de cada um separadamente, em vez de instanciar um
 	 * novo cada vez q mudar de sala
 	 */

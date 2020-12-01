@@ -19,13 +19,13 @@ public abstract class State {
     }
 
 
-    public void init(){
+    public void init(){  //TODO vai ter alguma coisa nesses metodos ou pode colocar como abstrato?
         
     };
-    public void tick(){
+    public void tick(){ //TODO vai ter alguma coisa nesses metodos ou pode colocar como abstrato?
 
     }
-    public void render(Graphics g){
+    public void render(Graphics g){ //TODO vai ter alguma coisa nesses metodos ou pode colocar como abstrato?
 
     }
 

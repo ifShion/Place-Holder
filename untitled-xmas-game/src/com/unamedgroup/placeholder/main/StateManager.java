@@ -12,19 +12,23 @@ import com.unamedgroup.placeholder.graphics.states.*;
 public class StateManager{
 
     private static ArrayList<State> states = new ArrayList<>();
-    private static int currentState = 0;
+    private static int currentState = 3;
+
     /**
      * CADA STATE CRIADO DEVE SER LISTADO NESSE CONTRUTOR
+     * @param handler
      */
     public StateManager(Handler handler) {
         states.add(new State_00(states.size(), handler));
         states.add(new State_01(states.size(), handler));
         states.add(new Cutscene_A01(states.size(), handler));
+        states.add(new State_02(states.size(), handler));
     }
 
     /**
      * Utilize para trocar os State atual
      * Ao trocar toda as variaváis do state serão reinicializadas
+     * @param state
      */
     public void setState(int state){
         currentState = state;

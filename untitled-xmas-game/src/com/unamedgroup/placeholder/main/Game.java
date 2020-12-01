@@ -9,7 +9,6 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.entities.Projectile;
@@ -82,6 +81,13 @@ public class Game implements Runnable {
 	 * menus e sprites.
 	 */
 	public Game() {
+		init();
+		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //fullscreen
+		
+		alternatingMaps = true;
+	}
+
+	private void init(){
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
 		alphaTeste = new SpriteSheet("/alphaTest.png");
 		nutCrackerTest = new SpriteSheet("/nutCracker.png");
@@ -89,14 +95,7 @@ public class Game implements Runnable {
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();
-		init();
 
-		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //fullscreen
-		
-		alternatingMaps = true;
-	}
-
-	private void init(){
 		handler = new Handler(this, display);
 		maps = new Maps(handler);
 	}

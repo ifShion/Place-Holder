@@ -16,6 +16,13 @@ public class Toast {
     private  int x = 0;
     private  int y = 0;
 
+    /**
+     * @param txt
+     * @param x
+     * @param y
+     * @param duration
+     * @param font
+     */
     public Toast(String txt, int x, int y, int duration, Font font) {
         this.txt = txt;
         this.x = x;

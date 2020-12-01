@@ -70,7 +70,7 @@ public class InputHandler implements KeyListener {
 	 * @param game
 	 * @param display
 	 */
-	public InputHandler(Game game, Display display) {
+	public InputHandler(Display display) {
 		display.setKeyListener(this);
 	}
 
