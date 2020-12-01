@@ -68,4 +68,8 @@ public class Display {
     public void setMouseListener(MouseListener ls){
         canvas.addMouseListener(ls);
     }
+
+    public Canvas getCanvas(){
+        return this.canvas;
+    }
 }

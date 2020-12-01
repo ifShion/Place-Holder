@@ -1,11 +1,11 @@
 package com.unamedgroup.placeholder.graphics.screen_components;
 
 import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
 import java.awt.Color;
 
 
 /**
+ * Essa classe é para a criação de botões para o menu e talvez para outras finalidades
  * @author Daniel Nogueira
  */
 public class Botao{
@@ -44,14 +44,60 @@ public class Botao{
         g.drawString(text, x + width / 2 - 15, y + height / 2 + 5);
     }
 
-
-    public void mouseClicked(MouseEvent e) {
-        if (e.getX()>=x && e.getX()<x+width){
-            System.out.println("aaaaaaaaaaaaaaaaaaaa");
-        }
-        else {
-            System.out.println("bbbbbbbbbbbbbbbbbbbbb");
-        }
-
+    //getters e setters
+    public int getX() {
+        return x;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Color getColorBack() {
+        return colorBack;
+    }
+
+    public void setColorBack(Color colorBack) {
+        this.colorBack = colorBack;
+    }
+
+    public Color getColorLetter() {
+        return colorLetter;
+    }
+
+    public void setColorLetter(Color colorLetter) {
+        this.colorLetter = colorLetter;
+    } 
 }

@@ -29,4 +29,8 @@ public abstract class State {
 
     }
 
+    public int getId(){
+        return id;
+    }
+
 }

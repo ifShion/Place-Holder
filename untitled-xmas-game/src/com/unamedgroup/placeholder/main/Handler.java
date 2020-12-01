@@ -29,7 +29,7 @@ public class Handler {
         inputHandler = new InputHandler(display);
         stateManager = new StateManager(this);
         stateManager.init();
-        mouseInputHandler = new MouseInputHandler(stateManager, display);
+        mouseInputHandler = new MouseInputHandler(this);
     }
 
     public void tick(){

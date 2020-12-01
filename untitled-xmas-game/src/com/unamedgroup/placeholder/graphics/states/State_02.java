@@ -12,7 +12,7 @@ import java.awt.Graphics2D;
  */
 public class State_02 extends State {
 
-    private Botao btnJogar;
+    private Botao btnJogar, btnConfig, btnSair;
 
     /**
      * @param id
@@ -26,17 +26,43 @@ public class State_02 extends State {
     public void init() {
         btnJogar = new Botao(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 - 40, 90, 25, "Jogar",
                 Color.LIGHT_GRAY, Color.BLUE);
+        btnConfig = new Botao(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 - 10, 90, 25, "Configurações",
+                Color.LIGHT_GRAY, Color.BLUE);
+        btnSair = new Botao(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 + 20, 90, 25, "Sair",
+                Color.LIGHT_GRAY, Color.BLUE);
     }
 
     /**
+     * Desenha o layout do menu
+     * TODO desenhar um menu mais bonito
      * @param g
      */
     public void render(Graphics g) {
         btnJogar.draw((Graphics2D) g);
+        btnConfig.draw((Graphics2D) g);
+        btnSair.draw((Graphics2D) g);
     }
 
-    public void tick(){
-        //handler.getMouseInputHandler().mouseClicked(handler.getDisplay());
+    /**
+     * retorna se uma cordenada está dentro da área do botão
+     * @param b
+     * @param x
+     * @param y
+     * @return
+     */
+    public boolean isInBox(Botao b, int x, int y){
+        return (x >= (b.getX()*3) && x <= ((b.getX() + b.getWidth())*handler.getGame().SCALE) && y >= (b.getY()*3) && y <= ((b.getY() + b.getHeight())*handler.getGame().SCALE));
     }
 
+    public Botao getBotaoJogar(){
+        return btnJogar;
+    }
+
+    public Botao getConfg(){
+        return btnConfig;
+    }
+
+    public Botao getBtnSair(){
+        return btnSair;
+    }
 }
