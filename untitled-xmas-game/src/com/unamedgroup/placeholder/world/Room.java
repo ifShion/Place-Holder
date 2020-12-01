@@ -2,8 +2,12 @@ package com.unamedgroup.placeholder.world;
 
 import java.awt.Graphics;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.Set;
+
+import com.unamedgroup.placeholder.entities.enemies.WalkerEnemy;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.tiles.DoorTile;
 
@@ -53,7 +57,7 @@ public class Room extends World {
     /**                     
      * Cria os Tiles de portas
      */
-    public void createDoors(){
+    public void createEntities(){
         doors = new LinkedHashSet<>();
         switch(handler.getGame().getCurrentMapID()){
             case 1001:

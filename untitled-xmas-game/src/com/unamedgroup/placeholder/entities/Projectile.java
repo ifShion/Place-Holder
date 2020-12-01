@@ -27,8 +27,8 @@ public abstract class Projectile extends Entity {
 				handler);
 	}
 	
-	public Projectile(double x, double y, int width, int height) {
-		super(x, y, width, height);
+	public Projectile(double x, double y, int width, int height, Handler handler) {
+		super(x, y, width, height, handler);
 	}
 	
 	public void destroyProjectile() {

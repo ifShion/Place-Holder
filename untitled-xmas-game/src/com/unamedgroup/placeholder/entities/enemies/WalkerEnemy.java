@@ -12,12 +12,12 @@ import com.unamedgroup.placeholder.main.Handler;
  * @author Daniel Neves
  *
  */
-public class TestEnemy extends Enemy implements GravityEffected {
+public class WalkerEnemy extends Enemy implements GravityEffected {
 
 	private double vspd;
 	private boolean left = true, right;
 	
-	public TestEnemy(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
+	public WalkerEnemy(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
 		// TODO Auto-generated constructor stub
 	}
@@ -40,6 +40,13 @@ public class TestEnemy extends Enemy implements GravityEffected {
 		}
 		
 		this.fall();
+	}
+	
+
+	@Override
+	public void destroyEnemy() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	public void render(Graphics g) {

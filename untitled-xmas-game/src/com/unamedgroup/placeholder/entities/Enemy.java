@@ -35,6 +35,8 @@ public abstract class Enemy extends Entity {
 		super.tick();
 	}
 	
+	public abstract void destroyEnemy();
+	
 	public void render(Graphics g) {
 		super.render(g);
 	}

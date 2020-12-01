@@ -68,6 +68,12 @@ public class TrackerEnemy extends Enemy {
 	}
 	
 	@Override
+	public void destroyEnemy() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
 	public void render(Graphics g) {
 		super.render(g);
 		g.setColor(Color.ORANGE);

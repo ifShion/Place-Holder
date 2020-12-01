@@ -7,7 +7,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.unamedgroup.placeholder.entities.enemies.CannonEnemy;
-import com.unamedgroup.placeholder.entities.enemies.TestEnemy;
+import com.unamedgroup.placeholder.entities.enemies.HuggerEnemy;
+import com.unamedgroup.placeholder.entities.enemies.WalkerEnemy;
 import com.unamedgroup.placeholder.entities.enemies.TrackerEnemy;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
@@ -77,7 +78,7 @@ public abstract class World {
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						
 						break;
 					case 0xFFFF0000: //vermelho
-						TestEnemy e = new TestEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
+						WalkerEnemy e = new WalkerEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
 						Game.entities.add(e);
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
@@ -90,8 +91,20 @@ public abstract class World {
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
 						break;
 					case 0xFF00FF00: //verde
-						CannonEnemy ce = new CannonEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 24, 32, -2, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
-						Game.entities.add(ce);
+						CannonEnemy cl = new CannonEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 24, 32, -2, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
+						Game.entities.add(cl);
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+						break;
+					case 0xFF00FFFF: //ciano
+						CannonEnemy cr = new CannonEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 24, 32, 2, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
+						Game.entities.add(cr);
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+						break;
+					case 0xFFFF00FF: //magenta
+						HuggerEnemy he = new HuggerEnemy(xx * World.TILE_SIZE, yy * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
+						Game.entities.add(he);
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
 						break;

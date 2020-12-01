@@ -65,7 +65,6 @@ public class CannonEnemy extends Enemy {
 			break;
 		}	
 		
-		
 		// o jogador entra em alcance do canhão e ele atira a cada 2 segundos
 		if(super.calculateDistance(super.getX() , handler.getGame().getPlayer().getX() , super.getY() , handler.getGame().getPlayer().getY()) < 128) {
 			status = "shooting";
@@ -79,6 +78,12 @@ public class CannonEnemy extends Enemy {
 		}else {
 			status = "idle";
 		}
+	}
+	
+	@Override
+	public void destroyEnemy() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	@Override

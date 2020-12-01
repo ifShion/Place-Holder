@@ -1,6 +1,5 @@
 package com.unamedgroup.placeholder.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;

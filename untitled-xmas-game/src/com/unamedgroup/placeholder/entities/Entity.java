@@ -78,12 +78,14 @@ public class Entity {
 	 * @param width
 	 * @param height
 	 */
-	public Entity(double x, double y, int width, int height) {
+	public Entity(double x, double y, int width, int height, Handler handler) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		
+		this.handler = handler;
 	}
 
 
@@ -220,7 +222,7 @@ public class Entity {
 	}
 	
 	public void tick(){
-		animation.tick();
+		if(animated) animation.tick();
 	}
 
 	public void render(Graphics g) {
