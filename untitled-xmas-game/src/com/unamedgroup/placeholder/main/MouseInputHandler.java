@@ -31,18 +31,9 @@ public class MouseInputHandler implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         State_02 menu = null;
-        if (stateManager.getCurrentState().getId()==3)
+        if (stateManager.getCurrentState().getId()==3){
             menu = (State_02) stateManager.getCurrentState();
-
-        if (menu.isInBox(menu.getBotaoJogar(), e.getX(), e.getY())){   //caso do botão de jogar
-            handler.getDisplay().getCanvas().removeMouseListener(this);
-            stateManager.setState(0);
-        }
-        if (menu.isInBox(menu.getConfg(), e.getX(), e.getY())){
-            //TODO criar um estado para essa ala aqui
-        }
-        if (menu.isInBox(menu.getBtnSair(), e.getX(), e.getY())){
-            System.exit(0);
+            menu.mouseAction(e, this);
         }
     }
 

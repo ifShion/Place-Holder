@@ -10,7 +10,7 @@ import java.awt.Color;
  */
 public class Botao{
 
-    private int x, y, width, height;
+    private int x, y, width, height, reduceSpace=15;
     private String text;
     private Color colorBack, colorLetter;
 
@@ -31,6 +31,16 @@ public class Botao{
         this.text = text;
         this.colorBack = colorBack;
         this.colorLetter = colorLetter;
+        reduceSpace += align();
+    }
+
+    private int align(){
+        int total=0;
+        for (int i=0; i<text.length(); i++){
+            if (i>4)
+                total++;
+        }
+        return (int) (total*3.2);
     }
 
     /**
@@ -38,10 +48,12 @@ public class Botao{
      * @param g
      */
     public void draw(Graphics2D g) {
+        g.setColor(Color.black);
+        g.fillRect(x-1, y-1, width+3, height+3);
         g.setColor(colorBack);
         g.fillRect(x, y, width, height);
         g.setColor(colorLetter);
-        g.drawString(text, x + width / 2 - 15, y + height / 2 + 5);
+        g.drawString(text, x + width / 2 - reduceSpace, y + height / 2 + 5);
     }
 
     //getters e setters
