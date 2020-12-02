@@ -22,6 +22,8 @@ import com.unamedgroup.placeholder.world.Room;
  * 
  * @version alpha 1.0
  * @author Daniel Neves
+ * @author Daniel Nogueira
+ * @author Nathan
  * ...
  */
 
