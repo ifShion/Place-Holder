@@ -9,6 +9,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.entities.Projectile;
@@ -52,7 +54,7 @@ public class Game implements Runnable {
 	/*----------------------------------------------------------------*/							
 	// Adicionei um objeto de teste para construir o mundo com colisão
 
-	public static SpriteSheet spriteTeste;
+	public static SpriteSheet walkerEnemy;
 	public static SpriteSheet alphaTeste;
 	public static SpriteSheet nutCrackerTest;
 	public static SpriteSheet hud;
@@ -64,6 +66,7 @@ public class Game implements Runnable {
 	
 	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro mapa é só mudar isso, ou, quando tivermos um sistema de 
 	// save e load pronto, sobrescrever essa variável.
+	
 	public boolean alternatingMaps;
 	public boolean statesUseMaps;	
 	/*----------------------------------------------------------------*/
@@ -73,7 +76,9 @@ public class Game implements Runnable {
 			return o1.depth - o2.depth;
 		}
 	});
-	public static List<Entity> entities = new LinkedList<>();	
+	
+	public static List<Entity> entities = new LinkedList<>();
+	public static List<Enemy> enemies = new LinkedList<>();
 	public static List<Projectile> projectiles = new ArrayList<>();  
 	private Player player;	// Player é instanciado pelo State
 	
@@ -91,7 +96,7 @@ public class Game implements Runnable {
 	}
 
 	private void init(){
-		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
+		walkerEnemy = new SpriteSheet("/walkerEnemySprite.png");
 		alphaTeste = new SpriteSheet("/alphaTestbackup.png");
 		nutCrackerTest = new SpriteSheet("/nutCracker.png");
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");

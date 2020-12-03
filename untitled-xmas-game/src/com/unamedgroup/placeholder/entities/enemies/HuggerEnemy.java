@@ -5,13 +5,13 @@ import java.awt.Graphics;
 import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.interfaces.GravityEffected;
+import com.unamedgroup.placeholder.interfaces.Hittable;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
-public class HuggerEnemy extends Enemy implements GravityEffected {
+public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 
 	private double vspd;
-	private String moveDecision = "left";
 	private int idleDelay, movingTime;
 	private boolean chasing;
 	
@@ -19,6 +19,8 @@ public class HuggerEnemy extends Enemy implements GravityEffected {
 			int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY,
 				handler);
+		
+		super.status = "left";
 	}
 
 	@Override
@@ -27,31 +29,31 @@ public class HuggerEnemy extends Enemy implements GravityEffected {
 		movingTime++;
 		searchForPlayer();
 		if(!chasing) {
-			if(moveDecision == "right" && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed) , super.getY(), super.getMaskW(), super.getMaskH())) {
+			if(status == "right" && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed) , super.getY(), super.getMaskW(), super.getMaskH())) {
 				x+=speed;
 				if(handler.getGame().room.isFree(super.getX() + super.getMaskX() + 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() + super.getMaskX() + (int)speed , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
-					moveDecision = "left";
+					status = "left";
 				}
-			}else if(moveDecision == "left" && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed) , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
+			}else if(status == "left" && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed) , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
 				x-=speed;
 				if(handler.getGame().room.isFree(super.getX() + super.getMaskX() - 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() - (int)speed , super.getY(), super.getMaskW(), super.getMaskH())) {
-					moveDecision = "right";
+					status = "right";
 				}
 			}
 			
 			if(movingTime > 50 + Game.rand.nextInt(50)) {
-				moveDecision = "idle";
+				status = "idle";
 				idleDelay++;
 				if (idleDelay > 40 + Game.rand.nextInt(40)) {
 					idleDelay = 0;
 					movingTime = 0;
-					if (Game.rand.nextInt(100) < 50) moveDecision = "left";
-					else moveDecision = "right";
+					if (Game.rand.nextInt(100) < 50) status = "left";
+					else status = "right";
 				}
 			}
 		}
 		
-		if(moveDecision == "explode") {
+		if(status == "explode") {
 			this.destroyEnemy();
 		}
 		
@@ -61,10 +63,12 @@ public class HuggerEnemy extends Enemy implements GravityEffected {
 	public void destroyEnemy() {
 		// animação explosão;
 		if(super.calculateDistance(this.getX(), handler.getGame().getPlayer().getX(), this.getY(), handler.getGame().getPlayer().getY()) < 50) {
-			// damo player;
+			handler.getGame().getPlayer().setHp(handler.getGame().getPlayer().getHp() - 2);
 		}
 		
-		// destruir inimigo;
+		Game.entities.remove(this);
+		Game.enemies.remove(this);
+		return;
 	}
 
 	public void searchForPlayer() {
@@ -74,16 +78,16 @@ public class HuggerEnemy extends Enemy implements GravityEffected {
 				x+=speed;
 				if(handler.getGame().room.isFree(super.getX() + super.getMaskX() + 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() + super.getMaskX() + (int)speed , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
 					chasing = false;
-					moveDecision = "idle";
+					status = "idle";
 				}
 			}else if(handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskX() + 10 < super.getX() && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed) , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
 				x-=speed;
 				if(handler.getGame().room.isFree(super.getX() + super.getMaskX() - 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() - (int)speed , super.getY(), super.getMaskW(), super.getMaskH())) {
 					chasing = false;
-					moveDecision = "idle";
+					status = "idle";
 				}
 			} else {
-				moveDecision = "explode";
+				status = "explode";
 			}
 		}else {
 			chasing = false;
@@ -112,6 +116,13 @@ public class HuggerEnemy extends Enemy implements GravityEffected {
 			vspd = 0;
 		}
 		super.setY(super.getY() + (int)vspd);
+	}
+
+	@Override
+	public void getHit() {
+		Game.entities.remove(this);
+		Game.enemies.remove(this);
+		return;		
 	}
 
 }

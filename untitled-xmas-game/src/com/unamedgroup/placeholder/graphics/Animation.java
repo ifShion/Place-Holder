@@ -10,6 +10,8 @@ public class Animation {
 
     protected int width;          	// Largura do sprite
     protected int height;         	// Altura do sprite
+    protected int offX; 			// Off Set em X
+    protected int offY;				// Off Set em Y
     
     private int initPosX;			// Posição inicial em X da sequência de Sprites
     private int initPosY;			// Posição inicial em Y da sequência de Sprites
@@ -57,6 +59,14 @@ public class Animation {
 		return height;
 	}
     
+    public int getOffX() {
+		return offX;
+	}
+    
+    public int getOffY() {
+		return offY;
+	}
+    
     public int getInitPosX() {
 		return initPosX;
 	}
@@ -87,6 +97,16 @@ public class Animation {
 	
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public void offSet(int offX, int offY) {
+		this.offX = offX;
+		this.offY = offY;
+	}
+	
+	public void resetOffSet() {
+		this.offX = 0;
+		this.offY = 0;
 	}
 	
 	public void setNumSpritesX(int numSpritesX) {

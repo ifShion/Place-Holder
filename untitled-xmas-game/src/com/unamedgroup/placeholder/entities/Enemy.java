@@ -13,11 +13,20 @@ import com.unamedgroup.placeholder.main.Handler;
  */
 public abstract class Enemy extends Entity {
 	protected String status;
+	private boolean damaged;
 
 	public Enemy(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
 		
 		this.status = "";
+	}
+	
+	public boolean isDamaged() {
+		return damaged;
+	}
+	
+	public void setDamaged(boolean damaged) {
+		this.damaged = damaged;
 	}
 	
 	/**

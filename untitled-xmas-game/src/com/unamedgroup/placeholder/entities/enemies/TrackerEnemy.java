@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.interfaces.Hittable;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.AStar;
@@ -16,7 +17,7 @@ import com.unamedgroup.placeholder.world.World;
  * @author Daniel Neves
  *
  */
-public class TrackerEnemy extends Enemy {
+public class TrackerEnemy extends Enemy implements Hittable {
 
 	private int followDelay;
 	
@@ -78,6 +79,13 @@ public class TrackerEnemy extends Enemy {
 		super.render(g);
 		g.setColor(Color.ORANGE);
 		g.fillRect(super.getX() + super.getMaskX() - handler.getCamera().getX(), super.getY() + super.getMaskY() - handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
+	}
+
+	@Override
+	public void getHit() {
+		Game.entities.remove(this);
+		Game.enemies.remove(this);
+		return;
 	}
 
 }

@@ -23,6 +23,7 @@ public class Player extends Entity {
 	protected String status;		// Ainda estou testando esse argumento, utilizo para definir a animação em uma classe filha
 	protected boolean animated;
 	protected int direction;
+	protected boolean moveable;
 
 	protected int hp;
 	/**
@@ -48,6 +49,7 @@ public class Player extends Entity {
 		
 		this.animated = true;
 		this.direction = 1;
+		this.moveable = true;
 	}
 
 	public void tick() {
@@ -66,16 +68,18 @@ public class Player extends Entity {
 			return;  //caso os dois botões tenham sido apertados, o método acaba
 		}
 
-		if(left) {
-			setX(getX() - speed);
-			status = "left";
-			direction = -1;
-		}else if(right) {
-			setX(getX() + speed);
-			status = "right";
-			direction = 1;
-		}else {
-			status = "idle";
+		if(moveable) {
+			if(left) {
+				setX(getX() - speed);
+				status = "left";
+				direction = -1;
+			}else if(right) {
+				setX(getX() + speed);
+				status = "right";
+				direction = 1;
+			}else {
+				status = "idle";
+			}
 		}
 		
 		// Utilizar esse código para centralizar a câmera no centralizado quando existir um mapa

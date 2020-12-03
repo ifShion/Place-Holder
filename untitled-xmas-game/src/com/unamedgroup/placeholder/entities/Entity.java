@@ -228,14 +228,14 @@ public class Entity {
 	public void render(Graphics g) {
 		if(animated)
 			g.drawImage(sprite.getSpriteSheet(),
-				this.getX() - handler.getCamera().getX(),							// Coordenada X na tela
-				this.getY() - handler.getCamera().getY(),							// Coordenada Y na tela
-				(int) (this.getX() - handler.getCamera().getX()+width),				// Largura do Sprite
-				(int) (this.getY() - handler.getCamera().getY()+height),			// Altura do sprite
-				(int) animation.getSpriteX() + animation.getInitPosX(),				// Coordenada X1 na imagem
-				(int) animation.getSpriteY() + animation.getInitPosY(),				// Coordenada Y1 na imagem
-				(int) (animation.getSpriteX() + animation.getInitPosX()+width),		// Coordenada X2 na imagem
-				(int) (animation.getSpriteY() + animation.getInitPosY()+height),	// Coordenada Y2 na imagem
+				this.getX() + animation.getOffX() - handler.getCamera().getX(),							// Coordenada X na tela
+				this.getY() + animation.getOffY() - handler.getCamera().getY(),							// Coordenada Y na tela
+				(int) (this.getX() + animation.getOffX() - handler.getCamera().getX()+width),			// Largura do Sprite
+				(int) (this.getY() + animation.getOffY() - handler.getCamera().getY()+height),			// Altura do sprite
+				(int) animation.getSpriteX() + animation.getInitPosX(),									// Coordenada X1 na imagem
+				(int) animation.getSpriteY() + animation.getInitPosY(),									// Coordenada Y1 na imagem
+				(int) (animation.getSpriteX() + animation.getInitPosX()+width),							// Coordenada X2 na imagem
+				(int) (animation.getSpriteY() + animation.getInitPosY()+height),						// Coordenada Y2 na imagem
 				null);
 	}
 	

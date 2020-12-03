@@ -69,6 +69,11 @@ public class Room extends World {
         doors = new LinkedHashSet<>();
         switch(handler.getGame().getCurrentMapID()){
             case 1001:
+            	createNewWalkerEnemy(30, 6);
+            	createNewWalkerEnemy(32, 6);
+            	createNewWalkerEnemy(34, 6);
+            	createNewWalkerEnemy(27, 6);
+            	createNewCannonEnemy(12, 68, 2);
             	createNewTrackerEnemy(5, 4);
             	createNewHuggerEnemy(22, 60);
                 placeDoor(3, 11, 1001, 5, 9);
@@ -99,24 +104,28 @@ public class Room extends World {
     }
     
     private void createNewCannonEnemy(int x, int y, int direction) {
-    	CannonEnemy cr = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
-		Game.entities.add(cr);
+    	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
+		Game.entities.add(ce);
+		Game.enemies.add(ce);
 	}
     
     private void createNewHuggerEnemy(int x, int y) {
-    	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
+    	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.walkerEnemy, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
 		Game.entities.add(he);
+		Game.enemies.add(he);
 	}
     
     private void createNewTrackerEnemy(int x, int y) {
-    	TrackerEnemy te = new TrackerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 2, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
+    	TrackerEnemy te = new TrackerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.walkerEnemy, 1, 2, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
 		te.setMask(3, 4, 10, 8);
 		Game.entities.add(te);
+		Game.enemies.add(te);
     }
     
     private void createNewWalkerEnemy(int x, int y) {
-    	WalkerEnemy e = new WalkerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.spriteTeste, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
+    	WalkerEnemy e = new WalkerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.walkerEnemy, 1, 1, 3, 4, 2, 0 , 0, handler);
 		Game.entities.add(e);
+		Game.enemies.add(e);
 	}
     
     //Modifiquei a condição de igualdade dos mapas para comparar seus arquivos de imagem, se forem os

@@ -15,17 +15,12 @@ public class State_01 extends State {
 
     public State_01(int id, Handler handler){
         super(id, handler);
-        alpha = new Alpha(Game.WIDTH/2, Game.HEIGHT/2, 64, 64, new SpriteSheet("/red-teste-spritesheet.png"), 4, 4, 5, 4, 4, 0, 0, handler);
-        alpha.setMask(24, 24, 16, 34);
-        handler.getGame().setPlayer(alpha);
     }
 
 
     @Override
     public void init() {
-        handler.getGame().setCurrentMapID(1000);
-        handler.getGame().setPlayer(alpha);
-        handler.getGame().updateEntities();
+
     }
 
     @Override
