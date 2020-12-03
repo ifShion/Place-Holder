@@ -64,7 +64,7 @@ public class State_02 extends State {
     public void mouseAction(MouseEvent e, MouseListener ml){
         if (isInBox(btnJogar, e.getX(), e.getY())){   //caso do botão de jogar
             handler.getDisplay().getCanvas().removeMouseListener(ml);
-            handler.getStateManager().setState(0);
+            handler.getStateManager().setState(2);
         }
         if (isInBox(btnConfig, e.getX(), e.getY())){
             //TODO criar um estado para essa ala aqui

@@ -55,6 +55,7 @@ public class Game implements Runnable {
 	public static SpriteSheet spriteTeste;
 	public static SpriteSheet alphaTeste;
 	public static SpriteSheet nutCrackerTest;
+	public static SpriteSheet hud;
 	public SpriteSheet currentMap;
 	/*----------------------------------------------------------------*/
 	public Room room;
@@ -91,9 +92,10 @@ public class Game implements Runnable {
 
 	private void init(){
 		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
-		alphaTeste = new SpriteSheet("/alphaTest.png");
+		alphaTeste = new SpriteSheet("/alphaTestbackup.png");
 		nutCrackerTest = new SpriteSheet("/nutCracker.png");
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
+		hud = new SpriteSheet("/Hud-SpriteSheet.png");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();

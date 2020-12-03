@@ -23,6 +23,8 @@ public class Player extends Entity {
 	protected String status;		// Ainda estou testando esse argumento, utilizo para definir a animação em uma classe filha
 	protected boolean animated;
 	protected int direction;
+
+	protected int hp;
 	/**
 	 * Mudei a questão da animação. Toda a área ( int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY) do
 	 * construtor é decidada a ela. Mais detalhes em Entity:
@@ -87,4 +89,12 @@ public class Player extends Entity {
 //		g.fillRect((int)(x-handler.getCamera().getX()+super.getMaskX()),(int) (y-handler.getCamera().getY()+super.getMaskY()), super.getMaskW(), super.getMaskH());
 	}
 
+
+	public int getHp() {
+		return this.hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
 }

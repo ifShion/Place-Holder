@@ -45,7 +45,7 @@ public class Label {
     }
     
     
-    public void draw(Graphics2D g){
+    public void render(Graphics2D g){
         g.setColor(color);
         g.setFont(font);
         align(g);

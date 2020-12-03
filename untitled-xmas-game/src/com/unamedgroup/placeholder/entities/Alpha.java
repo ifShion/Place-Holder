@@ -11,6 +11,7 @@ public class Alpha extends Player implements GravityEffected {
 	private boolean pressedDown;
 	private boolean inTheAir;
 
+
 	public Alpha(int x, int y, int width, int height, SpriteSheet sprite, int depth, int speed, int animationSpeed,
 			int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
 		super(x, y, width, height, sprite, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY,
@@ -128,5 +129,6 @@ public class Alpha extends Player implements GravityEffected {
 
 		y = y + vspd;
 	}
+
 
 }

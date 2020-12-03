@@ -41,7 +41,7 @@ public class Toast {
     private boolean drawing = false;
     private final int duration;
     private int cronometro;
-    public void draw(Graphics2D g){
+    public void render(Graphics2D g){
         if(drawing){
             if(cronometro==duration){
                 if(alpha<0.9f){
