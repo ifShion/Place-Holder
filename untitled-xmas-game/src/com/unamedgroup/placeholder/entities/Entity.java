@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.unamedgroup.placeholder.graphics.Animation;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.Node;
 import com.unamedgroup.placeholder.world.Vector2i;
@@ -201,24 +202,38 @@ public class Entity {
 		if(path != null) {
 			if(path.size() > 0) {
 				Vector2i target = path.get(path.size() - 1).tile;
-				if(x < target.x * World.TILE_SIZE && handler.getGame().room.isFree((int)x + 1 , (int)y, maskW, maskH)) {
+				if(x < target.x * World.TILE_SIZE && handler.getGame().room.isFree((int)x + 1 , (int)y, maskW, maskH) && !isColliding((int)(x + speed), this.getY())) {
 					x+=speed;
-				}else if(x > target.x * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() - 1 , this.getY(),maskW, maskH)) {
+				}else if(x > target.x * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() - 1 , this.getY(),maskW, maskH) && !isColliding((int)(x - speed), this.getY())) {
 					x-=speed;
 				}
 				
-				if(y < target.y * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() , this.getY() + 1, maskW, maskH)) {
+				if(y < target.y * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() , this.getY() + 1, maskW, maskH) && !isColliding(this.getX(), (int)(y + speed))) {
 					y+=speed;
-				}else if(y > target.y * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() , this.getY() - 1, maskW, maskH)) {
+				}else if(y > target.y * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() , this.getY() - 1, maskW, maskH) && !isColliding(this.getX(), (int)(y - speed))) {
 					y-=speed;
 				}
 				
 				if(x == target.x * World.TILE_SIZE && y == target.y * World.TILE_SIZE) {
 					path.remove(path.size() - 1);
 				}
-				
 			}
 		}
+	}
+	
+	public boolean isColliding(int xnext,int ynext){
+		Rectangle enemyCurrent = new Rectangle(xnext + maskX,ynext + maskY,maskW,maskH);
+		for(int i = 0; i < Game.enemies.size(); i++){
+			Enemy e = Game.enemies.get(i);
+			if(e == this)
+				continue;
+			Rectangle targetEnemy = new Rectangle(e.getX()+ maskX,e.getY()+ maskY,maskW,maskH);
+			if(enemyCurrent.intersects(targetEnemy)){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public void tick(){

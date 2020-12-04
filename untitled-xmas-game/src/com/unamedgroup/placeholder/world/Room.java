@@ -75,6 +75,10 @@ public class Room extends World {
             	createNewWalkerEnemy(27, 6);
             	createNewCannonEnemy(12, 68, 2);
             	createNewTrackerEnemy(5, 4);
+            	createNewTrackerEnemy(4, 7);
+            	createNewTrackerEnemy(7, 4);
+            	createNewTrackerEnemy(12, 5);
+            	createNewTrackerEnemy(8, 6);
             	createNewHuggerEnemy(22, 60);
                 placeDoor(3, 11, 1001, 5, 9);
                 placeDoor(5, 3, 1002, 4, 15);

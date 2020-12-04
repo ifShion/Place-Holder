@@ -3,9 +3,9 @@ package com.unamedgroup.placeholder.entities;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.unamedgroup.placeholder.entities.enemies.WalkerEnemy;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.interfaces.GravityEffected;
+import com.unamedgroup.placeholder.interfaces.Hittable;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
@@ -17,6 +17,7 @@ public class Alpha extends Player implements GravityEffected {
 	private boolean inTheAir;
 	private boolean attacking;
 	private int attackingDekay;
+	private boolean hit;
 
 	public Alpha(int x, int y, int width, int height, SpriteSheet sprite, int depth, int speed, int animationSpeed,
 			int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
@@ -95,10 +96,13 @@ public class Alpha extends Player implements GravityEffected {
 			super.getAnimation().setSpriteX(0);
 		}else if(attackingDekay < 18){
 			super.getAnimation().setSpriteX(1);
-		}else if(attackingDekay < 40){
-			attackHitBox();
+		}else if(attackingDekay < 25){
 			super.getAnimation().setSpriteX(2);
+		}else if(attackingDekay < 40) {
+			super.getAnimation().setSpriteX(3);
+			attackHitBox();
 		}else {
+			hit = false;
 			attackingDekay = 0;
 			super.getAnimation().setSpriteX(0);
 			this.attacking = !attacking;
@@ -111,10 +115,11 @@ public class Alpha extends Player implements GravityEffected {
 		for(int i = 0 ; i < Game.entities.size(); i++) {
 			Rectangle enemy = new Rectangle(Game.entities.get(i).getX() + Game.entities.get(i).getMaskX() - handler.getCamera().getX() , Game.entities.get(i).getY() + Game.entities.get(i).getMaskY() - handler.getCamera().getY() , Game.entities.get(i).getMaskW() , Game.entities.get(i).getMaskH());
 
-			if(batHitBox.intersects(enemy) && Game.entities.get(i) instanceof WalkerEnemy) {
-				System.out.println("Alpha.attackHitBox()   Hit!");
-				WalkerEnemy e = (WalkerEnemy)Game.entities.get(i);
-				e.getHit();
+			if(batHitBox.intersects(enemy) && Game.entities.get(i) instanceof Hittable && !hit) {
+				Hittable h = (Hittable)Game.entities.get(i);
+				h.getHit();
+				
+				this.hit = true;
 			}
 		}
 	}
@@ -161,8 +166,7 @@ public class Alpha extends Player implements GravityEffected {
 			}
 
 			// impossibilita o jogador atingir velocidades de queda muito altas
-			if (vspd > 4.7)
-				vspd = 4.7;
+			if (vspd > 3.45) vspd = 3.45;
 
 			// impossibilita o jogador se enterrar no chão
 			while (handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + signVsp) + super.getMaskY(),
