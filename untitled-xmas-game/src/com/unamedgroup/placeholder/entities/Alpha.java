@@ -1,5 +1,6 @@
 package com.unamedgroup.placeholder.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -110,7 +111,7 @@ public class Alpha extends Player implements GravityEffected {
 	}
 	
 	private void attackHitBox() {
-		int facingAttack = ((super.direction == 1) ? 7 : -29);
+		int facingAttack = ((super.direction == 1) ? 4 : -31);
 		Rectangle batHitBox = new Rectangle(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 16, 32);
 		for(int i = 0 ; i < Game.entities.size(); i++) {
 			Rectangle enemy = new Rectangle(Game.entities.get(i).getX() + Game.entities.get(i).getMaskX() - handler.getCamera().getX() , Game.entities.get(i).getY() + Game.entities.get(i).getMaskY() - handler.getCamera().getY() , Game.entities.get(i).getMaskW() , Game.entities.get(i).getMaskH());
@@ -202,7 +203,7 @@ public class Alpha extends Player implements GravityEffected {
 
 	@Override
 	public void render(Graphics g) {
-//		int facingAttack = ((super.direction == 1) ? 7 : -29);
+//		int facingAttack = ((super.direction == 1) ? 4 : -31);
 //		if(attacking) {
 //			g.setColor(Color.YELLOW);
 //			g.fillRect(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 24, 32);
