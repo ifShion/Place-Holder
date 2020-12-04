@@ -64,8 +64,9 @@ public class WalkerEnemy extends Enemy implements GravityEffected, Hittable {
 
 	@Override
 	public void destroyEnemy() {
-		// TODO Auto-generated method stub
-		
+		Game.entities.remove(this);
+		Game.enemies.remove(this);
+		return;
 	}
 	
 	public void render(Graphics g) {
@@ -94,8 +95,6 @@ public class WalkerEnemy extends Enemy implements GravityEffected, Hittable {
 
 	@Override
 	public void getHit() {
-		Game.entities.remove(this);
-		Game.enemies.remove(this);
-		return;
+		this.destroyEnemy();
 	}
 }

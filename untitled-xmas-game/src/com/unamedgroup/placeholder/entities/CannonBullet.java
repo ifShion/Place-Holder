@@ -1,7 +1,7 @@
 package com.unamedgroup.placeholder.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Handler;
@@ -46,6 +46,22 @@ public class CannonBullet extends Projectile {
 		if(range > maxRange || !handler.getGame().room.isFree(super.getX() + (int)(speed * direction), super.getY(), super.getMaskW(), super.getMaskH())) {
 			super.destroyProjectile();
 		}
+		
+		if(isCollidingWithPlayer()) {
+			super.destroyProjectile();
+			handler.getGame().getPlayer().setHp(handler.getGame().getPlayer().getHp() - 1);
+		}
+	}
+	
+	/**
+	 * Método básico para calcular colisão entre jogador e inimigos
+	 * @return se o jogador intersecta esse inimigo
+	 */
+	public boolean isCollidingWithPlayer() {
+		Rectangle enemyCurrent = new Rectangle(this.getX() + super.getMaskX() , this.getY() + super.getMaskY() , super.getMaskW() , super.getMaskH());
+		Rectangle player = new Rectangle(handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskX() , handler.getGame().getPlayer().getY() + handler.getGame().getPlayer().getMaskY() , handler.getGame().getPlayer().getMaskW() , handler.getGame().getPlayer().getMaskH());
+		
+		return (enemyCurrent.intersects(player));	
 	}
 	
 	@Override

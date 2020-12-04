@@ -70,8 +70,9 @@ public class TrackerEnemy extends Enemy implements Hittable {
 	
 	@Override
 	public void destroyEnemy() {
-		// TODO Auto-generated method stub
-		
+		Game.entities.remove(this);
+		Game.enemies.remove(this);
+		return;
 	}
 	
 	@Override
@@ -83,9 +84,7 @@ public class TrackerEnemy extends Enemy implements Hittable {
 
 	@Override
 	public void getHit() {
-		Game.entities.remove(this);
-		Game.enemies.remove(this);
-		return;
+		destroyEnemy();
 	}
 
 }
