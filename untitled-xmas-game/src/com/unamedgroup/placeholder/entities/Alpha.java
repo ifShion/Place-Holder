@@ -96,9 +96,9 @@ public class Alpha extends Player implements GravityEffected {
 			super.getAnimation().setSpriteX(0);
 		}else if(attackingDekay < 18){
 			super.getAnimation().setSpriteX(1);
-		}else if(attackingDekay < 25){
+		}else if(attackingDekay < 23){
 			super.getAnimation().setSpriteX(2);
-		}else if(attackingDekay < 40) {
+		}else if(attackingDekay < 30) {
 			super.getAnimation().setSpriteX(3);
 			attackHitBox();
 		}else {

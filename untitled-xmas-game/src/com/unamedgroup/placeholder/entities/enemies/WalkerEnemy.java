@@ -21,7 +21,7 @@ public class WalkerEnemy extends Enemy implements GravityEffected, Hittable {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
 		// TODO Auto-generated constructor stub
 		
-		super.status = "left";
+		super.status = ((Game.rand.nextInt(100) < 50) ? "left" : "right");
 	}
 
 	public void tick() {
