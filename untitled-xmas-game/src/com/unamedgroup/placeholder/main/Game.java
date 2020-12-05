@@ -131,7 +131,7 @@ public class Game implements Runnable {
 		if(statesUseMaps){
 			if(!alternatingMaps) {
 				room.tick();
-				for (Entity entity : entities) entity.tick();
+				for (int i = 0; i < entities.size(); i++) entities.get(i).tick();
 				for (int i = 0; i < projectiles.size(); i++) projectiles.get(i).tick();
 			}else
 				maps.tick();

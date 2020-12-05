@@ -20,6 +20,7 @@ import com.unamedgroup.placeholder.world.World;
 public class TrackerEnemy extends Enemy implements Hittable {
 
 	private int followDelay;
+	private int attackDelay;
 	
 	/**
 	 * Inicializa um inimigo que persegue o jogador
@@ -62,9 +63,20 @@ public class TrackerEnemy extends Enemy implements Hittable {
 				// faz com q o inimigo não se mova a todo tick e fique muito rápido
 				if(Game.rand.nextInt(100) < 90)	
 					super.followPath(path);
+			}else {
+				this.damagePlayer();
 			}
 			
 			if(followDelay > 1000) followDelay = 800;
+		}
+	}
+	
+	public void damagePlayer() {
+		//status attacking;
+		attackDelay++;
+		if(attackDelay > 60) {
+			attackDelay = 0;
+			handler.getGame().getPlayer().hitPlayer(1);
 		}
 	}
 	

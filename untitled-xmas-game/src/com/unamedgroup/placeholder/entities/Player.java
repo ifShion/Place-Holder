@@ -24,6 +24,7 @@ public class Player extends Entity {
 	protected boolean animated;
 	protected int direction;
 	protected boolean moveable;
+	private int damageCooldown = 120;
 
 	protected int hp;
 	/**
@@ -51,9 +52,25 @@ public class Player extends Entity {
 		this.direction = 1;
 		this.moveable = true;
 	}
+	
+	public int getHp() {
+		return this.hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+	
+	public void hitPlayer(int damage) {
+		if(damageCooldown == 0) {
+			damageCooldown = 30;
+			this.hp-=damage;
+		}
+	}
 
 	public void tick() {
 		super.tick();
+		
 		//Alteração: mudei a condição para o personagem poder se mover. Implementando um sistema de colisão simples
 
 		boolean right = handler.getInputHandler().right.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH());
@@ -82,6 +99,9 @@ public class Player extends Entity {
 			}
 		}
 		
+		damageCooldown--;
+		if(damageCooldown < 0) damageCooldown = 0;
+		
 		// Utilizar esse código para centralizar a câmera no centralizado quando existir um mapa
 		handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().room.WIDTH * World.TILE_SIZE - Game.WIDTH));
 		handler.getCamera().setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , handler.getGame().room.HEIGHT * World.TILE_SIZE - Game.HEIGHT));
@@ -93,12 +113,4 @@ public class Player extends Entity {
 //		g.fillRect((int)(x-handler.getCamera().getX()+super.getMaskX()),(int) (y-handler.getCamera().getY()+super.getMaskY()), super.getMaskW(), super.getMaskH());
 	}
 
-
-	public int getHp() {
-		return this.hp;
-	}
-
-	public void setHp(int hp) {
-		this.hp = hp;
-	}
 }

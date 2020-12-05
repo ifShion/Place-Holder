@@ -74,12 +74,12 @@ public class Room extends World {
             	createNewWalkerEnemy(34, 6);
             	createNewWalkerEnemy(27, 6);
             	createNewCannonEnemy(12, 68, 2);
-            	createNewTrackerEnemy(5, 4);
-            	createNewTrackerEnemy(4, 7);
-            	createNewTrackerEnemy(7, 4);
+            	createNewCannonEnemy(42, 68, -6);
             	createNewTrackerEnemy(12, 5);
-            	createNewTrackerEnemy(8, 6);
+            	createNewTrackerEnemy(8, 68);
             	createNewHuggerEnemy(22, 60);
+            	createNewHuggerEnemy(27, 69);
+            	createNewHuggerEnemy(8, 30);
                 placeDoor(3, 11, 1001, 5, 9);
                 placeDoor(5, 3, 1002, 4, 15);
                 placeDoor(9, 3, 1001, 9, 14);
@@ -109,6 +109,7 @@ public class Room extends World {
     
     private void createNewCannonEnemy(int x, int y, int direction) {
     	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
+    	ce.setMask(3, 1, 18, 31);
 		Game.entities.add(ce);
 		Game.enemies.add(ce);
 	}

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.interfaces.Hittable;
+import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
 /**
@@ -11,7 +13,7 @@ import com.unamedgroup.placeholder.main.Handler;
  * @author Daniel Neves
  *
  */
-public class CannonBullet extends Projectile {
+public class CannonBullet extends Projectile implements Hittable {
 	private int direction;
 	private int range, maxRange = 80;
 	
@@ -34,6 +36,7 @@ public class CannonBullet extends Projectile {
 	public CannonBullet(int x, int y, int width, int height, int direction, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
 		this.direction = direction;
+
 	}
 	
 	@Override
@@ -49,7 +52,7 @@ public class CannonBullet extends Projectile {
 		
 		if(isCollidingWithPlayer()) {
 			super.destroyProjectile();
-			handler.getGame().getPlayer().setHp(handler.getGame().getPlayer().getHp() - 1);
+			handler.getGame().getPlayer().hitPlayer(1);
 		}
 	}
 	
@@ -69,6 +72,11 @@ public class CannonBullet extends Projectile {
 		super.render(g);
 //		g.setColor(Color.BLUE);
 //		g.fzillRect(super.getX() + super.getMaskX() - handler.getCamera().getX(), super.getY() + super.getMaskY() - handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
+	}
+
+	@Override
+	public void getHit() {
+		super.destroyProjectile();
 	}
 	
 }

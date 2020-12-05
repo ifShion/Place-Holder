@@ -123,6 +123,17 @@ public class Alpha extends Player implements GravityEffected {
 				this.hit = true;
 			}
 		}
+		
+		for(int i = 0 ; i < Game.projectiles.size(); i++) {
+			Rectangle enemy = new Rectangle(Game.projectiles.get(i).getX() + Game.projectiles.get(i).getMaskX() - handler.getCamera().getX() , Game.projectiles.get(i).getY() + Game.projectiles.get(i).getMaskY() - handler.getCamera().getY() , Game.projectiles.get(i).getMaskW() , Game.projectiles.get(i).getMaskH());
+
+			if(batHitBox.intersects(enemy) && Game.projectiles.get(i) instanceof Hittable && !hit) {
+				Hittable h = (Hittable)Game.projectiles.get(i);
+				h.getHit();
+				
+				this.hit = true;
+			}
+		}
 	}
 	
 	@Override
