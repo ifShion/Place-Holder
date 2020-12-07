@@ -81,11 +81,9 @@ public class Player extends Entity {
 	}
 	//Sistema inicial de cair no vazio - Euler Lima
 	public void fallVoid(double x, double y) {
-		if(handler.getGame().getPlayer().getY() >= 1112) {
-			this.hp--;
-			handler.getGame().getPlayer().setX(x * World.TILE_SIZE);
-			handler.getGame().getPlayer().setY(y * World.TILE_SIZE);
-		}
+		this.hitPlayer(1);
+		handler.getGame().getPlayer().setX(x * World.TILE_SIZE);
+		handler.getGame().getPlayer().setY(y * World.TILE_SIZE);
 	}
 
 	public void tick() {

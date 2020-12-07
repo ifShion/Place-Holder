@@ -62,8 +62,7 @@ public class Alpha extends Player implements GravityEffected {
 			}
 		}
 		
-		this.fallVoid(1,67.5);
-		this.isDead(1, 67.5);
+		this.isDead(2, 67.5);
 		this.playerAttack();
 		this.fall();
 	}
@@ -170,45 +169,50 @@ public class Alpha extends Player implements GravityEffected {
 
 		// verifica se o local para onde o jogador está subindo ou caindo para está
 		// disponível
-		if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + vspd) + super.getMaskY(),
-				super.getMaskW(), super.getMaskH())) {
-			int signVsp = 0;
-			if (vspd >= 0) {
-				signVsp = 1;
-			} else {
-				signVsp = -1;
-			}
-
-			// impossibilita o jogador atingir velocidades de queda muito altas
-			if (vspd > 3.45) vspd = 3.45;
-
-			// impossibilita o jogador se enterrar no chão
-			while (handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + signVsp) + super.getMaskY(),
+		try {
+			if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + vspd) + super.getMaskY(),
 					super.getMaskW(), super.getMaskH())) {
-				y += signVsp;
+				int signVsp = 0;
+				if (vspd >= 0) {
+					signVsp = 1;
+				} else {
+					signVsp = -1;
+				}
+	
+				// impossibilita o jogador atingir velocidades de queda muito altas
+				if (vspd > 3.45) vspd = 3.45;
+	
+				// impossibilita o jogador se enterrar no chão
+				while (handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + signVsp) + super.getMaskY(),
+						super.getMaskW(), super.getMaskH())) {
+					y += signVsp;
+				}
+				// cai no chão
+				vspd = 0;
+				super.setSpeed(3);
+				this.inTheAir = false;
+			}else {
+				if (vspd <= 0) {
+					// subindo
+					super.getAnimation().setHeight(32);
+					super.setHeight(32);
+					super.setWidth(16);
+					super.getAnimation().setNumSpritesX(3);
+					super.getAnimation().setSpriteY(facingJump);
+					super.getAnimation().setSpriteVeloticy(8);
+				} else {
+					// descendo
+					super.getAnimation().setHeight(32);
+					super.setHeight(32);
+					super.setWidth(16);
+					super.getAnimation().setNumSpritesX(3);
+					super.getAnimation().setSpriteY(facingJump + 1);
+					super.getAnimation().setSpriteVeloticy(6);
+				}
 			}
-			// cai no chão
-			vspd = 0;
-			super.setSpeed(3);
-			this.inTheAir = false;
-		}else {
-			if (vspd <= 0) {
-				// subindo
-				super.getAnimation().setHeight(32);
-				super.setHeight(32);
-				super.setWidth(16);
-				super.getAnimation().setNumSpritesX(3);
-				super.getAnimation().setSpriteY(facingJump);
-				super.getAnimation().setSpriteVeloticy(8);
-			} else {
-				// descendo
-				super.getAnimation().setHeight(32);
-				super.setHeight(32);
-				super.setWidth(16);
-				super.getAnimation().setNumSpritesX(3);
-				super.getAnimation().setSpriteY(facingJump + 1);
-				super.getAnimation().setSpriteVeloticy(6);
-			}
+			
+		} catch(ArrayIndexOutOfBoundsException aioobe) {
+			this.fallVoid(2, 67.5);
 		}
 
 		y = y + vspd;
