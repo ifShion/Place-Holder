@@ -96,9 +96,9 @@ public class Game implements Runnable {
 	}
 
 	private void init(){
-		walkerEnemy = new SpriteSheet("/walkerEnemySprite.png");
-		alphaTeste = new SpriteSheet("/alphaTestbackup.png");
-		nutCrackerTest = new SpriteSheet("/nutCracker.png");
+		walkerEnemy = new SpriteSheet("/spritesheet/walkerEnemySprite.png");
+		alphaTeste = new SpriteSheet("/spritesheet/alphaTestbackup.png");
+		nutCrackerTest = new SpriteSheet("/spritesheet/nutCracker.png");
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
 		hud = new SpriteSheet("/spritesheet/hud.png");
 

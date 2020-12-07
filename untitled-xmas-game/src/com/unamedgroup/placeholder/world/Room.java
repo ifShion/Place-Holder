@@ -86,17 +86,7 @@ public class Room extends World {
                 createNewWalkerEnemy(34, 8);
                 placeDoor(43, 21, 1001, 3, 60);
                 break;
-            case 1002:
-                placeDoor(6, 15, 1001, 7, 10);
-                placeDoor(12, 11, 1002, 8, 6);
-                placeDoor(12, 12, 1002, 8, 6);
-                placeDoor(13, 16, 1001, 8, 6);
-                break;
-            case 1000:
-                placeDoor(50, 10, 1000, 50, 5);
-                break;
             case 2000: // Mapa do corredor, uso numa cutscene
-            
                 break;
             default:
 
