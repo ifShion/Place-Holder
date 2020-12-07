@@ -191,33 +191,7 @@ public abstract class World {
 				|| (tiles[x3 + y3 * WIDTH] instanceof SolidTile) || (tiles[x4 + y4 * WIDTH] instanceof SolidTile));
 	}
 
-	/**
-	 * Método de colisão usado para objetos que tem largura e altura iguais ao
-	 * tamanho padrão do tile
-	 * 
-	 * @param xNext
-	 * @param yNext
-	 * @return se o espaço que se pretende visitar está livre
-	 */
-	/*public boolean isFree( int xNext , int yNext) {
-		
-		int x1 = xNext / (TILE_SIZE);
-		int y1 = yNext / (TILE_SIZE);
-		
-		int x2 = (xNext + TILE_SIZE - 1)/ TILE_SIZE;
-		int y2 = yNext / TILE_SIZE;
-		
-		int x3 = xNext / TILE_SIZE;
-		int y3 = (yNext + TILE_SIZE - 1) / TILE_SIZE;
-		
-		int x4 = (xNext + TILE_SIZE - 1) / TILE_SIZE;
-		int y4 = (yNext + TILE_SIZE - 1) / TILE_SIZE;
-		
-		return !((tiles[x1 + y1 * WIDTH] instanceof SolidTile) ||
-				 (tiles[x2 + y2 * WIDTH] instanceof SolidTile) ||
-				 (tiles[x3 + y3 * WIDTH] instanceof SolidTile) ||
-				 (tiles[x4 + y4 * WIDTH] instanceof SolidTile)); 
-	}*/
+	
 	/**
 	 * Método renderiza apenas os tiles que estão adjacentes e internos aos limites
 	 * da tela do jogo
@@ -238,7 +212,6 @@ public abstract class World {
 					continue;
 				Tile tile = tiles[xx + (yy * WIDTH)];
 				tile.render(g);
-//				g.drawImage(Game.room.map.getSpriteSheet(), 0 - Game.camera.getX(), 0 - Game.camera.getY(), Game.room.map.getSpriteSheet().getWidth(), Game.room.map.getSpriteSheet().getHeight(), null);
 			}
 		}
 	}

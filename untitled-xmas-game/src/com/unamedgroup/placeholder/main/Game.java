@@ -115,6 +115,8 @@ public class Game implements Runnable {
 	 */
 	public void updateEntities(){
 		entities = new LinkedList<>();
+		enemies = new LinkedList<>();
+		projectiles = new ArrayList<>();
 		entities.add(player);
 	}
 	public static void main(String[] args) {

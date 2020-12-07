@@ -1,7 +1,9 @@
 package com.unamedgroup.placeholder.world;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 import com.unamedgroup.placeholder.entities.enemies.CannonEnemy;
@@ -67,6 +69,9 @@ public class Room extends World {
      */
     public void createEntities(){
         doors = new LinkedHashSet<>();
+//    	Game.entities = new LinkedList<>();
+//    	Game.enemies = new LinkedList<>();
+//    	Game.projectiles = new ArrayList<>();
         switch(handler.getGame().getCurrentMapID()){
             case 1001:
                 createNewCannonEnemy(38, 64, -6);

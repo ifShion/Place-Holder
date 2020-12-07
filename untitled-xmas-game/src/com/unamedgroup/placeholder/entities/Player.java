@@ -25,6 +25,7 @@ public class Player extends Entity {
 	protected int direction;
 	protected boolean moveable;
 	private int damageCooldown = 120;
+	public final int MAX_LIFE = 5;
 
 	protected int hp;
 	/**
@@ -69,19 +70,21 @@ public class Player extends Entity {
 	}
 	//Verifica se o player está morto, e se estiver reinicia
 	//o jogo na posição de spawn. - Euler Lima
-	public void isDead(int x, int y) {
+	public void isDead(double x, double y) {
 		if(this.hp == 0) {
-			handler.getGame().getPlayer().setX(x);
-			handler.getGame().getPlayer().setY(y);
-			this.hp = 5;
+			  handler.getGame().updateEntities();
+			  handler.getGame().changeCurrentMapID(handler.getGame().getCurrentMapID());
+			  handler.getGame().getPlayer().setX(x * World.TILE_SIZE);
+	          handler.getGame().getPlayer().setY(y * World.TILE_SIZE);
+	          this.hp = this.MAX_LIFE;
 		}
 	}
 	//Sistema inicial de cair no vazio - Euler Lima
-	public void fallVoid(int x, int y) {
+	public void fallVoid(double x, double y) {
 		if(handler.getGame().getPlayer().getY() >= 1112) {
 			this.hp--;
-			handler.getGame().getPlayer().setX(x);
-			handler.getGame().getPlayer().setY(y);
+			handler.getGame().getPlayer().setX(x * World.TILE_SIZE);
+			handler.getGame().getPlayer().setY(y * World.TILE_SIZE);
 		}
 	}
 
