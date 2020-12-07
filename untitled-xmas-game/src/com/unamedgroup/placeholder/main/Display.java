@@ -38,7 +38,7 @@ public class Display {
         jframe.pack();
         
         jframe.setVisible(true);
-        //jframe.setResizable(false);
+        jframe.setResizable(false);
         jframe.setAlwaysOnTop(true);
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

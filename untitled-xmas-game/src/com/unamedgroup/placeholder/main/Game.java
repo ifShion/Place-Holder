@@ -100,7 +100,7 @@ public class Game implements Runnable {
 		alphaTeste = new SpriteSheet("/alphaTestbackup.png");
 		nutCrackerTest = new SpriteSheet("/nutCracker.png");
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
-		hud = new SpriteSheet("/Hud-SpriteSheet.png");
+		hud = new SpriteSheet("/spritesheet/hud.png");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();

@@ -67,6 +67,23 @@ public class Player extends Entity {
 			this.hp-=damage;
 		}
 	}
+	//Verifica se o player está morto, e se estiver reinicia
+	//o jogo na posição de spawn. - Euler Lima
+	public void isDead(int x, int y) {
+		if(this.hp == 0) {
+			handler.getGame().getPlayer().setX(x);
+			handler.getGame().getPlayer().setY(y);
+			this.hp = 5;
+		}
+	}
+	//Sistema inicial de cair no vazio - Euler Lima
+	public void fallVoid(int x, int y) {
+		if(handler.getGame().getPlayer().getY() >= 1112) {
+			this.hp--;
+			handler.getGame().getPlayer().setX(x);
+			handler.getGame().getPlayer().setY(y);
+		}
+	}
 
 	public void tick() {
 		super.tick();
@@ -106,7 +123,7 @@ public class Player extends Entity {
 		handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().room.WIDTH * World.TILE_SIZE - Game.WIDTH));
 		handler.getCamera().setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , handler.getGame().room.HEIGHT * World.TILE_SIZE - Game.HEIGHT));
 	}
-	
+
 	public void render(Graphics g) {
 		super.render(g);
 //		g.setColor(Color.red);

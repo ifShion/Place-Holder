@@ -62,6 +62,8 @@ public class Alpha extends Player implements GravityEffected {
 			}
 		}
 		
+		this.fallVoid(14,1080);
+		this.isDead(14, 1080);
 		this.playerAttack();
 		this.fall();
 	}

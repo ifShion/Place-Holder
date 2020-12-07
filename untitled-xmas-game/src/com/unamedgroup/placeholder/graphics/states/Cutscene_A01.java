@@ -41,14 +41,12 @@ public class Cutscene_A01 extends State {
         missao.doit();
         local.doit();
         local2.doit();
-        super.init();
     }
 
     @Override
     public void tick() {
         if(handler.getInputHandler().secondary.clicked)
             handler.getStateManager().setState(0);
-        super.tick();
 
         alpha.tick();
 
@@ -67,6 +65,5 @@ public class Cutscene_A01 extends State {
         local2.render((Graphics2D)g);
         missao.render((Graphics2D)g);
         alpha.render(g);
-        super.render(g);
     }
 }

@@ -69,20 +69,17 @@ public class Room extends World {
         doors = new LinkedHashSet<>();
         switch(handler.getGame().getCurrentMapID()){
             case 1001:
-            	createNewWalkerEnemy(30, 6);
-            	createNewWalkerEnemy(32, 6);
-            	createNewWalkerEnemy(34, 6);
-            	createNewWalkerEnemy(27, 6);
-            	createNewCannonEnemy(12, 68, 2);
-            	createNewCannonEnemy(42, 68, -6);
-            	createNewTrackerEnemy(12, 5);
-            	createNewTrackerEnemy(8, 68);
-            	createNewHuggerEnemy(22, 60);
-            	createNewHuggerEnemy(27, 69);
-            	createNewHuggerEnemy(8, 30);
-                placeDoor(3, 11, 1001, 5, 9);
-                placeDoor(5, 3, 1002, 4, 15);
-                placeDoor(9, 3, 1001, 9, 14);
+                createNewCannonEnemy(38, 64, -6);
+                createNewCannonEnemy(29, 64, -6);
+                createNewCannonEnemy(40, 42, 2);
+                createNewWalkerEnemy(30, 36);
+                createNewWalkerEnemy(20, 36);
+                createNewWalkerEnemy(20, 53);
+                createNewWalkerEnemy(20, 17);
+                createNewWalkerEnemy(32, 17);
+                createNewCannonEnemy(20, 4, -6);
+                createNewWalkerEnemy(34, 8);
+                placeDoor(43, 21, 1001, 3, 60);
                 break;
             case 1002:
                 placeDoor(6, 15, 1001, 7, 10);
@@ -92,6 +89,9 @@ public class Room extends World {
                 break;
             case 1000:
                 placeDoor(50, 10, 1000, 50, 5);
+                break;
+            case 2000: // Mapa do corredor, uso numa cutscene
+            
                 break;
             default:
 

@@ -23,6 +23,8 @@ public class StateManager{
         states.add(new State_01(states.size(), handler));
         states.add(new Cutscene_A01(states.size(), handler));
         states.add(new State_02(states.size(), handler));
+        states.add(new Cutscene_Corredor(states.size(), handler));
+        states.add(new Cutscene_Intro(states.size(),handler));
     }
 
     /**
@@ -63,5 +65,10 @@ public class StateManager{
         states.get(currentState).render(g);
 
     }
+
+    public ArrayList<State> getStates(){
+        return states;
+    }
+
     
 }

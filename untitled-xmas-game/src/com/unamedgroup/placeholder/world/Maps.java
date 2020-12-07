@@ -28,6 +28,7 @@ public class Maps {
         maps.put(1000, new Room("/worldnull.png", 1000, "/spriteSheetMapa1.png", handler));     // Coloquei esse como um mapa vazio so para fins de teste @nathan
         maps.put(1001, new Room("/worldTest.png", 1001, "/spriteSheetMapa1.png", handler));
         maps.put(1002, new Room("/worldTest2.png", 1002, "/spriteSheetMapa1.png", handler));
+        maps.put(2000, new Room("/map/worldCorredor.png", 2000,"/spriteSheetMapa1.png", handler));
 
     }
 
