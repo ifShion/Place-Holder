@@ -19,7 +19,7 @@ public abstract class CustomFont {
 
     public static Font getFont(String name,float size){
         try {
-            return Font.createFont(Font.TRUETYPE_FONT, new File("res/font/"+name)).deriveFont(size);
+            return Font.createFont(Font.TRUETYPE_FONT, new File("/font/"+name)).deriveFont(size);
         } catch (FontFormatException | IOException ex) {
             Logger.getLogger(CustomFont.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -211,6 +211,4 @@ public class Alpha extends Player implements GravityEffected {
 
 		super.render(g);
 	}
-	
-	
 }

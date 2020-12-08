@@ -2,6 +2,7 @@ package com.unamedgroup.placeholder.entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Handler;
@@ -46,13 +47,20 @@ public class CannonBullet extends Projectile {
 		if(range > maxRange || !handler.getGame().room.isFree(super.getX() + (int)(speed * direction), super.getY(), super.getMaskW(), super.getMaskH())) {
 			super.destroyProjectile();
 		}
+
+		if (getHitBox().intersects(new Rectangle((int)(handler.getGame().getPlayer().getX()+1), (int) (handler.getGame().getPlayer().getY()+1), handler.getGame().getPlayer().getWidth()+2, handler.getGame().getPlayer().getHeight()+2))) {
+		//if(super.calculateDistance(this.getX(), handler.getGame().getPlayer().getX(), this.getY(), handler.getGame().getPlayer().getY()) <= 8) {
+			handler.getGame().getPlayer().setHp(handler.getGame().getPlayer().getHp() - 1);
+			super.destroyProjectile();
+		}
 	}
 	
 	@Override
 	public void render(Graphics g) {
 		super.render(g);
-//		g.setColor(Color.BLUE);
-//		g.fzillRect(super.getX() + super.getMaskX() - handler.getCamera().getX(), super.getY() + super.getMaskY() - handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
+		g.setColor(Color.BLUE);
+		//g.fillRect(getHitBox().x+super.getMaskX()-handler.getCamera().getX(), getHitBox().y+super.getMaskY()-handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
+		g.fillRect(super.getX() + super.getMaskX() - handler.getCamera().getX()+1, super.getY() + super.getMaskY() - handler.getCamera().getY()+1, super.getMaskW()-2, super.getMaskH()-2);
 	}
-	
+
 }

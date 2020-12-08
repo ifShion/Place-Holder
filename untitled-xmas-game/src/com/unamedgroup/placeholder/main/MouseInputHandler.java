@@ -20,7 +20,7 @@ public class MouseInputHandler implements MouseListener {
      */
     public MouseInputHandler(Handler handler){
         this.handler = handler;
-        handler.getDisplay().setMouseListener(this);
+        handler.getDisplay().getCanvas().addMouseListener(this);
         this.stateManager = handler.getStateManager();
     }
 
