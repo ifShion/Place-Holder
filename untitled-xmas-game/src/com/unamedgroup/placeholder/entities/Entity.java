@@ -96,6 +96,10 @@ public class Entity {
 		return sprite;
 	}
 
+	public void setSprite(SpriteSheet spriteSheet){
+		this.sprite = spriteSheet;
+	}
+
 	public double getSpeed() {
 		return speed;
 	}
