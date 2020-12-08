@@ -62,6 +62,7 @@ public class Alpha extends Player implements GravityEffected {
 			}
 		}
 		
+		this.isDead(2, 67.5);
 		this.playerAttack();
 		this.fall();
 	}
@@ -111,13 +112,24 @@ public class Alpha extends Player implements GravityEffected {
 	}
 	
 	private void attackHitBox() {
-		int facingAttack = ((super.direction == 1) ? 4 : -31);
-		Rectangle batHitBox = new Rectangle(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 16, 32);
+		int facingAttack = ((super.direction == 1) ? 5 : -25);
+		Rectangle batHitBox = new Rectangle(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 20, 32);
 		for(int i = 0 ; i < Game.entities.size(); i++) {
 			Rectangle enemy = new Rectangle(Game.entities.get(i).getX() + Game.entities.get(i).getMaskX() - handler.getCamera().getX() , Game.entities.get(i).getY() + Game.entities.get(i).getMaskY() - handler.getCamera().getY() , Game.entities.get(i).getMaskW() , Game.entities.get(i).getMaskH());
 
 			if(batHitBox.intersects(enemy) && Game.entities.get(i) instanceof Hittable && !hit) {
 				Hittable h = (Hittable)Game.entities.get(i);
+				h.getHit();
+				
+				this.hit = true;
+			}
+		}
+		
+		for(int i = 0 ; i < Game.projectiles.size(); i++) {
+			Rectangle enemy = new Rectangle(Game.projectiles.get(i).getX() + Game.projectiles.get(i).getMaskX() - handler.getCamera().getX() , Game.projectiles.get(i).getY() + Game.projectiles.get(i).getMaskY() - handler.getCamera().getY() , Game.projectiles.get(i).getMaskW() , Game.projectiles.get(i).getMaskH());
+
+			if(batHitBox.intersects(enemy) && Game.projectiles.get(i) instanceof Hittable && !hit) {
+				Hittable h = (Hittable)Game.projectiles.get(i);
 				h.getHit();
 				
 				this.hit = true;
@@ -157,45 +169,50 @@ public class Alpha extends Player implements GravityEffected {
 
 		// verifica se o local para onde o jogador está subindo ou caindo para está
 		// disponível
-		if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + vspd) + super.getMaskY(),
-				super.getMaskW(), super.getMaskH())) {
-			int signVsp = 0;
-			if (vspd >= 0) {
-				signVsp = 1;
-			} else {
-				signVsp = -1;
-			}
-
-			// impossibilita o jogador atingir velocidades de queda muito altas
-			if (vspd > 3.45) vspd = 3.45;
-
-			// impossibilita o jogador se enterrar no chão
-			while (handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + signVsp) + super.getMaskY(),
+		try {
+			if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + vspd) + super.getMaskY(),
 					super.getMaskW(), super.getMaskH())) {
-				y += signVsp;
+				int signVsp = 0;
+				if (vspd >= 0) {
+					signVsp = 1;
+				} else {
+					signVsp = -1;
+				}
+	
+				// impossibilita o jogador atingir velocidades de queda muito altas
+				if (vspd > 3.45) vspd = 3.45;
+	
+				// impossibilita o jogador se enterrar no chão
+				while (handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + signVsp) + super.getMaskY(),
+						super.getMaskW(), super.getMaskH())) {
+					y += signVsp;
+				}
+				// cai no chão
+				vspd = 0;
+				super.setSpeed(3);
+				this.inTheAir = false;
+			}else {
+				if (vspd <= 0) {
+					// subindo
+					super.getAnimation().setHeight(32);
+					super.setHeight(32);
+					super.setWidth(16);
+					super.getAnimation().setNumSpritesX(3);
+					super.getAnimation().setSpriteY(facingJump);
+					super.getAnimation().setSpriteVeloticy(8);
+				} else {
+					// descendo
+					super.getAnimation().setHeight(32);
+					super.setHeight(32);
+					super.setWidth(16);
+					super.getAnimation().setNumSpritesX(3);
+					super.getAnimation().setSpriteY(facingJump + 1);
+					super.getAnimation().setSpriteVeloticy(6);
+				}
 			}
-			// cai no chão
-			vspd = 0;
-			super.setSpeed(3);
-			this.inTheAir = false;
-		}else {
-			if (vspd <= 0) {
-				// subindo
-				super.getAnimation().setHeight(32);
-				super.setHeight(32);
-				super.setWidth(16);
-				super.getAnimation().setNumSpritesX(3);
-				super.getAnimation().setSpriteY(facingJump);
-				super.getAnimation().setSpriteVeloticy(8);
-			} else {
-				// descendo
-				super.getAnimation().setHeight(32);
-				super.setHeight(32);
-				super.setWidth(16);
-				super.getAnimation().setNumSpritesX(3);
-				super.getAnimation().setSpriteY(facingJump + 1);
-				super.getAnimation().setSpriteVeloticy(6);
-			}
+			
+		} catch(ArrayIndexOutOfBoundsException aioobe) {
+			this.fallVoid(2, 67.5);
 		}
 
 		y = y + vspd;
@@ -203,10 +220,10 @@ public class Alpha extends Player implements GravityEffected {
 
 	@Override
 	public void render(Graphics g) {
-//		int facingAttack = ((super.direction == 1) ? 4 : -31);
+//		int facingAttack = ((super.direction == 1) ? 5 : -25);
 //		if(attacking) {
 //			g.setColor(Color.YELLOW);
-//			g.fillRect(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 24, 32);
+//			g.fillRect(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 20, 32);
 //		}
 
 		super.render(g);

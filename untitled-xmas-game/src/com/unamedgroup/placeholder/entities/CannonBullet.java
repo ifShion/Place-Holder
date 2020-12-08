@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.interfaces.Hittable;
+import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
 /**
@@ -12,7 +14,7 @@ import com.unamedgroup.placeholder.main.Handler;
  * @author Daniel Neves
  *
  */
-public class CannonBullet extends Projectile {
+public class CannonBullet extends Projectile implements Hittable {
 	private int direction;
 	private int range, maxRange = 80;
 	
@@ -35,6 +37,7 @@ public class CannonBullet extends Projectile {
 	public CannonBullet(int x, int y, int width, int height, int direction, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
 		this.direction = direction;
+
 	}
 	
 	@Override
@@ -47,12 +50,22 @@ public class CannonBullet extends Projectile {
 		if(range > maxRange || !handler.getGame().room.isFree(super.getX() + (int)(speed * direction), super.getY(), super.getMaskW(), super.getMaskH())) {
 			super.destroyProjectile();
 		}
-
-		if (getHitBox().intersects(new Rectangle((int)(handler.getGame().getPlayer().getX()+1), (int) (handler.getGame().getPlayer().getY()+1), handler.getGame().getPlayer().getWidth()+2, handler.getGame().getPlayer().getHeight()+2))) {
-		//if(super.calculateDistance(this.getX(), handler.getGame().getPlayer().getX(), this.getY(), handler.getGame().getPlayer().getY()) <= 8) {
-			handler.getGame().getPlayer().setHp(handler.getGame().getPlayer().getHp() - 1);
+		
+		if(isCollidingWithPlayer()) {
 			super.destroyProjectile();
+			handler.getGame().getPlayer().hitPlayer(1);
 		}
+	}
+	
+	/**
+	 * Método básico para calcular colisão entre jogador e inimigos
+	 * @return se o jogador intersecta esse inimigo
+	 */
+	public boolean isCollidingWithPlayer() {
+		Rectangle enemyCurrent = new Rectangle(this.getX() + super.getMaskX() , this.getY() + super.getMaskY() , super.getMaskW() , super.getMaskH());
+		Rectangle player = new Rectangle(handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskX() , handler.getGame().getPlayer().getY() + handler.getGame().getPlayer().getMaskY() , handler.getGame().getPlayer().getMaskW() , handler.getGame().getPlayer().getMaskH());
+		
+		return (enemyCurrent.intersects(player));	
 	}
 	
 	@Override
@@ -63,4 +76,9 @@ public class CannonBullet extends Projectile {
 		g.fillRect(super.getX() + super.getMaskX() - handler.getCamera().getX()+1, super.getY() + super.getMaskY() - handler.getCamera().getY()+1, super.getMaskW()-2, super.getMaskH()-2);
 	}
 
+	@Override
+	public void getHit() {
+		super.destroyProjectile();
+	}
+	
 }

@@ -37,6 +37,8 @@ public class State_00 extends State {
 
     @Override
     public void init() {
+        alpha.setX(getPlayerX());
+        alpha.setY(getPlayerY());
     	handler.getGame().setPlayer(alpha);
         handler.getGame().updateEntities();
         handler.getGame().setCurrentMapID(1001);

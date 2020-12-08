@@ -27,7 +27,7 @@ public class State_02 extends State {
         init();
         background = new SpriteSheet("/menu_background.jpg");
     }
-
+    @Override
     public void init() {
         btnJogar = new Botao(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 - 40, 90, 25, "Jogar",
                 Color.LIGHT_GRAY, Color.red);
@@ -36,12 +36,17 @@ public class State_02 extends State {
         btnSair = new Botao(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 + 20, 90, 25, "Sair",
                 Color.LIGHT_GRAY, Color.red);
     }
+    @Override
+    public void tick() {
 
+    }
+    
     /**
      * Desenha o layout do menu
      * TODO desenhar um menu mais bonito
      * @param g
      */
+    @Override
     public void render(Graphics g) {
         g.drawImage(background.getSpriteSheet(), 0, 0, null);
         btnJogar.draw((Graphics2D) g);
@@ -64,7 +69,7 @@ public class State_02 extends State {
     public void mouseAction(MouseEvent e, MouseListener ml){
         if (isInBox(btnJogar, e.getX(), e.getY())){   //caso do botão de jogar
             handler.getDisplay().getCanvas().removeMouseListener(ml);
-            handler.getStateManager().setState(2);
+            handler.getStateManager().setState(Cutscene_Intro.id);
         }
         if (isInBox(btnConfig, e.getX(), e.getY())){
             //TODO criar um estado para essa ala aqui
@@ -86,4 +91,5 @@ public class State_02 extends State {
     public Botao getBtnSair(){
         return btnSair;
     }
+
 }

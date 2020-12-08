@@ -3,6 +3,7 @@ package com.unamedgroup.placeholder.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.text.BreakIterator;
 
 import javax.imageio.ImageIO;
 
@@ -72,11 +73,73 @@ public abstract class World {
 						new WallBuilder(xx, yy, pixels, tiles, WIDTH, HEIGHT, handler);
 						break;
 					case 0xFF0000FF://azul
-						handler.getGame().getPlayer().setX(xx*TILE_SIZE);
-						handler.getGame().getPlayer().setY(yy*TILE_SIZE);
+					int xx2 = xx, yy2 = yy;
+						handler.getStateManager().getStates().forEach((s) -> {
+							if(s.isPlayerCoordinatingByMap()){
+								s.setPlayerX(xx2*TILE_SIZE);
+								s.setPlayerY(yy2*TILE_SIZE);
+							}
+						});
+						//if(handler.getStateManager().getCurrentState().isplayerCoordinatingByMap()){
+						//	handler.getGame().getPlayer().setX(xx*TILE_SIZE);
+						//	handler.getGame().getPlayer().setY(yy*TILE_SIZE);
+						//}
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						
 						break;
+					case 0xFF7092be:// Azul petroleo // Chão da fabrica
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(3 * TILE_SIZE, 3 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+						break;
+					case 0xFF00a2e8: // Azulzin		// Parede Parte 1
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 4 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+						break;
+					case 0xFF3f48cc: // Azulzao		// Parede parte  2
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 3 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+						break;
+					case 0xFF880015: // Marrom		// Porta Cima
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(2 * TILE_SIZE, 3 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					break;
+					case 0xFFb97a57: // Marrom claro // Porta Baixo
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(2 * TILE_SIZE, 4 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					break;
+					case 0xFFc3c3c3: // Cinza claro // Grades no chao
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(3 * TILE_SIZE, 4 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					break;
+					case 0xFFff7f27: // Laranja // Seta pra baixo
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(6 * TILE_SIZE, 4 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					break;
+					case 0xFFffc90e: // Amarelo // Seta pra esquerda
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(5 * TILE_SIZE, 3 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					break;
+					case 0xFFc3c4c3: // Cinza claro // Grades no chao
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(3 * TILE_SIZE, 4 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					break;
+					case 0xFFa349a4: // Roxo 		// Portao Cima Esquerda
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(0 * TILE_SIZE, 3 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					break;
+					case 0xFFc8bfe7: // Roxo claro // Portao Baixo Esquerda
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(0 * TILE_SIZE, 4 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					break;
+					case 0xFF22b14c: // Verde		// Portao Cima Direita
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(1 * TILE_SIZE, 3 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					break;
+					case 0xFFb5e61d: // Verde Claro	// Portao Baixo Direita
+						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
+						handler.getGame().currentMap.getSprite(1 * TILE_SIZE, 4 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
+					break;
+
 					default:
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						
@@ -128,33 +191,7 @@ public abstract class World {
 				|| (tiles[x3 + y3 * WIDTH] instanceof SolidTile) || (tiles[x4 + y4 * WIDTH] instanceof SolidTile));
 	}
 
-	/**
-	 * Método de colisão usado para objetos que tem largura e altura iguais ao
-	 * tamanho padrão do tile
-	 * 
-	 * @param xNext
-	 * @param yNext
-	 * @return se o espaço que se pretende visitar está livre
-	 */
-	/*public boolean isFree( int xNext , int yNext) {
-		
-		int x1 = xNext / (TILE_SIZE);
-		int y1 = yNext / (TILE_SIZE);
-		
-		int x2 = (xNext + TILE_SIZE - 1)/ TILE_SIZE;
-		int y2 = yNext / TILE_SIZE;
-		
-		int x3 = xNext / TILE_SIZE;
-		int y3 = (yNext + TILE_SIZE - 1) / TILE_SIZE;
-		
-		int x4 = (xNext + TILE_SIZE - 1) / TILE_SIZE;
-		int y4 = (yNext + TILE_SIZE - 1) / TILE_SIZE;
-		
-		return !((tiles[x1 + y1 * WIDTH] instanceof SolidTile) ||
-				 (tiles[x2 + y2 * WIDTH] instanceof SolidTile) ||
-				 (tiles[x3 + y3 * WIDTH] instanceof SolidTile) ||
-				 (tiles[x4 + y4 * WIDTH] instanceof SolidTile)); 
-	}*/
+	
 	/**
 	 * Método renderiza apenas os tiles que estão adjacentes e internos aos limites
 	 * da tela do jogo
@@ -175,7 +212,6 @@ public abstract class World {
 					continue;
 				Tile tile = tiles[xx + (yy * WIDTH)];
 				tile.render(g);
-//				g.drawImage(Game.room.map.getSpriteSheet(), 0 - Game.camera.getX(), 0 - Game.camera.getY(), Game.room.map.getSpriteSheet().getWidth(), Game.room.map.getSpriteSheet().getHeight(), null);
 			}
 		}
 	}

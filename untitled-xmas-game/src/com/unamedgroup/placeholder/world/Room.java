@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import com.unamedgroup.placeholder.entities.Door;
 import com.unamedgroup.placeholder.entities.enemies.CannonEnemy;
 import com.unamedgroup.placeholder.entities.enemies.HuggerEnemy;
 import com.unamedgroup.placeholder.entities.enemies.TrackerEnemy;
@@ -11,10 +12,9 @@ import com.unamedgroup.placeholder.entities.enemies.WalkerEnemy;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
-import com.unamedgroup.placeholder.world.tiles.DoorTile;
 
 public class Room extends World {
-    private Set<DoorTile> doors;
+    private Set<Door> doors;
     private int ID;
     private Handler handler;
     private SpriteSheet map;
@@ -42,19 +42,6 @@ public class Room extends World {
     public SpriteSheet getMap() {
 		return map;
 	}
-    
-    /**
-     * Esse método serve para teleportar o player quando ele colidir com um DoorTile. Podemos modificar ele para
-     * teleportar qualquer entidade tbm
-     * @param x
-     * @param y
-     * @param destiny
-     * @param tpx
-     * @param tpy
-     */
-    public void placeDoor(int x, int y, int destiny, int tpx, int tpy){
-        doors.add(new DoorTile(x * World.TILE_SIZE, y * World.TILE_SIZE, handler.getGame().room.getMap().getSprite(12 * World.TILE_SIZE, 0 * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE), destiny, tpx * World.TILE_SIZE, tpy * World.TILE_SIZE, handler));
-    }
 
     /**                     
      * Cria as Entidades presentes nas salas.
@@ -67,31 +54,24 @@ public class Room extends World {
      */
     public void createEntities(){
         doors = new LinkedHashSet<>();
+//    	Game.entities = new LinkedList<>();
+//    	Game.enemies = new LinkedList<>();
+//    	Game.projectiles = new ArrayList<>();
         switch(handler.getGame().getCurrentMapID()){
             case 1001:
-            	createNewWalkerEnemy(30, 6);
-            	createNewWalkerEnemy(32, 6);
-            	createNewWalkerEnemy(34, 6);
-            	createNewWalkerEnemy(27, 6);
-            	createNewCannonEnemy(12, 68, 2);
-            	createNewTrackerEnemy(5, 4);
-            	createNewTrackerEnemy(4, 7);
-            	createNewTrackerEnemy(7, 4);
-            	createNewTrackerEnemy(12, 5);
-            	createNewTrackerEnemy(8, 6);
-            	createNewHuggerEnemy(22, 60);
-                placeDoor(3, 11, 1001, 5, 9);
-                placeDoor(5, 3, 1002, 4, 15);
-                placeDoor(9, 3, 1001, 9, 14);
+                createNewCannonEnemy(39, 65, -6);
+                createNewCannonEnemy(30, 65, -6);
+                createNewCannonEnemy(41, 43, 2);
+                createNewWalkerEnemy(31, 36);
+                createNewWalkerEnemy(21, 37);
+                createNewWalkerEnemy(21, 54);
+                createNewWalkerEnemy(21, 18);
+                createNewWalkerEnemy(32, 18);
+                createNewCannonEnemy(21, 5, -6);
+                createNewWalkerEnemy(35, 9);
+                placeDoor(4, 21, 1001, 3, 60);
                 break;
-            case 1002:
-                placeDoor(6, 15, 1001, 7, 10);
-                placeDoor(12, 11, 1002, 8, 6);
-                placeDoor(12, 12, 1002, 8, 6);
-                placeDoor(13, 16, 1001, 8, 6);
-                break;
-            case 1000:
-                placeDoor(50, 10, 1000, 50, 5);
+            case 2000: // Mapa do corredor, uso numa cutscene
                 break;
             default:
 
@@ -107,8 +87,22 @@ public class Room extends World {
         super.render(g);
     }
     
+    /**
+     * Esse método serve para teleportar o player quando ele colidir com um DoorTile. Podemos modificar ele para
+     * teleportar qualquer entidade tbm
+     * @param x
+     * @param y
+     * @param destiny
+     * @param tpx
+     * @param tpy
+     */
+    public void placeDoor(int x, int y, int destiny, int tpx, int tpy){
+    	Game.entities.add(new Door(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 32, handler.getGame().room.getMap(), 2, 1, 1, 7 * World.TILE_SIZE, 3 * World.TILE_SIZE, destiny, tpx, tpy, handler));
+    }
+    
     private void createNewCannonEnemy(int x, int y, int direction) {
     	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
+    	ce.setMask(3, 1, 18, 31);
 		Game.entities.add(ce);
 		Game.enemies.add(ce);
 	}

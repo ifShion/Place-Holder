@@ -96,11 +96,11 @@ public class Game implements Runnable {
 	}
 
 	private void init(){
-		walkerEnemy = new SpriteSheet("/walkerEnemySprite.png");
-		alphaTeste = new SpriteSheet("/alphaTestbackup.png");
-		nutCrackerTest = new SpriteSheet("/nutCracker.png");
+		walkerEnemy = new SpriteSheet("/spritesheet/walkerEnemySprite.png");
+		alphaTeste = new SpriteSheet("/spritesheet/alphaTestbackup.png");
+		nutCrackerTest = new SpriteSheet("/spritesheet/nutCracker.png");
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
-		hud = new SpriteSheet("/Hud-SpriteSheet.png");
+		hud = new SpriteSheet("/spritesheet/hud.png");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();
@@ -115,6 +115,8 @@ public class Game implements Runnable {
 	 */
 	public void updateEntities(){
 		entities = new LinkedList<>();
+		enemies = new LinkedList<>();
+		projectiles = new ArrayList<>();
 		entities.add(player);
 	}
 	public static void main(String[] args) {
@@ -131,7 +133,7 @@ public class Game implements Runnable {
 		if(statesUseMaps){
 			if(!alternatingMaps) {
 				room.tick();
-				for (Entity entity : entities) entity.tick();
+				for (int i = 0; i < entities.size(); i++) entities.get(i).tick();
 				for (int i = 0; i < projectiles.size(); i++) projectiles.get(i).tick();
 			}else
 				maps.tick();

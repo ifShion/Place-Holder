@@ -1,10 +1,12 @@
 package com.unamedgroup.placeholder.entities.enemies;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import com.unamedgroup.placeholder.entities.CannonBullet;
 import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.interfaces.Hittable;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
@@ -13,11 +15,12 @@ import com.unamedgroup.placeholder.main.Handler;
  * @author Daniel Neves
  *
  */
-public class CannonEnemy extends Enemy {
+public class CannonEnemy extends Enemy implements Hittable {
 
 	private int direction;
 	private boolean isShooting;
 	private int directionalRender;
+
 	/**
 	 * 
 	 * @param x						posição do eixo x do inimigo
@@ -41,6 +44,7 @@ public class CannonEnemy extends Enemy {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
 		this.direction = direction;
 		
+		super.setHp(3);
 		this.directionalRender = ((this.direction < 0) ? 1 : 0);
 	}
 
@@ -82,8 +86,9 @@ public class CannonEnemy extends Enemy {
 	
 	@Override
 	public void destroyEnemy() {
-		// TODO Auto-generated method stub
-		
+		Game.entities.remove(this);
+		Game.enemies.remove(this);
+		return;
 	}
 	
 	@Override
@@ -93,4 +98,13 @@ public class CannonEnemy extends Enemy {
 //		g.fillRect(super.getX() + super.getMaskX() - handler.getCamera().getX(), super.getY() + super.getMaskY() - handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
 	}
 	
+	@Override
+	public void getHit(){
+		boolean weakPoint = ((direction < 0) ? handler.getGame().getPlayer().getX() > super.getX() + super.getMaskW() : handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskW() < super.getX());
+		if(weakPoint) {
+			super.setHp(super.getHp() - 1);
+			if(super.getHp() <= 0)
+				this.destroyEnemy();
+		}
+	}
 }

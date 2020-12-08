@@ -63,7 +63,7 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 	public void destroyEnemy() {
 		// animação explosão;
 		if(super.calculateDistance(this.getX(), handler.getGame().getPlayer().getX(), this.getY(), handler.getGame().getPlayer().getY()) < 50) {
-			handler.getGame().getPlayer().setHp(handler.getGame().getPlayer().getHp() - 2);
+			handler.getGame().getPlayer().hitPlayer(2);
 		}
 		
 		Game.entities.remove(this);
