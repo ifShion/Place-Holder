@@ -1,8 +1,6 @@
 package com.unamedgroup.placeholder.world;
 
 import java.awt.Graphics;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 import com.unamedgroup.placeholder.entities.Door;
 import com.unamedgroup.placeholder.entities.Key;
@@ -16,7 +14,6 @@ import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
 public class Room extends World {
-    private Set<Door> doors;
     private int ID;
     private Handler handler;
     private SpriteSheet map;
@@ -55,10 +52,6 @@ public class Room extends World {
      * Possíveis spawners não fazem parte da taxa de iteração das entidades, mas poderão tbm ser instanciados ou modificados aqui.
      */
     public void createEntities(){
-        doors = new LinkedHashSet<>();
-//    	Game.entities = new LinkedList<>();
-//    	Game.enemies = new LinkedList<>();
-//    	Game.projectiles = new ArrayList<>();
         switch(handler.getGame().getCurrentMapID()){
             case 1001:
                 createNewCannonEnemy(39, 65, -6);
@@ -71,10 +64,10 @@ public class Room extends World {
                 createNewWalkerEnemy(32, 18);
                 createNewCannonEnemy(21, 5, -6);
                 createNewWalkerEnemy(35, 9);
-                placeDoor(4, 21, 1001, 3, 60);
+                placeDoor(4, 21, 1001, 3, 60, false);
                 createNewKey(8,69);
                 createNewSucker(5,69);
-                placeLockedDoor(12, 68, 1001, 150, 60);
+                placeDoor(12, 68, 1001, 150, 60, true);
                 break;
             case 2000: // Mapa do corredor, uso numa cutscene
                 break;
@@ -83,10 +76,6 @@ public class Room extends World {
         }
     }
 
-    public void tick(){
-        doors.forEach(door-> door.tick());
-    }
-    
     @Override
     public void render(Graphics g) {
         super.render(g);
@@ -101,12 +90,8 @@ public class Room extends World {
      * @param tpx
      * @param tpy
      */
-    public void placeDoor(int x, int y, int destiny, int tpx, int tpy){
-    	Game.entities.add(new Door(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 32, handler.getGame().room.getMap(), 2, 1, 1, 7 * World.TILE_SIZE, 3 * World.TILE_SIZE, destiny, tpx, tpy, false ,handler));
-    }
-    
-    public void placeLockedDoor(int x, int y, int destiny, int tpx, int tpy){
-    	Game.entities.add(new Door(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 32, handler.getGame().room.getMap(), 2, 1, 1, 7 * World.TILE_SIZE, 3 * World.TILE_SIZE, destiny, tpx, tpy, true ,handler));
+    public void placeDoor(int x, int y, int destiny, int tpx, int tpy, boolean locked){
+    	Game.entities.add(new Door(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 32, handler.getGame().room.getMap(), 2, 1, 1, 7 * World.TILE_SIZE, 3 * World.TILE_SIZE, destiny, tpx, tpy, locked ,handler));
     }
 
     private void createNewCannonEnemy(int x, int y, int direction) {
@@ -138,7 +123,8 @@ public class Room extends World {
     }
 
     private void createNewSucker(int x, int y){
-        Sucker su = new Sucker(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.sucker, 1, 0, 10, 8, 1, 0, 0, handler);
+        Sucker su = new Sucker(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.sucker, 1, 0, 6, 8, 4, 0, 0, handler);
+        su.getAnimation().setSpriteY(Game.rand.nextInt(4));
         su.setMask(4, 4, 8, 8);
         Game.entities.add(su);
     }

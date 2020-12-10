@@ -102,7 +102,7 @@ public class Game implements Runnable {
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
 		hud = new SpriteSheet("/spritesheet/hud.png");
 		key = new SpriteSheet("/spritesheet/key.png");
-		sucker = new SpriteSheet("");
+		sucker = new SpriteSheet("/spritesheet/sucker.png");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();
@@ -133,7 +133,6 @@ public class Game implements Runnable {
 		handler.tick();
 		if(statesUseMaps){
 			if(!alternatingMaps) {
-				room.tick();
 				for (int i = 0; i < entities.size(); i++) entities.get(i).tick();
 				for (int i = 0; i < projectiles.size(); i++) projectiles.get(i).tick();
 			}else

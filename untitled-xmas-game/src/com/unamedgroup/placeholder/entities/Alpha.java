@@ -157,18 +157,18 @@ public class Alpha extends Player implements GravityEffected {
 			super.getAnimation().setSpriteX(0);
 		}
 		
-		// altura que o jogador pula
-		if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(),
-				super.getMaskW(), super.getMaskH()) && jump) {
-			// impulso
-			vspd = -7.5;
-			super.setSpeed(2.5);
-			jump = false;
-		}
-
-		// verifica se o local para onde o jogador está subindo ou caindo para está
-		// disponível
 		try {
+			// altura que o jogador pula
+			if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(),
+					super.getMaskW(), super.getMaskH()) && jump) {
+				// impulso
+				vspd = -7.5;
+				super.setSpeed(2.5);
+				jump = false;
+			}
+
+			// verifica se o local para onde o jogador está subindo ou caindo para está
+			// disponível
 			if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + vspd) + super.getMaskY(),
 					super.getMaskW(), super.getMaskH())) {
 				int signVsp = 0;
@@ -212,7 +212,7 @@ public class Alpha extends Player implements GravityEffected {
 			
 		} catch(ArrayIndexOutOfBoundsException aioobe) {
 			this.fallVoid(2, 67.5);
-			vspd = 0;
+			vspd = -1.0;
 		}
 
 		y = y + vspd;

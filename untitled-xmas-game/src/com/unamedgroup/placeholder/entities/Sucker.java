@@ -26,8 +26,7 @@ public class Sucker extends Entity {
     @Override
     public void render(Graphics g) {
         super.render(g);
-        g.setColor(Color.MAGENTA);
-		g.fillOval(super.getX() + super.getMaskX() - handler.getCamera().getX(), super.getY() + super.getMaskY() - handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
+//        g.setColoxcl(super.getX() + super.getMaskX() - handler.getCamera().getX(), super.getY() + super.getMaskY() - handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
     }
 
     

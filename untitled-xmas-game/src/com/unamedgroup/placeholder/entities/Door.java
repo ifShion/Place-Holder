@@ -45,6 +45,11 @@ public class Door extends Entity {
 
     @Override
     public void tick() {
+    	if(locked) {
+    		super.getAnimation().setSpriteX(11);
+    	}else {
+    		super.getAnimation().setSpriteX(13);
+    	}
         super.tick();
         movePlayer();
     }

@@ -20,7 +20,7 @@ public abstract class CustomFont {
     public static Font getFont(String name,float size){
         try {
             try {
-                return Font.createFont(Font.TRUETYPE_FONT, new File("/font/"+name)).deriveFont(size);
+                return Font.createFont(Font.TRUETYPE_FONT, new File("res/font/"+name)).deriveFont(size);
             } catch (Exception e) {
                 return Font.createFont(Font.TRUETYPE_FONT, new File("untitled-xmas-game/res/font/"+name)).deriveFont(size);
             }
