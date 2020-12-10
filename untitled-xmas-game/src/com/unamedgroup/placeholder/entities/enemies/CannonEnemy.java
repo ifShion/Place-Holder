@@ -1,6 +1,5 @@
 package com.unamedgroup.placeholder.entities.enemies;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import com.unamedgroup.placeholder.entities.CannonBullet;
@@ -99,7 +98,7 @@ public class CannonEnemy extends Enemy implements Hittable {
 	
 	@Override
 	public void getHit(){
-		boolean weakPoint = ((direction < 0) ? handler.getGame().getPlayer().getX() > super.getX() + super.getMaskW() : handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskW() < super.getX());
+		boolean weakPoint = ((direction < 0) ? handler.getGame().getPlayer().getX() > super.getX() + super.getMaskW() / 2 : handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskW() < super.getX());
 		if(weakPoint) {
 			super.setHp(super.getHp() - 1);
 			if(super.getHp() <= 0)

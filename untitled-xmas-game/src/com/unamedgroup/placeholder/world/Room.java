@@ -91,7 +91,7 @@ public class Room extends World {
      * @param tpy
      */
     public void placeDoor(int x, int y, int destiny, int tpx, int tpy, boolean locked){
-    	Game.entities.add(new Door(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 32, handler.getGame().room.getMap(), 2, 1, 1, 7 * World.TILE_SIZE, 3 * World.TILE_SIZE, destiny, tpx, tpy, locked ,handler));
+    	Game.entities.add(new Door(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 32, handler.getGame().room.getMap(), 5, 3, 1, 7 * World.TILE_SIZE, 3 * World.TILE_SIZE, destiny, tpx, tpy, locked ,handler));
     }
 
     private void createNewCannonEnemy(int x, int y, int direction) {
