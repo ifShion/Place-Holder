@@ -19,9 +19,14 @@ public abstract class CustomFont {
 
     public static Font getFont(String name,float size){
         try {
-            return Font.createFont(Font.TRUETYPE_FONT, new File("/font/"+name)).deriveFont(size);
+            try {
+                return Font.createFont(Font.TRUETYPE_FONT, new File("/font/"+name)).deriveFont(size);
+            } catch (Exception e) {
+                return Font.createFont(Font.TRUETYPE_FONT, new File("untitled-xmas-game/res/font/"+name)).deriveFont(size);
+            }
         } catch (FontFormatException | IOException ex) {
             Logger.getLogger(CustomFont.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         return null;
     }
