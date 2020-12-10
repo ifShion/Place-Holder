@@ -87,7 +87,6 @@ public class CannonEnemy extends Enemy implements Hittable {
 	@Override
 	public void destroyEnemy() {
 		Game.entities.remove(this);
-		Game.enemies.remove(this);
 		return;
 	}
 	

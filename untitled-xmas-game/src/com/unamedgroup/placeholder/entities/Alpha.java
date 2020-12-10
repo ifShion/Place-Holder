@@ -1,6 +1,5 @@
 package com.unamedgroup.placeholder.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -28,7 +27,6 @@ public class Alpha extends Player implements GravityEffected {
 	}
 
 	public void tick() {
-		super.tick();
 		if (animated && !inTheAir && !attacking) {
 			super.getAnimation().resetOffSet();
 			super.getAnimation().setPlay(true);
@@ -65,6 +63,7 @@ public class Alpha extends Player implements GravityEffected {
 		this.isDead(2, 67.5);
 		this.playerAttack();
 		this.fall();
+		super.tick();
 	}
 	
 	private void playerAttack() {
@@ -213,6 +212,7 @@ public class Alpha extends Player implements GravityEffected {
 			
 		} catch(ArrayIndexOutOfBoundsException aioobe) {
 			this.fallVoid(2, 67.5);
+			vspd = 0;
 		}
 
 		y = y + vspd;

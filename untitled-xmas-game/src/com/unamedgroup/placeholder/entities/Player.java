@@ -1,6 +1,8 @@
 package com.unamedgroup.placeholder.entities;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
@@ -20,7 +22,8 @@ import com.unamedgroup.placeholder.world.World;
  *
  */
 public class Player extends Entity {
-	protected String status;		// Ainda estou testando esse argumento, utilizo para definir a animação em uma classe filha
+	protected ArrayList<Entity> inventario;	// Testando o inventário como arraylist @natescom
+	protected String status;				// Ainda estou testando esse argumento, utilizo para definir a animação em uma classe filha
 	protected boolean animated;
 	protected int direction;
 	protected boolean moveable;
@@ -52,6 +55,7 @@ public class Player extends Entity {
 		this.animated = true;
 		this.direction = 1;
 		this.moveable = true;
+		inventario = new ArrayList<>();
 	}
 	
 	public int getHp() {
@@ -71,12 +75,13 @@ public class Player extends Entity {
 	//Verifica se o player está morto, e se estiver reinicia
 	//o jogo na posição de spawn. - Euler Lima
 	public void isDead(double x, double y) {
-		if(this.hp == 0) {
+		if(this.hp < 1) {
 			  handler.getGame().updateEntities();
 			  handler.getGame().changeCurrentMapID(handler.getGame().getCurrentMapID());
 			  handler.getGame().getPlayer().setX(x * World.TILE_SIZE);
 	          handler.getGame().getPlayer().setY(y * World.TILE_SIZE);
-	          this.hp = this.MAX_LIFE;
+			  this.hp = this.MAX_LIFE;
+			  this.inventario = new ArrayList<>();
 		}
 	}
 	//Sistema inicial de cair no vazio - Euler Lima
@@ -130,5 +135,15 @@ public class Player extends Entity {
 //		g.setColor(Color.red);
 //		g.fillRect((int)(x-handler.getCamera().getX()+super.getMaskX()),(int) (y-handler.getCamera().getY()+super.getMaskY()), super.getMaskW(), super.getMaskH());
 	}
+
+
+	public ArrayList<Entity> getInventario() {
+		return this.inventario;
+	}
+
+	public void setInventario(ArrayList<Entity> inventario) {
+		this.inventario = inventario;
+	}
+	
 
 }

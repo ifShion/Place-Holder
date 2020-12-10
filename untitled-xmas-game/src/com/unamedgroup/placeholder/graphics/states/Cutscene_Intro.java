@@ -16,7 +16,7 @@ public class Cutscene_Intro extends State {
     private BufferedImage grades;
     private Toast apresentacao;
     private float transparencia = 1;
-    private int screenTime = 6;    // Segundos
+    private int screenTime = 5;    // Segundos
     private String evento = "comecar";
 
     public Cutscene_Intro(int id, Handler handler) {
@@ -25,7 +25,7 @@ public class Cutscene_Intro extends State {
         alphinha = new Entity(29, 105, 8, 8, new SpriteSheet(""), 1, 0, 4, 2, 1, 0, 8, handler);
         portaDoCativeiro = new Entity(29, 105, 8, 8, new SpriteSheet(""), 1, 0, 4, 1, 1, 0, 0, handler);
         grades = new SpriteSheet("/spritesheet/Intro_grades.png").getSprite(0, 0, 240, 160);
-        apresentacao = new Toast("Untitled-Team apresenta...", Game.WIDTH / 2, Game.HEIGHT / 2, 20,
+        apresentacao = new Toast("Rare Candy Estudio apresenta...", Game.WIDTH / 2, Game.HEIGHT / 2, 20,
                 new Font("Dialog", Font.PLAIN, 10));
         this.id = id;
     }
@@ -53,7 +53,7 @@ public class Cutscene_Intro extends State {
                 if(tick%5==0)
                     alphinha.setX(alphinha.getX()+1);
                 if(alphinha.getX()==50)
-                    evento = "apresenta"; 
+                    evento = "apresenta";
                 if(alphinha.getX()==107)
                     alphinha = new Entity(107, 105, 6, 8, new SpriteSheet("/spritesheet/Intro-moves.png"), 1, 0, 4, 2, 1, 0, 8, handler); 
                 if(alphinha.getX()==108)
@@ -75,7 +75,7 @@ public class Cutscene_Intro extends State {
                         screenTime--;
                     else
                         evento = "sair";
-                    if(screenTime==4){
+                    if(screenTime==3){
                         evento = "anima";
                         alphinha.setSprite(new SpriteSheet("/spritesheet/Intro-moves.png"));
                         portaDoCativeiro.setSprite(new SpriteSheet("/spritesheet/Intro-moves.png"));

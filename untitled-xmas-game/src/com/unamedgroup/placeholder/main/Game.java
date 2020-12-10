@@ -33,9 +33,9 @@ import com.unamedgroup.placeholder.world.Room;
 public class Game implements Runnable {
 	private static final long serialVersionUID = 3L;
 
-	public static final String NAME = "Place Holder";	// Titulo da jogo
-	private Display display; 							// Janela do jogo
-	private Handler handler;							// Uma classe para fazer a comunicação entre diferentes classes
+	public static final String NAME = "O Segredo da Fábrica";	// Titulo da jogo
+	private Display display; 									// Janela do jogo
+	private Handler handler;									// Uma classe para fazer a comunicação entre diferentes classes
 	/*---------------------------------------------------------------*/
 	//Inicializando variáveis do Display
 	public boolean isFullScreen;						// Estado do tela
@@ -58,6 +58,7 @@ public class Game implements Runnable {
 	public static SpriteSheet alphaTeste;
 	public static SpriteSheet nutCrackerTest;
 	public static SpriteSheet hud;
+	public static SpriteSheet key, sucker;
 	public SpriteSheet currentMap;
 	/*----------------------------------------------------------------*/
 	public Room room;
@@ -78,7 +79,6 @@ public class Game implements Runnable {
 	});
 	
 	public static List<Entity> entities = new LinkedList<>();
-	public static List<Enemy> enemies = new LinkedList<>();
 	public static List<Projectile> projectiles = new ArrayList<>();  
 	private Player player;	// Player é instanciado pelo State
 	
@@ -101,6 +101,8 @@ public class Game implements Runnable {
 		nutCrackerTest = new SpriteSheet("/spritesheet/nutCracker.png");
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
 		hud = new SpriteSheet("/spritesheet/hud.png");
+		key = new SpriteSheet("/spritesheet/key.png");
+		sucker = new SpriteSheet("");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();
@@ -115,7 +117,6 @@ public class Game implements Runnable {
 	 */
 	public void updateEntities(){
 		entities = new LinkedList<>();
-		enemies = new LinkedList<>();
 		projectiles = new ArrayList<>();
 		entities.add(player);
 	}

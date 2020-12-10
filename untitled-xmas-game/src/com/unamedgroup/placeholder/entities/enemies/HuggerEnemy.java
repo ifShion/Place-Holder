@@ -67,7 +67,6 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 		}
 		
 		Game.entities.remove(this);
-		Game.enemies.remove(this);
 		return;
 	}
 
@@ -121,7 +120,6 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 	@Override
 	public void getHit() {
 		Game.entities.remove(this);
-		Game.enemies.remove(this);
 		return;		
 	}
 

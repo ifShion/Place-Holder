@@ -70,6 +70,9 @@ public class Entity {
 		this.speed = speed;
 
 		this.handler = handler;
+
+		
+        this.animation.setPlay(true);
 	}
 
 	/**
@@ -227,13 +230,16 @@ public class Entity {
 	
 	public boolean isColliding(int xnext,int ynext){
 		Rectangle enemyCurrent = new Rectangle(xnext + maskX,ynext + maskY,maskW,maskH);
-		for(int i = 0; i < Game.enemies.size(); i++){
-			Enemy e = Game.enemies.get(i);
-			if(e == this)
-				continue;
-			Rectangle targetEnemy = new Rectangle(e.getX()+ maskX,e.getY()+ maskY,maskW,maskH);
-			if(enemyCurrent.intersects(targetEnemy)){
-				return true;
+		for(int i = 0; i < Game.entities.size(); i++){
+			Enemy e;
+			if(Game.entities.get(i) instanceof Enemy){
+					e = (Enemy) Game.entities.get(i);
+				if(e == this)
+					continue;
+				Rectangle targetEnemy = new Rectangle(e.getX()+ maskX,e.getY()+ maskY,maskW,maskH);
+				if(enemyCurrent.intersects(targetEnemy)){
+					return true;
+				}
 			}
 		}
 		
