@@ -37,12 +37,14 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 		if(!chasing && !exploding) {
 			if(status == "right" && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed) , super.getY(), super.getMaskW(), super.getMaskH())) {
 				x+=speed;
+				this.direction = 1;
 				if(handler.getGame().room.isFree(super.getX() + super.getMaskX() + 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() + super.getMaskX() + (int)speed , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
 					status = "left";
 					super.getAnimation().setSpriteX(0);
 				}
 			}else if(status == "left" && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed) , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
 				x-=speed;
+				this.direction = -1;
 				if(handler.getGame().room.isFree(super.getX() + super.getMaskX() - 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() - (int)speed , super.getY(), super.getMaskW(), super.getMaskH())) {
 					status = "right";
 					super.getAnimation().setSpriteX(0);
@@ -77,7 +79,7 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 	private void animation() {
 		if (status != "explode") {
 			super.getAnimation().offSet(-8, 0);
-			int facingIdle = ((this.direction == 1) ? 0 : 2);
+			int facing = ((this.direction == 1) ? 0 : 2);
 			super.setHeight(32);
 			super.setWidth(32);
 			super.getAnimation().setWidth(32);
@@ -85,22 +87,47 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 			switch (status) {
 			case "idle":
 				super.getAnimation().setNumSpritesX(2);
-				super.getAnimation().setSpriteY(facingIdle);
+				super.getAnimation().setSpriteY(facing);
 				super.getAnimation().setSpriteVeloticy(3);
 				break;
-			case "right":
+			default:
 				super.getAnimation().setNumSpritesX(4);
-				super.getAnimation().setSpriteY(1);
+				super.getAnimation().setSpriteY(facing + 1);
 				super.getAnimation().setSpriteVeloticy(5);
-				this.direction = 1;
-				break;
-			case "left":
-				super.getAnimation().setNumSpritesX(4);
-				super.getAnimation().setSpriteY(3);
-				super.getAnimation().setSpriteVeloticy(5);
-				this.direction = -1;
 				break;
 			}
+		}
+	}
+	
+	public void searchForPlayer() {
+		chasing = true;
+		super.setSpeed(1.56);
+		if(super.calculateDistance(this.getX(), handler.getGame().getPlayer().getX(), this.getY(), handler.getGame().getPlayer().getY()) < 96 && Math.abs((this.getY() - handler.getGame().getPlayer().getY())) < 16 && !exploding) {
+			if(handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskX() - 18 > super.getX() && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed) , super.getY(), super.getMaskW(), super.getMaskH())) {
+				x+=speed;
+				this.direction = 1;
+				status = "right";
+				if(handler.getGame().room.isFree(super.getX() + super.getMaskX() + 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() + super.getMaskX() + (int)speed , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
+					chasing = false;
+					status = "idle";
+					super.getAnimation().setSpriteX(0);
+				}
+			}else if(handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskX() + 10 < super.getX() && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed) , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !exploding) {
+				x-=speed;
+				this.direction = -1;
+				status = "left";
+				if(handler.getGame().room.isFree(super.getX() + super.getMaskX() - 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() - (int)speed , super.getY(), super.getMaskW(), super.getMaskH())) {
+					chasing = false;
+					status = "idle";
+					super.getAnimation().setSpriteX(0);
+				}
+			} else {
+				status = "explode";
+				super.getAnimation().setSpriteX(0);
+			}
+		}else {
+			super.setSpeed(1);
+			chasing = false;
 		}
 	}
 	
@@ -133,36 +160,6 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 		}else {
 			Game.entities.remove(this);
 			return;
-		}
-	}
-
-	public void searchForPlayer() {
-		chasing = true;
-		super.setSpeed(1.56);
-		if(super.calculateDistance(this.getX(), handler.getGame().getPlayer().getX(), this.getY(), handler.getGame().getPlayer().getY()) < 96 && Math.abs((this.getY() - handler.getGame().getPlayer().getY())) < 16 && !exploding) {
-			if(handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskX() - 18 > super.getX() && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed) , super.getY(), super.getMaskW(), super.getMaskH())) {
-				x+=speed;
-				status = "right";
-				if(handler.getGame().room.isFree(super.getX() + super.getMaskX() + 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() + super.getMaskX() + (int)speed , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
-					chasing = false;
-					status = "idle";
-					super.getAnimation().setSpriteX(0);
-				}
-			}else if(handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskX() + 10 < super.getX() && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed) , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !exploding) {
-				x-=speed;
-				status = "left";
-				if(handler.getGame().room.isFree(super.getX() + super.getMaskX() - 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() - (int)speed , super.getY(), super.getMaskW(), super.getMaskH())) {
-					chasing = false;
-					status = "idle";
-					super.getAnimation().setSpriteX(0);
-				}
-			} else {
-				status = "explode";
-				super.getAnimation().setSpriteX(0);
-			}
-		}else {
-			super.setSpeed(1);
-			chasing = false;
 		}
 	}
 	
