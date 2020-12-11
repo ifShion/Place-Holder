@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.interfaces.GravityEffected;
 import com.unamedgroup.placeholder.interfaces.Hittable;
-import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
+import com.unamedgroup.placeholder.world.Room;
 
 public class Alpha extends Player implements GravityEffected {
 
@@ -112,22 +112,22 @@ public class Alpha extends Player implements GravityEffected {
 	private void attackHitBox() {
 		int facingAttack = ((super.direction == 1) ? 5 : -25);
 		Rectangle batHitBox = new Rectangle(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 20, 32);
-		for(int i = 0 ; i < Game.entities.size(); i++) {
-			Rectangle enemy = new Rectangle(Game.entities.get(i).getX() + Game.entities.get(i).getMaskX() - handler.getCamera().getX() , Game.entities.get(i).getY() + Game.entities.get(i).getMaskY() - handler.getCamera().getY() , Game.entities.get(i).getMaskW() , Game.entities.get(i).getMaskH());
+		for(int i = 0 ; i < Room.entities.size(); i++) {
+			Rectangle enemy = new Rectangle(Room.entities.get(i).getX() + Room.entities.get(i).getMaskX() - handler.getCamera().getX() , Room.entities.get(i).getY() + Room.entities.get(i).getMaskY() - handler.getCamera().getY() , Room.entities.get(i).getMaskW() , Room.entities.get(i).getMaskH());
 
-			if(batHitBox.intersects(enemy) && Game.entities.get(i) instanceof Hittable && !hit) {
-				Hittable h = (Hittable)Game.entities.get(i);
+			if(batHitBox.intersects(enemy) && Room.entities.get(i) instanceof Hittable && !hit) {
+				Hittable h = (Hittable)Room.entities.get(i);
 				h.getHit();
 				
 				this.hit = true;
 			}
 		}
 		
-		for(int i = 0 ; i < Game.projectiles.size(); i++) {
-			Rectangle enemy = new Rectangle(Game.projectiles.get(i).getX() + Game.projectiles.get(i).getMaskX() - handler.getCamera().getX() , Game.projectiles.get(i).getY() + Game.projectiles.get(i).getMaskY() - handler.getCamera().getY() , Game.projectiles.get(i).getMaskW() , Game.projectiles.get(i).getMaskH());
+		for(int i = 0 ; i < Room.projectiles.size(); i++) {
+			Rectangle enemy = new Rectangle(Room.projectiles.get(i).getX() + Room.projectiles.get(i).getMaskX() - handler.getCamera().getX() , Room.projectiles.get(i).getY() + Room.projectiles.get(i).getMaskY() - handler.getCamera().getY() , Room.projectiles.get(i).getMaskW() , Room.projectiles.get(i).getMaskH());
 
-			if(batHitBox.intersects(enemy) && Game.projectiles.get(i) instanceof Hittable && !hit) {
-				Hittable h = (Hittable)Game.projectiles.get(i);
+			if(batHitBox.intersects(enemy) && Room.projectiles.get(i) instanceof Hittable && !hit) {
+				Hittable h = (Hittable)Room.projectiles.get(i);
 				h.getHit();
 				
 				this.hit = true;

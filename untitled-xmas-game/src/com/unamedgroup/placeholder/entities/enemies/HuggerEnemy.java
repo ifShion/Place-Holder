@@ -9,6 +9,7 @@ import com.unamedgroup.placeholder.interfaces.GravityEffected;
 import com.unamedgroup.placeholder.interfaces.Hittable;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
+import com.unamedgroup.placeholder.world.Room;
 
 public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 
@@ -158,7 +159,7 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 		}else if(explosionDelay < 60) {
 			super.getAnimation().setSpriteX(6);
 		}else {
-			Game.entities.remove(this);
+			Room.entities.remove(this);
 			return;
 		}
 	}
@@ -188,18 +189,24 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 	@Override
 	public void fall() {
 		vspd+=GravityEffected.GRAVITY;
-		if(!handler.getGame().room.isFree(super.getX() + super.getMaskX(),(int)(super.getY() + super.getMaskY() + vspd), super.getMaskW(), super.getMaskH())) {
-			int signVsp = 0;
-			if(vspd >= 0) {
-				signVsp = 1;
-			}else {
-				signVsp = -1;
+		try {
+			if(!handler.getGame().room.isFree(super.getX() + super.getMaskX(),(int)(super.getY() + super.getMaskY() + vspd), super.getMaskW(), super.getMaskH())) {
+				int signVsp = 0;
+				if(vspd >= 0) {
+					signVsp = 1;
+				}else {
+					signVsp = -1;
+				}
+				while(handler.getGame().room.isFree(super.getX() + super.getMaskX() ,(int)(super.getY() + super.getMaskY() + signVsp), super.getMaskW(), super.getMaskH())) {
+					super.setY(super.getY() + (int)signVsp);
+				}
+				vspd = 0;
 			}
-			while(handler.getGame().room.isFree(super.getX() + super.getMaskX() ,(int)(super.getY() + super.getMaskY() + signVsp), super.getMaskW(), super.getMaskH())) {
-				super.setY(super.getY() + (int)signVsp);
-			}
-			vspd = 0;
+		}catch(ArrayIndexOutOfBoundsException aioobe) {
+			Room.entities.remove(this);
+			return;
 		}
+		
 		super.setY(super.getY() + (int)vspd);
 	}
 
@@ -207,7 +214,7 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 	public void getHit() {
 		this.hp--;
 		if(this.hp < 1) {
-			Game.entities.remove(this);
+			Room.entities.remove(this);
 			return;
 		}
 	}

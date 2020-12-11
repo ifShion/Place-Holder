@@ -6,9 +6,9 @@ import java.util.List;
 
 import com.unamedgroup.placeholder.graphics.Animation;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.Node;
+import com.unamedgroup.placeholder.world.Room;
 import com.unamedgroup.placeholder.world.Vector2i;
 import com.unamedgroup.placeholder.world.World;
 
@@ -230,10 +230,10 @@ public class Entity {
 	
 	public boolean isColliding(int xnext,int ynext){
 		Rectangle enemyCurrent = new Rectangle(xnext + maskX,ynext + maskY,maskW,maskH);
-		for(int i = 0; i < Game.entities.size(); i++){
+		for(int i = 0; i < Room.entities.size(); i++){
 			Enemy e;
-			if(Game.entities.get(i) instanceof Enemy){
-					e = (Enemy) Game.entities.get(i);
+			if(Room.entities.get(i) instanceof Enemy){
+					e = (Enemy) Room.entities.get(i);
 				if(e == this)
 					continue;
 				Rectangle targetEnemy = new Rectangle(e.getX()+ maskX,e.getY()+ maskY,maskW,maskH);

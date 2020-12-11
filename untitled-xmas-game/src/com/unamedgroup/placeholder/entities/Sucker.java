@@ -5,6 +5,7 @@ import java.awt.Color;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Handler;
+import com.unamedgroup.placeholder.world.Room;
 
 public class Sucker extends Entity {
 
@@ -19,7 +20,7 @@ public class Sucker extends Entity {
         super.tick();
         if(super.isColliding(this, handler.getGame().getPlayer()) && !(handler.getGame().getPlayer().hp==handler.getGame().getPlayer().MAX_LIFE)){
             handler.getGame().getPlayer().setHp(handler.getGame().getPlayer().MAX_LIFE);
-            handler.getGame().entities.remove(this); 
+            Room.entities.remove(this); 
         }
     }
 

@@ -1,9 +1,14 @@
 package com.unamedgroup.placeholder.world;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.unamedgroup.placeholder.entities.Door;
+import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Key;
+import com.unamedgroup.placeholder.entities.Projectile;
 import com.unamedgroup.placeholder.entities.Sucker;
 import com.unamedgroup.placeholder.entities.enemies.CannonEnemy;
 import com.unamedgroup.placeholder.entities.enemies.HuggerEnemy;
@@ -18,6 +23,9 @@ public class Room extends World {
     private Handler handler;
     private SpriteSheet map;
     private double[] respawnPoint = new double[2];
+    
+	public static List<Projectile> projectiles = new ArrayList<>();
+	public static List<Entity> entities = new LinkedList<>();
     /**
      * Constrói o mundo novo. É bom ter uma sprite sheet própria para os tiles de cada mapa
      * são muitos tiles
@@ -109,43 +117,43 @@ public class Room extends World {
      * @param tpy
      */
     public void placeDoor(int x, int y, int destiny, int tpx, int tpy, boolean locked){
-    	Game.entities.add(new Door(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 32, handler.getGame().room.getMap(), 5, 3, 1, 7 * World.TILE_SIZE, 3 * World.TILE_SIZE, destiny, tpx, tpy, locked ,handler));
+    	Room.entities.add(new Door(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 32, handler.getGame().room.getMap(), 5, 3, 1, 7 * World.TILE_SIZE, 3 * World.TILE_SIZE, destiny, tpx, tpy, locked ,handler));
     }
 
     private void createNewCannonEnemy(int x, int y, int direction) {
     	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCracker, 1, 2, 4, 8, 2, 0 , 0, handler);
     	ce.setMask(3, 1, 18, 31);
-		Game.entities.add(ce);
+		Room.entities.add(ce);
 	}
     
     private void createNewHuggerEnemy(int x, int y) {
     	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 32, 32, Game.huggerEnemy, 1, 1, 5, 12, 8, 0, 0, handler);
     	he.setMask(0, 6, 16, 26);
-		Game.entities.add(he);
+		Room.entities.add(he);
 	}
     
     private void createNewTrackerEnemy(int x, int y) {
     	TrackerEnemy te = new TrackerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.walkerEnemy, 1, 2, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
 		te.setMask(3, 4, 10, 8);
-		Game.entities.add(te);
+		Room.entities.add(te);
     }
     
     private void createNewWalkerEnemy(int x, int y) {
     	WalkerEnemy e = new WalkerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.walkerEnemy, 1, 1, 3, 4, 2, 0 , 0, handler);
-		Game.entities.add(e);
+		Room.entities.add(e);
     }
     
     private void createNewKey(int x, int y){
         Key ke = new Key(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.key, 1, 0, 7, 8, 1, 0, 0, handler);
         ke.setMask(4, 4, 8, 8);
-        Game.entities.add(ke);
+        Room.entities.add(ke);
     }
 
     private void createNewSucker(int x, int y){
         Sucker su = new Sucker(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.sucker, 1, 0, 7, 8, 4, 0, 0, handler);
         su.getAnimation().setSpriteY(Game.rand.nextInt(4));
         su.setMask(4, 4, 8, 8);
-        Game.entities.add(su);
+        Room.entities.add(su);
     }
     
     //Modifiquei a condição de igualdade dos mapas para comparar seus arquivos de imagem, se forem os

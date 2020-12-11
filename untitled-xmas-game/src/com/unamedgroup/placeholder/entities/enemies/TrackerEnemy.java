@@ -9,6 +9,7 @@ import com.unamedgroup.placeholder.interfaces.Hittable;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.AStar;
+import com.unamedgroup.placeholder.world.Room;
 import com.unamedgroup.placeholder.world.Vector2i;
 import com.unamedgroup.placeholder.world.World;
 
@@ -82,7 +83,7 @@ public class TrackerEnemy extends Enemy implements Hittable {
 	
 	@Override
 	public void destroyEnemy() {
-		Game.entities.remove(this);
+		Room.entities.remove(this);
 		return;
 	}
 	
