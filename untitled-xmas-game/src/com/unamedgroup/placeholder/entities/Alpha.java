@@ -1,5 +1,6 @@
 package com.unamedgroup.placeholder.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -88,7 +89,7 @@ public class Alpha extends Player implements GravityEffected {
  
 	private void bbAttack() {
 		int facingAttack = ((super.direction == 1) ? 7 : 8);
-		int facingOffSet = ((super.direction == 1) ? -3 : -11);
+		int facingOffSet = ((super.direction == 1) ? -3 : -13);
 		super.setHeight(32);
 		super.setWidth(32);
 		super.getAnimation().offSet(facingOffSet, -8);
@@ -114,8 +115,8 @@ public class Alpha extends Player implements GravityEffected {
 	}
 	
 	private void attackHitBox() {
-		int facingAttack = ((super.direction == 1) ? 5 : -25);
-		Rectangle batHitBox = new Rectangle(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 20, 32);
+		int facingAttack = ((super.direction == 1) ? 5 : -23);
+		Rectangle batHitBox = new Rectangle(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 18, 32);
 		for(int i = 0 ; i < Room.entities.size(); i++) {
 			Rectangle enemy = new Rectangle(Room.entities.get(i).getX() + Room.entities.get(i).getMaskX() - handler.getCamera().getX() , Room.entities.get(i).getY() + Room.entities.get(i).getMaskY() - handler.getCamera().getY() , Room.entities.get(i).getMaskW() , Room.entities.get(i).getMaskH());
 
@@ -223,10 +224,10 @@ public class Alpha extends Player implements GravityEffected {
 
 	@Override
 	public void render(Graphics g) {
-//		int facingAttack = ((super.direction == 1) ? 5 : -25);
+//		int facingAttack = ((super.direction == 1) ? 5 : -23);
 //		if(attacking) {
 //			g.setColor(Color.YELLOW);
-//			g.fillRect(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 20, 32);
+//			g.fillRect(super.getX() + super.getMaskX() + super.getMaskW()/2 + facingAttack - handler.getCamera().getX(), super.getY() - 8 - handler.getCamera().getY(), 18, 32);
 //		}
 
 		super.render(g);
