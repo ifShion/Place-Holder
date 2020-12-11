@@ -16,7 +16,7 @@ public class Alpha extends Player implements GravityEffected {
 	private boolean pressedDown, pressedAttack;
 	private boolean inTheAir;
 	private boolean attacking;
-	private int attackingDekay;
+	private int attackingDelay;
 	private boolean hit;
 
 	public Alpha(int x, int y, int width, int height, SpriteSheet sprite, int depth, int speed, int animationSpeed,
@@ -29,7 +29,6 @@ public class Alpha extends Player implements GravityEffected {
 	public void tick() {
 		if (animated && !inTheAir && !attacking) {
 			super.getAnimation().resetOffSet();
-			super.getAnimation().setPlay(true);
 			int facingIdle = ((super.direction == 1) ? 0 : 2);
 			super.setHeight(24);
 			super.setWidth(16);
@@ -60,7 +59,7 @@ public class Alpha extends Player implements GravityEffected {
 			}
 		}
 		
-		this.isDead(2, 67.5);
+		this.isDead();
 		this.playerAttack();
 		this.fall();
 		super.tick();
@@ -92,19 +91,19 @@ public class Alpha extends Player implements GravityEffected {
 		super.getAnimation().setWidth(32);
 		super.getAnimation().setHeight(32);
 		super.getAnimation().setSpriteY(facingAttack);
-		attackingDekay++;
-		if(attackingDekay < 10) {
+		attackingDelay++;
+		if(attackingDelay < 10) {
 			super.getAnimation().setSpriteX(0);
-		}else if(attackingDekay < 18){
+		}else if(attackingDelay < 18){
 			super.getAnimation().setSpriteX(1);
-		}else if(attackingDekay < 23){
+		}else if(attackingDelay < 23){
 			super.getAnimation().setSpriteX(2);
-		}else if(attackingDekay < 30) {
+		}else if(attackingDelay < 30) {
 			super.getAnimation().setSpriteX(3);
 			attackHitBox();
 		}else {
 			hit = false;
-			attackingDekay = 0;
+			attackingDelay = 0;
 			super.getAnimation().setSpriteX(0);
 			this.attacking = !attacking;
 		}

@@ -55,8 +55,9 @@ public class Game implements Runnable {
 	// Adicionei um objeto de teste para construir o mundo com colisão
 
 	public static SpriteSheet walkerEnemy;
-	public static SpriteSheet alphaTeste;
-	public static SpriteSheet nutCrackerTest;
+	public static SpriteSheet alpha;
+	public static SpriteSheet nutCracker;
+	public static SpriteSheet huggerEnemy;
 	public static SpriteSheet hud;
 	public static SpriteSheet key, sucker;
 	public SpriteSheet currentMap;
@@ -97,12 +98,13 @@ public class Game implements Runnable {
 
 	private void init(){
 		walkerEnemy = new SpriteSheet("/spritesheet/walkerEnemySprite.png");
-		alphaTeste = new SpriteSheet("/spritesheet/alphaTestbackup.png");
-		nutCrackerTest = new SpriteSheet("/spritesheet/nutCracker.png");
+		alpha = new SpriteSheet("/spritesheet/alphaTestbackup.png");
+		nutCracker = new SpriteSheet("/spritesheet/nutCracker.png");
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
 		hud = new SpriteSheet("/spritesheet/hud.png");
 		key = new SpriteSheet("/spritesheet/key.png");
 		sucker = new SpriteSheet("/spritesheet/sucker.png");
+		huggerEnemy = new SpriteSheet("/spritesheet/HuggerEnemy.png");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();

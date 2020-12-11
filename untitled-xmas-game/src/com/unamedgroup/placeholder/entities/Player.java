@@ -2,7 +2,6 @@ package com.unamedgroup.placeholder.entities;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
@@ -74,12 +73,12 @@ public class Player extends Entity {
 	}
 	//Verifica se o player está morto, e se estiver reinicia
 	//o jogo na posição de spawn. - Euler Lima
-	public void isDead(double x, double y) {
+	public void isDead() {
 		if(this.hp < 1) {
 			  handler.getGame().updateEntities();
 			  handler.getGame().changeCurrentMapID(handler.getGame().getCurrentMapID());
-			  handler.getGame().getPlayer().setX(x * World.TILE_SIZE);
-	          handler.getGame().getPlayer().setY(y * World.TILE_SIZE);
+			  handler.getGame().getPlayer().setX(handler.getGame().room.getRespawnPoint()[0]);
+	          handler.getGame().getPlayer().setY(handler.getGame().room.getRespawnPoint()[1]);
 			  this.hp = this.MAX_LIFE;
 			  this.inventario = new ArrayList<>();
 		}

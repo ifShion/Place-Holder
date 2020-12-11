@@ -17,6 +17,7 @@ public class Room extends World {
     private int ID;
     private Handler handler;
     private SpriteSheet map;
+    private double[] respawnPoint = new double[2];
     /**
      * Constrói o mundo novo. É bom ter uma sprite sheet própria para os tiles de cada mapa
      * são muitos tiles
@@ -26,12 +27,14 @@ public class Room extends World {
      * @author Daniel Neves
      */
     
-    public Room(String path, int ID, String map, Handler handler) {
+    public Room(String path, int ID, String map, double respawnX, double respawnY, Handler handler) {
         super(path, handler);
         
         this.map = new SpriteSheet(map);
         this.ID = ID;
         this.handler = handler;
+        this.respawnPoint[0] = respawnX * World.TILE_SIZE;
+        this.respawnPoint[1] = respawnY * World.TILE_SIZE;
     }
     
     public int getID() {
@@ -53,6 +56,21 @@ public class Room extends World {
      */
     public void createEntities(){
         switch(handler.getGame().getCurrentMapID()){
+        	case 1000:
+        		createNewKey(20,29);
+                createNewSucker(21,29);
+                createNewSucker(30,29);
+                createNewSucker(16,29);
+                createNewSucker(43,29);
+                createNewSucker(69,29);
+                placeDoor(71, 28, 1001, 8 * World.TILE_SIZE, 68 * World.TILE_SIZE, true);
+                createNewHuggerEnemy(17, 32);
+                createNewHuggerEnemy(20, 32);
+                createNewHuggerEnemy(27, 32);
+                createNewHuggerEnemy(35, 32);
+                createNewHuggerEnemy(47, 32);
+                createNewHuggerEnemy(52, 32);
+        		break;
             case 1001:
                 createNewCannonEnemy(39, 65, -6);
                 createNewCannonEnemy(30, 65, -6);
@@ -67,7 +85,7 @@ public class Room extends World {
                 placeDoor(4, 21, 1001, 3, 60, false);
                 createNewKey(8,69);
                 createNewSucker(5,69);
-                placeDoor(12, 68, 1001, 150, 60, true);
+                placeDoor(12, 68, 1000, 15 * World.TILE_SIZE, 28 * World.TILE_SIZE, true);
                 break;
             case 2000: // Mapa do corredor, uso numa cutscene
                 break;
@@ -95,13 +113,14 @@ public class Room extends World {
     }
 
     private void createNewCannonEnemy(int x, int y, int direction) {
-    	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCrackerTest, 1, 2, 4, 8, 2, 0 , 0, handler);
+    	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCracker, 1, 2, 4, 8, 2, 0 , 0, handler);
     	ce.setMask(3, 1, 18, 31);
 		Game.entities.add(ce);
 	}
     
     private void createNewHuggerEnemy(int x, int y) {
-    	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.walkerEnemy, 1, 1, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
+    	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 32, 32, Game.huggerEnemy, 1, 1, 5, 12, 8, 0, 0, handler);
+    	he.setMask(0, 6, 16, 26);
 		Game.entities.add(he);
 	}
     
@@ -117,13 +136,13 @@ public class Room extends World {
     }
     
     private void createNewKey(int x, int y){
-        Key ke = new Key(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.key, 1, 0, 10, 8, 1, 0, 0, handler);
+        Key ke = new Key(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.key, 1, 0, 7, 8, 1, 0, 0, handler);
         ke.setMask(4, 4, 8, 8);
         Game.entities.add(ke);
     }
 
     private void createNewSucker(int x, int y){
-        Sucker su = new Sucker(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.sucker, 1, 0, 6, 8, 4, 0, 0, handler);
+        Sucker su = new Sucker(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.sucker, 1, 0, 7, 8, 4, 0, 0, handler);
         su.getAnimation().setSpriteY(Game.rand.nextInt(4));
         su.setMask(4, 4, 8, 8);
         Game.entities.add(su);
@@ -145,4 +164,8 @@ public class Room extends World {
     public int hashCode() {
         return super.path.hashCode();
     }
+
+	public double[] getRespawnPoint() {
+		return respawnPoint;
+	}
 }

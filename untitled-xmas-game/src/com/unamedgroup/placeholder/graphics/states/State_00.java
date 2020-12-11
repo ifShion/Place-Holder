@@ -28,7 +28,7 @@ public class State_00 extends State {
 
     public State_00(int id, Handler handler){
 		super(id, handler);
-        alpha = new Alpha(0, 0, 16, 24, Game.alphaTeste, 4, 3, 1, 8, 18, 0, 0, handler);
+        alpha = new Alpha(0, 0, 16, 24, Game.alpha, 4, 3, 1, 8, 18, 0, 0, handler);
         alpha.setMask(4, 7, 8, 17);
         alpha.setHp(5);
         handler.getGame().setPlayer(alpha);
