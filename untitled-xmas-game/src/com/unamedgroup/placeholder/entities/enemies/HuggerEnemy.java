@@ -169,7 +169,7 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setColor(new Color(217, 226, 205, 180));
 			g.fillOval(super.getX() + super.getMaskX() + super.getMaskW() / 2- 80 - handler.getCamera().getX(), super.getY() + super.getMaskY() + super.getMaskH() / 2 - 80 - handler.getCamera().getY(), 160, 160);
-			if(explosionDelay%4 < 2) {
+			if(explosionDelay%5 < 2) {
 				g2.setColor(new Color(235, 140, 0, 150));
 				g.fillOval(super.getX() + super.getMaskX() + super.getMaskW() / 2 - 68 - handler.getCamera().getX(), super.getY() + super.getMaskY() + super.getMaskH() / 2 - 87 - handler.getCamera().getY(), 50, 50);
 				g2.setColor(new Color(255, 240, 60, 170));

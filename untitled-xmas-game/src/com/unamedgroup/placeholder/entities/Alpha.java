@@ -27,36 +27,39 @@ public class Alpha extends Player implements GravityEffected {
 	}
 
 	public void tick() {
-		if (animated && !inTheAir && !attacking) {
+		if (animated && !inTheAir && !attacking && !damaged) {
 			super.getAnimation().resetOffSet();
 			int facingIdle = ((super.direction == 1) ? 0 : 2);
 			super.setHeight(24);
 			super.setWidth(16);
+			super.getAnimation().setNumSpritesX(4);
+			super.getAnimation().setWidth(16);
+			super.getAnimation().setHeight(24);
 			switch (status) {
 			case "idle":
-				super.getAnimation().setNumSpritesX(4);
-				super.getAnimation().setWidth(16);
-				super.getAnimation().setHeight(24);
 				super.getAnimation().setSpriteY(facingIdle);
 				super.getAnimation().setSpriteVeloticy(4);
 				break;
 			case "right":
-				super.getAnimation().setNumSpritesX(4);
-				super.getAnimation().setWidth(16);
-				super.getAnimation().setHeight(24);
 				super.getAnimation().setSpriteY(1);
 				super.getAnimation().setSpriteVeloticy(6);
 				break;
 			case "left":
-				super.getAnimation().setNumSpritesX(4);
-				super.getAnimation().setWidth(16);
-				super.getAnimation().setHeight(24);
 				super.getAnimation().setSpriteY(3);
 				super.getAnimation().setSpriteVeloticy(6);
 				break;
 			default:
 				break;
-			}
+			} 
+		} else if(damaged) {
+			int facing = ((super.direction == 1) ? 12 : 13);
+			super.setHeight(24);
+			super.setWidth(24);
+			super.getAnimation().setNumSpritesX(5);
+			super.getAnimation().setWidth(24);
+			super.getAnimation().setHeight(24);
+			super.getAnimation().setSpriteY(facing);
+			super.getAnimation().setSpriteVeloticy(20);
 		}
 		
 		this.isDead();
@@ -66,7 +69,7 @@ public class Alpha extends Player implements GravityEffected {
 	}
 	
 	private void playerAttack() {
-		if (handler.getInputHandler().secondary.down && !pressedAttack && !handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
+		if (handler.getInputHandler().secondary.down && !damaged && !pressedAttack && !handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
 			this.attacking = true;
 			super.getAnimation().setSpriteX(0);
 			pressedAttack = true;
