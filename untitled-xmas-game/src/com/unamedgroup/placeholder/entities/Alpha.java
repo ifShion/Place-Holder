@@ -55,6 +55,7 @@ public class Alpha extends Player implements GravityEffected {
 			int facing = ((super.direction == 1) ? 12 : 13);
 			super.setHeight(24);
 			super.setWidth(24);
+			super.getAnimation().resetOffSet();
 			super.getAnimation().setNumSpritesX(5);
 			super.getAnimation().setWidth(24);
 			super.getAnimation().setHeight(24);
