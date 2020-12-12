@@ -31,8 +31,9 @@ public class Maps {
     public Maps(Handler handler) {
         this.handler = handler;
         maps = new LinkedHashMap<>();
-        maps.put(1001, new Room("/map/worldTest.png", 1001, "/spriteSheetMapa1.png", handler));
-        maps.put(2000, new Room("/map/worldCorredor.png", 2000,"/spriteSheetMapa1.png", handler));
+        maps.put(1000, new Room("/map/worldHugger.png", 1000, "/spriteSheetMapa1.png", 19, 28, handler));
+        maps.put(1001, new Room("/map/worldTest.png", 1001, "/spriteSheetMapa1.png", 2, 67.5, handler));
+        maps.put(2000, new Room("/map/worldCorredor.png", 2000,"/spriteSheetMapa1.png", 0, 0, handler));
 
     }
 

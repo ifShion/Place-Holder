@@ -1,6 +1,5 @@
 package com.unamedgroup.placeholder.entities.enemies;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import com.unamedgroup.placeholder.entities.CannonBullet;
@@ -9,6 +8,7 @@ import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.interfaces.Hittable;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
+import com.unamedgroup.placeholder.world.Room;
 
 /**
  * Inimigo estacionário que atira projéteis a cada intervalo de tempo
@@ -75,7 +75,7 @@ public class CannonEnemy extends Enemy implements Hittable {
 			if(super.getAnimation().getSpriteX() == 4 * super.width && isShooting) {
 				isShooting = false;
 				int dir = ((this.direction < 0) ? -1 : 1);
-				Game.projectiles.add(new CannonBullet(super.getX() + 12 + (5 * dir), super.getY() + 16 , 5 , 4, dir, Game.nutCrackerTest, 3, 2, 5, 4, 1, 0, 64, handler));
+				Room.projectiles.add(new CannonBullet(super.getX() + 12 + (5 * dir), super.getY() + 16 , 5 , 4, dir, Game.nutCracker, 3, 2, 5, 4, 1, 0, 64, handler));
 			}else if(super.getAnimation().getSpriteX() != 4 * super.width) {
 				isShooting = true;
 			}
@@ -86,8 +86,7 @@ public class CannonEnemy extends Enemy implements Hittable {
 	
 	@Override
 	public void destroyEnemy() {
-		Game.entities.remove(this);
-		Game.enemies.remove(this);
+		Room.entities.remove(this);
 		return;
 	}
 	
@@ -100,7 +99,7 @@ public class CannonEnemy extends Enemy implements Hittable {
 	
 	@Override
 	public void getHit(){
-		boolean weakPoint = ((direction < 0) ? handler.getGame().getPlayer().getX() > super.getX() + super.getMaskW() : handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskW() < super.getX());
+		boolean weakPoint = ((direction < 0) ? handler.getGame().getPlayer().getX() > super.getX() + super.getMaskW() / 2 : handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskW() < super.getX());
 		if(weakPoint) {
 			super.setHp(super.getHp() - 1);
 			if(super.getHp() <= 0)

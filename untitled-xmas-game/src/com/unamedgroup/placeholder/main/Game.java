@@ -7,13 +7,11 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
-import com.unamedgroup.placeholder.entities.Projectile;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.world.Maps;
 import com.unamedgroup.placeholder.world.Room;
@@ -33,9 +31,9 @@ import com.unamedgroup.placeholder.world.Room;
 public class Game implements Runnable {
 	private static final long serialVersionUID = 3L;
 
-	public static final String NAME = "Place Holder";	// Titulo da jogo
-	private Display display; 							// Janela do jogo
-	private Handler handler;							// Uma classe para fazer a comunicação entre diferentes classes
+	public static final String NAME = "O Segredo da Fábrica";	// Titulo da jogo
+	private Display display; 									// Janela do jogo
+	private Handler handler;									// Uma classe para fazer a comunicação entre diferentes classes
 	/*---------------------------------------------------------------*/
 	//Inicializando variáveis do Display
 	public boolean isFullScreen;						// Estado do tela
@@ -55,9 +53,11 @@ public class Game implements Runnable {
 	// Adicionei um objeto de teste para construir o mundo com colisão
 
 	public static SpriteSheet walkerEnemy;
-	public static SpriteSheet alphaTeste;
-	public static SpriteSheet nutCrackerTest;
+	public static SpriteSheet alpha;
+	public static SpriteSheet nutCracker;
+	public static SpriteSheet huggerEnemy;
 	public static SpriteSheet hud;
+	public static SpriteSheet key, sucker;
 	public SpriteSheet currentMap;
 	/*----------------------------------------------------------------*/
 	public Room room;
@@ -77,9 +77,6 @@ public class Game implements Runnable {
 		}
 	});
 	
-	public static List<Entity> entities = new LinkedList<>();
-	public static List<Enemy> enemies = new LinkedList<>();
-	public static List<Projectile> projectiles = new ArrayList<>();  
 	private Player player;	// Player é instanciado pelo State
 	
 	/*----------------------------------------------------------------*/
@@ -97,10 +94,13 @@ public class Game implements Runnable {
 
 	private void init(){
 		walkerEnemy = new SpriteSheet("/spritesheet/walkerEnemySprite.png");
-		alphaTeste = new SpriteSheet("/spritesheet/alphaTestbackup.png");
-		nutCrackerTest = new SpriteSheet("/spritesheet/nutCracker.png");
+		alpha = new SpriteSheet("/spritesheet/alphaTestbackup.png");
+		nutCracker = new SpriteSheet("/spritesheet/nutCracker.png");
 		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
 		hud = new SpriteSheet("/spritesheet/hud.png");
+		key = new SpriteSheet("/spritesheet/key.png");
+		sucker = new SpriteSheet("/spritesheet/sucker.png");
+		huggerEnemy = new SpriteSheet("/spritesheet/HuggerEnemy.png");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();
@@ -114,10 +114,9 @@ public class Game implements Runnable {
 	 * É util caso eu troque de jogador em mudanças de state
 	 */
 	public void updateEntities(){
-		entities = new LinkedList<>();
-		enemies = new LinkedList<>();
-		projectiles = new ArrayList<>();
-		entities.add(player);
+		Room.entities = new LinkedList<>();
+		Room.projectiles = new ArrayList<>();
+		Room.entities.add(player);
 	}
 	public static void main(String[] args) {
 		Game game = new Game();
@@ -132,9 +131,8 @@ public class Game implements Runnable {
 		handler.tick();
 		if(statesUseMaps){
 			if(!alternatingMaps) {
-				room.tick();
-				for (int i = 0; i < entities.size(); i++) entities.get(i).tick();
-				for (int i = 0; i < projectiles.size(); i++) projectiles.get(i).tick();
+				for (int i = 0; i < Room.entities.size(); i++) Room.entities.get(i).tick();
+				for (int i = 0; i < Room.projectiles.size(); i++) Room.projectiles.get(i).tick();
 			}else
 				maps.tick();
 		}
@@ -161,9 +159,9 @@ public class Game implements Runnable {
 		if(!alternatingMaps)	
 			room.render(g);
 		
-		entities.sort(nodeSorter);
-		for (Entity entity : entities) entity.render(g);
-		for (int i = 0; i < projectiles.size(); i++) projectiles.get(i).render(g);
+		Room.entities.sort(nodeSorter);
+		for (Entity entity : Room.entities) entity.render(g);
+		for (int i = 0; i < Room.projectiles.size(); i++) Room.projectiles.get(i).render(g);
 		if(handler.getStateManager().currentStateExist())	
 			handler.getStateManager().render(g);
 		

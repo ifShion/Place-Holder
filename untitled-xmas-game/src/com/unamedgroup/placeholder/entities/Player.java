@@ -1,6 +1,7 @@
 package com.unamedgroup.placeholder.entities;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
@@ -20,11 +21,13 @@ import com.unamedgroup.placeholder.world.World;
  *
  */
 public class Player extends Entity {
-	protected String status;		// Ainda estou testando esse argumento, utilizo para definir a animação em uma classe filha
+	protected ArrayList<Entity> inventario;	// Testando o inventário como arraylist @natescom
+	protected String status;				// Ainda estou testando esse argumento, utilizo para definir a animação em uma classe filha
 	protected boolean animated;
 	protected int direction;
 	protected boolean moveable;
 	private int damageCooldown = 120;
+	protected boolean damaged;
 	public final int MAX_LIFE = 5;
 
 	protected int hp;
@@ -52,6 +55,7 @@ public class Player extends Entity {
 		this.animated = true;
 		this.direction = 1;
 		this.moveable = true;
+		inventario = new ArrayList<>();
 	}
 	
 	public int getHp() {
@@ -63,20 +67,25 @@ public class Player extends Entity {
 	}
 	
 	public void hitPlayer(int damage) {
-		if(damageCooldown == 0) {
+		if(damageCooldown == 0 && !damaged) {
+			super.getAnimation().setSpriteX(0);
 			damageCooldown = 30;
+			damaged = true;
 			this.hp-=damage;
 		}
 	}
+	
 	//Verifica se o player está morto, e se estiver reinicia
 	//o jogo na posição de spawn. - Euler Lima
-	public void isDead(double x, double y) {
-		if(this.hp == 0) {
+	public void isDead() {
+		if(this.hp < 1) {
 			  handler.getGame().updateEntities();
 			  handler.getGame().changeCurrentMapID(handler.getGame().getCurrentMapID());
-			  handler.getGame().getPlayer().setX(x * World.TILE_SIZE);
-	          handler.getGame().getPlayer().setY(y * World.TILE_SIZE);
-	          this.hp = this.MAX_LIFE;
+			  handler.getGame().getPlayer().setX(handler.getGame().room.getRespawnPoint()[0]);
+	          handler.getGame().getPlayer().setY(handler.getGame().room.getRespawnPoint()[1]);
+			  this.hp = this.MAX_LIFE;
+			  damaged = false;
+			  this.inventario = new ArrayList<>();
 		}
 	}
 	//Sistema inicial de cair no vazio - Euler Lima
@@ -84,6 +93,7 @@ public class Player extends Entity {
 		this.hitPlayer(1);
 		handler.getGame().getPlayer().setX(x * World.TILE_SIZE);
 		handler.getGame().getPlayer().setY(y * World.TILE_SIZE);
+		damaged = false;
 	}
 
 	public void tick() {
@@ -91,8 +101,8 @@ public class Player extends Entity {
 		
 		//Alteração: mudei a condição para o personagem poder se mover. Implementando um sistema de colisão simples
 
-		boolean right = handler.getInputHandler().right.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH());
-		boolean left = handler.getInputHandler().left.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH());;
+		boolean right = handler.getInputHandler().right.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !damaged;
+		boolean left = handler.getInputHandler().left.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !damaged;
 		
 		// Eu resolvi o problema de caminhar na diagonal (ainda tem alguns bugs) - Daniel Nogueira 
 		boolean flag=false;  //variável para usar caso dois botôes estarem sendo apertados ao mesmo tempo
@@ -118,7 +128,10 @@ public class Player extends Entity {
 		}
 		
 		damageCooldown--;
-		if(damageCooldown < 0) damageCooldown = 0;
+		if(damageCooldown < 0) {
+			damaged = false;
+			damageCooldown = 0;
+		}
 		
 		// Utilizar esse código para centralizar a câmera no centralizado quando existir um mapa
 		handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().room.WIDTH * World.TILE_SIZE - Game.WIDTH));
@@ -130,5 +143,15 @@ public class Player extends Entity {
 //		g.setColor(Color.red);
 //		g.fillRect((int)(x-handler.getCamera().getX()+super.getMaskX()),(int) (y-handler.getCamera().getY()+super.getMaskY()), super.getMaskW(), super.getMaskH());
 	}
+
+
+	public ArrayList<Entity> getInventario() {
+		return this.inventario;
+	}
+
+	public void setInventario(ArrayList<Entity> inventario) {
+		this.inventario = inventario;
+	}
+	
 
 }

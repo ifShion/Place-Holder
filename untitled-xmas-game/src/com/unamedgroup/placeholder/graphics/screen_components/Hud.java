@@ -1,15 +1,19 @@
 package com.unamedgroup.placeholder.graphics.screen_components;
 import java.awt.Graphics;
 
+import java.awt.image.BufferedImage;
+
+import com.unamedgroup.placeholder.entities.Key;
 import com.unamedgroup.placeholder.main.Handler;
 
 public class Hud {
     private Handler handler;
-    private Hp hp;
+    private final BufferedImage HP , KEYS;
 
     public Hud(Handler handler){
        this.handler = handler;
-       this.hp = new Hp(handler);
+       KEYS = handler.getGame().hud.getSprite(9, 0, 8, 8);
+       HP = handler.getGame().hud.getSprite(0, 0, 8, 8);
     }
 
 
@@ -17,7 +21,17 @@ public class Hud {
     }
 
     public void render(Graphics g){
-        hp.render(g);
+        //=========================// HP //=========================//
+        for(int i = 0; i<handler.getGame().getPlayer().getHp();i++){
+            g.drawImage(HP, 5+i*9, 5, null);
+        }
+        //=======================// CHAVES //=======================//
+        handler.getGame().getPlayer().getInventario().forEach((i) -> {
+            if(i instanceof Key){
+                g.drawImage(KEYS, 5, 17, null);
+            }
+
+        });
     }
 
     
