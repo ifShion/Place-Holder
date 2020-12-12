@@ -52,7 +52,7 @@ public class CannonBullet extends Projectile implements Hittable {
 		}
 		
 		if(isCollidingWithPlayer()) {
-			if (!handler.getGame().getPlayer().damaged){
+			if (!handler.getGame().getPlayer().isDamaged()){
 				super.destroyProjectile();
 				handler.getGame().getPlayer().hitPlayer(1);
 			}

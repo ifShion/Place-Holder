@@ -152,7 +152,7 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 			super.getAnimation().setSpriteX(3);
 		}else if(explosionDelay < 45) {
 			if(super.calculateDistance(this.getX(), handler.getGame().getPlayer().getX(), this.getY(), handler.getGame().getPlayer().getY()) < 88){
-				if (handler.getGame().getPlayer().isDamaged()){
+				if (!handler.getGame().getPlayer().isDamaged()){
 					handler.getGame().getPlayer().hitPlayer(2);
 				}
 			} 
