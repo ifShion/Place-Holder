@@ -90,7 +90,7 @@ public class Room extends World {
                 createNewWalkerEnemy(32, 18);
                 createNewCannonEnemy(21, 5, -6);
                 createNewWalkerEnemy(35, 9);
-                placeDoor(4, 21, 1001, 3, 60, false);
+                //placeDoor(4, 21, 1001, 3, 60, false);
                 createNewKey(8,69);
                 createNewSucker(5,69);
                 placeDoor(12, 68, 1000, 15 * World.TILE_SIZE, 28 * World.TILE_SIZE, true);

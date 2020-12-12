@@ -1,7 +1,7 @@
 package com.unamedgroup.placeholder.graphics.states;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.graphics.screen_components.Botao;
+import com.unamedgroup.placeholder.graphics.screen_components.Button;
 import com.unamedgroup.placeholder.main.Handler;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
  */
 public class State_02 extends State {
 
-    private Botao btnJogar, btnConfig, btnSair;
+    private Button btnJogar, btnConfig, btnSair;
     private SpriteSheet background;
 
     /**
@@ -29,11 +29,11 @@ public class State_02 extends State {
     }
     @Override
     public void init() {
-        btnJogar = new Botao(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 - 40, 90, 25, "Jogar",
+        btnJogar = new Button(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 - 40, 90, 25, "Jogar",
                 Color.LIGHT_GRAY, Color.red);
-        btnConfig = new Botao(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 - 10, 90, 25, "Configurações",
+        btnConfig = new Button(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 - 10, 90, 25, "Configurações",
                 Color.LIGHT_GRAY, Color.red);
-        btnSair = new Botao(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 + 20, 90, 25, "Sair",
+        btnSair = new Button(handler.getGame().WIDTH / 2 - 45, handler.getGame().HEIGHT / 2 + 20, 90, 25, "Sair",
                 Color.LIGHT_GRAY, Color.red);
     }
     @Override
@@ -61,7 +61,7 @@ public class State_02 extends State {
      * @param y
      * @return
      */
-    public boolean isInBox(Botao b, int x, int y){
+    public boolean isInBox(Button b, int x, int y){
         return (x >= (b.getX()*handler.getGame().SCALE) && x <= ((b.getX() + b.getWidth())*handler.getGame().SCALE) &&
             y >= (b.getY()*handler.getGame().SCALE) && y <= ((b.getY() + b.getHeight())*handler.getGame().SCALE));
     }
@@ -80,15 +80,15 @@ public class State_02 extends State {
     }
 
 
-    public Botao getBtnJogar(){
+    public Button getBtnJogar(){
         return btnJogar;
     }
 
-    public Botao getBtnConfg(){
+    public Button getBtnConfg(){
         return btnConfig;
     }
 
-    public Botao getBtnSair(){
+    public Button getBtnSair(){
         return btnSair;
     }
 

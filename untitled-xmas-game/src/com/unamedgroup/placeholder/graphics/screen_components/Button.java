@@ -8,7 +8,7 @@ import java.awt.Color;
  * Essa classe é para a criação de botões para o menu e talvez para outras finalidades
  * @author Daniel Nogueira
  */
-public class Botao{
+public class Button{
 
     private int x, y, width, height, reduceSpace=15;
     private String text;
@@ -23,7 +23,7 @@ public class Botao{
      * @param colorBack
      * @param colorLetter
      */
-    public Botao(int x, int y, int width, int height, String text, Color colorBack, Color colorLetter) {
+    public Button(int x, int y, int width, int height, String text, Color colorBack, Color colorLetter) {
         this.x = x;
         this.y = y;
         this.width = width;
