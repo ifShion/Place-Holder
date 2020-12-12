@@ -81,7 +81,7 @@ public class Room extends World {
         		break;
             case 1001:
                 createNewCannonEnemy(39, 65, -6);
-                createNewCannonEnemy(30, 65, -6);
+                createNewCannonEnemy(32, 65, -6);
                 createNewCannonEnemy(41, 43, 2);
                 createNewWalkerEnemy(31, 36);
                 createNewWalkerEnemy(21, 37);

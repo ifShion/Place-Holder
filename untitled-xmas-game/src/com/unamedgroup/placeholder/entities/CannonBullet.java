@@ -73,9 +73,9 @@ public class CannonBullet extends Projectile implements Hittable {
 	@Override
 	public void render(Graphics g) {
 		super.render(g);
-		g.setColor(Color.BLUE);
+		//g.setColor(Color.BLUE);
 		//g.fillRect(getHitBox().x+super.getMaskX()-handler.getCamera().getX(), getHitBox().y+super.getMaskY()-handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
-		g.fillRect(super.getX() + super.getMaskX() - handler.getCamera().getX()+1, super.getY() + super.getMaskY() - handler.getCamera().getY()+1, super.getMaskW()-2, super.getMaskH()-2);
+		//g.fillRect(super.getX() + super.getMaskX() - handler.getCamera().getX()+1, super.getY() + super.getMaskY() - handler.getCamera().getY()+1, super.getMaskW()-2, super.getMaskH()-2);
 	}
 
 	@Override
