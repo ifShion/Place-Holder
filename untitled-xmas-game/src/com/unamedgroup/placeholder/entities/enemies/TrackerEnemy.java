@@ -77,7 +77,9 @@ public class TrackerEnemy extends Enemy implements Hittable {
 		attackDelay++;
 		if(attackDelay > 60) {
 			attackDelay = 0;
-			handler.getGame().getPlayer().hitPlayer(1);
+			if (!handler.getGame().getPlayer().isDamaged()){
+				handler.getGame().getPlayer().hitPlayer(1);
+			}
 		}
 	}
 	

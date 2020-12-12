@@ -37,20 +37,20 @@ public class Alpha extends Player implements GravityEffected {
 			super.getAnimation().setWidth(16);
 			super.getAnimation().setHeight(24);
 			switch (status) {
-			case "idle":
-				super.getAnimation().setSpriteY(facingIdle);
-				super.getAnimation().setSpriteVeloticy(4);
-				break;
-			case "right":
-				super.getAnimation().setSpriteY(1);
-				super.getAnimation().setSpriteVeloticy(6);
-				break;
-			case "left":
-				super.getAnimation().setSpriteY(3);
-				super.getAnimation().setSpriteVeloticy(6);
-				break;
-			default:
-				break;
+				case "idle":
+					super.getAnimation().setSpriteY(facingIdle);
+					super.getAnimation().setSpriteVeloticy(4);
+					break;
+				case "right":
+					super.getAnimation().setSpriteY(1);
+					super.getAnimation().setSpriteVeloticy(6);
+					break;
+				case "left":
+					super.getAnimation().setSpriteY(3);
+					super.getAnimation().setSpriteVeloticy(6);
+					break;
+				default:
+					break;
 			} 
 		} else if(damaged) {
 			int facing = ((super.direction == 1) ? 12 : 13);
@@ -166,7 +166,7 @@ public class Alpha extends Player implements GravityEffected {
 			if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(),
 					super.getMaskW(), super.getMaskH()) && jump) {
 				// impulso
-				vspd = -7.5;
+				vspd = -8.5;
 				super.setSpeed(2.5);
 				jump = false;
 			}

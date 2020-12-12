@@ -61,7 +61,9 @@ public class WalkerEnemy extends Enemy implements GravityEffected, Hittable {
 		
 		this.fall();
 		if(isCollidingWithPlayer()) {
-			handler.getGame().getPlayer().hitPlayer(1);
+			if (!handler.getGame().getPlayer().isDamaged()){
+				handler.getGame().getPlayer().hitPlayer(1);
+			}
 		}
 	}
 	

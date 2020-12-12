@@ -69,7 +69,7 @@ public class Player extends Entity {
 	public void hitPlayer(int damage) {
 		if(damageCooldown == 0 && !damaged) {
 			super.getAnimation().setSpriteX(0);
-			damageCooldown = 30;
+			damageCooldown = 60;
 			damaged = true;
 			this.hp-=damage;
 		}
@@ -153,5 +153,8 @@ public class Player extends Entity {
 		this.inventario = inventario;
 	}
 	
+	public boolean isDamaged(){
+		return damaged;
+	}
 
 }
