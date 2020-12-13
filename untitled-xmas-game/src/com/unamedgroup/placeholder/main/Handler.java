@@ -2,32 +2,40 @@ package com.unamedgroup.placeholder.main;
 
 import java.awt.Graphics;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import com.unamedgroup.placeholder.sound.SoundManager;
 import com.unamedgroup.placeholder.world.Camera;
 
 /**
- * Essa classe serve para relacionar classes distintas sem um relacionamento direto, o que ajuda a secar e melhorar
- * a legibilidade do código
+ * Essa classe serve para relacionar classes distintas sem um relacionamento
+ * direto, o que ajuda a secar e melhorar a legibilidade do código
+ * 
  * @author Daniel Nogueira
  */
 public class Handler {
     private InputHandler inputHandler; // input vai controlar toda entrada de comandos do jogador.
     private StateManager stateManager; // stateManager vai gerenciar toda tela de pintura do jogo.
-    private Game game;                 // guarda uma referência à classe jogo
-    private Camera camera;             // cria um objeto câmera
-    private Display display;           // cria um objeto display que lida com tudo em relação ao display
-    private MouseInputHandler mouseInputHandler;       // input para o mouse
+    private Game game; // guarda uma referência à classe jogo
+    private Camera camera; // cria um objeto câmera
+    private Display display; // cria um objeto display que lida com tudo em relação ao display
+    private MouseInputHandler mouseInputHandler; // input para o mouse
+    private SoundManager soundManager; // Classe para mexer com os sons
 
     /**
      * @param game
-     * @param display
-     * Recebe um parametro de game e camera para lidar com tudo que estiver lá, a partir daqui
+     * @param display Recebe um parametro de game e camera para lidar com tudo que
+     *                estiver lá, a partir daqui
+     * @throws UnsupportedAudioFileException
      */
-    Handler(Game game, Display display){
+    Handler(Game game, Display display) throws UnsupportedAudioFileException {
         this.game = game;
         this.camera = new Camera();
         this.display = display;
         inputHandler = new InputHandler(display);
         stateManager = new StateManager(this);
+        soundManager = new SoundManager();
+
         stateManager.init();
         mouseInputHandler = new MouseInputHandler(this);
     }
@@ -91,5 +99,13 @@ public class Handler {
 
     public void setMouseInputHandler(MouseInputHandler mouseInputHandler) {
         this.mouseInputHandler = mouseInputHandler;
+    }
+
+    public SoundManager getSoundManager() {
+        return soundManager;
+    }
+
+    public void setSoundManager(SoundManager soundManager) {
+        this.soundManager = soundManager;
     }
 }

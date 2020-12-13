@@ -1,0 +1,16 @@
+Posição no arraylist
+
+0 - Efeito Explosão queda4
+1 - Efeito Explosão 1
+2 - Efeito Explosão 2
+3 - Efeito Explosão 3
+4 - Efeito Hit_Hurt 
+5 - Efeito Hit_Hurt queda 2
+6 - Efeito Hit_Hurt queda 1
+7 - Efeito Pulo 1
+8 - Efeito Pulo 2
+9 - Efeito Pulo 3
+10 - Efeito Pegar Moeda 1
+11 - Efeito Pegar Moeda 2
+12 - Efeito Pegar Moeda 3
+13 - Efeito Pegar Moeda 4

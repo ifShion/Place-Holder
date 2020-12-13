@@ -9,6 +9,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Random;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
@@ -17,39 +19,38 @@ import com.unamedgroup.placeholder.world.Maps;
 import com.unamedgroup.placeholder.world.Room;
 
 /**
- * Inicializa o jogo, comanda as ações q o projeto fará dependendo 
- * do estado do jogo.
+ * Inicializa o jogo, comanda as ações q o projeto fará dependendo do estado do
+ * jogo.
  * 
  * @version alpha 1.0
  * @author Daniel Neves
  * @author Daniel Nogueira
- * @author Nathan
- * ...
+ * @author Nathan ...
  */
 
 @SuppressWarnings("unused")
 public class Game implements Runnable {
 	private static final long serialVersionUID = 3L;
 
-	public static final String NAME = "O Segredo da Fábrica";	// Titulo da jogo
-	private Display display; 									// Janela do jogo
-	private Handler handler;									// Uma classe para fazer a comunicação entre diferentes classes
+	public static final String NAME = "O Segredo da Fábrica"; // Titulo da jogo
+	private Display display; // Janela do jogo
+	private Handler handler; // Uma classe para fazer a comunicação entre diferentes classes
 	/*---------------------------------------------------------------*/
-	//Inicializando variáveis do Display
-	public boolean isFullScreen;						// Estado do tela
-	private Thread thread;								// Thread onde o jogo roda
-	private boolean isRunning;							// Booleano para verificar se o jogo está rodando
-	public static final int WIDTH = 240;				// Variável que define a largura da tela do jogo
-	public static final int HEIGHT = 160;				// Variável que define a altura da tela do jogo
+	// Inicializando variáveis do Display
+	public boolean isFullScreen; // Estado do tela
+	private Thread thread; // Thread onde o jogo roda
+	private boolean isRunning; // Booleano para verificar se o jogo está rodando
+	public static final int WIDTH = 240; // Variável que define a largura da tela do jogo
+	public static final int HEIGHT = 160; // Variável que define a altura da tela do jogo
 	public static final int SCALE = 3;
-	
-	public boolean isPaused;							// Booleano para verificar se o jogo está pausado ou não
+
+	public boolean isPaused; // Booleano para verificar se o jogo está pausado ou não
 	/*---------------------------------------------------------------*/
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
 
 	public static Random rand;
 
-	/*----------------------------------------------------------------*/							
+	/*----------------------------------------------------------------*/
 	// Adicionei um objeto de teste para construir o mundo com colisão
 
 	public static SpriteSheet walkerEnemy;
@@ -62,37 +63,42 @@ public class Game implements Runnable {
 	/*----------------------------------------------------------------*/
 	public Room room;
 	public Maps maps;
-	private int currentMapID;	
-	
-	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro mapa é só mudar isso, ou, quando tivermos um sistema de 
+	private int currentMapID;
+
+	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro
+	// mapa é só mudar isso, ou, quando tivermos um sistema de
 	// save e load pronto, sobrescrever essa variável.
-	
+
 	public boolean alternatingMaps;
-	public boolean statesUseMaps;	
+	public boolean statesUseMaps;
 	/*----------------------------------------------------------------*/
-	//Adicionei um conjunto q deve conter todas as entidades do jogo para executar seu tick e render
-	public static Comparator<Entity> nodeSorter = (new Comparator<Entity>(){
+	// Adicionei um conjunto q deve conter todas as entidades do jogo para executar
+	// seu tick e render
+	public static Comparator<Entity> nodeSorter = (new Comparator<Entity>() {
 		public int compare(Entity o1, Entity o2) {
 			return o1.depth - o2.depth;
 		}
 	});
-	
-	private Player player;	// Player é instanciado pelo State
-	
+
+	private Player player; // Player é instanciado pelo State
+
 	/*----------------------------------------------------------------*/
-	
+
 	/**
-	 * Inicializa todas as variáveis e objetos do jogo, como as entidades,
-	 * menus e sprites.
+	 * Inicializa todas as variáveis e objetos do jogo, como as entidades, menus e
+	 * sprites.
+	 * 
+	 * @throws UnsupportedAudioFileException
 	 */
-	public Game() {
+	public Game() throws UnsupportedAudioFileException {
 		init();
-		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //fullscreen
-		
+		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+		// //fullscreen
+
 		alternatingMaps = true;
 	}
 
-	private void init(){
+	private void init() throws UnsupportedAudioFileException {
 		walkerEnemy = new SpriteSheet("/spritesheet/walkerEnemySprite.png");
 		alpha = new SpriteSheet("/spritesheet/alphaTestbackup.png");
 		nutCracker = new SpriteSheet("/spritesheet/nutCracker.png");
@@ -104,6 +110,8 @@ public class Game implements Runnable {
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();
+
+		
 
 		handler = new Handler(this, display);
 		maps = new Maps(handler);
@@ -118,7 +126,7 @@ public class Game implements Runnable {
 		Room.projectiles = new ArrayList<>();
 		Room.entities.add(player);
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnsupportedAudioFileException {
 		Game game = new Game();
 		game.start();
 	}

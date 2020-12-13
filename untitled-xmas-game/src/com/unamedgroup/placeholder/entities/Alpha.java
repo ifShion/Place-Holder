@@ -1,6 +1,5 @@
 package com.unamedgroup.placeholder.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -123,8 +122,8 @@ public class Alpha extends Player implements GravityEffected {
 			if(batHitBox.intersects(enemy) && Room.entities.get(i) instanceof Hittable && !hit) {
 				Hittable h = (Hittable)Room.entities.get(i);
 				h.getHit();
-				
 				this.hit = true;
+				handler.getSoundManager().getSound(0).start();;
 			}
 		}
 		

@@ -2,6 +2,8 @@ package com.unamedgroup.placeholder.entities;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Handler;
+import com.unamedgroup.placeholder.world.Room;
+
 import java.awt.Rectangle;
 
 public abstract class Projectile extends Entity {
@@ -36,7 +38,7 @@ public abstract class Projectile extends Entity {
 	}
 	
 	public void destroyProjectile() {
-		handler.getGame().room.projectiles.remove(this);
+		Room.projectiles.remove(this);
 		return;
 	}
 
