@@ -12,7 +12,7 @@ public class Hud {
 
     public Hud(Handler handler){
        this.handler = handler;
-       KEYS = handler.getGame().hud.getSprite(9, 0, 8, 8);
+       KEYS = handler.getGame().hud.getSprite(8, 0, 8, 8);
        HP = handler.getGame().hud.getSprite(0, 0, 8, 8);
     }
 
