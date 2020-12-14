@@ -4,7 +4,6 @@ import java.awt.Graphics;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import com.unamedgroup.placeholder.sound.SoundManager;
 import com.unamedgroup.placeholder.sound.Sounds;
 import com.unamedgroup.placeholder.world.Camera;
 
@@ -21,8 +20,7 @@ public class Handler {
     private Camera camera; // cria um objeto câmera
     private Display display; // cria um objeto display que lida com tudo em relação ao display
     private MouseInputHandler mouseInputHandler; // input para o mouse
-    private SoundManager soundManager; // Classe para mexer com os sons
-    private Sounds sounds;
+    private Sounds sounds; // Classe para mexer com os sons
 
     /**
      * @param game
@@ -36,7 +34,6 @@ public class Handler {
         this.display = display;
         inputHandler = new InputHandler(display);
         stateManager = new StateManager(this);
-        soundManager = new SoundManager();
         sounds = new Sounds();
 
         stateManager.init();
@@ -49,6 +46,9 @@ public class Handler {
         //Em caso de não existência de um estado, ele simplesmente não usa o método tick() por retornar a função
         if(!stateManager.currentStateExist()) return; 
         stateManager.tick();
+        if (stateManager.getCurrentState().getId()==0){
+            //sounds.tick("Loop");
+        }        
     }
 
     public void render(Graphics g){
@@ -102,14 +102,6 @@ public class Handler {
 
     public void setMouseInputHandler(MouseInputHandler mouseInputHandler) {
         this.mouseInputHandler = mouseInputHandler;
-    }
-
-    public SoundManager getSoundManager() {
-        return soundManager;
-    }
-
-    public void setSoundManager(SoundManager soundManager) {
-        this.soundManager = soundManager;
     }
 
     public Sounds getSounds() {

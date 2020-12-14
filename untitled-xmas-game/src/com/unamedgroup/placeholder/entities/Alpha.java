@@ -123,8 +123,7 @@ public class Alpha extends Player implements GravityEffected {
 				Hittable h = (Hittable)Room.entities.get(i);
 				h.getHit();
 				this.hit = true;
-				//handler.getSoundManager().getSound(4).start();
-				handler.getSounds().getSounds("Hit").start();
+				handler.getSounds().play("Hit", 1);
 			}
 		}
 		
@@ -134,8 +133,8 @@ public class Alpha extends Player implements GravityEffected {
 			if(batHitBox.intersects(enemy) && Room.projectiles.get(i) instanceof Hittable && !hit) {
 				Hittable h = (Hittable)Room.projectiles.get(i);
 				h.getHit();
-				
 				this.hit = true;
+				
 			}
 		}
 	}
@@ -152,6 +151,8 @@ public class Alpha extends Player implements GravityEffected {
 						super.getMaskW(), super.getMaskH())) {
 			this.jump = true;
 			pressedDown = true;
+			handler.getSounds().play("Jump3", 1);
+
 		} else if (!handler.getInputHandler().prime.down) {
 			pressedDown = false;
 		}

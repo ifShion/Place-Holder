@@ -30,10 +30,11 @@ public class SoundInput implements LineListener {
      * @return
      * @throws UnsupportedAudioFileException
      */
-    public Clip getAudio( File audioFile) throws UnsupportedAudioFileException {
-       // File audioFile = new File(path);
+    public Clip getAudio(String path) throws UnsupportedAudioFileException {
+        File audioFile = new File(path);
         if (!audioFile.exists()) {
             System.out.println("Não recebeu nada\n");
+            
             return null;
         }
 
@@ -66,7 +67,7 @@ public class SoundInput implements LineListener {
 
     @Override
     public void update(LineEvent event) {
-        // TODO Auto-generated method stub
-
+         //TODO
     }
+
 }
