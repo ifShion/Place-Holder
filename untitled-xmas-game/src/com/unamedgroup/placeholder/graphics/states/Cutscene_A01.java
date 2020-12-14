@@ -27,7 +27,7 @@ public class Cutscene_A01 extends State {
 		missao = new Toast("Alpha",Game.WIDTH/2,30,10,CustomFont.getFont("AlaskanNights.ttf",  45));
 		local = new Toast("No armazém dos", Game.WIDTH/2, 120,10, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
         local2 = new Toast("Brinquedos", Game.WIDTH/2, 140,10, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
-        alpha = new Entity(-24, (Game.HEIGHT/2)+12, 16, 24, Game.alpha, 4, 3, 4, 4, 10, 0, 0, handler);
+        alpha = new Entity(-24, (Game.HEIGHT/2), 16, 24, Game.alpha, 4, 3, 4, 4, 10, 0, 0, handler);
         alpha.getAnimation().setSpriteY(1);
         alpha.getAnimation().setPlay(true);
         
@@ -50,7 +50,7 @@ public class Cutscene_A01 extends State {
 
         alpha.tick();
 
-        if(alpha.getX()<(Game.WIDTH/2)-12)
+        if(alpha.getX()<(Game.WIDTH/2))
             alpha.setX(alpha.getX()+1);
         else
             alpha.getAnimation().setSpriteY(0);

@@ -22,9 +22,20 @@ public class Sounds {
         soundmap = new LinkedHashMap<>();
 
         SoundInput soundinput = new SoundInput();
-
-        String hits = "untitled-xmas-game/res/audioteste/EfeitoHit_Hurt.wav";
-        File hitf = new File(hits);
+        String hits;
+        File hitf = null;
+        try {
+                try {
+                        hits = "untitled-xmas-game/res/audio/EfeitoHit_Hurt.wav";
+                        hitf = new File(hits);  
+                } catch (Exception e) {
+                        hits = "/audio/EfeitoHit_Hurt.wav";
+                        hitf = new File(hits);
+                }
+        } catch (Exception e) {
+                //TODO: handle exception
+        }
+        
 
         soundmap.put("Hit", soundinput.getAudio(hitf));
 

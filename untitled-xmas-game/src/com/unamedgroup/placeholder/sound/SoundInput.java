@@ -30,15 +30,15 @@ public class SoundInput implements LineListener {
      * @return
      * @throws UnsupportedAudioFileException
      */
-    public Clip getAudio( File audioFile) throws UnsupportedAudioFileException {
+    public Clip getAudio( File hitf) throws UnsupportedAudioFileException {
        // File audioFile = new File(path);
-        if (!audioFile.exists()) {
+        if (!hitf.exists()) {
             System.out.println("Não recebeu nada\n");
             return null;
         }
 
         try {
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(hitf);
 
             AudioFormat format = audioStream.getFormat();
 
