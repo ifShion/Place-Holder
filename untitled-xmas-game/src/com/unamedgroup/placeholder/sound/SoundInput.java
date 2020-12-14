@@ -39,7 +39,7 @@ public class SoundInput implements LineListener {
         }
 
         try {
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(hitf);
 
             AudioFormat format = audioStream.getFormat();
 
