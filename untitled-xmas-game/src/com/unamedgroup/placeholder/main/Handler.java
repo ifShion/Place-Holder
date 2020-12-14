@@ -47,7 +47,7 @@ public class Handler {
         if(!stateManager.currentStateExist()) return; 
         stateManager.tick();
         if (stateManager.getCurrentState().getId()==0){
-            //sounds.tick("Loop");
+            sounds.tick("Loop", 1); //Inicia a musica em loop no state 0
         }        
     }
 
