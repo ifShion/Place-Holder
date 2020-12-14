@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import com.unamedgroup.placeholder.sound.SoundManager;
+import com.unamedgroup.placeholder.sound.Sounds;
 import com.unamedgroup.placeholder.world.Camera;
 
 /**
@@ -21,6 +22,7 @@ public class Handler {
     private Display display; // cria um objeto display que lida com tudo em relação ao display
     private MouseInputHandler mouseInputHandler; // input para o mouse
     private SoundManager soundManager; // Classe para mexer com os sons
+    private Sounds sounds;
 
     /**
      * @param game
@@ -35,6 +37,7 @@ public class Handler {
         inputHandler = new InputHandler(display);
         stateManager = new StateManager(this);
         soundManager = new SoundManager();
+        sounds = new Sounds();
 
         stateManager.init();
         mouseInputHandler = new MouseInputHandler(this);
@@ -107,5 +110,13 @@ public class Handler {
 
     public void setSoundManager(SoundManager soundManager) {
         this.soundManager = soundManager;
+    }
+
+    public Sounds getSounds() {
+        return sounds;
+    }
+
+    public void setSounds(Sounds sounds) {
+        this.sounds = sounds;
     }
 }
