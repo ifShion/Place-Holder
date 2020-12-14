@@ -123,8 +123,7 @@ public class Alpha extends Player implements GravityEffected {
 				Hittable h = (Hittable)Room.entities.get(i);
 				h.getHit();
 				this.hit = true;
-				//handler.getSoundManager().getSound(4).start();
-				handler.getSounds().getSounds("Hit").start();
+				handler.getSoundManager().getSound(0).start();;
 			}
 		}
 		

@@ -97,6 +97,26 @@ public class Room extends World {
                 break;
             case 2000: // Mapa do corredor, uso numa cutscene
                 break;
+            case 2001: // Mapa do armazem beta
+                createNewCannonEnemy(35, 6, 6);
+                createNewSucker(29,7);
+                createNewWalkerEnemy(55, 7);
+                createNewWalkerEnemy(65, 7);
+                createNewWalkerEnemy(75, 7);
+                createNewWalkerEnemy(85, 7);
+
+                createNewHuggerEnemy(8, 6);
+                createNewKey(5,5);
+
+                createNewSucker(4,19);
+                createNewWalkerEnemy(15, 36);
+
+                createNewCannonEnemy(116, 17, -6);
+                createNewWalkerEnemy(40, 28);
+                createNewWalkerEnemy(79, 28);
+
+                placeDoor(114, 34, 1001, 8 * World.TILE_SIZE, 68 * World.TILE_SIZE, true);
+                break;
             default:
 
         }
