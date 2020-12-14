@@ -20,8 +20,6 @@ import javax.sound.sampled.LineListener;
 public class Sounds {
 
         private Map<String, Clip> soundmap;
-
-        private static boolean eclipse = false;
         
 
         public Sounds() throws UnsupportedAudioFileException {
@@ -30,38 +28,44 @@ public class Sounds {
 
                 SoundInput soundinput = new SoundInput();
 
-                soundmap.put("Loop", soundinput.getAudio("untitled-xmas-game/res/audio/Loop.wav"));
-                soundmap.put("ExpFall", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoExplosionQueda4.wav"));
-                soundmap.put("Exp1", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoExplosion1.wav"));
-                soundmap.put("Exp2", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoExplosion2.wav"));
-                soundmap.put("Exp3", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoExplosion3.wav"));
-                soundmap.put("Hit", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoHit_Hurt.wav"));
-                soundmap.put("HitFall2", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoHit_HurtQueda2.wav"));
-                soundmap.put("HitFall1", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoHit_Queda1.wav"));
-                soundmap.put("Jump1", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoJump1.wav"));
-                soundmap.put("Jump2", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoJump2.wav"));
-                soundmap.put("Jump3", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoJump3.wav"));
-                soundmap.put("pCoin1", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPick_upCoin1.wav"));
-                soundmap.put("pCoin2", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPick_upCoin2.wav"));
-                soundmap.put("pCoin3", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPickup_Coin3.wav"));
-                soundmap.put("pCoin4", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPickup_Coin4.wav"));
+                try{
+                        try{
+                                soundmap.put("Loop", soundinput.getAudio("untitled-xmas-game/res/audio/Loop.wav"));
+                                soundmap.put("ExpFall", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoExplosionQueda4.wav"));
+                                soundmap.put("Exp1", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoExplosion1.wav"));
+                                soundmap.put("Exp2", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoExplosion2.wav"));
+                                soundmap.put("Exp3", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoExplosion3.wav"));
+                                soundmap.put("Hit", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoHit_Hurt.wav"));
+                                soundmap.put("HitFall2", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoHit_HurtQueda2.wav"));
+                                soundmap.put("HitFall1", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoHit_Queda1.wav"));
+                                soundmap.put("Jump1", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoJump1.wav"));
+                                soundmap.put("Jump2", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoJump2.wav"));
+                                soundmap.put("Jump3", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoJump3.wav"));
+                                soundmap.put("pCoin1", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPick_upCoin1.wav"));
+                                soundmap.put("pCoin2", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPick_upCoin2.wav"));
+                                soundmap.put("pCoin3", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPickup_Coin3.wav"));
+                                soundmap.put("pCoin4", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPickup_Coin4.wav"));
 
-                if (eclipse == true) {// Usei esse if com uma variável static para funcionar no eclipse também e não
-                                      // ter que ficar mudando isso aqui toda hora.
-                        soundmap.put("ExpFall", soundinput.getAudio("res/audio/EfeitoExplosionQueda4.wav"));
-                        soundmap.put("Exp1", soundinput.getAudio("res/audio/EfeitoExplosion1.wav"));
-                        soundmap.put("Exp2", soundinput.getAudio("res/audio/EfeitoExplosion2.wav"));
-                        soundmap.put("Exp3", soundinput.getAudio("res/audio/EfeitoExplosion3.wav"));
-                        soundmap.put("Hit", soundinput.getAudio("res/audio/EfeitoHit_Hurt.wav"));
-                        soundmap.put("HitFall2", soundinput.getAudio("res/audio/EfeitoHit_HurtQueda2.wav"));
-                        soundmap.put("HitFall1", soundinput.getAudio("res/audio/EfeitoHit_Queda1.wav"));
-                        soundmap.put("Jump1", soundinput.getAudio("res/audio/EfeitoJump1.wav"));
-                        soundmap.put("Jump2", soundinput.getAudio("res/audio/EfeitoJump2.wav"));
-                        soundmap.put("Jump3", soundinput.getAudio("res/audio/EfeitoJump3.wav"));
-                        soundmap.put("pCoin1", soundinput.getAudio("res/audio/EfeitoPick_upCoin1.wav"));
-                        soundmap.put("pCoin2", soundinput.getAudio("res/audio/EfeitoPick_upCoin2.wav"));
-                        soundmap.put("pCoin3", soundinput.getAudio("res/audio/EfeitoPickup_Coin3.wav"));
-                        soundmap.put("pCoin4", soundinput.getAudio("res/audio/EfeitoPickup_Coin4.wav"));
+                        }
+                        catch (Exception e){
+                                soundmap.put("ExpFall", soundinput.getAudio("res/audio/EfeitoExplosionQueda4.wav"));
+                                soundmap.put("Exp1", soundinput.getAudio("res/audio/EfeitoExplosion1.wav"));
+                                soundmap.put("Exp2", soundinput.getAudio("res/audio/EfeitoExplosion2.wav"));
+                                soundmap.put("Exp3", soundinput.getAudio("res/audio/EfeitoExplosion3.wav"));
+                                soundmap.put("Hit", soundinput.getAudio("res/audio/EfeitoHit_Hurt.wav"));
+                                soundmap.put("HitFall2", soundinput.getAudio("res/audio/EfeitoHit_HurtQueda2.wav"));
+                                soundmap.put("HitFall1", soundinput.getAudio("res/audio/EfeitoHit_Queda1.wav"));
+                                soundmap.put("Jump1", soundinput.getAudio("res/audio/EfeitoJump1.wav"));
+                                soundmap.put("Jump2", soundinput.getAudio("res/audio/EfeitoJump2.wav"));
+                                soundmap.put("Jump3", soundinput.getAudio("res/audio/EfeitoJump3.wav"));
+                                soundmap.put("pCoin1", soundinput.getAudio("res/audio/EfeitoPick_upCoin1.wav"));
+                                soundmap.put("pCoin2", soundinput.getAudio("res/audio/EfeitoPick_upCoin2.wav"));
+                                soundmap.put("pCoin3", soundinput.getAudio("res/audio/EfeitoPickup_Coin3.wav"));
+                                soundmap.put("pCoin4", soundinput.getAudio("res/audio/EfeitoPickup_Coin4.wav"));
+                        }
+                }
+                catch (Exception e) {
+                        //TODO: handle exception
                 }
 
         }
@@ -79,10 +83,6 @@ public class Sounds {
         
         public Clip getSounds(String key){
                 return soundmap.get(key);
-        }
-
-        public static void setEclipse (boolean eclipse){
-                Sounds.eclipse = eclipse;
         }
 
         public void tick(String key, float volume){

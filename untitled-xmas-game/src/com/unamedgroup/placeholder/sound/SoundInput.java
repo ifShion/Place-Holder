@@ -34,7 +34,6 @@ public class SoundInput implements LineListener {
         File audioFile = new File(path);
         if (!audioFile.exists()) {
             System.out.println("Não recebeu nada\n");
-            
             return null;
         }
 
