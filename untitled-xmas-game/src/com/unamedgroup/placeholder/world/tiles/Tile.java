@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 
 import com.unamedgroup.placeholder.graphics.Animation;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.World;
 /**

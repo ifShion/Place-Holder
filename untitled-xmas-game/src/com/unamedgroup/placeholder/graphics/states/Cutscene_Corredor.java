@@ -10,7 +10,7 @@ import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
 public class Cutscene_Corredor extends State {
-    public static int id;
+	public static int id;
     private Alpha_topdown alphinha;
     private String cena = "inicio", printStatus = "";
     private BufferedImage carta, balaozim;
@@ -18,10 +18,10 @@ public class Cutscene_Corredor extends State {
 
     public Cutscene_Corredor(int id, Handler handler) {
         super(id, handler);
-        this.id = id;
+        Cutscene_Corredor.id = id;
         alphinha = new Alpha_topdown(135, 0,handler);
         carta = new SpriteSheet("/img/carta.png").getSprite(0, 0, 240, 160);
-        balaozim = handler.getGame().hud.getSprite(16, 8, 8, 8);
+        balaozim = Game.hud.getSprite(16, 8, 8, 8);
         butao = new Entity(220, 140, 8, 8, Game.hud, 1, 1, 4, 2, 1, 0, 8, handler);
         butao.getAnimation().setPlay(true);
         cartinha = new Entity(135, 120, 16, 16, new SpriteSheet("/spritesheet/factory.png"), 1, 0, 0, 1, 1, 32, 32, handler);
@@ -82,7 +82,7 @@ public class Cutscene_Corredor extends State {
                 passos--;
                 if(esperar==170){
                     cena = "cena03";
-                    balaozim =  handler.getGame().hud.getSprite(16, 0, 8, 8);
+                    balaozim =  Game.hud.getSprite(16, 0, 8, 8);
                     printStatus = "balao";
                 }
                 if(esperar==120){

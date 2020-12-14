@@ -13,6 +13,7 @@ public class Toast {
     private final int width = Game.WIDTH;
     private final int height = Game.HEIGHT/9;
     private final Font font;
+    @SuppressWarnings("unused")
     private  int x = 0;
     private  int y = 0;
     private  int timeOff; 

@@ -2,12 +2,10 @@ package com.unamedgroup.placeholder.sound;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
 
 /**
  * Criei essa classe para armazenar todos os audios usando o HashMap, já que não

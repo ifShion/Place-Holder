@@ -1,9 +1,9 @@
 package com.unamedgroup.placeholder.graphics.screen_components;
 import java.awt.Graphics;
-
 import java.awt.image.BufferedImage;
 
 import com.unamedgroup.placeholder.entities.Key;
+import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
 public class Hud {
@@ -12,8 +12,8 @@ public class Hud {
 
     public Hud(Handler handler){
        this.handler = handler;
-       KEYS = handler.getGame().hud.getSprite(8, 0, 8, 8);
-       HP = handler.getGame().hud.getSprite(0, 0, 8, 8);
+       KEYS = Game.hud.getSprite(8, 0, 8, 8);
+       HP = Game.hud.getSprite(0, 0, 8, 8);
     }
 
 

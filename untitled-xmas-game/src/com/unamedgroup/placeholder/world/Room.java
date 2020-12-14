@@ -1,6 +1,7 @@
 package com.unamedgroup.placeholder.world;
 
 import java.awt.Graphics;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,6 +22,12 @@ public class Room extends World {
     private Handler handler;
     private SpriteSheet map;
     private double[] respawnPoint = new double[2];
+    
+    public static Comparator<Entity> nodeSorter = (new Comparator<Entity>() {
+		public int compare(Entity o1, Entity o2) {
+			return o1.depth - o2.depth;
+		}
+	});
     
 	public static List<Entity> entities = new LinkedList<>();
     /**
@@ -50,6 +57,10 @@ public class Room extends World {
 		return map;
 	}
 
+    public static void sortEntities() {
+    	entities.sort(nodeSorter);
+    }
+    
     /**                     
      * Cria as Entidades presentes nas salas.
      * As cores no Mundo não são mais necessárias para inicializar novas entidades no mapa, ao invés disso, usaremos as variáveis

@@ -72,13 +72,6 @@ public class Game implements Runnable {
 	public boolean alternatingMaps;
 	public boolean statesUseMaps;
 	/*----------------------------------------------------------------*/
-	// Adicionei um conjunto q deve conter todas as entidades do jogo para executar
-	// seu tick e render
-	public static Comparator<Entity> nodeSorter = (new Comparator<Entity>() {
-		public int compare(Entity o1, Entity o2) {
-			return o1.depth - o2.depth;
-		}
-	});
 
 	private Player player; // Player é instanciado pelo State
 
@@ -166,7 +159,7 @@ public class Game implements Runnable {
 		if(handler.getStateManager().currentStateExist())	
 			handler.getStateManager().render(g);
 		
-		Room.entities.sort(nodeSorter);
+		Room.sortEntities();
 		for (Entity entity : Room.entities) entity.render(g);
 		
 		g = bs.getDrawGraphics();
