@@ -15,7 +15,7 @@ public class SoundManager {
     private ArrayList<Clip> soundList = new ArrayList<>();
 
     public SoundManager() throws UnsupportedAudioFileException {
-        soundList.add(SoundInput.getAudio("/audio/EfeitoExplosionQueda4.wav"));
+        /*soundList.add(SoundInput.getAudio("/audio/EfeitoExplosionQueda4.wav"));
         soundList.add(SoundInput.getAudio("/audio/EfeitoExplosion1.wav"));
         soundList.add(SoundInput.getAudio("/audio/EfeitoExplosion2.wav"));
         soundList.add(SoundInput.getAudio("/audio/EfeitoExplosion3.wav"));
@@ -28,7 +28,7 @@ public class SoundManager {
         soundList.add(SoundInput.getAudio("/audio/EfeitoPick_upCoin1.wav"));
         soundList.add(SoundInput.getAudio("/audio/EfeitoPick_upCoin2.wav"));
         soundList.add(SoundInput.getAudio("/audio/EfeitoPick_upCoin3.wav"));
-        soundList.add(SoundInput.getAudio("/audio/EfeitoPick_upCoin4.wav"));
+        soundList.add(SoundInput.getAudio("/audio/EfeitoPick_upCoin4.wav"));*/
     }
 
     public Clip getSound(int index){
