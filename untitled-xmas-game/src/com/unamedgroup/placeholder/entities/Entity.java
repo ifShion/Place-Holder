@@ -209,15 +209,15 @@ public class Entity {
 		if(path != null) {
 			if(path.size() > 0) {
 				Vector2i target = path.get(path.size() - 1).tile;
-				if(x < target.x * World.TILE_SIZE && handler.getGame().room.isFree((int)x + 1 , (int)y, maskW, maskH) && !isColliding((int)(x + speed), this.getY())) {
+				if(x < target.x * World.TILE_SIZE && handler.getGame().getRoom().isFree((int)x + 1 , (int)y, maskW, maskH) && !isColliding((int)(x + speed), this.getY())) {
 					x+=speed;
-				}else if(x > target.x * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() - 1 , this.getY(),maskW, maskH) && !isColliding((int)(x - speed), this.getY())) {
+				}else if(x > target.x * World.TILE_SIZE && handler.getGame().getRoom().isFree(this.getX() - 1 , this.getY(),maskW, maskH) && !isColliding((int)(x - speed), this.getY())) {
 					x-=speed;
 				}
 				
-				if(y < target.y * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() , this.getY() + 1, maskW, maskH) && !isColliding(this.getX(), (int)(y + speed))) {
+				if(y < target.y * World.TILE_SIZE && handler.getGame().getRoom().isFree(this.getX() , this.getY() + 1, maskW, maskH) && !isColliding(this.getX(), (int)(y + speed))) {
 					y+=speed;
-				}else if(y > target.y * World.TILE_SIZE && handler.getGame().room.isFree(this.getX() , this.getY() - 1, maskW, maskH) && !isColliding(this.getX(), (int)(y - speed))) {
+				}else if(y > target.y * World.TILE_SIZE && handler.getGame().getRoom().isFree(this.getX() , this.getY() - 1, maskW, maskH) && !isColliding(this.getX(), (int)(y - speed))) {
 					y-=speed;
 				}
 				

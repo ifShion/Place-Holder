@@ -70,7 +70,7 @@ public class Alpha extends Player implements GravityEffected {
 	}
 	
 	private void playerAttack() {
-		if (handler.getInputHandler().secondary.down && !damaged && !pressedAttack && !handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
+		if (handler.getInputHandler().secondary.down && !damaged && !pressedAttack && !handler.getGame().getRoom().isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
 			this.attacking = true;
 			super.getAnimation().setSpriteX(0);
 			pressedAttack = true;
@@ -136,7 +136,7 @@ public class Alpha extends Player implements GravityEffected {
 		// sitema de pulo do personagem. Ele não pode pular duas vezes nem segurar o
 		// botão para pular assim q alcançar o chão
 		if (handler.getInputHandler().prime.down && !pressedDown && moveable
-				&& !handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(),
+				&& !handler.getGame().getRoom().isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(),
 						super.getMaskW(), super.getMaskH())) {
 			this.jump = true;
 			pressedDown = true;
@@ -153,7 +153,7 @@ public class Alpha extends Player implements GravityEffected {
 		
 		try {
 			// altura que o jogador pula
-			if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(),
+			if (!handler.getGame().getRoom().isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(),
 					super.getMaskW(), super.getMaskH()) && jump) {
 				// impulso
 				vspd = -8.5;
@@ -163,7 +163,7 @@ public class Alpha extends Player implements GravityEffected {
 
 			// verifica se o local para onde o jogador está subindo ou caindo para está
 			// disponível
-			if (!handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + vspd) + super.getMaskY(),
+			if (!handler.getGame().getRoom().isFree((int) x + super.getMaskX(), (int) (y + vspd) + super.getMaskY(),
 					super.getMaskW(), super.getMaskH())) {
 				int signVsp = 0;
 				if (vspd >= 0) {
@@ -176,7 +176,7 @@ public class Alpha extends Player implements GravityEffected {
 				if (vspd > 3.45) vspd = 3.45;
 	
 				// impossibilita o jogador se enterrar no chão
-				while (handler.getGame().room.isFree((int) x + super.getMaskX(), (int) (y + signVsp) + super.getMaskY(),
+				while (handler.getGame().getRoom().isFree((int) x + super.getMaskX(), (int) (y + signVsp) + super.getMaskY(),
 						super.getMaskW(), super.getMaskH())) {
 					y += signVsp;
 				}

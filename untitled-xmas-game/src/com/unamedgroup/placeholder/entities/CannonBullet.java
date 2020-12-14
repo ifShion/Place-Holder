@@ -45,7 +45,7 @@ public class CannonBullet extends Projectile implements Hittable {
 
 		range++;
 		x = x + (super.getSpeed() * direction);
-		if(range > maxRange || !handler.getGame().room.isFree(super.getX() + (int)(speed * direction), super.getY(), super.getMaskW(), super.getMaskH())) {
+		if(range > maxRange || !handler.getGame().getRoom().isFree(super.getX() + (int)(speed * direction), super.getY(), super.getMaskW(), super.getMaskH())) {
 			super.destroyProjectile();
 		}
 		

@@ -81,8 +81,8 @@ public class Player extends Entity {
 		if(this.hp < 1) {
 			  handler.getGame().updateEntities();
 			  handler.getGame().changeCurrentMapID(handler.getGame().getCurrentMapID());
-			  handler.getGame().getPlayer().setX(handler.getGame().room.getRespawnPoint()[0]);
-	          handler.getGame().getPlayer().setY(handler.getGame().room.getRespawnPoint()[1]);
+			  handler.getGame().getPlayer().setX(handler.getGame().getRoom().getRespawnPoint()[0]);
+	          handler.getGame().getPlayer().setY(handler.getGame().getRoom().getRespawnPoint()[1]);
 			  this.hp = this.MAX_LIFE;
 			  damaged = false;
 			  this.inventario = new ArrayList<>();
@@ -91,8 +91,8 @@ public class Player extends Entity {
 	//Sistema inicial de cair no vazio - Euler Lima
 	public void fallVoid() {
 		this.hitPlayer(1);
-		handler.getGame().getPlayer().setX(handler.getGame().room.getRespawnPoint()[0]);
-        handler.getGame().getPlayer().setY(handler.getGame().room.getRespawnPoint()[1]);
+		handler.getGame().getPlayer().setX(handler.getGame().getRoom().getRespawnPoint()[0]);
+        handler.getGame().getPlayer().setY(handler.getGame().getRoom().getRespawnPoint()[1]);
 		damaged = false;
 	}
 
@@ -103,16 +103,16 @@ public class Player extends Entity {
 		boolean left = false;
 		
 		try {
-			right = handler.getInputHandler().right.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !damaged;
-			left = handler.getInputHandler().left.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !damaged;
+			right = handler.getInputHandler().right.down && handler.getGame().getRoom().isFree((int)(super.getX() + super.getMaskX() + speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !damaged;
+			left = handler.getInputHandler().left.down && handler.getGame().getRoom().isFree((int)(super.getX() + super.getMaskX() - speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !damaged;
 		} catch(ArrayIndexOutOfBoundsException aioobe) {
 			this.fallVoid();
 		}
 		boolean flag = false;  //variável para usar caso dois botôes estarem sendo apertados ao mesmo tempo
 
 		if (flag) {
-			handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().room.WIDTH * World.TILE_SIZE - Game.WIDTH));
-			handler.getCamera().setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , handler.getGame().room.HEIGHT * World.TILE_SIZE - Game.HEIGHT));
+			handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().getRoom().WIDTH * World.TILE_SIZE - Game.WIDTH));
+			handler.getCamera().setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , handler.getGame().getRoom().HEIGHT * World.TILE_SIZE - Game.HEIGHT));
 			return;  //caso os dois botões tenham sido apertados, o método acaba
 		}
 
@@ -137,8 +137,8 @@ public class Player extends Entity {
 		}
 		
 		// Utilizar esse código para centralizar a câmera no centralizado quando existir um mapa
-		handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().room.WIDTH * World.TILE_SIZE - Game.WIDTH));
-		handler.getCamera().setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , handler.getGame().room.HEIGHT * World.TILE_SIZE - Game.HEIGHT));
+		handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().getRoom().WIDTH * World.TILE_SIZE - Game.WIDTH));
+		handler.getCamera().setY(Camera.clamp(super.getY() - Game.HEIGHT/2 , 0 , handler.getGame().getRoom().HEIGHT * World.TILE_SIZE - Game.HEIGHT));
 	}
 
 	public void render(Graphics g) {

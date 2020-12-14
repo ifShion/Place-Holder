@@ -73,27 +73,27 @@ public class AStar {
 				int y = current.tile.y;
 				int xi = (i%3) - 1;
 				int yi = (i/3) - 1;
-				Tile tile = handler.getGame().room.tiles[x+xi+((y+yi)*handler.getGame().room.WIDTH)];
+				Tile tile = handler.getGame().getRoom().tiles[x+xi+((y+yi)*handler.getGame().getRoom().WIDTH)];
 				if(tile == null) continue;
 				if(tile instanceof SolidTile) continue;
 				if(i == 0) {
-					Tile test = handler.getGame().room.tiles[x+xi+1+((y+yi) * handler.getGame().room.WIDTH)];
-					Tile test2 = handler.getGame().room.tiles[x+xi+((y+yi+1) * handler.getGame().room.WIDTH)];
+					Tile test = handler.getGame().getRoom().tiles[x+xi+1+((y+yi) * handler.getGame().getRoom().WIDTH)];
+					Tile test2 = handler.getGame().getRoom().tiles[x+xi+((y+yi+1) * handler.getGame().getRoom().WIDTH)];
 					if(test instanceof SolidTile || test2 instanceof SolidTile) continue;
 				}
 				else if(i == 2) {
-					Tile test = handler.getGame().room.tiles[x+xi-1+((y+yi) * handler.getGame().room.WIDTH)];
-					Tile test2 = handler.getGame().room.tiles[x+xi+((y+yi+1) * handler.getGame().room.WIDTH)];
+					Tile test = handler.getGame().getRoom().tiles[x+xi-1+((y+yi) * handler.getGame().getRoom().WIDTH)];
+					Tile test2 = handler.getGame().getRoom().tiles[x+xi+((y+yi+1) * handler.getGame().getRoom().WIDTH)];
 					if(test instanceof SolidTile || test2 instanceof SolidTile) continue;
 				}
 				else if(i == 6) {
-					Tile test = handler.getGame().room.tiles[x+xi+((y+yi-1) * handler.getGame().room.WIDTH)];
-					Tile test2 = handler.getGame().room.tiles[x+xi+1+((y+yi) * handler.getGame().room.WIDTH)];
+					Tile test = handler.getGame().getRoom().tiles[x+xi+((y+yi-1) * handler.getGame().getRoom().WIDTH)];
+					Tile test2 = handler.getGame().getRoom().tiles[x+xi+1+((y+yi) * handler.getGame().getRoom().WIDTH)];
 					if(test instanceof SolidTile || test2 instanceof SolidTile) continue;
 				}
 				else if(i == 8) {
-					Tile test = handler.getGame().room.tiles[x+xi+((y+yi-1) * handler.getGame().room.WIDTH)];
-					Tile test2 = handler.getGame().room.tiles[x+xi-1+((y+yi) * handler.getGame().room.WIDTH)];
+					Tile test = handler.getGame().getRoom().tiles[x+xi+((y+yi-1) * handler.getGame().getRoom().WIDTH)];
+					Tile test2 = handler.getGame().getRoom().tiles[x+xi-1+((y+yi) * handler.getGame().getRoom().WIDTH)];
 					if(test instanceof SolidTile || test2 instanceof SolidTile) continue;
 				}
 				

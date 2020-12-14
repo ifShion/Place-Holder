@@ -33,9 +33,9 @@ public class Maps {
 
     public void tick(){
         handler.getGame().alternatingMaps = false;
-        handler.getGame().room = maps.get(handler.getGame().getCurrentMapID());
+        handler.getGame().setRoom(maps.get(handler.getGame().getCurrentMapID()));
         handler.getGame().currentMap = handler.getGame().maps.getMaps().get(handler.getGame().getCurrentMapID()).getMap();
-        handler.getGame().room.createEntities();
+        handler.getGame().getRoom().createEntities();
     }
 
     public Map<Integer, Room> getMaps() {

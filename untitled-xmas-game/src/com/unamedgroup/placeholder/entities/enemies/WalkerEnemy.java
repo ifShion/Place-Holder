@@ -47,14 +47,14 @@ public class WalkerEnemy extends Enemy implements GravityEffected, Hittable {
 		}
 		
 		// sempre que inimigo alcança o limite de uma plataforma, ele segue o caminho inverso
-		if(super.status == "right" && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed) , super.getY(), super.getMaskW(), super.getMaskH())) {
+		if(super.status == "right" && handler.getGame().getRoom().isFree((int)(super.getX() + super.getMaskX() + speed) , super.getY(), super.getMaskW(), super.getMaskH())) {
 			x+=speed;
-			if(handler.getGame().room.isFree(super.getX() + super.getMaskX() + 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() + super.getMaskX() + (int)speed , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
+			if(handler.getGame().getRoom().isFree(super.getX() + super.getMaskX() + 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().getRoom().isFree(super.getX() + super.getMaskX() + (int)speed , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
 				super.status = "left";
 			}
-		}else if(super.status == "left" && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed) , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
+		}else if(super.status == "left" && handler.getGame().getRoom().isFree((int)(super.getX() + super.getMaskX() - speed) , super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
 			x-=speed;
-			if(handler.getGame().room.isFree(super.getX() + super.getMaskX() - 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().room.isFree(super.getX() - (int)speed , super.getY(), super.getMaskW(), super.getMaskH())) {
+			if(handler.getGame().getRoom().isFree(super.getX() + super.getMaskX() - 16 , super.getY() + super.getMaskY() + 1, super.getMaskW(), super.getMaskH()) || !handler.getGame().getRoom().isFree(super.getX() - (int)speed , super.getY(), super.getMaskW(), super.getMaskH())) {
 				super.status = "right";
 			}
 		}
@@ -83,14 +83,14 @@ public class WalkerEnemy extends Enemy implements GravityEffected, Hittable {
 	public void fall() {
 		vspd+=GravityEffected.GRAVITY;
 		try {
-			if(!handler.getGame().room.isFree(super.getX() + super.getMaskX(),(int)(super.getY() + super.getMaskY() + vspd), super.getMaskW(), super.getMaskH())) {
+			if(!handler.getGame().getRoom().isFree(super.getX() + super.getMaskX(),(int)(super.getY() + super.getMaskY() + vspd), super.getMaskW(), super.getMaskH())) {
 				int signVsp = 0;
 				if(vspd >= 0) {
 					signVsp = 1;
 				}else {
 					signVsp = -1;
 				}
-				while(handler.getGame().room.isFree(super.getX() + super.getMaskX() ,(int)(super.getY() + super.getMaskY() + signVsp), super.getMaskW(), super.getMaskH())) {
+				while(handler.getGame().getRoom().isFree(super.getX() + super.getMaskX() ,(int)(super.getY() + super.getMaskY() + signVsp), super.getMaskW(), super.getMaskH())) {
 					super.setY(super.getY() + (int)signVsp);
 				}
 				vspd = 0;

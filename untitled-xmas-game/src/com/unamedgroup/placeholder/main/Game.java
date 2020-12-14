@@ -61,7 +61,7 @@ public class Game implements Runnable {
 	public static SpriteSheet key, sucker;
 	public SpriteSheet currentMap;
 	/*----------------------------------------------------------------*/
-	public Room room;
+	private Room room;
 	public Maps maps;
 	private int currentMapID;
 
@@ -256,7 +256,14 @@ public class Game implements Runnable {
 		currentMapID = mapId;
 	}
 
-
+	public Room getRoom() {
+		return room;
+	}
+	
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+	
 	public Player getPlayer() {
 		return this.player;
 	}
