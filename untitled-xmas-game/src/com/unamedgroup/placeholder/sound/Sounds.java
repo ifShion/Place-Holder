@@ -9,7 +9,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 /**
  * Criei essa classe para armazenar todos os audios usando o HashMap, já que não deu certo usar
  * ArrayList e Array. Danielzinho já explicou como funciona o HashMap na classe Maps, então não
- * irei explicar de novo.
+ * irei explicar de novo..
  * @author Ryan
  */
 
