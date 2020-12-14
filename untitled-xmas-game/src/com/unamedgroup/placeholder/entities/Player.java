@@ -89,23 +89,26 @@ public class Player extends Entity {
 		}
 	}
 	//Sistema inicial de cair no vazio - Euler Lima
-	public void fallVoid(double x, double y) {
+	public void fallVoid() {
 		this.hitPlayer(1);
-		handler.getGame().getPlayer().setX(x * World.TILE_SIZE);
-		handler.getGame().getPlayer().setY(y * World.TILE_SIZE);
+		handler.getGame().getPlayer().setX(handler.getGame().room.getRespawnPoint()[0]);
+        handler.getGame().getPlayer().setY(handler.getGame().room.getRespawnPoint()[1]);
 		damaged = false;
 	}
 
 	public void tick() {
 		super.tick();
 		
-		//Alteração: mudei a condição para o personagem poder se mover. Implementando um sistema de colisão simples
-
-		boolean right = handler.getInputHandler().right.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !damaged;
-		boolean left = handler.getInputHandler().left.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !damaged;
+		boolean right = false;
+		boolean left = false;
 		
-		// Eu resolvi o problema de caminhar na diagonal (ainda tem alguns bugs) - Daniel Nogueira 
-		boolean flag=false;  //variável para usar caso dois botôes estarem sendo apertados ao mesmo tempo
+		try {
+			right = handler.getInputHandler().right.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() + speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !damaged;
+			left = handler.getInputHandler().left.down && handler.getGame().room.isFree((int)(super.getX() + super.getMaskX() - speed), super.getY() + super.getMaskY(), super.getMaskW(), super.getMaskH()) && !damaged;
+		} catch(ArrayIndexOutOfBoundsException aioobe) {
+			this.fallVoid();
+		}
+		boolean flag = false;  //variável para usar caso dois botôes estarem sendo apertados ao mesmo tempo
 
 		if (flag) {
 			handler.getCamera().setX(Camera.clamp(super.getX() - Game.WIDTH/2 , 0 , handler.getGame().room.WIDTH * World.TILE_SIZE - Game.WIDTH));

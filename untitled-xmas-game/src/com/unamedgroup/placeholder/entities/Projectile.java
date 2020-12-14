@@ -38,7 +38,7 @@ public abstract class Projectile extends Entity {
 	}
 	
 	public void destroyProjectile() {
-		Room.projectiles.remove(this);
+		Room.entities.remove(this);
 		return;
 	}
 

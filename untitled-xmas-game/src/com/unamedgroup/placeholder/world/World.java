@@ -3,14 +3,9 @@ package com.unamedgroup.placeholder.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.text.BreakIterator;
 
 import javax.imageio.ImageIO;
 
-import com.unamedgroup.placeholder.entities.enemies.CannonEnemy;
-import com.unamedgroup.placeholder.entities.enemies.HuggerEnemy;
-import com.unamedgroup.placeholder.entities.enemies.WalkerEnemy;
-import com.unamedgroup.placeholder.entities.enemies.TrackerEnemy;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.tiles.FreeTile;

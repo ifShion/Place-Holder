@@ -111,8 +111,6 @@ public class Game implements Runnable {
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();
 
-		
-
 		handler = new Handler(this, display);
 		maps = new Maps(handler);
 	}
@@ -123,9 +121,9 @@ public class Game implements Runnable {
 	 */
 	public void updateEntities(){
 		Room.entities = new LinkedList<>();
-		Room.projectiles = new ArrayList<>();
 		Room.entities.add(player);
 	}
+	
 	public static void main(String[] args) throws UnsupportedAudioFileException {
 		Game game = new Game();
 		game.start();
@@ -140,7 +138,6 @@ public class Game implements Runnable {
 		if(statesUseMaps){
 			if(!alternatingMaps) {
 				for (int i = 0; i < Room.entities.size(); i++) Room.entities.get(i).tick();
-				for (int i = 0; i < Room.projectiles.size(); i++) Room.projectiles.get(i).tick();
 			}else
 				maps.tick();
 		}
@@ -166,12 +163,11 @@ public class Game implements Runnable {
 		// Passa o renderizador para o State corrente
 		if(!alternatingMaps)	
 			room.render(g);
+		if(handler.getStateManager().currentStateExist())	
+			handler.getStateManager().render(g);
 		
 		Room.entities.sort(nodeSorter);
 		for (Entity entity : Room.entities) entity.render(g);
-		for (int i = 0; i < Room.projectiles.size(); i++) Room.projectiles.get(i).render(g);
-		if(handler.getStateManager().currentStateExist())	
-			handler.getStateManager().render(g);
 		
 		g = bs.getDrawGraphics();
 		

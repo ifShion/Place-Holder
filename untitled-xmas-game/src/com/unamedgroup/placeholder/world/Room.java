@@ -1,14 +1,12 @@
 package com.unamedgroup.placeholder.world;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import com.unamedgroup.placeholder.entities.Door;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Key;
-import com.unamedgroup.placeholder.entities.Projectile;
 import com.unamedgroup.placeholder.entities.Sucker;
 import com.unamedgroup.placeholder.entities.enemies.CannonEnemy;
 import com.unamedgroup.placeholder.entities.enemies.HuggerEnemy;
@@ -24,7 +22,6 @@ public class Room extends World {
     private SpriteSheet map;
     private double[] respawnPoint = new double[2];
     
-	public static List<Projectile> projectiles = new ArrayList<>();
 	public static List<Entity> entities = new LinkedList<>();
     /**
      * Constrói o mundo novo. É bom ter uma sprite sheet própria para os tiles de cada mapa
