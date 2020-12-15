@@ -120,6 +120,7 @@ public class Room extends World {
                 createNewSucker(4,19);
                 createNewWalkerEnemy(15, 36);
 
+                createNewTrackerEnemy(40, 25);
                 createNewCannonEnemy(116, 17, -6);
                 createNewWalkerEnemy(40, 28);
                 createNewWalkerEnemy(79, 28);
@@ -155,25 +156,25 @@ public class Room extends World {
     }
 
     private void createNewCannonEnemy(int x, int y, int direction) {
-    	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCracker, 1, 2, 4, 8, 2, 0 , 0, handler);
+    	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCracker, 2, 2, 4, 8, 2, 0 , 0, handler);
     	ce.setMask(3, 1, 18, 31);
 		Room.entities.add(ce);
 	}
     
     private void createNewHuggerEnemy(int x, int y) {
-    	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 32, 32, Game.huggerEnemy, 1, 1, 5, 12, 8, 0, 0, handler);
+    	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 32, 32, Game.huggerEnemy, 3, 1, 5, 12, 8, 0, 0, handler);
     	he.setMask(0, 6, 16, 26);
 		Room.entities.add(he);
 	}
     
     private void createNewTrackerEnemy(int x, int y) {
-    	TrackerEnemy te = new TrackerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.walkerEnemy, 1, 2, 3, 4, 1, 4 * World.TILE_SIZE, 0, handler);
-		te.setMask(3, 4, 10, 8);
+    	TrackerEnemy te = new TrackerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, Game.trackerEnemy, 3, 2, 7, 4, 2, 0, 0, handler);
+		te.setMask(1, 0, 12, 10);
 		Room.entities.add(te);
     }
     
     private void createNewWalkerEnemy(int x, int y) {
-    	WalkerEnemy e = new WalkerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.walkerEnemy, 1, 1, 3, 4, 2, 0 , 0, handler);
+    	WalkerEnemy e = new WalkerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.walkerEnemy, 3, 1, 3, 4, 2, 0 , 0, handler);
 		Room.entities.add(e);
     }
     

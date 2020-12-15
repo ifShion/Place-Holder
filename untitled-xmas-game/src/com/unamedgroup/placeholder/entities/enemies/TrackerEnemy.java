@@ -1,6 +1,5 @@
 package com.unamedgroup.placeholder.entities.enemies;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import com.unamedgroup.placeholder.entities.Enemy;
@@ -41,11 +40,14 @@ public class TrackerEnemy extends Enemy implements Hittable {
 	 */
 	public TrackerEnemy(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
+		
+		this.status = "";
 	}
 	
 	@Override
 	public void tick() {
 		super.tick();
+		this.animation();
 		// O inimigo irá parar de seguir o personagem depois que chegar nessa distância
 		if(calculateDistance(super.getX(), handler.getGame().getPlayer().getX(), super.getY(), handler.getGame().getPlayer().getY()) < 32) {
 			super.followPath(null);
@@ -54,6 +56,7 @@ public class TrackerEnemy extends Enemy implements Hittable {
 		if(super.calculateDistance(super.getX() , handler.getGame().getPlayer().getX() , super.getY() , handler.getGame().getPlayer().getY()) < 144) {
 			followDelay++;
 			if(super.isCollidingWithPlayer() == false) {
+				status = "flying";
 				if(path == null || path.size() == 0 && followDelay > 60) {
 					followDelay = 0;
 					//cria os vetores que vão guiar o inimigo para o jogador
@@ -66,6 +69,7 @@ public class TrackerEnemy extends Enemy implements Hittable {
 					super.followPath(path);
 			}else {
 				this.damagePlayer();
+				status = "attacking";
 			}
 			
 			if(followDelay > 1000) followDelay = 800;
@@ -75,10 +79,45 @@ public class TrackerEnemy extends Enemy implements Hittable {
 	public void damagePlayer() {
 		//status attacking;
 		attackDelay++;
-		if(attackDelay > 60) {
+		super.getAnimation().offSet(-5, -12);
+		super.setHeight(32);
+		super.setWidth(24);
+		super.getAnimation().setWidth(24);
+		super.getAnimation().setHeight(32);
+		super.getAnimation().setSpriteX(0);
+		super.getAnimation().setSpriteY(1);
+		
+		if (attackDelay < 10) {
+			super.getAnimation().setSpriteX(0);
+		}else if(attackDelay < 45) {
+			super.getAnimation().setSpriteX(1);
+		}else if (attackDelay < 52) {
+			super.getAnimation().setSpriteX(2);
+		}else if (attackDelay < 60) {
 			attackDelay = 0;
-			if (!handler.getGame().getPlayer().isDamaged()){
-				handler.getGame().getPlayer().hitPlayer(1);
+			super.getAnimation().setSpriteX(3);
+			handler.getGame().getPlayer().hitPlayer(1);
+		}
+	}
+	
+	private void animation() {
+		super.getAnimation().offSet(-5, -8);
+		super.setHeight(24);
+		super.setWidth(24);
+		super.getAnimation().setWidth(24);
+		super.getAnimation().setHeight(24);
+		if(status != "attacking") {
+			switch (super.status) {
+			case "flying": 
+				super.getAnimation().setNumSpritesX(4);
+				super.getAnimation().setSpriteY(0);
+				super.getAnimation().setSpriteVeloticy(5);
+				break;
+			default:
+				super.getAnimation().setNumSpritesX(4);
+				super.getAnimation().setSpriteY(0);
+				super.getAnimation().setSpriteVeloticy(5);
+				break;
 			}
 		}
 	}
@@ -92,8 +131,9 @@ public class TrackerEnemy extends Enemy implements Hittable {
 	@Override
 	public void render(Graphics g) {
 		super.render(g);
-		g.setColor(Color.ORANGE);
-		g.fillRect(super.getX() + super.getMaskX() - handler.getCamera().getX(), super.getY() + super.getMaskY() - handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
+//		g.setColor(Color.ORANGE);
+//		g.fillRect(super.getX() + super.getMaskX() - handler.getCamera().getX(), super.getY() + super.getMaskY() - handler.getCamera().getY(), super.getMaskW(), super.getMaskH());
+		
 	}
 
 	@Override

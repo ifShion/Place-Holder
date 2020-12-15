@@ -57,6 +57,7 @@ public class Game implements Runnable {
 	public static SpriteSheet alpha;
 	public static SpriteSheet nutCracker;
 	public static SpriteSheet huggerEnemy;
+	public static SpriteSheet trackerEnemy;
 	public static SpriteSheet hud;
 	public static SpriteSheet key, sucker;
 	public static SpriteSheet forniture;
@@ -101,6 +102,7 @@ public class Game implements Runnable {
 		key = new SpriteSheet("/spritesheet/key.png");
 		sucker = new SpriteSheet("/spritesheet/sucker.png");
 		huggerEnemy = new SpriteSheet("/spritesheet/HuggerEnemy.png");
+		trackerEnemy = new SpriteSheet("/spritesheet/trackerEnemySprite.png");
 		forniture = new SpriteSheet("/spritesheet/armazem.png");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);

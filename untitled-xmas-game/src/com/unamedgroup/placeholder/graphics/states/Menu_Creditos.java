@@ -23,7 +23,7 @@ public class Menu_Creditos extends Menu {
     @Override
     public void init() {
         super.init();
-        grupo = new LabelList(handler.getGame().WIDTH/2, handler.getGame().HEIGHT*3, null, Color.WHITE, LabelList.CENTER);
+        grupo = new LabelList(Game.WIDTH/2, Game.HEIGHT*3, null, Color.WHITE, LabelList.CENTER);
         
         
         grupo.add("UESB");

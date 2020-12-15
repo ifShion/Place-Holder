@@ -1,10 +1,17 @@
 package com.unamedgroup.placeholder.main;
 
-import java.util.ArrayList;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
-import com.unamedgroup.placeholder.graphics.screen_components.Effects;
-import com.unamedgroup.placeholder.graphics.states.*;
+import com.unamedgroup.placeholder.graphics.states.Cutscene_A01;
+import com.unamedgroup.placeholder.graphics.states.Cutscene_Corredor;
+import com.unamedgroup.placeholder.graphics.states.Cutscene_Intro;
+import com.unamedgroup.placeholder.graphics.states.Menu_Creditos;
+import com.unamedgroup.placeholder.graphics.states.Menu_Principal;
+import com.unamedgroup.placeholder.graphics.states.State;
+import com.unamedgroup.placeholder.graphics.states.State_00;
+import com.unamedgroup.placeholder.graphics.states.State_01;
+import com.unamedgroup.placeholder.graphics.states.State_02;
 
 /**
  * Gerenciador de estados

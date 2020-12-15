@@ -32,9 +32,9 @@ public class Alpha extends Player implements GravityEffected {
 			int facingIdle = ((super.direction == 1) ? 0 : 2);
 			super.setHeight(24);
 			super.setWidth(16);
-			super.getAnimation().setNumSpritesX(4);
 			super.getAnimation().setWidth(16);
 			super.getAnimation().setHeight(24);
+			super.getAnimation().setNumSpritesX(4);
 			switch (status) {
 				case "idle":
 					super.getAnimation().setSpriteY(facingIdle);
@@ -51,14 +51,14 @@ public class Alpha extends Player implements GravityEffected {
 				default:
 					break;
 			} 
-		} else if(damaged) {
+		} else if(damaged || (damaged && inTheAir)) {
 			int facing = ((super.direction == 1) ? 12 : 13);
 			super.setHeight(24);
 			super.setWidth(24);
-			super.getAnimation().resetOffSet();
-			super.getAnimation().setNumSpritesX(5);
 			super.getAnimation().setWidth(24);
 			super.getAnimation().setHeight(24);
+			super.getAnimation().resetOffSet();
+			super.getAnimation().setNumSpritesX(5);
 			super.getAnimation().setSpriteY(facing);
 			super.getAnimation().setSpriteVeloticy(20);
 		}
@@ -91,9 +91,9 @@ public class Alpha extends Player implements GravityEffected {
 		int facingOffSet = ((super.direction == 1) ? -3 : -13);
 		super.setHeight(32);
 		super.setWidth(32);
-		super.getAnimation().offSet(facingOffSet, -8);
 		super.getAnimation().setWidth(32);
 		super.getAnimation().setHeight(32);
+		super.getAnimation().offSet(facingOffSet, -8);
 		super.getAnimation().setSpriteY(facingAttack);
 		attackingDelay++;
 		if(attackingDelay < 10) {
@@ -187,6 +187,7 @@ public class Alpha extends Player implements GravityEffected {
 			}else {
 				if (vspd <= 0) {
 					// subindo
+					super.getAnimation().setWidth(16);
 					super.getAnimation().setHeight(32);
 					super.setHeight(32);
 					super.setWidth(16);
@@ -195,6 +196,7 @@ public class Alpha extends Player implements GravityEffected {
 					super.getAnimation().setSpriteVeloticy(8);
 				} else {
 					// descendo
+					super.getAnimation().setWidth(16);
 					super.getAnimation().setHeight(32);
 					super.setHeight(32);
 					super.setWidth(16);

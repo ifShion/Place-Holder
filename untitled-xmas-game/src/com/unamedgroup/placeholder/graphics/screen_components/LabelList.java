@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import com.unamedgroup.placeholder.main.Game;
-import com.unamedgroup.placeholder.main.Handler;
 
 import font.CustomFont;
 
@@ -69,6 +68,7 @@ public class LabelList {
     
     //===========// ARGUMENTOS E METODOS PARA DESENHO DE BACKGROUND NA LISTA //===========//
     private boolean bgStatus = false;
+    @SuppressWarnings("unused")
     private String bgTitle;
     private float bgAlpha;
     private Color bgColor;
@@ -100,6 +100,7 @@ public class LabelList {
     private void paintSelection(int atual){
         box.get(atual).setColor(selectColor);
     }
+    @SuppressWarnings("unused")
     private void paintSelection(){
         for(int i=0;i<choices.size();i++){
             if(choices.get(i)){
