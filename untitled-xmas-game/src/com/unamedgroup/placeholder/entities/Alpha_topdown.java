@@ -6,7 +6,8 @@ import com.unamedgroup.placeholder.main.Handler;
 public class Alpha_topdown extends Player {
 
     public Alpha_topdown(int x, int y, Handler handler) {
-        super(x, y, 16, 24, new SpriteSheet("/spritesheet/alpha-topdown.png"), 1, 1, 5, 4, 4, 0, 0, handler);
+		super(x, y, 16, 24, new SpriteSheet("/spritesheet/alpha-topdown.png"), 1, 1, 5, 4, 4, 0, 0, handler);
+		moveable = false;
     }
 
     public void toRight(){

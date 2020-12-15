@@ -160,4 +160,8 @@ public class Player extends Entity {
 		return damaged;
 	}
 
+	public boolean isMoveable(){
+		return this.moveable;
+	}
+
 }

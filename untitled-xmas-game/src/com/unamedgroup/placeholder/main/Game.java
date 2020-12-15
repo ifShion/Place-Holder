@@ -33,7 +33,6 @@ public class Game implements Runnable {
 	private static final long serialVersionUID = 3L;
 
 	public static final String NAME = "O Segredo da Fábrica"; // Titulo da jogo
-	private Display display; // Janela do jogo
 	private Handler handler; // Uma classe para fazer a comunicação entre diferentes classes
 	/*---------------------------------------------------------------*/
 	// Inicializando variáveis do Display
@@ -105,10 +104,9 @@ public class Game implements Runnable {
 		trackerEnemy = new SpriteSheet("/spritesheet/trackerEnemySprite.png");
 		forniture = new SpriteSheet("/spritesheet/armazem.png");
 
-		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();
 
-		handler = new Handler(this, display);
+		handler = new Handler(this);
 		maps = new Maps(handler);
 	}
 
@@ -144,10 +142,10 @@ public class Game implements Runnable {
 	 * Desenha na tela os gráficos do jogo.
 	 */
 	public void render() {
-		BufferStrategy bs = display.getBufferStrategy();
+		BufferStrategy bs = handler.getDisplay().getBufferStrategy();
 		if (bs == null) {
-			display.createBufferStrategy();
-			bs = display.getBufferStrategy();
+			handler.getDisplay().createBufferStrategy();
+			bs = handler.getDisplay().getBufferStrategy();
 			//requestFocus();
 		}
 

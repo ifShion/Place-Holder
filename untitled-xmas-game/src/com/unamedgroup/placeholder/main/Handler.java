@@ -23,21 +23,22 @@ public class Handler {
     private Sounds sounds; // Classe para mexer com os sons
 
     /**
-     * @param game
-     * @param display Recebe um parametro de game e camera para lidar com tudo que
+     * @param game Recebe um parametro de game e camera para lidar com tudo que
      *                estiver lá, a partir daqui
      * @throws UnsupportedAudioFileException
      */
-    Handler(Game game, Display display) throws UnsupportedAudioFileException {
+    Handler(Game game) throws UnsupportedAudioFileException {
         this.game = game;
-        this.camera = new Camera();
-        this.display = display;
+
+        camera = new Camera();
+        display = new Display(Game.NAME, Game.WIDTH, Game.HEIGHT, Game.SCALE);
         inputHandler = new InputHandler(display);
         stateManager = new StateManager(this);
+        mouseInputHandler = new MouseInputHandler(this);
         sounds = new Sounds();
 
         stateManager.init();
-        mouseInputHandler = new MouseInputHandler(this);
+        
     }
 
     public void tick(){
