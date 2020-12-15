@@ -45,10 +45,7 @@ public class Handler {
         
         //Em caso de não existência de um estado, ele simplesmente não usa o método tick() por retornar a função
         if(!stateManager.currentStateExist()) return; 
-        stateManager.tick();
-        if (stateManager.getCurrentState().getId()==0){
-            sounds.tick("Loop", 1); //Inicia a musica em loop no state 0
-        }        
+        stateManager.tick();        
     }
 
     public void render(Graphics g){

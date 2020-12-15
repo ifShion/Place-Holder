@@ -25,7 +25,7 @@ public class Sounds {
                 soundmap = new LinkedHashMap<>();
 
                 SoundInput soundinput = new SoundInput();
-
+                
                 try{
                     try{
                         soundmap.put("Exp1", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoExplosion1.wav"));
@@ -66,6 +66,7 @@ public class Sounds {
                 catch (Exception e) {
                         //TODO: handle exception
                 }
+                
 
         }
 

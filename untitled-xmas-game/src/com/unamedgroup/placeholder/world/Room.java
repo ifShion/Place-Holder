@@ -1,6 +1,7 @@
 package com.unamedgroup.placeholder.world;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -124,6 +125,11 @@ public class Room extends World {
                 createNewWalkerEnemy(79, 28);
 
                 placeDoor(114, 34, 1001, 8 * World.TILE_SIZE, 68 * World.TILE_SIZE, true);
+
+                createForniture("prateleiraCheia", 8, 55, 26);
+                createForniture("prateleiraMetalCheia", 5, 51, 29);
+                createForniture("prateleiraMetalCheia", 8, 67, 29);
+                //createForniture("portao", 0, 58, 27);
                 break;
             default:
 
@@ -182,6 +188,75 @@ public class Room extends World {
         su.getAnimation().setSpriteY(Game.rand.nextInt(4));
         su.setMask(4, 4, 8, 8);
         Room.entities.add(su);
+    }
+
+    /**
+     * Cria mobilia na fase
+     * As mobilias podem ser: "prateleira"
+     * @param forniture Nome da mobilia
+     * @param qtd   Se ela for extensivel dizer o tamanho
+     * @param x     Coordenada X
+     * @param y     Coordenada Y
+     */
+    private void createForniture(String forniture,int qtd, int x, int y){
+        ArrayList<Entity> forni = new ArrayList<>();
+        x = x * World.TILE_SIZE;
+        y = y * World.TILE_SIZE;
+        switch(forniture){
+            case "prateleiraCheia":
+                for(int i=0;i<qtd;i++){
+                    switch (i%5) {
+                        case 0: // Presente
+                            forni.add(new Entity(x+((1+i)*16), y-5, 16, 16, Game.forniture, 1, 1, 1, 1, 1, 48, 48, handler));
+                            break;
+                        case 1: // Bonequinho
+                            forni.add(new Entity(x+((1+i)*16), y-5, 16, 16, Game.forniture, 1, 1, 1, 1, 1, 48, 80, handler));
+                            break;
+                        case 2: // Presente
+                            forni.add(new Entity(x+((1+i)*16), y-5, 16, 16, Game.forniture, 1, 1, 1, 1, 1, 32, 48, handler));
+                            break;
+                        case 3: // Lego
+                            forni.add(new Entity(x+((1+i)*16), y-5, 16, 16, Game.forniture, 1, 1, 1, 1, 1, 48, 64, handler));
+                            break;
+                        case 4: // Urso
+                        forni.add(new Entity(x+((1+i)*16), y-18, 16, 32, Game.forniture, 1, 1, 1, 1, 1, 64, 48, handler));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            case "prateleira":
+                forni.add(new Entity(x, y, 16, 16, Game.forniture, 2, 1, 1, 1, 1, 64, 0, handler));
+                for(int i=0;i<qtd;i++){
+                    forni.add(new Entity(x+(i*16)+16, y, 16, 16, Game.forniture, 0, 1, 1, 1, 1, 64, 32, handler));
+                    if(i+1==qtd){
+                        forni.add(new Entity(x+((1+i)*16)+16, y, 16, 16, Game.forniture, 2, 1, 1, 1, 1, 64, 16, handler));
+                    }
+                }
+            break;
+            case "prateleiraMetalCheia":
+                for(int i=0;i<qtd;i++){
+                    forni.add(new Entity(x, y-(i*16)-5, 32, 16, Game.forniture, 1, 1, 1, 1, 1, 0, 48, handler));
+                }
+            case "prateleiraMetal":
+                for(int i=0;i<qtd;i++){
+                    forni.add(new Entity(x, y-(i*16), 32, 16, Game.forniture, 1, 1, 1, 1, 1, 0, 64, handler));
+                    if(i+1==qtd){
+                        forni.add(new Entity(x, y-((1+i)*16), 32, 16, Game.forniture, 1, 1, 1, 1, 1, 0, 80, handler));
+                    }
+                }
+                break;
+            case "portao":
+                forni.add(new Entity(x+9, y+4, 64, 48, Game.forniture, 1, 1, 1, 1, 1, 0, 0, handler));
+            break;
+            default:
+                System.out.println("Classe Room - Forniture:"+forniture+" não encontrado");
+                return;
+        }
+        if(!forni.isEmpty())
+        forni.forEach((g)->{
+            Room.entities.add(g);
+        });
     }
     
     //Modifiquei a condição de igualdade dos mapas para comparar seus arquivos de imagem, se forem os

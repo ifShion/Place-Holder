@@ -75,10 +75,6 @@ public abstract class World {
 								s.setPlayerY(yy2*TILE_SIZE);
 							}
 						});
-						//if(handler.getStateManager().getCurrentState().isplayerCoordinatingByMap()){
-						//	handler.getGame().getPlayer().setX(xx*TILE_SIZE);
-						//	handler.getGame().getPlayer().setY(yy*TILE_SIZE);
-						//}
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						
 						break;
@@ -134,7 +130,6 @@ public abstract class World {
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 						handler.getGame().currentMap.getSprite(1 * TILE_SIZE, 4 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);
 					break;
-
 					default:
 						tiles[xx + (yy * WIDTH)] = new FreeTile(xx * TILE_SIZE, yy * TILE_SIZE,
 								handler.getGame().currentMap.getSprite(4 * TILE_SIZE, 1 * TILE_SIZE, TILE_SIZE, TILE_SIZE), handler);						

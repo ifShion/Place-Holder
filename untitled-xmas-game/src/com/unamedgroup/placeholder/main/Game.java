@@ -59,6 +59,7 @@ public class Game implements Runnable {
 	public static SpriteSheet huggerEnemy;
 	public static SpriteSheet hud;
 	public static SpriteSheet key, sucker;
+	public static SpriteSheet forniture;
 	public SpriteSheet currentMap;
 	/*----------------------------------------------------------------*/
 	private Room room;
@@ -100,6 +101,7 @@ public class Game implements Runnable {
 		key = new SpriteSheet("/spritesheet/key.png");
 		sucker = new SpriteSheet("/spritesheet/sucker.png");
 		huggerEnemy = new SpriteSheet("/spritesheet/HuggerEnemy.png");
+		forniture = new SpriteSheet("/spritesheet/armazem.png");
 
 		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
 		rand = new Random();
@@ -156,11 +158,14 @@ public class Game implements Runnable {
 		// Passa o renderizador para o State corrente
 		if(!alternatingMaps)	
 			room.render(g);
+
+		Room.sortEntities();
+		for (Entity entity : Room.entities) entity.render(g);
+			
+
 		if(handler.getStateManager().currentStateExist())	
 			handler.getStateManager().render(g);
 		
-		Room.sortEntities();
-		for (Entity entity : Room.entities) entity.render(g);
 		
 		g = bs.getDrawGraphics();
 		
