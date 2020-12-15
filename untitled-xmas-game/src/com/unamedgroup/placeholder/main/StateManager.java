@@ -3,6 +3,7 @@ package com.unamedgroup.placeholder.main;
 import java.util.ArrayList;
 import java.awt.Graphics;
 
+import com.unamedgroup.placeholder.graphics.screen_components.Effects;
 import com.unamedgroup.placeholder.graphics.states.*;
 
 /**
@@ -12,7 +13,7 @@ import com.unamedgroup.placeholder.graphics.states.*;
 public class StateManager{
 
     private static ArrayList<State> states = new ArrayList<>();
-    private static int currentState = 2;
+    private static int currentState = 6;
 
     /**
      * CADA STATE CRIADO DEVE SER LISTADO NESSE CONTRUTOR
@@ -25,6 +26,8 @@ public class StateManager{
         states.add(new State_02(states.size(), handler));
         states.add(new Cutscene_Corredor(states.size(), handler));
         states.add(new Cutscene_Intro(states.size(),handler));
+        states.add(new Menu_Principal(states.size(), handler));
+        states.add(new Menu_Creditos(states.size(), handler));
     }
 
     /**

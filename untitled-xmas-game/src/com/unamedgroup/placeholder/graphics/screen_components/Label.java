@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class Label {
-    private int x, y;
+    private float x, y;
     private String txt;
     private int xtemp, ytemp;
     private Font font;
@@ -51,4 +51,76 @@ public class Label {
         align(g);
         g.drawString(txt, x, y);  
     }
+    
+
+    public float getX() {
+        return this.x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return this.y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+
+    public String getTxt() {
+        return this.txt;
+    }
+
+    public void setTxt(String txt) {
+        this.txt = txt;
+    }
+
+
+    public int getXtemp() {
+        return this.xtemp;
+    }
+
+    public void setXtemp(int xtemp) {
+        this.xtemp = xtemp;
+    }
+
+    public int getYtemp() {
+        return this.ytemp;
+    }
+
+    public void setYtemp(int ytemp) {
+        this.ytemp = ytemp;
+    }
+
+    public Font getFont() {
+        return this.font;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
+    }
+
+    public Color getColor() {
+        return this.color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public boolean isToAlign() {
+        return this.toAlign;
+    }
+
+    public boolean getToAlign() {
+        return this.toAlign;
+    }
+
+    public void setToAlign(boolean toAlign) {
+        this.toAlign = toAlign;
+    }
+
 }

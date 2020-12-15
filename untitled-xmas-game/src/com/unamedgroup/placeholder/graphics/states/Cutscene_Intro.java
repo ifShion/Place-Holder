@@ -11,7 +11,7 @@ import com.unamedgroup.placeholder.main.Handler;
 
 
 public class Cutscene_Intro extends State {
-    public static int id;
+    public static int ID;
     private Entity intro,portaDoCativeiro,alphinha;
     private BufferedImage grades;
     private Toast apresentacao;
@@ -27,7 +27,7 @@ public class Cutscene_Intro extends State {
         grades = new SpriteSheet("/spritesheet/Intro_grades.png").getSprite(0, 0, 240, 160);
         apresentacao = new Toast("Rare Candy Estúdios apresenta...", Game.WIDTH / 2, Game.HEIGHT / 2, 20,
                 new Font("Dialog", Font.PLAIN, 10));
-        Cutscene_Intro.id = id;
+        Cutscene_Intro.ID = id;
     }
 
     @Override

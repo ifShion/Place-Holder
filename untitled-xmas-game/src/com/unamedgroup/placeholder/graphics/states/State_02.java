@@ -84,7 +84,7 @@ public class State_02 extends State {
             clickedJogar = true;
             renderClick();
             handler.getDisplay().getCanvas().removeMouseListener(ml);
-            handler.getStateManager().setState(Cutscene_Intro.id);
+            handler.getStateManager().setState(Cutscene_Intro.ID);
         }
         if (isInBox(btnConfig, e.getX(), e.getY())) {
             clickedConfig = true;
