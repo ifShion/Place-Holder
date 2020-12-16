@@ -43,6 +43,7 @@ public class Sounds {
                         soundmap.put("pCoin2", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPick_upCoin2.wav"));
                         soundmap.put("pCoin3", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPickup_Coin3.wav"));
                         soundmap.put("pCoin4", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPickup_Coin4.wav"));
+                        soundmap.put("Music", soundinput.getAudio("untitled-xmas-game/res/audio/Music_menu.wav"));
 
                     }
                     catch (Exception e){
@@ -61,6 +62,7 @@ public class Sounds {
                         soundmap.put("pCoin2", soundinput.getAudio("res/audio/EfeitoPick_upCoin2.wav"));
                         soundmap.put("pCoin3", soundinput.getAudio("res/audio/EfeitoPickup_Coin3.wav"));
                         soundmap.put("pCoin4", soundinput.getAudio("res/audio/EfeitoPickup_Coin4.wav"));
+                        soundmap.put("Music",soundinput.getAudio("res/audio/Music_menu.wav"));
                     }
                 }
                 catch (Exception e) {
