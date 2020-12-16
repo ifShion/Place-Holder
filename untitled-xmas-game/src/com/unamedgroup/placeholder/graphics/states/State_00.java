@@ -53,7 +53,7 @@ public class State_00 extends State {
     @Override
     public void tick() {
         hud.tick();
-        //handler.getSounds().tick("Loop", 1);
+        handler.getSounds().tick("Music", 1);
     }
 
     @Override
