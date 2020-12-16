@@ -51,32 +51,32 @@ public class Cutscene_Corredor extends State {
                     cena = "esperar";
                     printStatus = "balao";
                 }
-            break;
+                break;
             case "cena02":
                 alphinha.toDown();
                 if(passos==100)
                     cena = "carta";
-            break;
+                break;
             case "cena03":
                 alphinha.toLeft();
                 if(passos==170)
                     cena = "cena04";
-            break;
+                break;
             case "cena04":
                 alphinha.toDown();
                 if(passos==250)
                     cena = "sair";
-            break;
+                break;
             case "carta":
-            printStatus = "letter";
-            passos--;
-            if(handler.getInputHandler().prime.clicked){
-                printStatus = "";
-                cena = "esperar";
-                cartinha.setSprite(new SpriteSheet(""));
-            }
+                printStatus = "letter";
+                passos--;
+                if(handler.getInputHandler().prime.clicked){
+                    printStatus = "";
+                    cena = "esperar";
+                    cartinha.setSprite(new SpriteSheet(""));
+                }
 
-            break;
+                break;
             case "esperar":
                 esperar++;
                 passos--;
@@ -89,12 +89,12 @@ public class Cutscene_Corredor extends State {
                     cena = "cena02";
                     printStatus = "";
                 }
-            break;
+                break;
             case "sair":
                 handler.getGame().alternatingMaps=true;
                 handler.getGame().updateEntities();
                 handler.getStateManager().setState(2); 
-            break;
+                break;
 
         }
 

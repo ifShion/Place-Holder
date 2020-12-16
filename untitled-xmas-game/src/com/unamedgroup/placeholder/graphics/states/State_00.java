@@ -44,21 +44,35 @@ public class State_00 extends State {
 
     @Override
     public void init() {
-        alpha.setX(getPlayerX());
-        alpha.setY(getPlayerY());
-    	handler.getGame().setPlayer(alpha);
-        handler.getGame().updateEntities();
-        handler.getGame().setCurrentMapID(2001);
+            alpha.setX(getPlayerX());
+            alpha.setY(getPlayerY());
+            handler.getGame().setPlayer(alpha);
+            handler.getGame().updateEntities();
+            handler.getGame().setCurrentMapID(2001);
     }
     @Override
     public void tick() {
+
         hud.tick();
+        if (handler.getInputHandler().escape.clicked){
+            try {
+                Thread.sleep(100);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            //handler.getGame().alternatingMaps=true;
+            handler.getStateManager().setState(8);
+            handler.getStateManager().setPaused(true);
+            ((State_Pause)(handler.getStateManager().getCurrentState())).setPreviousState(this.id);
+        }
+
         //handler.getSounds().tick("Loop", 1);
     }
 
     @Override
     public void render(Graphics g) {
-         hud.render(g);
+        hud.render(g);
     }
 
 }

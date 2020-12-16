@@ -12,6 +12,7 @@ import com.unamedgroup.placeholder.graphics.states.State;
 import com.unamedgroup.placeholder.graphics.states.State_00;
 import com.unamedgroup.placeholder.graphics.states.State_01;
 import com.unamedgroup.placeholder.graphics.states.State_02;
+import com.unamedgroup.placeholder.graphics.states.State_Pause;
 
 /**
  * Gerenciador de estados
@@ -20,10 +21,11 @@ import com.unamedgroup.placeholder.graphics.states.State_02;
 public class StateManager{
 
     private static ArrayList<State> states = new ArrayList<>();
-    private static int currentState = 6;
+    private static int currentState = 2;
+    private boolean paused=false;
 
     /**
-     * CADA STATE CRIADO DEVE SER LISTADO NESSE CONTRUTOR
+     * CADA STATE CRIADO DEVE SER LISTADO NESSE CONSTRUTOR
      * @param handler
      */
     public StateManager(Handler handler) {
@@ -35,6 +37,7 @@ public class StateManager{
         states.add(new Cutscene_Intro(states.size(),handler));
         states.add(new Menu_Principal(states.size(), handler));
         states.add(new Menu_Creditos(states.size(), handler));
+        states.add(new State_Pause(states.size(), handler));
     }
 
     /**
@@ -46,6 +49,11 @@ public class StateManager{
         currentState = state;
         states.get(currentState).init();
     }
+
+    public void setStatePause(int state){
+        currentState = state;
+    }
+
     public State getCurrentState(){
         return states.get(currentState);
     }
@@ -66,19 +74,36 @@ public class StateManager{
 
 
     public void tick() {
-        states.get(currentState).tick();
+        if (states.get(currentState).getClass() == State_Pause.class && paused){
+            states.get(currentState).tick();
+        }
+        else if (!paused){
+            //System.out.println("\nentrouTick\n");
+            states.get(currentState).tick();
+        }
 
     }
 
   
     public void render(Graphics g) {
-        states.get(currentState).render(g);
-
+        if (states.get(currentState).getClass() == State_Pause.class && paused){
+            states.get(currentState).render(g);
+        }
+        else if (!paused){
+            //System.out.println("\nentrouRender\n");
+            states.get(currentState).render(g);
+        }
     }
 
     public ArrayList<State> getStates(){
         return states;
     }
 
-    
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
 }
