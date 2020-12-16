@@ -11,7 +11,8 @@ import com.unamedgroup.placeholder.main.Handler;
 
 
 /**
- * @author
+ * @author Daniel Nogueria
+ * Classe usada para o menu de pausa
  */
 public class State_Pause extends State {
 
@@ -55,10 +56,10 @@ public class State_Pause extends State {
                     handler.getStateManager().setPaused(false);
                     break;
                 case 1:
-                    //TODO
+                    //TODO para controles
                     break;
                 case 2:
-                    //TODO
+                    //TODO para ir para o menu principal
                     break;
                 default:
                     break;
