@@ -26,7 +26,6 @@ public class State_MenuConfig extends Menu {
     public State_MenuConfig(int id, Handler handler) {
         super(id, handler);
         ID = id;
-        init();
     }
 
     @Override
@@ -57,7 +56,7 @@ public class State_MenuConfig extends Menu {
             switch (menu.getSeletion()) {
                 case 0:
                     super.status = "getout";
-                    //TODO
+                    super.screenDestiny = State_MenuConfig_Controle.ID;
                     break;
                 case 1:
                     super.status = "getout";

@@ -3,17 +3,7 @@ package com.unamedgroup.placeholder.main;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import com.unamedgroup.placeholder.graphics.states.Cutscene_A01;
-import com.unamedgroup.placeholder.graphics.states.Cutscene_Corredor;
-import com.unamedgroup.placeholder.graphics.states.Cutscene_Intro;
-import com.unamedgroup.placeholder.graphics.states.Menu_Creditos;
-import com.unamedgroup.placeholder.graphics.states.Menu_Principal;
-import com.unamedgroup.placeholder.graphics.states.State;
-import com.unamedgroup.placeholder.graphics.states.State_00;
-import com.unamedgroup.placeholder.graphics.states.State_01;
-import com.unamedgroup.placeholder.graphics.states.State_02;
-import com.unamedgroup.placeholder.graphics.states.State_MenuConfig;
-import com.unamedgroup.placeholder.graphics.states.State_Pause;
+import com.unamedgroup.placeholder.graphics.states.*;
 
 /**
  * Gerenciador de estados
@@ -40,6 +30,7 @@ public class StateManager{
         states.add(new Menu_Creditos(states.size(), handler));
         states.add(new State_Pause(states.size(), handler));
         states.add(new State_MenuConfig(states.size(), handler));
+        states.add(new State_MenuConfig_Controle(states.size(), handler));
     }
 
     /**
