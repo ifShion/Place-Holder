@@ -44,7 +44,16 @@ public class Sounds {
                         soundMap.put("pCoin3", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPickup_Coin3.wav"));
                         soundMap.put("pCoin4", soundinput.getAudio("untitled-xmas-game/res/audio/EfeitoPickup_Coin4.wav"));
                         soundMap.put("Music", soundinput.getAudio("untitled-xmas-game/res/audio/Music_cut.wav"));
-
+                        soundMap.put("Cannon", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Cannon_1.wav"));
+                        soundMap.put("close_door", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/close_door_1.wav"));
+                        soundMap.put("Explosion", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Explosion_2.wav0"));
+                        soundMap.put("Hit_2", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Hit_1.wav"));
+                        soundMap.put("Hit_3", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Hit_backsound.wav"));
+                        soundMap.put("Hit_Miss", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Hit_Miss.wav"));
+                        soundMap.put("Menu_Navigate", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Menu_Navigate.wav"));
+                        soundMap.put("Pick_up_Stick", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Pick_Stick_1.wav"));
+                        soundMap.put("Pick_up_Stick2", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Pick_Up_Stick_2.wav"));
+                        soundMap.put("Pick_up_Stick3", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Pick_Up_Stick_3.wav"));
                     }
                     catch (Exception e){
                         soundMap.put("Exp1", soundinput.getAudio("res/audio/EfeitoExplosion1.wav"));
@@ -63,6 +72,16 @@ public class Sounds {
                         soundMap.put("pCoin3", soundinput.getAudio("res/audio/EfeitoPickup_Coin3.wav"));
                         soundMap.put("pCoin4", soundinput.getAudio("res/audio/EfeitoPickup_Coin4.wav"));
                         soundMap.put("Music",soundinput.getAudio("res/audio/Music_cut.wav"));
+                        soundMap.put("Cannon", soundinput.getAudio(" /res/audio/Audios_0.2/Cannon_1.wav"));
+                        soundMap.put("close_door", soundinput.getAudio("/res/audio/Audios_0.2/close_door_1.wav"));
+                        soundMap.put("Explosion", soundinput.getAudio("/res/audio/Audios_0.2/Explosion_2.wav0"));
+                        soundMap.put("Hit_2", soundinput.getAudio("/res/audio/Audios_0.2/Hit_1.wav"));
+                        soundMap.put("Hit_3", soundinput.getAudio("/res/audio/Audios_0.2/Hit_backsound.wav"));
+                        soundMap.put("Hit_Miss", soundinput.getAudio("/res/audio/Audios_0.2/Hit_Miss.wav"));
+                        soundMap.put("Menu_Navigate", soundinput.getAudio("/res/audio/Audios_0.2/Menu_Navigate.wav"));
+                        soundMap.put("Pick_up_Stick", soundinput.getAudio("/res/audio/Audios_0.2/Pick_Stick_1.wav"));
+                        soundMap.put("Pick_up_Stick2", soundinput.getAudio("/res/audio/Audios_0.2/Pick_Up_Stick_2.wav"));
+                        soundMap.put("Pick_up_Stick3", soundinput.getAudio("/res/audio/Audios_0.2/Pick_Up_Stick_3.wav"));
                     }
                 }
                 catch (Exception e) {
