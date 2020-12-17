@@ -123,7 +123,7 @@ public class Alpha extends Player implements GravityEffected {
 				Hittable h = (Hittable)Room.entities.get(i);
 				h.getHit();
 				this.hit = true;
-				handler.getSounds().play("Hit", 1);
+				handler.getSounds().play("Hit", handler.getGameVolume());
 			}
 		}
 	}
@@ -140,7 +140,7 @@ public class Alpha extends Player implements GravityEffected {
 						super.getMaskW(), super.getMaskH())) {
 			this.jump = true;
 			pressedDown = true;
-			handler.getSounds().play("Jump3", 1);
+			handler.getSounds().play("Jump3", handler.getGameVolume()*0.6f); //Aqui só diminui o volume do pulo manualmente
 
 		} else if (!handler.getInputHandler().prime.down) {
 			pressedDown = false;

@@ -67,7 +67,7 @@ public class State_00 extends State {
             ((State_Pause)(handler.getStateManager().getCurrentState())).setPreviousState(this.id);
         }
 
-        //handler.getSounds().tick("Loop", 1);
+        handler.getSounds().tick("Music", handler.getGameVolume());
     }
 
     @Override

@@ -2,24 +2,24 @@ package com.unamedgroup.placeholder.graphics.screen_components;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-public class Label {
+public class Label extends Component {
     private float x, y;
     private String txt;
     private int xtemp, ytemp;
     private Font font;
     private Color color;
     private boolean toAlign;
-    
-    
+
     /**
      * 
-     * @param txt Texto do Text
-     * @param x Coordenada X
-     * @param y Coordenada Y
-     * @param font Fonte
-     * @param color Cor da Fonte
+     * @param txt     Texto do Text
+     * @param x       Coordenada X
+     * @param y       Coordenada Y
+     * @param font    Fonte
+     * @param color   Cor da Fonte
      * @param toAlign Centralizar?
      */
     public Label(String txt, int x, int y, Font font, Color color, boolean toAlign) {
@@ -29,29 +29,53 @@ public class Label {
         this.xtemp = x;
         this.ytemp = y;
         this.toAlign = toAlign;
+        this.xComponemt = x;
+        this.yComponent = y;
     }
 
     public Label(String txt) {
         this.txt = txt;
     }
-    
-    private void align(Graphics2D g){
-        if(toAlign){
-            x = xtemp - g.getFontMetrics().stringWidth(txt)/2;
-        }else{
+
+    private void align(Graphics2D g) {
+        if (toAlign) {
+            x = xtemp - g.getFontMetrics().stringWidth(txt) / 2;
+        } else {
             x = xtemp;
         }
         y = ytemp + g.getFontMetrics().getHeight();
     }
-    
-    
-    public void render(Graphics2D g){
+
+    public void render(Graphics2D g) {
         g.setColor(color);
         g.setFont(font);
         align(g);
-        g.drawString(txt, x, y);  
+        g.drawString(txt, x, y);
     }
+
+    public void renderComponent(Graphics2D g){
+        g.setColor(color);
+        g.setFont(font);
+        align(g);
+        g.drawString(txt, xComponemt, yComponent);
+    }
+
     
+    @Override
+    public void init() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void tick() {
+
+    }
+
+    @Override
+    public void render(Graphics g) {
+        renderComponent((Graphics2D)g);
+    }
 
     public float getX() {
         return this.x;
@@ -69,7 +93,6 @@ public class Label {
         this.y = y;
     }
 
-
     public String getTxt() {
         return this.txt;
     }
@@ -77,7 +100,6 @@ public class Label {
     public void setTxt(String txt) {
         this.txt = txt;
     }
-
 
     public int getXtemp() {
         return this.xtemp;
@@ -122,5 +144,6 @@ public class Label {
     public void setToAlign(boolean toAlign) {
         this.toAlign = toAlign;
     }
+
 
 }

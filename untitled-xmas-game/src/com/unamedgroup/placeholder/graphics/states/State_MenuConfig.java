@@ -60,7 +60,7 @@ public class State_MenuConfig extends Menu {
                     break;
                 case 1:
                     super.status = "getout";
-                    //TODO
+                    super.screenDestiny = State_MenuConfig_Audio.ID;
                     break;
                 case 2:
                     super.status = "getout";
