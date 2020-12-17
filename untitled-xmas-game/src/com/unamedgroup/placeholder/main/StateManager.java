@@ -12,6 +12,7 @@ import com.unamedgroup.placeholder.graphics.states.State;
 import com.unamedgroup.placeholder.graphics.states.State_00;
 import com.unamedgroup.placeholder.graphics.states.State_01;
 import com.unamedgroup.placeholder.graphics.states.State_02;
+import com.unamedgroup.placeholder.graphics.states.State_MenuConfig;
 import com.unamedgroup.placeholder.graphics.states.State_Pause;
 
 /**
@@ -21,7 +22,7 @@ import com.unamedgroup.placeholder.graphics.states.State_Pause;
 public class StateManager{
 
     private static ArrayList<State> states = new ArrayList<>();
-    private static int currentState = 2;
+    private static int currentState = 6;
     private boolean paused=false;
 
     /**
@@ -38,6 +39,7 @@ public class StateManager{
         states.add(new Menu_Principal(states.size(), handler));
         states.add(new Menu_Creditos(states.size(), handler));
         states.add(new State_Pause(states.size(), handler));
+        states.add(new State_MenuConfig(states.size(), handler));
     }
 
     /**
