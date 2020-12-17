@@ -7,8 +7,6 @@ import java.awt.Color;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Handler;
 
-import font.CustomFont;
-
 /**
  * @author Daniel Nogueira Essa classe servirá para mover o volume no menu principal
  * 
