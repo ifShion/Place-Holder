@@ -44,7 +44,6 @@ public class Game implements Runnable {
 	public static final int HEIGHT = 160; // Variável que define a altura da tela do jogo
 	public static final int SCALE = 3;
 
-	public boolean isPaused; // Booleano para verificar se o jogo está pausado ou não
 	/*---------------------------------------------------------------*/
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
 
@@ -133,7 +132,9 @@ public class Game implements Runnable {
 		handler.tick();
 		if(statesUseMaps){
 			if(!alternatingMaps) {
-				for (int i = 0; i < Room.entities.size(); i++) Room.entities.get(i).tick();
+				if (!handler.getStateManager().isPaused()){
+					for (int i = 0; i < Room.entities.size(); i++) Room.entities.get(i).tick();
+				}
 			}else
 				maps.tick();
 		}
@@ -208,6 +209,7 @@ public class Game implements Runnable {
 		long lastTimer1 = System.currentTimeMillis();
 
 		while (isRunning) {
+
 			long now = System.nanoTime();
 			unprocessed += (now - lastTime) / nsPerTick;
 			lastTime = now;
