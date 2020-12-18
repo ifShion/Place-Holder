@@ -67,104 +67,112 @@ public class Room extends World {
      */
     public void createEntities(){
         switch(handler.getGame().getCurrentMapID()){
-            case 10520:
-            /*
-        		createNewKey(20,29);
-                createNewSucker(21,29);
-                createNewSucker(30,29);
-                createNewSucker(16,29);
-                createNewSucker(43,29);
-                createNewSucker(69,29);
-                placeDoor(71, 28, 1001, 8 * World.TILE_SIZE, 68 * World.TILE_SIZE, true);
-                createNewHuggerEnemy(17, 32);
-                createNewHuggerEnemy(20, 32);
-                createNewHuggerEnemy(27, 32);
-                createNewHuggerEnemy(35, 32);
-                createNewHuggerEnemy(47, 32);
-                createNewHuggerEnemy(52, 32);
-                */
-        		break;
-            case 1011:
-            /*
-                createNewCannonEnemy(39, 65, -6);
-                createNewCannonEnemy(32, 65, -6);
-                createNewCannonEnemy(41, 43, 2);
-                createNewWalkerEnemy(31, 36);
-                createNewWalkerEnemy(21, 37);
-                createNewWalkerEnemy(21, 54);
-                createNewWalkerEnemy(21, 18);
-                createNewWalkerEnemy(32, 18);
-                createNewCannonEnemy(21, 5, -6);
-                createNewWalkerEnemy(35, 9);
-                //placeDoor(4, 21, 1001, 3, 60, false);
-                createNewKey(8,69);
-                createNewSucker(5,69);
-                placeDoor(12, 68, 1000, 15 * World.TILE_SIZE, 28 * World.TILE_SIZE, true);
-                break;
-                */
             case 0001: // Mapa do corredor, uso numa cutscene
                 break;
             case 1000: 
-                createNewKey(5,5);
-                placeDoor(114, 34, 1001, 5 * World.TILE_SIZE, 26 * World.TILE_SIZE, true);
+                //------- INIMIGO -------//
                 createNewCannonEnemy(35, 6, 6);
-                createNewSucker(29,7);
-                placeGateSwitch(31, 6);
                 createNewWalkerEnemy(55, 7);
                 createNewWalkerEnemy(65, 7);
                 createNewWalkerEnemy(75, 7);
                 createNewWalkerEnemy(85, 7);
-
-                createNewHuggerEnemy(8, 6);
-
-                createNewSucker(4,19);
-                createNewWalkerEnemy(15, 36);
-
-                createNewTrackerEnemy(40, 25);
-                createNewCannonEnemy(116, 17, -6);
                 createNewWalkerEnemy(40, 28);
                 createNewWalkerEnemy(79, 28);
-                
+                createNewHuggerEnemy(8, 6);
+                createNewWalkerEnemy(15, 36);
+                //createNewTrackerEnemy(40, 25);
+                createNewCannonEnemy(116, 17, -6);
+                //------- INTERAGIVEL -------//
+                createNewKey(5,5);
+                createNewSucker(4,19);
+                createNewSucker(29,7);
+                placeGateSwitch(31, 6, 0);
+                //------- PORTAL -------//
+                placeDoor(114, 34, 1001, 5 * World.TILE_SIZE, 26 * World.TILE_SIZE, true);
+                //------- CENARIO -------//
                 createForniture("prateleiraCheia", 8, 55, 26);
-                placeGate(55, 28, 2000, 114 * World.TILE_SIZE, 34 * World.TILE_SIZE);
-                placeGateSwitch(60, 28);
-                placeGateSwitch(65, 28);
-                placeGateSwitch(70, 28);
                 createForniture("prateleiraMetalCheia", 5, 51, 29);
                 createForniture("prateleiraMetalCheia", 8, 67, 29);
+                //placeGateSwitch(60, 28, 0);
+                //placeGateSwitch(65, 28, 1);
+                //placeGateSwitch(70, 28, 2);
                 break;
 
             case 1001:
+                //------- PORTAL -------//
                 placeDoor(5, 26, 2000, 114 * World.TILE_SIZE, 34 * World.TILE_SIZE, false);
+                placeDoor(39, 26, 1002, 4 * World.TILE_SIZE, 75 * World.TILE_SIZE, false);
                 //placeDoor(x, y, 1002, tpx, tpy, false);
                 //placeDoor(x, y, 1003, tpx, tpy, false);
-                placeGate(111, 23, 1000, 0, 0);
-
+                placeGate(111, 24, 1000, 0, 0);
+            break;
+            case 1002:
+                //------- INIMIGO -------//
+                createNewTrackerEnemy(18, 70);
+                createNewTrackerEnemy(35, 61);
+                createNewTrackerEnemy(45, 44);
+                createNewTrackerEnemy(25, 14);
+                createNewTrackerEnemy(25, 32);
+                createNewCannonEnemy(35,71, -1);
+                createNewCannonEnemy(12,39, 1);
+                createNewCannonEnemy(28,21, -1);
+                createNewWalkerEnemy(16, 6);
+                createNewWalkerEnemy(43, 10);
+                createNewWalkerEnemy(4, 33);
+                createNewWalkerEnemy(44, 63);
+                //------- INTERAGIVEL -------//
+                createNewKey(41,79);
+                createNewSucker(32, 22);
+                placeGateSwitch(45, 21, 1);
+                //------- PORTAL -------//
+                placeDoor(4, 75, 1001, 39 * World.TILE_SIZE, 26 * World.TILE_SIZE, false);
+                placeDoor(42, 9, 1002, 42 * World.TILE_SIZE, 21 * World.TILE_SIZE, true);
+                placeDoor(42, 21, 2002, 42 * World.TILE_SIZE, 9 * World.TILE_SIZE, false);
             break;
             case 2000:
+                //------- INIMIGO -------//
                 createNewCannonEnemy(35, 6, 6);
-                createNewSucker(29,7);
-                placeGateSwitch(31, 6);
                 createNewWalkerEnemy(55, 7);
                 createNewWalkerEnemy(65, 7);
                 createNewWalkerEnemy(75, 7);
                 createNewWalkerEnemy(85, 7);
-
-                createNewHuggerEnemy(8, 6);
-
-                createNewSucker(4,19);
-                createNewWalkerEnemy(15, 36);
-
-                createNewTrackerEnemy(40, 25);
-                createNewCannonEnemy(116, 17, -6);
                 createNewWalkerEnemy(40, 28);
                 createNewWalkerEnemy(79, 28);
-                
+                createNewHuggerEnemy(8, 6);
+                createNewWalkerEnemy(15, 36);
+                //createNewTrackerEnemy(40, 25);
+                createNewCannonEnemy(116, 17, -6);
+                //------- INTERAGIVEL -------//
+                createNewSucker(4,19);
+                createNewSucker(29,7);
+                placeGateSwitch(31, 6, 0);
+                //------- PORTAL -------//
+                placeDoor(114, 34, 1001, 5 * World.TILE_SIZE, 26 * World.TILE_SIZE, false);
+                //------- CENARIO -------//
                 createForniture("prateleiraCheia", 8, 55, 26);
                 createForniture("prateleiraMetalCheia", 5, 51, 29);
                 createForniture("prateleiraMetalCheia", 8, 67, 29);
-                
-                placeDoor(114, 34, 1001, 5 * World.TILE_SIZE, 26 * World.TILE_SIZE, false);
+            break;
+            case 2002:
+                //------- INIMIGO -------//
+                createNewTrackerEnemy(18, 70);
+                createNewTrackerEnemy(35, 61);
+                createNewTrackerEnemy(45, 44);
+                createNewTrackerEnemy(25, 14);
+                createNewTrackerEnemy(25, 32);
+                createNewCannonEnemy(35,71, -1);
+                createNewCannonEnemy(12,39, 1);
+                createNewCannonEnemy(28,21, -1);
+                createNewWalkerEnemy(16, 6);
+                createNewWalkerEnemy(43, 10);
+                createNewWalkerEnemy(4, 33);
+                createNewWalkerEnemy(44, 63);
+                //------- INTERAGIVEL -------//
+                placeGateSwitch(45, 21, 1);
+                //------- PORTAL -------//
+                placeDoor(4, 75, 1001, 39 * World.TILE_SIZE, 26 * World.TILE_SIZE, false);
+                placeDoor(42, 9, 2002, 42 * World.TILE_SIZE, 21 * World.TILE_SIZE, false);
+                placeDoor(42, 21, 2002, 42 * World.TILE_SIZE, 9 * World.TILE_SIZE, false);
             break;
             default:
 
@@ -225,14 +233,6 @@ public class Room extends World {
         Room.entities.add(su);
     }
 
-    /**
-     * Cria mobilia na fase
-     * As mobilias podem ser: "prateleira"
-     * @param forniture Nome da mobilia
-     * @param qtd   Se ela for extensivel dizer o tamanho
-     * @param x     Coordenada X
-     * @param y     Coordenada Y
-     */
     private void createForniture(String forniture,int qtd, int x, int y){
         ArrayList<Entity> forni = new ArrayList<>();
         x = x * World.TILE_SIZE;
@@ -295,13 +295,11 @@ public class Room extends World {
     }
     
     private void placeGate(int x, int y, int destiny, int tpx, int tpy){
-        Gate gt = new Gate(x* World.TILE_SIZE, y* World.TILE_SIZE-2, destiny, tpx, tpy, handler);
-        Room.entities.add(gt);
+        Room.entities.add(GateControl.getGate((double)x* World.TILE_SIZE,(double) y* World.TILE_SIZE-2, destiny, tpx, tpy, handler));
     }
 
-    private void placeGateSwitch(int x, int y){
-        GateSwitch gs = new GateSwitch(x * World.TILE_SIZE, y * World.TILE_SIZE, handler);
-        Room.entities.add(gs);
+    private void placeGateSwitch(int x, int y, int index){
+        Room.entities.add(GateControl.getSwitch(index,x * World.TILE_SIZE, y * World.TILE_SIZE, handler));
     }
 
     //Modifiquei a condição de igualdade dos mapas para comparar seus arquivos de imagem, se forem os

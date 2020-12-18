@@ -9,6 +9,7 @@ import java.util.Random;
 import com.unamedgroup.placeholder.entities.Alpha;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Gate;
+import com.unamedgroup.placeholder.entities.GateControl;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.graphics.screen_components.Hud;
@@ -30,6 +31,7 @@ import font.CustomFont;
 public class State_00 extends State {
     private Alpha alpha;
     private Hud hud;
+    private GateControl gateControl;
 
 
     public State_00(int id, Handler handler){
@@ -39,6 +41,7 @@ public class State_00 extends State {
         alpha.setHp(5);
         handler.getGame().setPlayer(alpha);
         hud = new Hud(handler);
+        gateControl = new GateControl(handler);
     }
 
     @Override
