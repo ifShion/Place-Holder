@@ -15,7 +15,7 @@ import com.unamedgroup.placeholder.main.Handler;
 public class VolumeControl extends Component {
 
     private float[] volumeSelection;
-    private int selectionIndex=5;
+    private int selectionIndex=3;
     private SpriteSheet selectionBox;
     private String[] numbers;
     private final Font font;
