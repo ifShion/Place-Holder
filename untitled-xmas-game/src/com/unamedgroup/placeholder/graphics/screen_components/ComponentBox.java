@@ -3,6 +3,7 @@ package com.unamedgroup.placeholder.graphics.screen_components;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+
 /**
  * @author Daniel Nogueira
  * Uma classe para compactar Componentes e colocar alinhados
@@ -53,7 +54,6 @@ public class ComponentBox extends Component {
             if (components.size() > i+1){
                 components.get(i+1).setyComponent(components.get(i).getyComponent()+35);
             }
-                
         }
     }
 
@@ -72,4 +72,19 @@ public class ComponentBox extends Component {
     public void setSelectionIndex(int selectionIndex) {
         this.selectionIndex = selectionIndex;
     }
+
+    @Override
+    public void setxComponent(float x){
+        this.xComponent = x;
+        if (!components.isEmpty())
+            components.get(0).setxComponent(x);
+    }
+
+    @Override
+    public void setyComponent(float y){
+        this.yComponent = y;
+        if (!components.isEmpty())
+            components.get(0).setyComponent(y);
+    }    
+
 }

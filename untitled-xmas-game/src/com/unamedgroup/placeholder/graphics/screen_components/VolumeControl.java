@@ -24,13 +24,14 @@ public class VolumeControl extends Component {
 
     public VolumeControl(float x, float y, Font font, Color color, Handler handler) {
         init();
-        this.xComponemt = x;
+        this.xComponent = x;
         this.yComponent = y;
         this.font = font;
         this.color = color;
         this.handler = handler;
     }
 
+    @Override
     public void init() {
         numbers = new String[11];
         selectionBox = new SpriteSheet("/spritesheet/SelectionBox.png");
@@ -56,23 +57,22 @@ public class VolumeControl extends Component {
         handler.setGameVolume(volumeSelection[selectionIndex]);
     }
 
-    public void tick() {
-        
-    }
+    @Override
+    public void tick() {}
 
     @Override
     public void render(Graphics g) {
         int count = 0;
         g.setFont(font);
         for (int i=0; i<11; i++){
-            g.drawImage(selectionBox.getSpriteSheet(), (int)xComponemt+count, (int)yComponent, null);
+            g.drawImage(selectionBox.getSpriteSheet(), (int)xComponent+count, (int)yComponent, null);
             if (i == selectionIndex)  g.setColor(Color.YELLOW);
             else g.setColor(Color.WHITE);
             if (i<10) {
-                g.drawString(numbers[i], (int) (xComponemt + count + 4) , (int) yComponent+13);
+                g.drawString(numbers[i], (int) (xComponent + count + 4) , (int) yComponent+13);
             }
             else {
-                g.drawString(numbers[i], (int) (xComponemt + count + 1) , (int) yComponent+13);
+                g.drawString(numbers[i], (int) (xComponent + count + 1) , (int) yComponent+13);
             }
             count+=16;
         }

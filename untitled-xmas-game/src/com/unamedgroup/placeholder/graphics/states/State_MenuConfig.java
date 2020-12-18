@@ -64,7 +64,7 @@ public class State_MenuConfig extends Menu {
                     break;
                 case 2:
                     super.status = "getout";
-                    //TODO
+                    super.screenDestiny = State_MenuConfig_Tela.ID;
                     break;
                 case 3:
                     super.status = "getout";

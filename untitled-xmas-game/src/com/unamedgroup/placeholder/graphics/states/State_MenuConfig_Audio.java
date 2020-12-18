@@ -10,6 +10,8 @@ import com.unamedgroup.placeholder.graphics.screen_components.Label;
 import com.unamedgroup.placeholder.graphics.screen_components.VolumeControl;
 import com.unamedgroup.placeholder.main.Handler;
 
+import font.CustomFont;
+
 /**
  * @author Daniel Nogueira
  * Estado para o menu de áudio no menu principal
@@ -36,7 +38,7 @@ public class State_MenuConfig_Audio extends Menu {
         background = new Entity(0, 0, 240, 160, new SpriteSheet("/spritesheet/Menu_SnowFall.png"), 1, 0, 15, 20, 1, 0, 0, handler);
         background.getAnimation().setPlay(true);
         backgroundLayer = new SpriteSheet("/spritesheet/fundoPausa.png");
-        returnLabel = new Label("Retornar", 100, 0, null, Color.WHITE, true);
+        returnLabel = new Label("Retornar", 90, 0, CustomFont.getFont("AtariSmall.ttf", 18f), Color.WHITE, true);
         volumeControl = new VolumeControl(35, 50, null, Color.WHITE, handler);
         controle = new ComponentBox();
         controle.add(volumeControl);

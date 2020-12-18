@@ -86,9 +86,6 @@ public class Game implements Runnable {
 	 */
 	public Game() throws UnsupportedAudioFileException {
 		init();
-		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
-		// //fullscreen
-
 		alternatingMaps = true;
 	}
 

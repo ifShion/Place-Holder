@@ -55,6 +55,17 @@ public class Handler {
         stateManager.render(g);
     }
 
+    public void changeSize(){
+        if (!game.isFullScreen){
+            display.setFullScreen();
+            game.isFullScreen = true;
+        }
+        else {
+            display.setRegularSize(Game.WIDTH, Game.HEIGHT, Game.SCALE);
+            game.isFullScreen = false;
+        }
+    }
+
     //getters e setters
     public InputHandler getInputHandler() {
         return inputHandler;

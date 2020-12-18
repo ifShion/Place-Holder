@@ -29,7 +29,7 @@ public class Label extends Component {
         this.xtemp = x;
         this.ytemp = y;
         this.toAlign = toAlign;
-        this.xComponemt = x;
+        this.xComponent = x;
         this.yComponent = y;
     }
 
@@ -57,7 +57,7 @@ public class Label extends Component {
         g.setColor(color);
         g.setFont(font);
         align(g);
-        g.drawString(txt, xComponemt, yComponent);
+        g.drawString(txt, xComponent, yComponent);
     }
 
     

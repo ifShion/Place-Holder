@@ -8,18 +8,18 @@ import java.awt.Graphics;
  */
 public abstract class Component {
 
-    protected float xComponemt, yComponent;
+    protected float xComponent, yComponent;
     
     public abstract void init();
     public abstract void tick();
     public abstract void render(Graphics g);
 
-    public float getxComponemt() {
-        return xComponemt;
+    public float getxComponent() {
+        return xComponent;
     }
 
-    public void setxComponemt(float xComponemt) {
-        this.xComponemt = xComponemt;
+    public void setxComponent(float xComponent) {
+        this.xComponent = xComponent;
     }
 
     public float getyComponent() {
