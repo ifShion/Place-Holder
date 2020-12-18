@@ -8,6 +8,7 @@ import java.util.Random;
 
 import com.unamedgroup.placeholder.entities.Alpha;
 import com.unamedgroup.placeholder.entities.Entity;
+import com.unamedgroup.placeholder.entities.Gate;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.graphics.screen_components.Hud;
@@ -29,9 +30,7 @@ import font.CustomFont;
 public class State_00 extends State {
     private Alpha alpha;
     private Hud hud;
-    private Entity prateleitaE, caixoteE;
-    private BufferedImage portao, prateleira, caixote, bonequinho,presente01,presente02;
-    private SpriteSheet armazem;
+
 
     public State_00(int id, Handler handler){
 		super(id, handler);
@@ -48,7 +47,7 @@ public class State_00 extends State {
             alpha.setY(getPlayerY());
             handler.getGame().setPlayer(alpha);
             handler.getGame().updateEntities();
-            handler.getGame().setCurrentMapID(2001);
+            handler.getGame().setCurrentMapID(1000);
     }
     @Override
     public void tick() {

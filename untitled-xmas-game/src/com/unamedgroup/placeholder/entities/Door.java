@@ -24,20 +24,20 @@ public class Door extends Entity {
 
     public void movePlayer() {
         if(super.isColliding(this, handler.getGame().getPlayer())) {
-            if(locked){
-                for(int i=0; i<handler.getGame().getPlayer().getInventario().size();i++){
-                    if(handler.getGame().getPlayer().getInventario().get(i) instanceof Key){
-                        if(handler.getInputHandler().up.clicked){
+            if(handler.getInputHandler().up.clicked){
+                if(locked){
+                    for(int i=0; i<handler.getGame().getPlayer().getInventario().size();i++){
+                        if(handler.getGame().getPlayer().getInventario().get(i) instanceof Key){
                             locked = false;
                             handler.getGame().getPlayer().getInventario().remove(i);
                         }
                     }
+                }else{
+                    handler.getGame().updateEntities();
+                    handler.getGame().changeCurrentMapID(destiny);
+                    handler.getGame().getPlayer().setX(tpx);
+                    handler.getGame().getPlayer().setY(tpy);
                 }
-            }else{
-                handler.getGame().updateEntities();
-                handler.getGame().changeCurrentMapID(destiny);
-                handler.getGame().getPlayer().setX(tpx);
-                handler.getGame().getPlayer().setY(tpy);
             }
            return;
         }

@@ -28,7 +28,7 @@ public class State_Pause extends State {
     @Override
     public void init() {
         background = new SpriteSheet("/spritesheet/fundoPausa.png");
-        menu = new LabelList(Game.WIDTH-170, Game.HEIGHT-90, null, Color.WHITE, LabelList.LEFT);
+        menu = new LabelList(Game.WIDTH/2, Game.HEIGHT/2, null, Color.WHITE, LabelList.CENTER);
         menu.add("Continuar");
         menu.add("Controles");
         menu.add("Menu Principal");

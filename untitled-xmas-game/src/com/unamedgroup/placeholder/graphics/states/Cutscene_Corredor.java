@@ -31,7 +31,7 @@ public class Cutscene_Corredor extends State {
     @Override
     public void init() {
         setPlayerCoordinatingByMap(false);
-        handler.getGame().setCurrentMapID(2000);
+        handler.getGame().setCurrentMapID(0001);
         alphinha.getAnimation().setPlay(true);
         handler.getGame().setPlayer(alphinha);
         handler.getGame().updateEntities();

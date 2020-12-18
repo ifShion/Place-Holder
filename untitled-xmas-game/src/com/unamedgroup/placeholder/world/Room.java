@@ -6,14 +6,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.unamedgroup.placeholder.entities.Door;
-import com.unamedgroup.placeholder.entities.Entity;
-import com.unamedgroup.placeholder.entities.Key;
-import com.unamedgroup.placeholder.entities.Sucker;
-import com.unamedgroup.placeholder.entities.enemies.CannonEnemy;
-import com.unamedgroup.placeholder.entities.enemies.HuggerEnemy;
-import com.unamedgroup.placeholder.entities.enemies.TrackerEnemy;
-import com.unamedgroup.placeholder.entities.enemies.WalkerEnemy;
+import com.unamedgroup.placeholder.entities.*;
+import com.unamedgroup.placeholder.entities.enemies.*;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
@@ -73,7 +67,8 @@ public class Room extends World {
      */
     public void createEntities(){
         switch(handler.getGame().getCurrentMapID()){
-        	case 1000:
+            case 10520:
+            /*
         		createNewKey(20,29);
                 createNewSucker(21,29);
                 createNewSucker(30,29);
@@ -87,8 +82,10 @@ public class Room extends World {
                 createNewHuggerEnemy(35, 32);
                 createNewHuggerEnemy(47, 32);
                 createNewHuggerEnemy(52, 32);
+                */
         		break;
-            case 1001:
+            case 1011:
+            /*
                 createNewCannonEnemy(39, 65, -6);
                 createNewCannonEnemy(32, 65, -6);
                 createNewCannonEnemy(41, 43, 2);
@@ -104,18 +101,21 @@ public class Room extends World {
                 createNewSucker(5,69);
                 placeDoor(12, 68, 1000, 15 * World.TILE_SIZE, 28 * World.TILE_SIZE, true);
                 break;
-            case 2000: // Mapa do corredor, uso numa cutscene
+                */
+            case 0001: // Mapa do corredor, uso numa cutscene
                 break;
-            case 2001: // Mapa do armazem beta
+            case 1000: 
+                createNewKey(5,5);
+                placeDoor(114, 34, 1001, 5 * World.TILE_SIZE, 26 * World.TILE_SIZE, true);
                 createNewCannonEnemy(35, 6, 6);
                 createNewSucker(29,7);
+                placeGateSwitch(31, 6);
                 createNewWalkerEnemy(55, 7);
                 createNewWalkerEnemy(65, 7);
                 createNewWalkerEnemy(75, 7);
                 createNewWalkerEnemy(85, 7);
 
                 createNewHuggerEnemy(8, 6);
-                createNewKey(5,5);
 
                 createNewSucker(4,19);
                 createNewWalkerEnemy(15, 36);
@@ -124,14 +124,48 @@ public class Room extends World {
                 createNewCannonEnemy(116, 17, -6);
                 createNewWalkerEnemy(40, 28);
                 createNewWalkerEnemy(79, 28);
+                
+                createForniture("prateleiraCheia", 8, 55, 26);
+                placeGate(55, 28, 2000, 114 * World.TILE_SIZE, 34 * World.TILE_SIZE);
+                placeGateSwitch(60, 28);
+                placeGateSwitch(65, 28);
+                placeGateSwitch(70, 28);
+                createForniture("prateleiraMetalCheia", 5, 51, 29);
+                createForniture("prateleiraMetalCheia", 8, 67, 29);
+                break;
 
-                placeDoor(114, 34, 1001, 8 * World.TILE_SIZE, 68 * World.TILE_SIZE, true);
+            case 1001:
+                placeDoor(5, 26, 2000, 114 * World.TILE_SIZE, 34 * World.TILE_SIZE, false);
+                //placeDoor(x, y, 1002, tpx, tpy, false);
+                //placeDoor(x, y, 1003, tpx, tpy, false);
+                placeGate(111, 23, 1000, 0, 0);
 
+            break;
+            case 2000:
+                createNewCannonEnemy(35, 6, 6);
+                createNewSucker(29,7);
+                placeGateSwitch(31, 6);
+                createNewWalkerEnemy(55, 7);
+                createNewWalkerEnemy(65, 7);
+                createNewWalkerEnemy(75, 7);
+                createNewWalkerEnemy(85, 7);
+
+                createNewHuggerEnemy(8, 6);
+
+                createNewSucker(4,19);
+                createNewWalkerEnemy(15, 36);
+
+                createNewTrackerEnemy(40, 25);
+                createNewCannonEnemy(116, 17, -6);
+                createNewWalkerEnemy(40, 28);
+                createNewWalkerEnemy(79, 28);
+                
                 createForniture("prateleiraCheia", 8, 55, 26);
                 createForniture("prateleiraMetalCheia", 5, 51, 29);
                 createForniture("prateleiraMetalCheia", 8, 67, 29);
-                //createForniture("portao", 0, 58, 27);
-                break;
+                
+                placeDoor(114, 34, 1001, 5 * World.TILE_SIZE, 26 * World.TILE_SIZE, false);
+            break;
             default:
 
         }
@@ -260,6 +294,16 @@ public class Room extends World {
         });
     }
     
+    private void placeGate(int x, int y, int destiny, int tpx, int tpy){
+        Gate gt = new Gate(x* World.TILE_SIZE, y* World.TILE_SIZE-2, destiny, tpx, tpy, handler);
+        Room.entities.add(gt);
+    }
+
+    private void placeGateSwitch(int x, int y){
+        GateSwitch gs = new GateSwitch(x * World.TILE_SIZE, y * World.TILE_SIZE, handler);
+        Room.entities.add(gs);
+    }
+
     //Modifiquei a condição de igualdade dos mapas para comparar seus arquivos de imagem, se forem os
     //mesmos arquivos, então eles são iguais. Pode ser útil no futuro.
     @Override
