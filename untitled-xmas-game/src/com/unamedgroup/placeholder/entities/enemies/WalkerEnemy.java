@@ -22,13 +22,15 @@ public class WalkerEnemy extends Enemy implements GravityEffected, Hittable {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
 		// TODO Auto-generated constructor stub
 		
+		super.setHp(1);
 		super.status = ((Game.rand.nextInt(100) < 50) ? "left" : "right");
 	}
 
 	public void tick() {
 		super.tick();
+
 		
-		super.getAnimation().setPlay(true);
+		
 		switch(status) {
 		case "left":
 			super.getAnimation().setNumSpritesX(4);
@@ -103,6 +105,10 @@ public class WalkerEnemy extends Enemy implements GravityEffected, Hittable {
 
 	@Override
 	public void getHit() {
-		this.destroyEnemy();
+		super.getAnimation().setSpriteX(0);
+		super.setHp(super.getHp() - 1);
+		if(super.getHp() < 1) {
+			this.destroyEnemy();
+		}
 	}
 }

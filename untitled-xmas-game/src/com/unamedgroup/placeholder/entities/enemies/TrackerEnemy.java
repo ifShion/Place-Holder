@@ -21,6 +21,8 @@ public class TrackerEnemy extends Enemy implements Hittable {
 
 	private int followDelay;
 	private int attackDelay;
+	private boolean damaged;
+	private int damageCooldown;
 	
 	/**
 	 * Inicializa um inimigo que persegue o jogador
@@ -41,6 +43,7 @@ public class TrackerEnemy extends Enemy implements Hittable {
 	public TrackerEnemy(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
 		
+		super.setHp(2);
 		this.status = "";
 	}
 	
@@ -48,6 +51,13 @@ public class TrackerEnemy extends Enemy implements Hittable {
 	public void tick() {
 		super.tick();
 		this.animation();
+		
+		damageCooldown--;
+		if(damageCooldown < 0) {
+			damaged = false;
+			damageCooldown = 0;
+		}
+		
 		// O inimigo irá parar de seguir o personagem depois que chegar nessa distância
 		if(calculateDistance(super.getX(), handler.getGame().getPlayer().getX(), super.getY(), handler.getGame().getPlayer().getY()) < 32) {
 			super.followPath(null);
@@ -78,25 +88,27 @@ public class TrackerEnemy extends Enemy implements Hittable {
 	
 	public void damagePlayer() {
 		//status attacking;
-		attackDelay++;
-		super.getAnimation().offSet(-5, -12);
-		super.setHeight(32);
-		super.setWidth(24);
-		super.getAnimation().setWidth(24);
-		super.getAnimation().setHeight(32);
-		super.getAnimation().setSpriteX(0);
-		super.getAnimation().setSpriteY(1);
-		
-		if (attackDelay < 10) {
+		if(!damaged) {
+			attackDelay++;
+			super.getAnimation().offSet(-5, -12);
+			super.setHeight(32);
+			super.setWidth(24);
+			super.getAnimation().setWidth(24);
+			super.getAnimation().setHeight(32);
 			super.getAnimation().setSpriteX(0);
-		}else if(attackDelay < 45) {
-			super.getAnimation().setSpriteX(1);
-		}else if (attackDelay < 52) {
-			super.getAnimation().setSpriteX(2);
-		}else if (attackDelay < 60) {
-			attackDelay = 0;
-			super.getAnimation().setSpriteX(3);
-			handler.getGame().getPlayer().hitPlayer(1);
+			super.getAnimation().setSpriteY(1);
+			
+			if (attackDelay < 10) {
+				super.getAnimation().setSpriteX(0);
+			}else if(attackDelay < 45) {
+				super.getAnimation().setSpriteX(1);
+			}else if (attackDelay < 52) {
+				super.getAnimation().setSpriteX(2);
+			}else if (attackDelay < 60) {
+				attackDelay = 0;
+				super.getAnimation().setSpriteX(3);
+				handler.getGame().getPlayer().hitPlayer(1);
+			}
 		}
 	}
 	
@@ -106,7 +118,7 @@ public class TrackerEnemy extends Enemy implements Hittable {
 		super.setWidth(24);
 		super.getAnimation().setWidth(24);
 		super.getAnimation().setHeight(24);
-		if(status != "attacking") {
+		if(status != "attacking" && !damaged) {
 			switch (super.status) {
 			case "flying": 
 				super.getAnimation().setNumSpritesX(4);
@@ -119,6 +131,14 @@ public class TrackerEnemy extends Enemy implements Hittable {
 				super.getAnimation().setSpriteVeloticy(5);
 				break;
 			}
+		} else if(damaged) {
+			super.setHeight(32);
+			super.setWidth(24);
+			super.getAnimation().setWidth(24);
+			super.getAnimation().setHeight(32);
+			super.getAnimation().setNumSpritesX(5);
+			super.getAnimation().setSpriteY(2);
+			super.getAnimation().setSpriteVeloticy(6);
 		}
 	}
 	
@@ -138,7 +158,16 @@ public class TrackerEnemy extends Enemy implements Hittable {
 
 	@Override
 	public void getHit() {
-		destroyEnemy();
+		if(damageCooldown == 0 && !damaged) {
+			super.getAnimation().setSpriteX(0);
+			damageCooldown = 30;
+			super.setHp(super.getHp() - 1);
+			this.damaged = true;
+			if(super.getHp() < 1) {
+				Room.entities.remove(this);
+				return;
+			}
+		}
 	}
 
 }

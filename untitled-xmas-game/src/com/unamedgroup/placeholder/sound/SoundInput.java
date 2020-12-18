@@ -33,7 +33,7 @@ public class SoundInput implements LineListener {
     public Clip getAudio(String path) throws UnsupportedAudioFileException {
         File audioFile = new File(path);
         if (!audioFile.exists()) {
-            System.out.println("Não recebeu nada\n");
+            System.out.println("Não recebeu nada: " + path);
             return null;
         }
 

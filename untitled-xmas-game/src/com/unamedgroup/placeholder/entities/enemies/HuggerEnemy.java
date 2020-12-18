@@ -19,7 +19,8 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 	private int direction;
 	private int explosionDelay;
 	private boolean exploding;
-	private int hp = 2;
+	private boolean damaged;
+	private int damageCooldown;
 	
 	public HuggerEnemy(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed,
 			int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
@@ -27,6 +28,7 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 				handler);
 		
 		super.status = ((Game.rand.nextInt(2)%2 == 0) ? "left" : "right");
+		super.setHp(2);
 	}
 
 	@Override
@@ -34,8 +36,15 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 		super.tick();
 		this.animation();
 		movingTime++;
+		
+		damageCooldown--;
+		if(damageCooldown < 0) {
+			damaged = false;
+			damageCooldown = 0;
+		}
+		
 		searchForPlayer();
-		if(!chasing && !exploding) {
+		if(!chasing && !exploding && !damaged) {
 			if(status == "right" && handler.getGame().getRoom().isFree((int)(super.getX() + super.getMaskX() + speed) , super.getY(), super.getMaskW(), super.getMaskH())) {
 				x+=speed;
 				this.direction = 1;
@@ -78,7 +87,7 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 	}
 	
 	private void animation() {
-		if (status != "explode") {
+		if (status != "explode" && !damaged) {
 			super.getAnimation().offSet(-8, 0);
 			int facing = ((this.direction == 1) ? 0 : 2);
 			super.setHeight(32);
@@ -97,13 +106,23 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 				super.getAnimation().setSpriteVeloticy(5);
 				break;
 			}
+		}else if(damaged) {
+			super.getAnimation().offSet(-8, 0);
+			int facing = ((this.direction == 1) ? 8 : 9);
+			super.setHeight(32);
+			super.setWidth(32);
+			super.getAnimation().setWidth(32);
+			super.getAnimation().setHeight(32);
+			super.getAnimation().setNumSpritesX(5);
+			super.getAnimation().setSpriteY(facing);
+			super.getAnimation().setSpriteVeloticy(6);
 		}
 	}
 	
 	public void searchForPlayer() {
 		chasing = true;
 		super.setSpeed(1.56);
-		if(super.calculateDistance(this.getX(), handler.getGame().getPlayer().getX(), this.getY(), handler.getGame().getPlayer().getY()) < 96 && Math.abs((this.getY() - handler.getGame().getPlayer().getY())) < 16 && !exploding) {
+		if(super.calculateDistance(this.getX(), handler.getGame().getPlayer().getX(), this.getY(), handler.getGame().getPlayer().getY()) < 96 && Math.abs((this.getY() - handler.getGame().getPlayer().getY())) < 16 && !exploding && !damaged) {
 			if(handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskX() - 18 > super.getX() && handler.getGame().getRoom().isFree((int)(super.getX() + super.getMaskX() + speed) , super.getY(), super.getMaskW(), super.getMaskH())) {
 				x+=speed;
 				this.direction = 1;
@@ -142,7 +161,7 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 		super.getAnimation().setHeight(64);
 		super.getAnimation().setSpriteY(facingExplosion);
 		explosionDelay++;
-		handler.getSounds().play("Explosion", handler.getGameVolume()*0.6f);
+//		handler.getSounds().play("Explosion", handler.getGameVolume()*0.6f);
 		if(explosionDelay < 9) {
 			super.getAnimation().setSpriteX(0);
 		}else if(explosionDelay < 22){
@@ -216,10 +235,15 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 
 	@Override
 	public void getHit() {
-		this.hp--;
-		if(this.hp < 1) {
-			Room.entities.remove(this);
-			return;
+		if(damageCooldown == 0 && !damaged) {
+			super.getAnimation().setSpriteX(0);
+			damageCooldown = 30;
+			super.setHp(super.getHp() - 1);
+			this.damaged = true;
+			if(super.getHp() < 1) {
+				Room.entities.remove(this);
+				return;
+			}
 		}
 	}
 

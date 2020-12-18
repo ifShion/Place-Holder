@@ -61,7 +61,6 @@ public class Alpha extends Player implements GravityEffected {
 			super.getAnimation().setNumSpritesX(5);
 			super.getAnimation().setSpriteY(facing);
 			super.getAnimation().setSpriteVeloticy(20);
-			handler.getSounds().play("Hit", handler.getGameVolume());
 		}
 		
 		this.isDead();
@@ -139,11 +138,9 @@ public class Alpha extends Player implements GravityEffected {
 		// botão para pular assim q alcançar o chão
 		if (handler.getInputHandler().prime.down && !pressedDown && moveable
 				&& !handler.getGame().getRoom().isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(),
-						super.getMaskW(), super.getMaskH())) {
+						super.getMaskW(), super.getMaskH()) && !damaged) {
 			this.jump = true;
 			pressedDown = true;
-			handler.getSounds().play("Jump3", handler.getGameVolume()*0.6f); //Aqui só diminui o volume do pulo manualmente
-
 		} else if (!handler.getInputHandler().prime.down) {
 			pressedDown = false;
 		}
@@ -161,6 +158,7 @@ public class Alpha extends Player implements GravityEffected {
 				vspd = -8.5;
 				super.setSpeed(2.5);
 				jump = false;
+				handler.getSounds().play("Jump3", handler.getGameVolume()*0.6f); //Aqui só diminui o volume do pulo manualmente
 			}
 
 			// verifica se o local para onde o jogador está subindo ou caindo para está
