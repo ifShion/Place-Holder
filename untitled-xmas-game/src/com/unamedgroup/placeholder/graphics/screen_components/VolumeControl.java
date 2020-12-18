@@ -41,7 +41,7 @@ public class VolumeControl extends Component {
         for (int i = 0; i < 11; i++) {
             volumeSelection[i] = value;
             numbers[i] = String.valueOf(i);
-            value += 0.1f;
+            value += 0.09f;
         }
     }
 

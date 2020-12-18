@@ -1,6 +1,7 @@
 package com.unamedgroup.placeholder.main;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Random;
+import java.awt.Toolkit;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -169,7 +171,16 @@ public class Game implements Runnable {
 		g = bs.getDrawGraphics();
 		
 		//Desenho não pixelado (multiplicar as dimensões pela SCALE do jogo.)
-		g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+		if (isFullScreen){
+			Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, (int) d.getWidth(), (int) d.getHeight());
+			g.drawImage(image, 45, 0, (int) d.getWidth()-100 , (int) d.getHeight()-30	, null);
+			//Toolkit.getDefaultToolkit().getScreenSize()
+		}
+		else {
+			g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+		}
 		
 		g.dispose();
 		bs.show();

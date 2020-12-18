@@ -23,7 +23,7 @@ public class ComponentBox extends Component {
 
     public void changeComponent(int i){
         if (selectionIndex+i<0) return;
-        else if (selectionIndex+1>components.size()) return;
+        else if (selectionIndex+i>components.size()) return;
         else selectionIndex += i;
     }
 

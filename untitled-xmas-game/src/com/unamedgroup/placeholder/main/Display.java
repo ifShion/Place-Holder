@@ -31,7 +31,7 @@ public class Display {
         canvas.setPreferredSize(new Dimension(width*scale,height*scale));
         canvas.setMaximumSize(new Dimension(width*scale,height*scale));
         canvas.setMinimumSize(new Dimension(width*scale,height*scale));
-        canvas.setFocusable(false);
+        canvas.setFocusable(true);
         
 
         jframe = new JFrame(title);
@@ -73,10 +73,15 @@ public class Display {
 
 	public void setFullScreen() {
         jframe.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+        jframe.setLocation(0, 0); 
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize(); //width=1366,height=768
+        System.out.println(d);
+
 	}
 
 	public void setRegularSize(int width, int height, int scale) {
         jframe.setSize(new Dimension(width*scale, height*scale));
+        jframe.setLocation(400, 200);
         jframe.pack();
 	}
 }

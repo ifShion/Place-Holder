@@ -198,19 +198,19 @@ public class Room extends World {
     }
 
     private void createNewCannonEnemy(int x, int y, int direction) {
-    	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCracker, 2, 2, 4, 8, 2, 0 , 0, handler);
+    	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCracker, 2, 2, 4, 8, 4, 0 , 0, handler);
     	ce.setMask(3, 1, 18, 31);
 		Room.entities.add(ce);
 	}
     
     private void createNewHuggerEnemy(int x, int y) {
-    	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 32, 32, Game.huggerEnemy, 3, 1, 5, 12, 8, 0, 0, handler);
+    	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 32, 32, Game.huggerEnemy, 3, 1, 5, 12, 12, 0, 0, handler);
     	he.setMask(0, 6, 16, 26);
 		Room.entities.add(he);
 	}
     
     private void createNewTrackerEnemy(int x, int y) {
-    	TrackerEnemy te = new TrackerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, Game.trackerEnemy, 3, 2, 7, 4, 2, 0, 0, handler);
+    	TrackerEnemy te = new TrackerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, Game.trackerEnemy, 3, 2, 7, 5, 4, 0, 0, handler);
 		te.setMask(1, 0, 12, 10);
 		Room.entities.add(te);
     }

@@ -113,7 +113,8 @@ public class CannonEnemy extends Enemy implements Hittable {
 	
 	@Override
 	public void getHit(){
-		boolean weakPoint = ((direction < 0) ? handler.getGame().getPlayer().getX() > super.getX() + super.getMaskW() / 2 : handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskW() < super.getX());
+		boolean weakPoint = ((direction < 0) ? handler.getGame().getPlayer().getX() > super.getX() + super.getMaskW() 
+		/ 2 : handler.getGame().getPlayer().getX() + handler.getGame().getPlayer().getMaskW() < super.getX());
 		if(weakPoint && damageCooldown == 0 && !damaged) {
 			super.getAnimation().setSpriteX(0);
 			damageCooldown = 30;
