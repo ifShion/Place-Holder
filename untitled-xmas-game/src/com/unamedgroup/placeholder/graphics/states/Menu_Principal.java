@@ -20,6 +20,7 @@ public class Menu_Principal extends Menu{
     @Override
     public void init() {
         super.init();
+        handler.getSounds().tick("Music", handler.getGameVolume());
         background = new Entity(0, 0, 240, 160, new SpriteSheet("/spritesheet/Menu_SnowFall.png"), 1, 0, 15, 20, 1, 0, 0, handler);
         menu = new LabelList(5, 110, null, Color.WHITE, LabelList.LEFT);
         menu.add("Iniciar");
@@ -33,26 +34,34 @@ public class Menu_Principal extends Menu{
     @Override
     public void tick() {
         super.tick();
-        background.tick();
+        background.tick();      
+
         if(handler.getInputHandler().up.clicked){
             menu.btn_UP();
+            handler.getSounds().play("Menu_Navigate", handler.getGameVolume());
         }
         if(handler.getInputHandler().down.clicked){
             menu.btn_DOWN();
+            handler.getSounds().play("Menu_Navigate", handler.getGameVolume());
         }
 
         if(handler.getInputHandler().prime.clicked){
             switch (menu.getSeletion()) {
                 case 0:
                     super.status = "getout";
+                    handler.getSounds().play("Select", handler.getGameVolume());
+                    handler.getSounds().stop("Music");
                     super.screenDestiny = Cutscene_Intro.ID;
+                                    
                     break;
                 case 1:
                     super.status = "getout";
+                    handler.getSounds().play("Select", handler.getGameVolume());
                     super.screenDestiny = State_MenuConfig.ID;
                     break;
                 case 2:
                     super.status = "getout";
+                    handler.getSounds().play("Select", handler.getGameVolume());
                     super.screenDestiny = Menu_Creditos.ID;
                     break;
                 case 3:

@@ -61,6 +61,7 @@ public class Alpha extends Player implements GravityEffected {
 			super.getAnimation().setNumSpritesX(5);
 			super.getAnimation().setSpriteY(facing);
 			super.getAnimation().setSpriteVeloticy(20);
+			handler.getSounds().play("Hit", handler.getGameVolume());
 		}
 		
 		this.isDead();
@@ -74,6 +75,7 @@ public class Alpha extends Player implements GravityEffected {
 			this.attacking = true;
 			super.getAnimation().setSpriteX(0);
 			pressedAttack = true;
+			handler.getSounds().play("Hit_Miss", handler.getGameVolume());
 		} else if (!handler.getInputHandler().secondary.down) {
 			pressedAttack = false;
 		}
@@ -123,7 +125,7 @@ public class Alpha extends Player implements GravityEffected {
 				Hittable h = (Hittable)Room.entities.get(i);
 				h.getHit();
 				this.hit = true;
-				handler.getSounds().play("Hit", handler.getGameVolume());
+				handler.getSounds().play("Hit_2", handler.getGameVolume());
 			}
 		}
 	}
