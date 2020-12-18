@@ -21,6 +21,7 @@ public class Handler {
     private Display display; // cria um objeto display que lida com tudo em relação ao display
     private MouseInputHandler mouseInputHandler; // input para o mouse
     private Sounds sounds; // Classe para mexer com os sons
+    private float gameVolume = 0.3f;
 
     /**
      * @param game Recebe um parametro de game e camera para lidar com tudo que
@@ -52,6 +53,17 @@ public class Handler {
 
     public void render(Graphics g){
         stateManager.render(g);
+    }
+
+    public void changeSize(){
+        if (!game.isFullScreen){
+            display.setFullScreen();
+            game.isFullScreen = true;
+        }
+        else {
+            display.setRegularSize(Game.WIDTH, Game.HEIGHT, Game.SCALE);
+            game.isFullScreen = false;
+        }
     }
 
     //getters e setters
@@ -109,5 +121,13 @@ public class Handler {
 
     public void setSounds(Sounds sounds) {
         this.sounds = sounds;
+    }
+
+    public float getGameVolume() {
+        return gameVolume;
+    }
+
+    public void setGameVolume(float gameVolume) {
+        this.gameVolume = gameVolume;
     }
 }

@@ -1,6 +1,7 @@
 package com.unamedgroup.placeholder.main;
 
 import java.awt.Canvas;
+import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
@@ -36,6 +37,7 @@ public class Display {
         jframe = new JFrame(title);
         jframe.add(canvas);
         jframe.pack();
+
         
         jframe.setVisible(true);
         jframe.setResizable(false);
@@ -68,4 +70,13 @@ public class Display {
     public Canvas getCanvas(){
         return this.canvas;
     }
+
+	public void setFullScreen() {
+        jframe.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+	}
+
+	public void setRegularSize(int width, int height, int scale) {
+        jframe.setSize(new Dimension(width*scale, height*scale));
+        jframe.pack();
+	}
 }

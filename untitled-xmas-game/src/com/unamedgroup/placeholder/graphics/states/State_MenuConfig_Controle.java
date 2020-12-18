@@ -11,6 +11,10 @@ import com.unamedgroup.placeholder.graphics.screen_components.LabelList;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
+/**
+ * @author Daniel Nogueira
+ * Estado para o menu de controle no menu principal
+ */
 public class State_MenuConfig_Controle extends Menu {
 
     public static int ID;

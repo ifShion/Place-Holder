@@ -35,7 +35,7 @@ public class CannonBullet extends Projectile implements Hittable {
 	public CannonBullet(int x, int y, int width, int height, int direction, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler) {
 		super(x, y, width, height, spriteSheet, depth, speed, animationSpeed, numSpritesX, numSpritesY, initPosX, initPosY, handler);
 		this.direction = direction;
-
+		handler.getSounds().play("Cannon", handler.getGameVolume());
 	}
 	
 	@Override

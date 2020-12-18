@@ -55,7 +55,7 @@ public class SoundInput implements LineListener {
             FloatControl gainControl = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
             float gainValue = 6;/* (((float) volume()) * 40f / 100f) - 35f; */
             gainControl.setValue(gainValue);
-
+        
             return audioClip;
         } catch (IOException | LineUnavailableException | UnsupportedTemporalTypeException e) {
             System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa deu erro");

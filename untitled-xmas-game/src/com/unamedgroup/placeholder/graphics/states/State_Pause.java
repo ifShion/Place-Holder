@@ -39,9 +39,11 @@ public class State_Pause extends State {
     public void tick() {
         if(handler.getInputHandler().up.clicked){
             menu.btn_UP();
+            handler.getSounds().play("Menu_Navigate", handler.getGameVolume());
         }
         if(handler.getInputHandler().down.clicked){
             menu.btn_DOWN();
+            handler.getSounds().play("Menu_Navigate", handler.getGameVolume());
         }
         if (handler.getInputHandler().prime.clicked){
             switch (menu.getSeletion()) {

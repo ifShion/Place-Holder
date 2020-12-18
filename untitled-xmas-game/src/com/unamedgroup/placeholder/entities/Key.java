@@ -14,7 +14,7 @@ public class Key extends Entity {
         super.tick();
         if(super.isColliding(this, handler.getGame().getPlayer())){
             handler.getGame().getPlayer().getInventario().add(this);
-            handler.getSounds().play("pCoin4", 1);
+            handler.getSounds().play("pCoin4", handler.getGameVolume());
             Room.entities.remove(this);
         }
     }

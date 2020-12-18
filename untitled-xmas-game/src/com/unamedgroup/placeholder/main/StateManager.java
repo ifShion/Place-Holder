@@ -31,6 +31,8 @@ public class StateManager{
         states.add(new State_Pause(states.size(), handler));
         states.add(new State_MenuConfig(states.size(), handler));
         states.add(new State_MenuConfig_Controle(states.size(), handler));
+        states.add(new State_MenuConfig_Audio(states.size(), handler));
+        states.add(new State_MenuConfig_Tela(states.size(), handler));
     }
 
     /**
