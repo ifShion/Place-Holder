@@ -45,7 +45,7 @@ public class State_02 extends State {
 
     @Override
     public void tick() {
-
+        //handler.getSounds().tick("Music", handler.getGameVolume());
     }
 
     /**
