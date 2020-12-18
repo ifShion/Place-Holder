@@ -161,7 +161,7 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 		super.getAnimation().setHeight(64);
 		super.getAnimation().setSpriteY(facingExplosion);
 		explosionDelay++;
-//		handler.getSounds().play("Explosion", handler.getGameVolume()*0.6f);
+		handler.getSounds().play("Explosion", handler.getGameVolume());
 		if(explosionDelay < 9) {
 			super.getAnimation().setSpriteX(0);
 		}else if(explosionDelay < 22){
