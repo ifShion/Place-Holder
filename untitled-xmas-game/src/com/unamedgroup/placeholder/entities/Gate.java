@@ -7,7 +7,7 @@ import com.unamedgroup.placeholder.main.Handler;
 
 public class Gate extends Door {
     private Entity[] lamp = new Entity[3];
-    private boolean[] locks = new boolean[3];{
+    private static boolean[] locks = new boolean[3];{
         locks[0] = false;
         locks[1] = false;
         locks[2] = false;
