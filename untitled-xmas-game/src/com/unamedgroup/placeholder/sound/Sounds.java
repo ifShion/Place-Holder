@@ -67,11 +67,11 @@ public class Sounds {
                         soundMap.put("Exp3", soundinput.getAudio("res/audio/EfeitoExplosion3.wav"));
                         soundMap.put("ExpFall", soundinput.getAudio("res/audio/EfeitoExplosionQueda4.wav"));
                         soundMap.put("Explosion", soundinput.getAudio("res/audio/Audios_0.2/Explosion_2.wav"));
-                        soundMap.put("Fall", soundinput.getAudio("/res/audio/Audios_0.2/fall_sound.wav"));
+                        soundMap.put("Fall", soundinput.getAudio("res/audio/Audios_0.2/fall_sound.wav"));
                         soundMap.put("Hit", soundinput.getAudio("res/audio/EfeitoHit_Hurt.wav"));
                         soundMap.put("Hit_2", soundinput.getAudio("res/audio/Audios_0.2/Hit_1.wav"));
                         soundMap.put("Hit_3", soundinput.getAudio("res/audio/Audios_0.2/Hit_backsound.wav"));
-                        soundMap.put("Hit_4", soundinput.getAudio("/res/audio/Audios_0.2/Hit_Hurt.wav"));
+                        soundMap.put("Hit_4", soundinput.getAudio("res/audio/Audios_0.2/Hit_Hurt.wav"));
                         soundMap.put("HitFall2", soundinput.getAudio("res/audio/EfeitoHit_HurtQueda2.wav"));
                         soundMap.put("HitFall1", soundinput.getAudio("res/audio/EfeitoHit_Queda1.wav"));
                         soundMap.put("Hit_Miss", soundinput.getAudio("res/audio/Audios_0.2/Hit_Miss.wav"));
@@ -88,7 +88,7 @@ public class Sounds {
                         soundMap.put("Pick_up_Stick", soundinput.getAudio("res/audio/Audios_0.2/Pick_Stick_1.wav"));
                         soundMap.put("Pick_up_Stick2", soundinput.getAudio("res/audio/Audios_0.2/Pick_Up_Stick_2.wav"));
                         soundMap.put("Pick_up_Stick3", soundinput.getAudio("res/audio/Audios_0.2/Pick_Up_Stick_3.wav"));
-                        soundMap.put("Select", soundinput.getAudio("/res/audio/Audios_0.2/Select.wav"));
+                        soundMap.put("Select", soundinput.getAudio("res/audio/Audios_0.2/Select.wav"));
                     }
                 }
                 catch (Exception e) {
