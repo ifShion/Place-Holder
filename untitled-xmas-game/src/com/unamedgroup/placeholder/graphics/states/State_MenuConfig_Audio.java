@@ -59,19 +59,24 @@ public class State_MenuConfig_Audio extends Menu {
         controle.tick();
         if (handler.getInputHandler().up.clicked){
             controle.btnUp();
+            handler.getSounds().play("Menu_Navigate", handler.getGameVolume());
         }
         if (handler.getInputHandler().down.clicked){
             controle.btnDown();
+            handler.getSounds().play("Menu_Navigate", handler.getGameVolume());
         }
         if (handler.getInputHandler().left.clicked && controle.getSelectionIndex()==0){
             ((VolumeControl)(controle.getComponents().get(0))).btnLeft();
+            handler.getSounds().play("Menu_Navigate", handler.getGameVolume());
         }
         if (handler.getInputHandler().right.clicked && controle.getSelectionIndex()==0){
             ((VolumeControl)(controle.getComponents().get(0))).btnRight();
+            handler.getSounds().play("Menu_Navigate", handler.getGameVolume());
         }
         if (handler.getInputHandler().prime.clicked && controle.getSelectionIndex()==1){
             super.status = "getout";
             super.screenDestiny = State_MenuConfig.ID;
+            handler.getSounds().play("Select", handler.getGameVolume());
         }
         count++;
     }

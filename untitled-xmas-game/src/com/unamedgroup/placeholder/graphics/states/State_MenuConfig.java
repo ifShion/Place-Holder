@@ -48,19 +48,23 @@ public class State_MenuConfig extends Menu {
         background.tick();
         if(handler.getInputHandler().up.clicked){
             menu.btn_UP();
+            handler.getSounds().play("Menu_Navigate", handler.getGameVolume());
         }
         if(handler.getInputHandler().down.clicked){
             menu.btn_DOWN();
+            handler.getSounds().play("Menu_Navigate", handler.getGameVolume());
         }
         if(handler.getInputHandler().prime.clicked){
             switch (menu.getSeletion()) {
                 case 0:
                     super.status = "getout";
                     super.screenDestiny = State_MenuConfig_Controle.ID;
+                    handler.getSounds().play("Select", handler.getGameVolume());
                     break;
                 case 1:
                     super.status = "getout";
                     super.screenDestiny = State_MenuConfig_Audio.ID;
+                    handler.getSounds().play("Select", handler.getGameVolume());
                     break;
                 case 2:
                     super.status = "getout";
@@ -69,6 +73,7 @@ public class State_MenuConfig extends Menu {
                 case 3:
                     super.status = "getout";
                     super.screenDestiny = Menu_Principal.ID;
+                    handler.getSounds().play("Select", handler.getGameVolume());
                     break;
                 default:
                     break;

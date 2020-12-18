@@ -19,7 +19,7 @@ public class Sucker extends Entity {
         super.tick();
         if(super.isColliding(this, handler.getGame().getPlayer()) && !(handler.getGame().getPlayer().hp==handler.getGame().getPlayer().MAX_LIFE)){
             handler.getGame().getPlayer().setHp(handler.getGame().getPlayer().MAX_LIFE);
-            handler.getSounds().play("pCoin1", handler.getGameVolume());
+            handler.getSounds().play("Pick_up_Stick3", handler.getGameVolume());
             Room.entities.remove(this); 
 
         }
