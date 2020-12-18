@@ -72,6 +72,7 @@ public class Player extends Entity {
 			damageCooldown = 60;
 			damaged = true;
 			this.hp-=damage;
+			handler.getSounds().play("Hit", handler.getGameVolume());
 		}
 	}
 	
