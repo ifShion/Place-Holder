@@ -55,6 +55,9 @@ public class Sounds {
                         soundMap.put("Pick_up_Stick2", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Pick_Up_Stick_2.wav"));
                         soundMap.put("Pick_up_Stick3", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Pick_Up_Stick_3.wav"));
                         soundMap.put("Select", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Select.wav"));
+                        soundMap.put("Fall", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/fall_sound.wav"));
+                        soundMap.put("Hit_4", soundinput.getAudio("untitled-xmas-game/res/audio/Audios_0.2/Hit_Hurt.wav"));
+
                     }
                     catch (Exception e){
                         soundMap.put("Exp1", soundinput.getAudio("res/audio/EfeitoExplosion1.wav"));
@@ -83,6 +86,9 @@ public class Sounds {
                         soundMap.put("Pick_up_Stick", soundinput.getAudio("res/audio/Audios_0.2/Pick_Stick_1.wav"));
                         soundMap.put("Pick_up_Stick2", soundinput.getAudio("res/audio/Audios_0.2/Pick_Up_Stick_2.wav"));
                         soundMap.put("Pick_up_Stick3", soundinput.getAudio("res/audio/Audios_0.2/Pick_Up_Stick_3.wav"));
+                        soundMap.put("Select", soundinput.getAudio("/res/audio/Audios_0.2/Select.wav"));
+                        soundMap.put("Fall", soundinput.getAudio("/res/audio/Audios_0.2/fall_sound.wav"));
+                        soundMap.put("Hit_4", soundinput.getAudio("/res/audio/Audios_0.2/Hit_Hurt.wav"));
                     }
                 }
                 catch (Exception e) {
