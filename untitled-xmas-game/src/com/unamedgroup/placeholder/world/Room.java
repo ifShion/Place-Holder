@@ -147,7 +147,7 @@ public class Room extends World {
                 createNewSucker(29,7);
                 placeGateSwitch(31, 6, 0);
                 //------- PORTAL -------//
-                placeDoor(114, 34, 1001, 5 * World.TILE_SIZE, 26 * World.TILE_SIZE, true);
+                placeDoor(114, 34, 1001, 5 * World.TILE_SIZE, 26 * World.TILE_SIZE, false);
                 //------- CENARIO -------//
                 createForniture("prateleiraCheia", 8, 55, 26);
                 createForniture("prateleiraMetalCheia", 5, 51, 29);
