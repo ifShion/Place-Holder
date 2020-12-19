@@ -16,13 +16,14 @@ import com.unamedgroup.placeholder.main.Handler;
  * Classe usada para o menu de pausa
  */
 public class State_Pause extends State {
-
+    public static int ID;
     public int previousState;
     private LabelList menu;
     private SpriteSheet background;
 
     public State_Pause(int id, Handler handler) {
         super(id, handler);
+        ID = id;
         init();
     }
 
