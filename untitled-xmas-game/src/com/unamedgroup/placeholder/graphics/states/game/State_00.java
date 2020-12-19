@@ -70,6 +70,7 @@ public class State_00 extends State {
             handler.getStateManager().setState(State_Pause.ID);
             handler.getStateManager().setPaused(true);
             ((State_Pause)(handler.getStateManager().getCurrentState())).setPreviousState(this.id);
+            handler.getSounds().stop("Music_alpha");
         }
 
         handler.getSounds().tick("Music_alpha", handler.getGameVolume());
