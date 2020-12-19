@@ -5,13 +5,15 @@ import java.awt.Graphics2D;
 
 import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.interfaces.Droppable;
 import com.unamedgroup.placeholder.interfaces.GravityEffected;
 import com.unamedgroup.placeholder.interfaces.Hittable;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.Room;
+import com.unamedgroup.placeholder.world.World;
 
-public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
+public class HuggerEnemy extends Enemy implements GravityEffected, Hittable, Droppable {
 
 	private double vspd;
 	private int idleDelay, movingTime;
@@ -241,10 +243,16 @@ public class HuggerEnemy extends Enemy implements GravityEffected, Hittable {
 			super.setHp(super.getHp() - 1);
 			this.damaged = true;
 			if(super.getHp() < 1) {
+				this.dropItem();
 				Room.entities.remove(this);
 				return;
 			}
 		}
+	}
+
+	@Override
+	public void dropItem() {
+		handler.getGame().getRoom().createNewSucker(super.getX() / World.TILE_SIZE, (super.getY() + 16) / World.TILE_SIZE);
 	}
 
 }

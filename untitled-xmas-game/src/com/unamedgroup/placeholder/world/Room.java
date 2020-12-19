@@ -194,36 +194,36 @@ public class Room extends World {
     	Room.entities.add(new Door(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 32, handler.getGame().getRoom().getMap(), 5, 3, 1, 7 * World.TILE_SIZE, 3 * World.TILE_SIZE, destiny, tpx, tpy, locked ,handler));
     }
 
-    private void createNewCannonEnemy(int x, int y, int direction) {
+    public void createNewCannonEnemy(int x, int y, int direction) {
     	CannonEnemy ce = new CannonEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, direction, Game.nutCracker, 2, 2, 4, 8, 4, 0 , 0, handler);
     	ce.setMask(3, 1, 18, 31);
 		Room.entities.add(ce);
 	}
     
-    private void createNewHuggerEnemy(int x, int y) {
+    public void createNewHuggerEnemy(int x, int y) {
     	HuggerEnemy he = new HuggerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 32, 32, Game.huggerEnemy, 3, 1, 5, 12, 12, 0, 0, handler);
     	he.setMask(0, 6, 16, 26);
 		Room.entities.add(he);
 	}
     
-    private void createNewTrackerEnemy(int x, int y) {
+    public void createNewTrackerEnemy(int x, int y) {
     	TrackerEnemy te = new TrackerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 24, 32, Game.trackerEnemy, 3, 2, 7, 5, 4, 0, 0, handler);
 		te.setMask(1, 0, 12, 10);
 		Room.entities.add(te);
     }
     
-    private void createNewWalkerEnemy(int x, int y) {
+    public void createNewWalkerEnemy(int x, int y) {
     	WalkerEnemy e = new WalkerEnemy(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.walkerEnemy, 3, 1, 3, 4, 2, 0 , 0, handler);
 		Room.entities.add(e);
     }
     
-    private void createNewKey(int x, int y){
+    public void createNewKey(int x, int y){
         Key ke = new Key(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.key, 1, 0, 7, 8, 1, 0, 0, handler);
         ke.setMask(4, 4, 8, 8);
         Room.entities.add(ke);
     }
 
-    private void createNewSucker(int x, int y){
+    public void createNewSucker(int x, int y){
         Sucker su = new Sucker(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.sucker, 1, 0, 7, 8, 4, 0, 0, handler);
         su.getAnimation().setSpriteY(Game.rand.nextInt(4));
         su.setMask(4, 4, 8, 8);
