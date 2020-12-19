@@ -67,7 +67,7 @@ public class State_00 extends State {
             catch (Exception e) {
                 e.printStackTrace();
             }
-            handler.getGame().alternatingMaps=true;
+            //handler.getGame().alternatingMaps=true;
             handler.getStateManager().setState(State_Pause.ID);
             handler.getStateManager().setPaused(true);
             ((State_Pause)(handler.getStateManager().getCurrentState())).setPreviousState(this.id);
