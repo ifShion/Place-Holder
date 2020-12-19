@@ -1,4 +1,4 @@
-package com.unamedgroup.placeholder.graphics.states;
+package com.unamedgroup.placeholder.graphics.states.game;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,6 +14,8 @@ import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.graphics.screen_components.Hud;
 import com.unamedgroup.placeholder.graphics.screen_components.Toast;
+import com.unamedgroup.placeholder.graphics.states.State;
+import com.unamedgroup.placeholder.graphics.states.menu.State_Pause;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 

@@ -1,4 +1,4 @@
-package com.unamedgroup.placeholder.graphics.states;
+package com.unamedgroup.placeholder.graphics.states.menu;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.graphics.screen_components.LabelList;
+import com.unamedgroup.placeholder.graphics.states.Menu;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 

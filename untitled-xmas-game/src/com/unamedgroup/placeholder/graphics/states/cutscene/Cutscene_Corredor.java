@@ -1,4 +1,4 @@
-package com.unamedgroup.placeholder.graphics.states;
+package com.unamedgroup.placeholder.graphics.states.cutscene;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import com.unamedgroup.placeholder.entities.Alpha_topdown;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
+import com.unamedgroup.placeholder.graphics.states.State;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
@@ -35,14 +36,11 @@ public class Cutscene_Corredor extends State {
         alphinha.getAnimation().setPlay(true);
         handler.getGame().setPlayer(alphinha);
         handler.getGame().updateEntities();
-        
-
     }
     private int passos;
     private int esperar;
     @Override
     public void tick() {
-        //alphinha.tick();
         butao.tick();
         switch(cena){
             case "inicio":

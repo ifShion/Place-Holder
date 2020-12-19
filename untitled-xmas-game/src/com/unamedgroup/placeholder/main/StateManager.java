@@ -4,6 +4,9 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import com.unamedgroup.placeholder.graphics.states.*;
+import com.unamedgroup.placeholder.graphics.states.game.*;
+import com.unamedgroup.placeholder.graphics.states.menu.*;
+import com.unamedgroup.placeholder.graphics.states.cutscene.*;
 
 /**
  * Gerenciador de estados
@@ -12,7 +15,7 @@ import com.unamedgroup.placeholder.graphics.states.*;
 public class StateManager{
 
     private static ArrayList<State> states = new ArrayList<>();
-    private static int currentState = 6;
+    private static int currentState = 4;
     private boolean paused=false;
 
     /**
@@ -21,9 +24,7 @@ public class StateManager{
      */
     public StateManager(Handler handler) {
         states.add(new State_00(states.size(), handler));
-        states.add(new State_01(states.size(), handler));
         states.add(new Cutscene_A01(states.size(), handler));
-        states.add(new State_02(states.size(), handler));
         states.add(new Cutscene_Corredor(states.size(), handler));
         states.add(new Cutscene_Intro(states.size(),handler));
         states.add(new Menu_Principal(states.size(), handler));

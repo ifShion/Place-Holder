@@ -19,7 +19,6 @@ public class Handler {
     private Game game; // guarda uma referência à classe jogo
     private Camera camera; // cria um objeto câmera
     private Display display; // cria um objeto display que lida com tudo em relação ao display
-    private MouseInputHandler mouseInputHandler; // input para o mouse
     private Sounds sounds; // Classe para mexer com os sons
     private float gameVolume = 0.3f;
 
@@ -35,7 +34,6 @@ public class Handler {
         display = new Display();
         inputHandler = new InputHandler(display);
         stateManager = new StateManager(this);
-        mouseInputHandler = new MouseInputHandler(this);
         sounds = new Sounds();
 
         stateManager.init();
@@ -105,14 +103,6 @@ public class Handler {
 
     public void setDisplay(Display display) {
         this.display = display;
-    }
-
-    public MouseInputHandler getMouseInputHandler() {
-        return mouseInputHandler;
-    }
-
-    public void setMouseInputHandler(MouseInputHandler mouseInputHandler) {
-        this.mouseInputHandler = mouseInputHandler;
     }
 
     public Sounds getSounds() {

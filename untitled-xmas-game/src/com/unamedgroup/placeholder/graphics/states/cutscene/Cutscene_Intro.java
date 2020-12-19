@@ -1,4 +1,4 @@
-package com.unamedgroup.placeholder.graphics.states;
+package com.unamedgroup.placeholder.graphics.states.cutscene;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.graphics.screen_components.Toast;
+import com.unamedgroup.placeholder.graphics.states.State;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 
