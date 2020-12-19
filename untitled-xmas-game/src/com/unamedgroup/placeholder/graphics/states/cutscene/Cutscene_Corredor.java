@@ -13,13 +13,17 @@ import com.unamedgroup.placeholder.main.Handler;
 public class Cutscene_Corredor extends State {
 	public static int id;
     private Alpha_topdown alphinha;
-    private String cena = "inicio", printStatus = "";
+    private String cena, printStatus;
     private BufferedImage carta, balaozim;
     private Entity butao, cartinha;
 
     public Cutscene_Corredor(int id, Handler handler) {
         super(id, handler);
         Cutscene_Corredor.id = id;
+    }
+
+    @Override
+    public void init() {
         alphinha = new Alpha_topdown(135, 0,handler);
         carta = new SpriteSheet("/img/carta.png").getSprite(0, 0, 240, 160);
         balaozim = Game.hud.getSprite(16, 8, 8, 8);
@@ -27,15 +31,16 @@ public class Cutscene_Corredor extends State {
         butao.getAnimation().setPlay(true);
         cartinha = new Entity(135, 120, 16, 16, new SpriteSheet("/spritesheet/factory.png"), 1, 0, 0, 1, 1, 32, 32, handler);
 
-    }
-
-    @Override
-    public void init() {
         setPlayerCoordinatingByMap(false);
         handler.getGame().setCurrentMapID(0001);
         alphinha.getAnimation().setPlay(true);
         handler.getGame().setPlayer(alphinha);
         handler.getGame().updateEntities();
+
+        cena = "inicio";
+        printStatus = "";
+        passos = 0;
+        esperar = 0;
     }
     private int passos;
     private int esperar;

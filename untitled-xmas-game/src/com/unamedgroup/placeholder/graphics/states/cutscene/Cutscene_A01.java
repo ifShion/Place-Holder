@@ -27,18 +27,19 @@ public class Cutscene_A01 extends State {
     public Cutscene_A01(int id, Handler handler) {
         super(id, handler);   
         ID = id;
-		missao = new Toast("Alpha",Game.WIDTH/2,30,10,CustomFont.getFont("AlaskanNights.ttf",  45));
-		local = new Toast("No armazém dos", Game.WIDTH/2, 120,10, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
-        local2 = new Toast("Brinquedos", Game.WIDTH/2, 140,10, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
-        alpha = new Entity(-24, (Game.HEIGHT/2)+12, 16, 24, Game.alpha, 4, 3, 4, 4, 10, 0, 0, handler);
-        alpha.getAnimation().setSpriteY(1);
-        alpha.getAnimation().setPlay(true);
         
     }
 
     
     @Override
     public void init() {
+		missao = new Toast("Alpha",Game.WIDTH/2,30,10,CustomFont.getFont("AlaskanNights.ttf",  45));
+		local = new Toast("No armazém dos", Game.WIDTH/2, 120,10, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
+        local2 = new Toast("Brinquedos", Game.WIDTH/2, 140,10, CustomFont.getFont("K26ToyBlocks123.ttf", 20));
+        alpha = new Entity(-24, (Game.HEIGHT/2)+12, 16, 24, Game.alpha, 4, 3, 4, 4, 10, 0, 0, handler);
+        alpha.getAnimation().setSpriteY(1);
+        alpha.getAnimation().setPlay(true);
+
         handler.getGame().statesUseMaps = false;
         screenTime=0;
         missao.doit();

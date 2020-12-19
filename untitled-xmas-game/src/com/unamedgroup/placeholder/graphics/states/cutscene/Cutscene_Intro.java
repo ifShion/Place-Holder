@@ -18,12 +18,22 @@ public class Cutscene_Intro extends State {
     private Entity intro,portaDoCativeiro,alphinha;
     private BufferedImage grades;
     private Toast[] apresentacao;
-    private float transparencia = 1;
-    private int screenTime = 8;    // Segundos
-    private String evento = "comecar";
+    private float transparencia;
+    private int screenTime;    // Segundos
+    private String evento;
 
     public Cutscene_Intro(int id, Handler handler) {
         super(id, handler);
+        Cutscene_Intro.ID = id;
+    }
+
+    @Override
+    public void init() {
+        screenTime = 8;
+        transparencia = 1;
+        tick=0;
+        evento = "comecar";
+
         intro = new Entity(0, 0, 240, 160, new SpriteSheet("/spritesheet/Intro.png"), 1, 0, 4, 5, 1, 0, 0, handler);
         alphinha = new Entity(29, 105, 8, 8, new SpriteSheet(""), 1, 0, 4, 2, 1, 0, 8, handler);
         portaDoCativeiro = new Entity(29, 105, 8, 8, new SpriteSheet(""), 1, 0, 4, 1, 1, 0, 0, handler);
@@ -32,11 +42,6 @@ public class Cutscene_Intro extends State {
         apresentacao[0] = new Toast("Rare Candy Estúdios apresenta...", Game.WIDTH / 2, Game.HEIGHT / 2, 15,new Font("Dialog", Font.PLAIN, 10));
         apresentacao[1] = new Toast("O segredo da fabrica", Game.WIDTH / 2, 45, 20,CustomFont.getFont("Merry-Xmas.ttf", 25));
         apresentacao[2] = new Toast("              ´", Game.WIDTH / 2, 43, 20,new Font("Dialog", Font.PLAIN, 25));
-        Cutscene_Intro.ID = id;
-    }
-
-    @Override
-    public void init() {
         intro.getAnimation().setPlay(true);
     }
 
