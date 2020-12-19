@@ -1,8 +1,10 @@
 package com.unamedgroup.placeholder.main;
 
 import java.awt.Canvas;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
@@ -39,13 +41,15 @@ public class Display {
 		jframe.add(canvas);
 		jframe.pack();
 
-		Image iconImage = null;
 		try {
-			iconImage = ImageIO.read(getClass().getResource("/img/iconImage.png"));
+			jframe.setIconImage(ImageIO.read(getClass().getResource("/img/iconImage.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		jframe.setIconImage(iconImage);
+		
+		Image cursorImage = Toolkit.getDefaultToolkit().getImage("xparent.gif");
+		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImage, new Point(0, 0), "");
+		jframe.setCursor(blankCursor);
 
 		displayFrame();
 	}
