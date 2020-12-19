@@ -175,7 +175,7 @@ public class Game implements Runnable {
 			Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, (int) d.getWidth(), (int) d.getHeight());
-			g.drawImage(image, 45, 0, (int) d.getWidth()-100 , (int) d.getHeight()-30	, null);
+			g.drawImage(image, 45, 0, (int) d.getWidth()-100 , (int) d.getHeight()-30, null);
 			//Toolkit.getDefaultToolkit().getScreenSize()
 		}
 		else {

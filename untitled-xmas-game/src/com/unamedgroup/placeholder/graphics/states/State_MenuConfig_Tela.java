@@ -85,6 +85,7 @@ public class State_MenuConfig_Tela extends Menu {
                     label.setColor(Color.WHITE);
             count=0;
         }
+        
         componentBox.render(g);
         super.render(g);
     }

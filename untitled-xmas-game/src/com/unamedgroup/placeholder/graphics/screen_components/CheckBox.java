@@ -12,7 +12,7 @@ import com.unamedgroup.placeholder.main.Handler;
  */
 public class CheckBox extends Component {
 
-    private boolean isChecked;
+    private static boolean isChecked;
     private boolean changed;
     private SpriteSheet checkBoxSprite;
     private String text;
