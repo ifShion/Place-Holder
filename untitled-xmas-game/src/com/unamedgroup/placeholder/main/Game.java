@@ -62,8 +62,9 @@ public class Game implements Runnable {
 	public static SpriteSheet huggerEnemy;
 	public static SpriteSheet trackerEnemy;
 	public static SpriteSheet hud;
-	public static SpriteSheet key, sucker;
+	public static SpriteSheet key, sucker, rattles;
 	public static SpriteSheet forniture;
+
 	public SpriteSheet currentMap;
 	/*----------------------------------------------------------------*/
 	private Room room;
@@ -104,6 +105,7 @@ public class Game implements Runnable {
 		huggerEnemy = new SpriteSheet("/spritesheet/HuggerEnemy.png");
 		trackerEnemy = new SpriteSheet("/spritesheet/trackerEnemySprite.png");
 		forniture = new SpriteSheet("/spritesheet/armazem.png");
+		rattles = new SpriteSheet("/spritesheet/rattles.png");
 
 		rand = new Random();
 

@@ -86,13 +86,14 @@ public class Room extends World {
                 createNewKey(5,5);
                 createNewSucker(4,19);
                 createNewSucker(29,7);
+                createNewRattles(55, 29);
                 placeGateSwitch(31, 6, 0);
                 //------- PORTAL -------//
                 placeDoor(114, 34, 1001, 15 * World.TILE_SIZE, 30 * World.TILE_SIZE, true);
                 //------- CENARIO -------//
-                createForniture("prateleiraCheia", 8, 55, 26);
-                createForniture("prateleiraMetalCheia", 5, 51, 29);
-                createForniture("prateleiraMetalCheia", 8, 67, 29);
+                createNewForniture("prateleiraCheia", 8, 55, 26);
+                createNewForniture("prateleiraMetalCheia", 5, 51, 29);
+                createNewForniture("prateleiraMetalCheia", 8, 67, 29);
                 break;
 
             case 1001:
@@ -145,9 +146,9 @@ public class Room extends World {
                 //------- PORTAL -------//
                 placeDoor(114, 34, 1001, 15 * World.TILE_SIZE, 30 * World.TILE_SIZE, false);
                 //------- CENARIO -------//
-                createForniture("prateleiraCheia", 8, 55, 26);
-                createForniture("prateleiraMetalCheia", 5, 51, 29);
-                createForniture("prateleiraMetalCheia", 8, 67, 29);
+                createNewForniture("prateleiraCheia", 8, 55, 26);
+                createNewForniture("prateleiraMetalCheia", 5, 51, 29);
+                createNewForniture("prateleiraMetalCheia", 8, 67, 29);
             break;
             case 2002:
                 //------- INIMIGO -------//
@@ -229,7 +230,13 @@ public class Room extends World {
         Room.entities.add(su);
     }
 
-    private void createForniture(String forniture,int qtd, int x, int y){
+    private void createNewRattles(int x, int y){
+        Rattles ra = new Rattles(x * World.TILE_SIZE, y * World.TILE_SIZE, 16, 16, Game.rattles, 1, 0, 6, 5, 1, 0, 0, handler);
+        ra.setMask(1, 4, 14, 8);
+        Room.entities.add(ra);
+    }
+
+    private void createNewForniture(String forniture,int qtd, int x, int y){
         ArrayList<Entity> forni = new ArrayList<>();
         x = x * World.TILE_SIZE;
         y = y * World.TILE_SIZE;

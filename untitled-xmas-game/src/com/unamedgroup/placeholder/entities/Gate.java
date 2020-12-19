@@ -14,7 +14,7 @@ public class Gate extends Door {
     }
 
     public Gate(int x, int y, int destiny, int tpx, int tpy, Handler handler) {
-        super(x, y, 32, 34, new SpriteSheet("/spritesheet/gate.png"), 5, 5, 1, 0, 0, destiny, tpx, tpy, true, handler);
+        super(x, y, 32, 34, new SpriteSheet("/spritesheet/gate.png"), 5, 5, 1, -32, 0, destiny, tpx, tpy, true, handler);
         super.getAnimation().setPlay(false);
 
         for (int i = 0; i < locks.length; i++) {
