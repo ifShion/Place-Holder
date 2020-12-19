@@ -177,8 +177,7 @@ public class Game implements Runnable {
 			g.fillRect(0, 0, (int) d.getWidth(), (int) d.getHeight());
 			g.drawImage(image, 45, 0, (int) d.getWidth()-100 , (int) d.getHeight()-30, null);
 			//Toolkit.getDefaultToolkit().getScreenSize()
-		}
-		else {
+		} else {
 			g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 		}
 		

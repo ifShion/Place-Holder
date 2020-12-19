@@ -49,6 +49,7 @@ public class Display {
 
 		jframe.setVisible(true);
 		jframe.setResizable(false);
+		System.out.println(jframe.isDisplayable());
 		jframe.setAlwaysOnTop(false);
 		jframe.setLocationRelativeTo(null);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,9 +85,9 @@ public class Display {
 		jframe.setLocation(0, 0);
 	}
 
-	public void setRegularSize(int width, int height, int scale) {
-		jframe.setSize(new Dimension(width * scale, height * scale));
+	public void setRegularSize() {
 		jframe.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - (Game.WIDTH * Game.SCALE) / 2,
 				Toolkit.getDefaultToolkit().getScreenSize().height / 2 - (Game.HEIGHT * Game.SCALE) / 2);
+		jframe.pack();
 	}
 }

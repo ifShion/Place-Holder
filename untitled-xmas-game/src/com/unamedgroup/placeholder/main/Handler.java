@@ -61,7 +61,7 @@ public class Handler {
             game.isFullScreen = true;
         }
         else {
-            display.setRegularSize(Game.WIDTH, Game.HEIGHT, Game.SCALE);
+            display.setRegularSize();
             game.isFullScreen = false;
         }
     }
