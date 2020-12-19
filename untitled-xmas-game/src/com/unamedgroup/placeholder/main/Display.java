@@ -47,12 +47,15 @@ public class Display {
 		}
 		jframe.setIconImage(iconImage);
 
+		displayFrame();
+	}
+	
+	private void displayFrame() {
 		jframe.setVisible(true);
 		jframe.setResizable(false);
 		jframe.setAlwaysOnTop(false);
 		jframe.setLocationRelativeTo(null);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 	}
 
 	public JFrame getJframe() {
@@ -81,14 +84,20 @@ public class Display {
 
 	public void setFullScreen() {
         Dimension d = new Dimension(Toolkit.getDefaultToolkit().getScreenSize());
-        d.setSize(d.getWidth()+16, d.getHeight()+10);
+        d.setSize(d.getWidth(), d.getHeight());
+        jframe.dispose();
+        jframe.setUndecorated(true);
+        displayFrame();
 		jframe.setSize(d);
-		jframe.setLocation(-8, 0);
+		jframe.setLocation(0, 0);
 	}
 
 	public void setRegularSize() {
+		jframe.dispose();
+		jframe.setUndecorated(false);
+		displayFrame();
+		jframe.pack();
 		jframe.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - (Game.WIDTH * Game.SCALE) / 2,
 				Toolkit.getDefaultToolkit().getScreenSize().height / 2 - (Game.HEIGHT * Game.SCALE) / 2);
-		jframe.pack();
 	}
 }
