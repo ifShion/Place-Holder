@@ -59,6 +59,7 @@ public class State_00 extends State {
     public void tick() {
 
         hud.tick();
+
         if (handler.getInputHandler().escape.clicked){
             try {
                 Thread.sleep(100);
@@ -70,10 +71,11 @@ public class State_00 extends State {
             handler.getStateManager().setState(State_Pause.ID);
             handler.getStateManager().setPaused(true);
             ((State_Pause)(handler.getStateManager().getCurrentState())).setPreviousState(this.id);
-            handler.getSounds().stop("Music_alpha");
+
         }
 
         handler.getSounds().tick("Music_alpha", handler.getGameVolume());
+
     }
 
     @Override

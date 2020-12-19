@@ -56,6 +56,7 @@ public class State_Pause extends State {
                     catch (Exception e) {
                         e.printStackTrace();
                     }
+                    
                     handler.getStateManager().setStatePause(previousState);
                     handler.getStateManager().setPaused(false);
                     break;
@@ -68,6 +69,7 @@ public class State_Pause extends State {
                     handler.getGame().statesUseMaps=false;
                     handler.getStateManager().setPaused(false);
                     handler.getGame().getRoom().entities.clear();
+                    handler.getSounds().stop("Music_alpha");
                     break;
                 default:
                     break;
