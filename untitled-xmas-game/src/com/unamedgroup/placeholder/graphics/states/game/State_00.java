@@ -13,6 +13,7 @@ import com.unamedgroup.placeholder.entities.GateControl;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
 import com.unamedgroup.placeholder.graphics.screen_components.Hud;
+import com.unamedgroup.placeholder.graphics.screen_components.LabelList;
 import com.unamedgroup.placeholder.graphics.screen_components.Toast;
 import com.unamedgroup.placeholder.graphics.states.State;
 import com.unamedgroup.placeholder.graphics.states.menu.State_Pause;
@@ -65,7 +66,7 @@ public class State_00 extends State {
             catch (Exception e) {
                 e.printStackTrace();
             }
-            //handler.getGame().alternatingMaps=true;
+            handler.getGame().alternatingMaps=true;
             handler.getStateManager().setState(State_Pause.ID);
             handler.getStateManager().setPaused(true);
             ((State_Pause)(handler.getStateManager().getCurrentState())).setPreviousState(this.id);

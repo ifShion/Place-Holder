@@ -3,6 +3,7 @@ package com.unamedgroup.placeholder.main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -17,7 +18,8 @@ import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-
+import com.unamedgroup.placeholder.graphics.screen_components.LabelList;
+import com.unamedgroup.placeholder.graphics.states.menu.Menu_Principal;
 import com.unamedgroup.placeholder.world.Maps;
 import com.unamedgroup.placeholder.world.Room;
 
@@ -107,6 +109,7 @@ public class Game implements Runnable {
 
 		handler = new Handler(this);
 		maps = new Maps(handler);
+
 	}
 
 	/**
@@ -166,8 +169,8 @@ public class Game implements Runnable {
 
 		if(handler.getStateManager().currentStateExist())	
 			handler.getStateManager().render(g);
-		
-		
+
+
 		g = bs.getDrawGraphics();
 		
 		//Desenho não pixelado (multiplicar as dimensões pela SCALE do jogo.)

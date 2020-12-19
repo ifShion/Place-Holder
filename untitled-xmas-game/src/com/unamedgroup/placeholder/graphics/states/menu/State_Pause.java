@@ -33,7 +33,7 @@ public class State_Pause extends State {
         menu = new LabelList(Game.WIDTH/2, Game.HEIGHT/2, null, Color.WHITE, LabelList.CENTER);
         menu.add("Continuar");
         menu.add("Controles");
-        menu.add("Menu Principal");
+        menu.add("Sair");
         menu.setSelecionable(Color.yellow);
     }
 
@@ -63,7 +63,11 @@ public class State_Pause extends State {
                     //TODO para controles
                     break;
                 case 2:
-                    //TODO para ir para o menu principal
+                    handler.getGame().alternatingMaps = true;
+                    handler.getStateManager().setState(Menu_Principal.ID);
+                    handler.getGame().statesUseMaps=false;
+                    handler.getStateManager().setPaused(false);
+                    handler.getGame().getRoom().entities.clear();
                     break;
                 default:
                     break;
