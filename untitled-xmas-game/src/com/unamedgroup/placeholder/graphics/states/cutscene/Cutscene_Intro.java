@@ -29,7 +29,7 @@ public class Cutscene_Intro extends State {
         portaDoCativeiro = new Entity(29, 105, 8, 8, new SpriteSheet(""), 1, 0, 4, 1, 1, 0, 0, handler);
         grades = new SpriteSheet("/spritesheet/Intro_grades.png").getSprite(0, 0, 240, 160);
         apresentacao = new Toast[3];
-        apresentacao[0] = new Toast("Rare Candy Estúdios apresenta...", Game.WIDTH / 2, Game.HEIGHT / 2, 20,new Font("Dialog", Font.PLAIN, 10));
+        apresentacao[0] = new Toast("Rare Candy Estúdios apresenta...", Game.WIDTH / 2, Game.HEIGHT / 2, 15,new Font("Dialog", Font.PLAIN, 10));
         apresentacao[1] = new Toast("O segredo da fabrica", Game.WIDTH / 2, 45, 20,CustomFont.getFont("Merry-Xmas.ttf", 25));
         apresentacao[2] = new Toast("              ´", Game.WIDTH / 2, 43, 20,new Font("Dialog", Font.PLAIN, 25));
         Cutscene_Intro.ID = id;
