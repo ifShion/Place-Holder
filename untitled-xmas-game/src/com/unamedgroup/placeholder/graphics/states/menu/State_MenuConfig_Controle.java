@@ -70,7 +70,7 @@ public class State_MenuConfig_Controle extends Menu {
         g.drawImage(buttons.getSprite(128, 0, 32, 32).getScaledInstance(16, 16, 16), 30, 93, null);
         g.drawImage(buttons.getSprite(160, 0, 32, 32).getScaledInstance(16, 16, 16), 30, 114, null);
         controle.render((Graphics2D) g);
-        if (count>=60){
+        if (count>=50){
             Color flag = returnLabel.getColor();
             if (flag.equals(Color.WHITE)){
                 returnLabel.setColor(Color.YELLOW);
