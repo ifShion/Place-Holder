@@ -9,6 +9,7 @@ import com.unamedgroup.placeholder.graphics.screen_components.LabelList;
 import com.unamedgroup.placeholder.graphics.states.State;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
+import com.unamedgroup.placeholder.world.Room;
 
 
 /**
@@ -68,7 +69,7 @@ public class State_Pause extends State {
                     handler.getStateManager().setState(Menu_Principal.ID);
                     handler.getGame().statesUseMaps=false;
                     handler.getStateManager().setPaused(false);
-                    handler.getGame().getRoom().entities.clear();
+                    Room.entities.clear();
                     handler.getSounds().stop("Music_alpha");
                     break;
                 default:
