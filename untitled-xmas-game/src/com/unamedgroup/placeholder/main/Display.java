@@ -81,8 +81,10 @@ public class Display {
 	}
 
 	public void setFullScreen() {
-		jframe.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
-		jframe.setLocation(0, 0);
+        Dimension d = new Dimension(Toolkit.getDefaultToolkit().getScreenSize());
+        d.setSize(d.getWidth()+16, d.getHeight()+10);
+		jframe.setSize(d);
+		jframe.setLocation(-8, 0);
 	}
 
 	public void setRegularSize() {

@@ -39,12 +39,12 @@ public class State_MenuConfig_Controle extends Menu {
         buttons = new SpriteSheet("/spritesheet/botões.png");
         returnLabel = new Label("Retornar", 63, 131, null, Color.WHITE, true);
         controle = new LabelList(Game.WIDTH/2-69, Game.HEIGHT/2-14, null, Color.WHITE, LabelList.LEFT);
-        controle.add("Entrar nas portas");
-        controle.add("Andar para direita");
-        controle.add("Andar para esquerda");
+        controle.add("Interagir");
+        controle.add("Mover para direita");
+        controle.add("Mover para esquerda");
         controle.add("Pausar o jogo");
         controle.add("Pular");
-        controle.add("Bater");
+        controle.add("Atacar");
     }
 
     @Override
