@@ -91,7 +91,7 @@ public class Cutscene_Corredor extends State {
             case "sair":
                 handler.getGame().alternatingMaps=true;
                 handler.getGame().updateEntities();
-                handler.getStateManager().setState(2); 
+                handler.getStateManager().setState(Cutscene_A01.ID); 
                 break;
 
         }
