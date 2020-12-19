@@ -61,8 +61,8 @@ public class CheckBox extends Component {
         return isChecked;
     }
 
-    public void setChecked(boolean isChecked) {
-        this.isChecked = isChecked;
+    public void setChecked(boolean b) {
+        isChecked = b;
     }
 
     public boolean isChanged() {

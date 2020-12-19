@@ -41,7 +41,7 @@ public class VolumeControl extends Component {
         for (int i = 0; i < 11; i++) {
             volumeSelection[i] = value;
             numbers[i] = String.valueOf(i);
-            value += 0.09f;
+            value += 0.1f;
         }
     }
 
@@ -49,12 +49,14 @@ public class VolumeControl extends Component {
         if (selectionIndex==10) return;
         else selectionIndex++;
         handler.setGameVolume(volumeSelection[selectionIndex]);
+        handler.updateMusic();
     }
 
     public void btnLeft(){
         if (selectionIndex==0) return;
         else selectionIndex--;
         handler.setGameVolume(volumeSelection[selectionIndex]);
+        handler.updateMusic();
     }
 
     @Override

@@ -85,7 +85,7 @@ public class State_MenuConfig_Audio extends Menu {
     public void render(Graphics g){
         background.render(g);
         g.drawImage(backgroundLayer.getSpriteSheet(), 0, 0, null);
-        if (count>=60){
+        if (count>=50){
             Color flag = returnLabel.getColor();
             if (flag.equals(Color.WHITE)){
                 if (controle.getSelectionIndex()==0){

@@ -23,7 +23,7 @@ public class Menu_Principal extends Menu{
     public void init() {
         System.out.println("Menu_Principal.init()");
         super.init();
-        handler.getSounds().tick("Music", handler.getGameVolume());
+        playMusic();
         background = new Entity(0, 0, 240, 160, new SpriteSheet("/spritesheet/Menu_SnowFall.png"), 1, 0, 15, 20, 1, 0, 0, handler);
         menu = new LabelList(5, 110, null, Color.WHITE, LabelList.LEFT);
         menu.add("Iniciar");
@@ -83,5 +83,7 @@ public class Menu_Principal extends Menu{
         super.render(g);
     }
 
-    
+    public void playMusic(){
+        handler.getSounds().tick("Music", handler.getGameVolume());
+    }
 }

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import com.unamedgroup.placeholder.graphics.states.menu.Menu_Principal;
 import com.unamedgroup.placeholder.sound.Sounds;
 import com.unamedgroup.placeholder.world.Camera;
 
@@ -62,6 +63,10 @@ public class Handler {
             display.setRegularSize();
             game.isFullScreen = false;
         }
+    }
+
+    public void updateMusic(){
+        ((Menu_Principal)(stateManager.getStates().get(Menu_Principal.ID))).playMusic();
     }
 
     //getters e setters
