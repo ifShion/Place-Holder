@@ -70,7 +70,7 @@ public class Alpha extends Player implements GravityEffected {
 	}
 	
 	private void playerAttack() {
-		if (handler.getInputHandler().secondary.down && !damaged && !pressedAttack && !handler.getGame().getRoom().isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
+		if (handler.getInputHandler().secondary.down && !attacking && !damaged && !pressedAttack && !handler.getGame().getRoom().isFree((int) x + super.getMaskX(), (int) (y + 1) + super.getMaskY(), super.getMaskW(), super.getMaskH())) {
 			this.attacking = true;
 			super.getAnimation().setSpriteX(0);
 			pressedAttack = true;
