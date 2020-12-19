@@ -88,23 +88,19 @@ public class Room extends World {
                 createNewSucker(29,7);
                 placeGateSwitch(31, 6, 0);
                 //------- PORTAL -------//
-                placeDoor(114, 34, 1001, 5 * World.TILE_SIZE, 26 * World.TILE_SIZE, true);
+                placeDoor(114, 34, 1001, 15 * World.TILE_SIZE, 30 * World.TILE_SIZE, true);
                 //------- CENARIO -------//
                 createForniture("prateleiraCheia", 8, 55, 26);
                 createForniture("prateleiraMetalCheia", 5, 51, 29);
                 createForniture("prateleiraMetalCheia", 8, 67, 29);
-                //placeGateSwitch(60, 28, 0);
-                //placeGateSwitch(65, 28, 1);
-                //placeGateSwitch(70, 28, 2);
                 break;
 
             case 1001:
                 //------- PORTAL -------//
-                placeDoor(5, 26, 2000, 114 * World.TILE_SIZE, 34 * World.TILE_SIZE, false);
-                placeDoor(39, 26, 1002, 4 * World.TILE_SIZE, 75 * World.TILE_SIZE, false);
-                //placeDoor(x, y, 1002, tpx, tpy, false);
-                //placeDoor(x, y, 1003, tpx, tpy, false);
-                placeGate(111, 24, 1000, 0, 0);
+                placeDoor(15, 30, 2000, 114 * World.TILE_SIZE, 34 * World.TILE_SIZE, false);
+                placeDoor(17, 4, 1002, 4 * World.TILE_SIZE, 75 * World.TILE_SIZE, false);
+                placeDoor(113, 28, 1002, 4 * World.TILE_SIZE, 75 * World.TILE_SIZE, true);
+                placeGate(61, 26, 1000, 0, 0);
             break;
             case 1002:
                 //------- INIMIGO -------//
@@ -125,7 +121,7 @@ public class Room extends World {
                 createNewSucker(32, 22);
                 placeGateSwitch(45, 21, 1);
                 //------- PORTAL -------//
-                placeDoor(4, 75, 1001, 39 * World.TILE_SIZE, 26 * World.TILE_SIZE, false);
+                placeDoor(4, 75, 1001, 17 * World.TILE_SIZE, 4 * World.TILE_SIZE, false);
                 placeDoor(42, 9, 1002, 42 * World.TILE_SIZE, 21 * World.TILE_SIZE, true);
                 placeDoor(42, 21, 2002, 42 * World.TILE_SIZE, 9 * World.TILE_SIZE, false);
             break;
@@ -147,7 +143,7 @@ public class Room extends World {
                 createNewSucker(29,7);
                 placeGateSwitch(31, 6, 0);
                 //------- PORTAL -------//
-                placeDoor(114, 34, 1001, 5 * World.TILE_SIZE, 26 * World.TILE_SIZE, false);
+                placeDoor(114, 34, 1001, 15 * World.TILE_SIZE, 30 * World.TILE_SIZE, false);
                 //------- CENARIO -------//
                 createForniture("prateleiraCheia", 8, 55, 26);
                 createForniture("prateleiraMetalCheia", 5, 51, 29);
@@ -170,7 +166,7 @@ public class Room extends World {
                 //------- INTERAGIVEL -------//
                 placeGateSwitch(45, 21, 1);
                 //------- PORTAL -------//
-                placeDoor(4, 75, 1001, 39 * World.TILE_SIZE, 26 * World.TILE_SIZE, false);
+                placeDoor(4, 75, 1001, 17 * World.TILE_SIZE, 4 * World.TILE_SIZE, false);
                 placeDoor(42, 9, 2002, 42 * World.TILE_SIZE, 21 * World.TILE_SIZE, false);
                 placeDoor(42, 21, 2002, 42 * World.TILE_SIZE, 9 * World.TILE_SIZE, false);
             break;
