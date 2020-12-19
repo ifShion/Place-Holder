@@ -1,11 +1,14 @@
 package com.unamedgroup.placeholder.main;
 
 import java.awt.Canvas;
-import java.awt.Toolkit;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 
@@ -25,23 +28,32 @@ public class Display {
      * @param height Altura
      * @param scale Escala
      */
-    public Display(String title, int width, int height, int scale) {
+    public Display() {
         
         canvas = new Canvas();
-        canvas.setPreferredSize(new Dimension(width*scale,height*scale));
-        canvas.setMaximumSize(new Dimension(width*scale,height*scale));
-        canvas.setMinimumSize(new Dimension(width*scale,height*scale));
+        canvas.setPreferredSize(new Dimension(Game.WIDTH*Game.SCALE,Game.HEIGHT*Game.SCALE));
+        canvas.setMaximumSize(new Dimension(Game.WIDTH*Game.SCALE,Game.HEIGHT*Game.SCALE));
+        canvas.setMinimumSize(new Dimension(Game.WIDTH*Game.SCALE,Game.HEIGHT*Game.SCALE));
         canvas.setFocusable(true);
         
 
-        jframe = new JFrame(title);
+        jframe = new JFrame(Game.NAME);
         jframe.add(canvas);
         jframe.pack();
 
+        Image iconImage = null;
+		try {
+			iconImage = ImageIO.read(getClass().getResource("/img/iconImage.png"));
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		jframe.setIconImage(iconImage);
         
         jframe.setVisible(true);
         jframe.setResizable(false);
-        jframe.setAlwaysOnTop(true);
+        jframe.requestFocus();
+        jframe.setAlwaysOnTop(false);
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -72,7 +84,7 @@ public class Display {
     }
 
 	public void setFullScreen() {
-        jframe.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+		jframe.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
         jframe.setLocation(0, 0); 
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize(); //width=1366,height=768
         System.out.println(d);

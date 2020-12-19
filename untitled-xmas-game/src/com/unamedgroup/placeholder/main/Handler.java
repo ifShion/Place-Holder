@@ -32,7 +32,7 @@ public class Handler {
         this.game = game;
 
         camera = new Camera();
-        display = new Display(Game.NAME, Game.WIDTH, Game.HEIGHT, Game.SCALE);
+        display = new Display();
         inputHandler = new InputHandler(display);
         stateManager = new StateManager(this);
         mouseInputHandler = new MouseInputHandler(this);
