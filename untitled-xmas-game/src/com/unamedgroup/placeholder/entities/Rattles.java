@@ -20,8 +20,7 @@ public class Rattles extends Entity {
 		super.tick();
 		if (super.isColliding(this, handler.getGame().getPlayer())) {
 			handler.getSounds().play("Pick_up_Stick2", handler.getGameVolume());
-			State_00.ENDGAME = true;
-			State_00.fimDeJogo.doit();
+			handler.getGame().getPlayer().inventario.add(this);
 	        Room.entities.remove(this); 
 	        }
 	    }
