@@ -43,11 +43,11 @@ public class Gate extends Door {
     public void tick() {
         if(isColliding(this, handler.getGame().getPlayer())){
             if(handler.getInputHandler().up.clicked){
-                /*for (int i = 0; i < locks.length; i++) {
+                for (int i = 0; i < locks.length; i++) {
                     if (!locks[i]) {
                         return;
                     }
-                }*/
+                }
                 super.locked = false;
             }
         }
