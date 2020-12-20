@@ -30,13 +30,19 @@ public class Door extends Entity {
                         if(handler.getGame().getPlayer().getInventario().get(i) instanceof Key){
                             locked = false;
                             handler.getGame().getPlayer().getInventario().remove(i);
-                        }
+                        }             
                     }
+                    if (locked){
+                        handler.getSounds().play("Door_locked", handler.getGameVolume());
+                    } 
+                    
                 }else{
                     handler.getGame().updateEntities();
+                    handler.getSounds().play("close_door", handler.getGameVolume());
                     handler.getGame().changeCurrentMapID(destiny);
                     handler.getGame().getPlayer().setX(tpx);
                     handler.getGame().getPlayer().setY(tpy);
+                    
                 }
             }
            return;
@@ -46,10 +52,10 @@ public class Door extends Entity {
     @Override
     public void tick() {
     	if(locked) {
-    		super.getAnimation().setSpriteX(1);
+            super.getAnimation().setSpriteX(1);
     	}else {
     		super.getAnimation().setPlay(false);
-    		super.getAnimation().setSpriteX(0);
+            super.getAnimation().setSpriteX(0);
     	}
         super.tick();
         movePlayer();
