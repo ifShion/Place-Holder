@@ -15,7 +15,7 @@ import com.unamedgroup.placeholder.graphics.states.cutscene.*;
 public class StateManager{
 
     private static ArrayList<State> states = new ArrayList<>();
-    private static int currentState = 4;
+    private static int currentState = 3;
     private boolean paused=false;
 
     /**
