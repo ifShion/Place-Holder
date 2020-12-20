@@ -10,8 +10,8 @@ import com.unamedgroup.placeholder.graphics.screen_components.Label;
 import com.unamedgroup.placeholder.graphics.screen_components.VolumeControl;
 import com.unamedgroup.placeholder.graphics.states.Menu;
 import com.unamedgroup.placeholder.main.Handler;
+import com.unamedgroup.placeholder.graphics.screen_components.CustomFont;
 
-import font.CustomFont;
 
 /**
  * @author Daniel Nogueira

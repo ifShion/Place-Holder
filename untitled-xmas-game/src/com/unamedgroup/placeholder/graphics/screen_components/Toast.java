@@ -17,7 +17,7 @@ public class Toast {
     private  int x = 0;
     private  int y = 0;
     private  int timeOff; 
-    private boolean doit;
+    //private boolean doit;
 
     /**
      * @param txt
@@ -32,7 +32,7 @@ public class Toast {
         this.y = y;
         this.duration = duration*60;
         this.font = font;
-        this.doit = false;
+        //this.doit = false;
     }
 
     public Toast(String txt, int x, int y, int duration,int timeOff, Font font) {

@@ -3,7 +3,6 @@ package com.unamedgroup.placeholder.entities;
 import java.awt.Graphics;
 
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.graphics.states.game.State_00;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.Room;
 

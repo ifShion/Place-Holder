@@ -8,8 +8,7 @@ import com.unamedgroup.placeholder.graphics.screen_components.Toast;
 import com.unamedgroup.placeholder.graphics.states.State;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
-
-import font.CustomFont;
+import com.unamedgroup.placeholder.graphics.screen_components.CustomFont;
 
 /**
  * Cutscene de introdução à missão do alpha

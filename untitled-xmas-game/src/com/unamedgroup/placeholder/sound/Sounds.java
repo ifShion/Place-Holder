@@ -19,7 +19,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Sounds {
 
         private Map<String, Clip> soundMap;
-        
 
         public Sounds() throws UnsupportedAudioFileException {
                 String diretorio;
@@ -80,9 +79,7 @@ public class Sounds {
                 }
                 
 
-        }
-
-        boolean playCompleted;
+        }   
 
         public void play(String key, float volume) {
                 FloatControl gainControl = (FloatControl) soundMap.get(key).getControl(FloatControl.Type.MASTER_GAIN);
