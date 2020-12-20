@@ -103,7 +103,7 @@ public class Room extends World {
                 placeDoor(15, 30, 2000, 114 * World.TILE_SIZE, 34 * World.TILE_SIZE, false);
                 placeDoor(17, 4, 1002, 4 * World.TILE_SIZE, 75 * World.TILE_SIZE, false);
                 placeDoor(113, 28, 1003, 2 * World.TILE_SIZE, 66 * World.TILE_SIZE, false);
-                placeGate(61, 26, 0002, 2* World.TILE_SIZE, 6* World.TILE_SIZE);
+                placeGate(61, 26, 0002, 2* World.TILE_SIZE, 8* World.TILE_SIZE);
             break;
             case 1002:
                 //------- INIMIGO -------//
