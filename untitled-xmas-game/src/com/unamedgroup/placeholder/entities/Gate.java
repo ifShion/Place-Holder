@@ -10,11 +10,11 @@ public class Gate extends Door {
     private static boolean[] locks = new boolean[3];
 
     public Gate(Handler handler){
-        super(0, 0, 0, 0, new SpriteSheet(""), 1, 1, 1, 1, 1, 1, 1, 1, true, handler);
+        super(0, 0, 32, 34, new SpriteSheet(""), 5, 5, 1, -32, 0, 1, 1, 1, true, handler);
     }
 
     public Gate(int x, int y, int destiny, int tpx, int tpy, Handler handler) {
-        super(x, y, 32, 34, new SpriteSheet("/spritesheet/gate.png"), 5, 5, 1, -32, 0, destiny, tpx, tpy, true, handler);
+        super(x, y, 32, 34, new SpriteSheet("/spritesheet/gate.png"), 5, 5, 1, 0, 0, destiny, tpx, tpy, true, handler);
         super.getAnimation().setPlay(false);
 
         for (int i = 0; i < locks.length; i++) {
@@ -42,13 +42,25 @@ public class Gate extends Door {
     @Override
     public void tick() {
         if(isColliding(this, handler.getGame().getPlayer())){
-            if(handler.getInputHandler().up.clicked){
-                for (int i = 0; i < locks.length; i++) {
-                    if (!locks[i]) {
-                        return;
-                    }
+            for (int i = 0; i < locks.length; i++) {
+                if (!locks[i]) {
+                    break;
                 }
                 super.locked = false;
+            }
+
+            if(!locked){
+                switch (getAnimation().getCurrentSpriteX()) {
+                    case 4:
+                        getAnimation().setPlay(false);
+                        if(handler.getInputHandler().up.clicked){
+                            movePlayer();
+                        }
+                        break;
+                    default:
+                        getAnimation().setPlay(true);
+                        break;
+                }
             }
         }
         for (int i = 0; i < lamp.length; i++) {
@@ -57,7 +69,7 @@ public class Gate extends Door {
             else
                 lamp[i].getAnimation().setSpriteX(0);
         }
-        super.tick();
+        getAnimation().tick();
     }
 
     @Override
@@ -65,23 +77,13 @@ public class Gate extends Door {
         if(super.isColliding(this, handler.getGame().getPlayer())) {
             if(handler.getInputHandler().up.clicked){
                 if(locked){
-                    for(int i=0; i<handler.getGame().getPlayer().getInventario().size();i++){
-                        if(handler.getGame().getPlayer().getInventario().get(i) instanceof Key){
-                            locked = false;
-                            handler.getGame().getPlayer().getInventario().remove(i);
-                        }             
-                    }
-                    if (locked){
-                        //handler.getSounds().play("Door_locked", handler.getGameVolume());
-                    } 
-                    
+                    handler.getSounds().play("Door_locked", handler.getGameVolume()); 
                 }else{
                     handler.getGame().updateEntities();
                     handler.getSounds().play("Gate", handler.getGameVolume());
                     handler.getGame().changeCurrentMapID(destiny);
                     handler.getGame().getPlayer().setX(tpx);
                     handler.getGame().getPlayer().setY(tpy);
-                    
                 }
             }
            return;

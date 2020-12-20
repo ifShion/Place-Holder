@@ -209,5 +209,23 @@ public class Animation {
         this.animationSpeed = spriteVeloticy;
     }
 
+
+    public int getCurrentSpriteX() {
+        return this.currentSpriteX;
+    }
+
+    public void setCurrentSpriteX(int currentSpriteX) {
+        this.currentSpriteX = currentSpriteX;
+    }
+
+    public int getCurrentSpriteY() {
+        return this.currentSpriteY;
+    }
+
+    public void setCurrentSpriteY(int currentSpriteY) {
+        this.currentSpriteY = currentSpriteY;
+    }
+
+
     
 }
