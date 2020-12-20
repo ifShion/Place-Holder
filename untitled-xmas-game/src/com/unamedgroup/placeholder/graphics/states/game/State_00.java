@@ -52,7 +52,6 @@ public class State_00 extends State {
         alpha.setHp(5);
         handler.getGame().setPlayer(alpha);
         hud = new Hud(handler);
-        gateControl = new GateControl(handler);
         ENDGAME = false;
         screenTime = 300;
     }
@@ -65,6 +64,7 @@ public class State_00 extends State {
             handler.getGame().updateEntities();
             handler.getGame().setCurrentMapID(1000);
             fimDeJogo = new Toast("Você conseguiu!!!", Game.WIDTH/2, 25, 20, CustomFont.getFont("AtariSmall.ttf", 25));
+            gateControl = new GateControl(handler);
             Effects.transparencia = 0;
     }
     @Override
