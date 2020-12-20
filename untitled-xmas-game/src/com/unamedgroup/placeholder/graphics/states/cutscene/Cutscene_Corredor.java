@@ -59,6 +59,7 @@ public class Cutscene_Corredor extends State {
                 alphinha.toDown();
                 if(passos==100)
                     cena = "carta";
+                    handler.getSounds().play("Letter", handler.getGameVolume());
                 break;
             case "cena03":
                 alphinha.toLeft();
