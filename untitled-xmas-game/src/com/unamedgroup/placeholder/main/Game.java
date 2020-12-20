@@ -47,7 +47,6 @@ public class Game implements Runnable {
 	public static final int WIDTH = 240; // Variável que define a largura da tela do jogo
 	public static final int HEIGHT = 160; // Variável que define a altura da tela do jogo
 	public static final int SCALE = 3;
-	private float drawScale = 1;
 
 	/*---------------------------------------------------------------*/
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
