@@ -52,9 +52,12 @@ public class Sounds {
                         soundMap.put("HitFall2", soundinput.getAudio(diretorio+"res/audio/EfeitoHit_HurtQueda2.wav"));
                         soundMap.put("HitFall1", soundinput.getAudio(diretorio+"res/audio/EfeitoHit_Queda1.wav"));
                         soundMap.put("Hit_Miss", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Hit_Miss.wav"));
+                        soundMap.put("Interruptor1", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/interruptor_1.wav"));
+                        soundMap.put("Interruptor2", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/interruptor_2.wav"));
                         soundMap.put("Jump1", soundinput.getAudio(diretorio+"res/audio/EfeitoJump1.wav"));
                         soundMap.put("Jump2", soundinput.getAudio(diretorio+"res/audio/EfeitoJump2.wav"));
                         soundMap.put("Jump3", soundinput.getAudio(diretorio+"res/audio/EfeitoJump3.wav"));
+                        soundMap.put("Letter", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/letter.wav"));
                         soundMap.put("Loop", soundinput.getAudio(diretorio+"res/audio/Loop.wav"));
                         soundMap.put("Menu_Navigate", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Menu_Navigate.wav"));
                         soundMap.put("Music",soundinput.getAudio(diretorio+"res/audio/Music_cut.wav"));
@@ -66,7 +69,10 @@ public class Sounds {
                         soundMap.put("Pick_up_Stick", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Pick_Stick_1.wav"));
                         soundMap.put("Pick_up_Stick2", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Pick_Up_Stick_2.wav"));
                         soundMap.put("Pick_up_Stick3", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Pick_Up_Stick_3.wav"));
-                        soundMap.put("Select", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Select.wav"));    
+                        soundMap.put("Select", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Select.wav")); 
+                        soundMap.put("Snow_walking", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/snow_walking_wind.wav"));
+                        soundMap.put("Snow_walking2", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/snow_walking_wind_2.wav")); 
+                        soundMap.put("Snow_walking3", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/snow_walking_wind_3.wav"));  
                 }
                 catch (Exception e) {
                         //TODO: handle exception
