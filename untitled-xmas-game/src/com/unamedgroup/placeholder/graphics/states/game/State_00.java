@@ -35,6 +35,8 @@ public class State_00 extends State {
     private Alpha alpha;
     private Hud hud;
     private GateControl gateControl;
+    public static boolean ENDGAME;
+    public static Toast fimDeJogo;
 
 
     public State_00(int id, Handler handler){
@@ -45,6 +47,7 @@ public class State_00 extends State {
         handler.getGame().setPlayer(alpha);
         hud = new Hud(handler);
         gateControl = new GateControl(handler);
+        ENDGAME = false;
     }
 
     @Override
@@ -54,6 +57,7 @@ public class State_00 extends State {
             handler.getGame().setPlayer(alpha);
             handler.getGame().updateEntities();
             handler.getGame().setCurrentMapID(1000);
+            fimDeJogo = new Toast("Você conseguiu!!!", Game.WIDTH/2, 25, 20, CustomFont.getFont("AtariSmall.ttf", 25));
     }
     @Override
     public void tick() {
@@ -80,7 +84,10 @@ public class State_00 extends State {
 
     @Override
     public void render(Graphics g) {
-        hud.render(g);
+        if(ENDGAME)
+            fimDeJogo.render((Graphics2D)g);
+        else
+            hud.render(g);
     }
 
 }

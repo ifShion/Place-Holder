@@ -47,6 +47,7 @@ public class Game implements Runnable {
 	public static final int WIDTH = 240; // Variável que define a largura da tela do jogo
 	public static final int HEIGHT = 160; // Variável que define a altura da tela do jogo
 	public static final int SCALE = 3;
+	private float drawScale = 1;
 
 	/*---------------------------------------------------------------*/
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
@@ -71,9 +72,6 @@ public class Game implements Runnable {
 	public Maps maps;
 	private int currentMapID;
 
-	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro
-	// mapa é só mudar isso, ou, quando tivermos um sistema de
-	// save e load pronto, sobrescrever essa variável.
 
 	public boolean alternatingMaps;
 	public boolean statesUseMaps;
@@ -152,11 +150,9 @@ public class Game implements Runnable {
 		if (bs == null) {
 			handler.getDisplay().createBufferStrategy();
 			bs = handler.getDisplay().getBufferStrategy();
-			//requestFocus();
 		}
 
 		Graphics g = image.getGraphics();
-
 		// Plano de fundo
 		g.setColor(new Color(45, 45, 40));
 		g.fillRect(0, 0, WIDTH, HEIGHT);

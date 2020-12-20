@@ -69,6 +69,9 @@ public class Room extends World {
         switch(handler.getGame().getCurrentMapID()){
             case 0001: // Mapa do corredor, uso numa cutscene
                 break;
+            case 0002:
+                createNewRattles(21, 7);
+                break;
             case 1000: 
                 //------- INIMIGO -------//
                 createNewCannonEnemy(35, 6, 6);
