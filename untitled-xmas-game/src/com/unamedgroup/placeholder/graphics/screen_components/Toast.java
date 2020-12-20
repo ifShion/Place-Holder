@@ -17,6 +17,7 @@ public class Toast {
     private  int x = 0;
     private  int y = 0;
     private  int timeOff; 
+    private boolean doit;
 
     /**
      * @param txt
@@ -31,6 +32,7 @@ public class Toast {
         this.y = y;
         this.duration = duration*60;
         this.font = font;
+        this.doit = false;
     }
 
     public Toast(String txt, int x, int y, int duration,int timeOff, Font font) {
@@ -89,7 +91,7 @@ public class Toast {
             timeOff--;
         }
     }
-    
+
     public void doit(){
         cronometro = duration;
         drawing = true;

@@ -105,6 +105,6 @@ public class Sounds {
         
         public void stop(String key){
                 soundMap.get(key).stop();
-                soundMap.get(key).close();
+                //soundMap.get(key).close();
         }
 }

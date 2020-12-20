@@ -11,7 +11,7 @@ public abstract class Effects {
 
 
     //================= TRANSIÇÃO ENTRE TELAS =================/
-    private static float transparencia=1;
+    public static float transparencia=1;
 
     public static boolean TransitionOpen(){
         if (transparencia >= 0.1){
@@ -26,7 +26,8 @@ public abstract class Effects {
     public static boolean TransitionDispose(){
         if(transparencia < 1){
             transparencia += 0.1f;
-                if(transparencia==1){
+                if(transparencia>=1){
+                    transparencia = 1;
                     return true;
                 }
             }

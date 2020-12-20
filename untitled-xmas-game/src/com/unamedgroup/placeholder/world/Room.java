@@ -69,6 +69,9 @@ public class Room extends World {
         switch(handler.getGame().getCurrentMapID()){
             case 0001: // Mapa do corredor, uso numa cutscene
                 break;
+            case 0002:
+                createNewRattles(21, 7);
+                break;
             case 1000: 
                 //------- INIMIGO -------//
                 createNewCannonEnemy(35, 6, 6);
@@ -86,7 +89,6 @@ public class Room extends World {
                 createNewKey(5,5);
                 createNewSucker(4,19);
                 createNewSucker(29,7);
-                createNewRattles(55, 29);
                 placeGateSwitch(31, 6, 0);
                 //------- PORTAL -------//
                 placeDoor(114, 34, 1001, 15 * World.TILE_SIZE, 30 * World.TILE_SIZE, true);
@@ -100,8 +102,8 @@ public class Room extends World {
                 //------- PORTAL -------//
                 placeDoor(15, 30, 2000, 114 * World.TILE_SIZE, 34 * World.TILE_SIZE, false);
                 placeDoor(17, 4, 1002, 4 * World.TILE_SIZE, 75 * World.TILE_SIZE, false);
-                placeDoor(113, 28, 1002, 4 * World.TILE_SIZE, 75 * World.TILE_SIZE, true);
-                placeGate(61, 26, 1000, 0, 0);
+                placeDoor(113, 28, 1003, 2 * World.TILE_SIZE, 66 * World.TILE_SIZE, false);
+                placeGate(61, 26, 0002, 2* World.TILE_SIZE, 8* World.TILE_SIZE);
             break;
             case 1002:
                 //------- INIMIGO -------//
@@ -171,6 +173,50 @@ public class Room extends World {
                 placeDoor(42, 9, 2002, 42 * World.TILE_SIZE, 21 * World.TILE_SIZE, false);
                 placeDoor(42, 21, 2002, 42 * World.TILE_SIZE, 9 * World.TILE_SIZE, false);
             break;
+            case 1003:
+            	//------- INIMIGO -------//
+            	createNewHuggerEnemy(16,69);
+            	createNewHuggerEnemy(28,69);
+            	createNewHuggerEnemy(40,69);
+            	createNewCannonEnemy(42, 62, 6);
+            	createNewCannonEnemy(42, 59, 6);
+            	createNewCannonEnemy(42, 56, 6);
+            	createNewHuggerEnemy(38,53);
+            	createNewHuggerEnemy(35,54);
+            	createNewHuggerEnemy(32,55);
+            	createNewHuggerEnemy(23,59);
+            	createNewHuggerEnemy(15,61);
+            	createNewHuggerEnemy(5,61);
+            	createNewCannonEnemy(4, 57, -1);
+            	createNewCannonEnemy(4, 54, -1);
+            	createNewCannonEnemy(4, 51, -1);
+            	createNewHuggerEnemy(10,45);
+            	createNewHuggerEnemy(14,43);
+            	createNewHuggerEnemy(18,41);
+            	createNewHuggerEnemy(22,39);
+            	createNewHuggerEnemy(26,37);
+            	createNewHuggerEnemy(30,35);
+            	createNewCannonEnemy(43, 25, 6);
+            	createNewCannonEnemy(43, 19, 6);
+            	createNewHuggerEnemy(36,14);
+            	createNewHuggerEnemy(29,14);
+            	createNewHuggerEnemy(21,14);
+            	createNewHuggerEnemy(13,14);
+            	createNewHuggerEnemy(5,14);
+            	createNewHuggerEnemy(36,11);
+            	createNewHuggerEnemy(29,11);
+            	createNewHuggerEnemy(21,11);
+            	createNewHuggerEnemy(13,11);
+            	//------- INTERAGIVEL -------//
+            	createNewSucker(1,13);
+            	createNewSucker(2,10);
+            	createNewSucker(11,51);
+            	createNewSucker(34,61);
+            	//------- PORTAIS --------//
+            	placeGateSwitch(3, 10, 2);
+            	placeDoor(2, 66, 1003, 2 * World.TILE_SIZE, 66 * World.TILE_SIZE, true);
+            	placeDoor(1, 10, 1001, 113 * World.TILE_SIZE, 28 * World.TILE_SIZE, false);
+            	break;
             default:
 
         }

@@ -26,11 +26,13 @@ public class Maps {
         this.handler = handler;
         maps = new LinkedHashMap<>();
         maps.put(0001, new Room("/map/worldCorredor.png", 0001,"/spriteSheetMapa1.png", 0, 0, handler)); // Cutscene do corredor
+        maps.put(0002, new Room("/map/world_AB_Final.png", 0002, "/spriteSheetMapa1.png", 2, 7, handler));
         maps.put(1000, new Room("/map/world_AB_01.png", 1000, "/spriteSheetMapa1.png", 60, 27, handler));
         maps.put(1001, new Room("/map/world_AB_02.png", 1001, "/spriteSheetMapa1.png", 61, 25, handler));
         maps.put(1002, new Room("/map/world_AB_03.png", 1002, "/spriteSheetMapa1.png", 4, 75, handler));
         maps.put(2000, new Room("/map/world_AB_01.png", 2000, "/spriteSheetMapa1.png", 60, 27, handler));
         maps.put(2002, new Room("/map/world_AB_03.png", 2002, "/spriteSheetMapa1.png", 4, 75, handler));
+        maps.put(1003, new Room("/map/world_AB_04.png", 1003, "/spriteSheetMapa1.png", 3, 67, handler));
     }
 
     public void tick(){
