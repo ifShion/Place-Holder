@@ -18,7 +18,7 @@ public class Gate extends Door {
         super.getAnimation().setPlay(false);
 
         for (int i = 0; i < locks.length; i++) {
-            locks[i] = false;
+            locks[i] = true;
         }
 
         for (int i = 0; i < lamp.length; i++) {

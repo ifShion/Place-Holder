@@ -97,6 +97,7 @@ public class State_00 extends State {
         if(ENDGAME){
             handler.getSounds().stop("Music_alpha");
             screenTime--;
+
             if(screenTime<0) 
                 if(Effects.TransitionDispose()){
                     handler.getGame().alternatingMaps = true;
