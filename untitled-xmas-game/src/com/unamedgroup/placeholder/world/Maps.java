@@ -32,6 +32,7 @@ public class Maps {
         maps.put(1002, new Room("/map/world_AB_03.png", 1002, "/spriteSheetMapa1.png", 4, 75, handler));
         maps.put(2000, new Room("/map/world_AB_01.png", 2000, "/spriteSheetMapa1.png", 60, 27, handler));
         maps.put(2002, new Room("/map/world_AB_03.png", 2002, "/spriteSheetMapa1.png", 4, 75, handler));
+        maps.put(1003, new Room("/map/world_AB_04.png", 1003, "/spriteSheetMapa1.png", 3, 67, handler));
     }
 
     public void tick(){

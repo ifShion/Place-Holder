@@ -63,7 +63,7 @@ public class State_00 extends State {
             alpha.setY(getPlayerY());
             handler.getGame().setPlayer(alpha);
             handler.getGame().updateEntities();
-            handler.getGame().setCurrentMapID(0002);
+            handler.getGame().setCurrentMapID(1000);
             fimDeJogo = new Toast("Você conseguiu!!!", Game.WIDTH/2, 25, 20, CustomFont.getFont("AtariSmall.ttf", 25));
             Effects.transparencia = 0;
     }
