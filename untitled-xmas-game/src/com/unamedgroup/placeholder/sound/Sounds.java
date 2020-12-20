@@ -19,7 +19,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Sounds {
 
         private Map<String, Clip> soundMap;
-        
 
         public Sounds() throws UnsupportedAudioFileException {
                 String diretorio;
@@ -36,6 +35,7 @@ public class Sounds {
                 
                 try{
                         soundMap.put("Cannon", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Cannon_1.wav"));
+                        soundMap.put("Gate", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Gate.wav"));
                         soundMap.put("Door_locked", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Door_locked.wav"));
                         soundMap.put("Door_locked_2", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Door_locked2.wav"));
                         soundMap.put("close_door", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/close_door_1.wav"));
@@ -79,9 +79,7 @@ public class Sounds {
                 }
                 
 
-        }
-
-        boolean playCompleted;
+        }   
 
         public void play(String key, float volume) {
                 FloatControl gainControl = (FloatControl) soundMap.get(key).getControl(FloatControl.Type.MASTER_GAIN);

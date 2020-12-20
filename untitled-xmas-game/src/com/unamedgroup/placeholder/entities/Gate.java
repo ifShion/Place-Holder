@@ -61,6 +61,34 @@ public class Gate extends Door {
     }
 
     @Override
+    public void movePlayer() {
+        if(super.isColliding(this, handler.getGame().getPlayer())) {
+            if(handler.getInputHandler().up.clicked){
+                if(locked){
+                    for(int i=0; i<handler.getGame().getPlayer().getInventario().size();i++){
+                        if(handler.getGame().getPlayer().getInventario().get(i) instanceof Key){
+                            locked = false;
+                            handler.getGame().getPlayer().getInventario().remove(i);
+                        }             
+                    }
+                    if (locked){
+                        //handler.getSounds().play("Door_locked", handler.getGameVolume());
+                    } 
+                    
+                }else{
+                    handler.getGame().updateEntities();
+                    handler.getSounds().play("Gate", handler.getGameVolume());
+                    handler.getGame().changeCurrentMapID(destiny);
+                    handler.getGame().getPlayer().setX(tpx);
+                    handler.getGame().getPlayer().setY(tpy);
+                    
+                }
+            }
+           return;
+        }
+	}
+
+    @Override
     public void render(Graphics g) {
         for (int i = 0; i < lamp.length; i++) {
             lamp[i].render(g);

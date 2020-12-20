@@ -1,4 +1,4 @@
-package font;
+package com.unamedgroup.placeholder.graphics.screen_components;
 
 import java.awt.Font;
 import java.awt.FontFormatException;

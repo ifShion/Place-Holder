@@ -17,17 +17,17 @@ public class AStar {
 
 	private Handler handler;
 	public static double lastTime = System.currentTimeMillis();
+
 	private static Comparator<Node> nodeSorter = new Comparator<Node>() {	
 	
 		@Override
 		public int compare(Node n0,Node n1) {
-			if(n1.fCost < n0.fCost)
-				return +1;
-			if(n1.fCost > n0.fCost)
-				return -1;
-			return 0;
+				if(n1.fCost < n0.fCost)
+					return +1;
+				if(n1.fCost > n0.fCost)
+					return -1;
+				return 0;
 		}
-		
 	};
 	
 	public AStar(Handler handler) {

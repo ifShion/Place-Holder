@@ -23,8 +23,7 @@ import com.unamedgroup.placeholder.graphics.states.menu.State_Pause;
 import com.unamedgroup.placeholder.main.Game;
 import com.unamedgroup.placeholder.main.Handler;
 import com.unamedgroup.placeholder.world.Room;
-
-import font.CustomFont;
+import com.unamedgroup.placeholder.graphics.screen_components.CustomFont;
 
 /**
  * 
