@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 import com.unamedgroup.placeholder.main.Game;
 
-import font.CustomFont;
-
 public class LabelList {
     private float x, y;
     private ArrayList<Label> box;
