@@ -105,7 +105,7 @@ public class Cutscene_Intro extends State {
                 if(tick%3==0) 
                     transparencia += 0.1f;
                 if(transparencia==1){
-                    handler.getStateManager().setState(Cutscene_Corredor.id);
+                    handler.getStateManager().changeState(Cutscene_Corredor.id);
                     handler.getSounds().stop("Snow_walking");
                 }
             break;

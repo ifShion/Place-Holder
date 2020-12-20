@@ -78,7 +78,7 @@ public class State_00 extends State {
                 e.printStackTrace();
             }
             //handler.getGame().alternatingMaps=true;
-            handler.getStateManager().setState(State_Pause.ID);
+            handler.getStateManager().changeState(State_Pause.ID);
             handler.getStateManager().setPaused(true);
             ((State_Pause)(handler.getStateManager().getCurrentState())).setPreviousState(this.id);
 
@@ -101,7 +101,7 @@ public class State_00 extends State {
             if(screenTime<0) 
                 if(Effects.TransitionDispose()){
                     handler.getGame().alternatingMaps = true;
-                    handler.getStateManager().setState(Menu_Creditos.ID);
+                    handler.getStateManager().changeState(Menu_Creditos.ID);
                     handler.getGame().statesUseMaps=false;
                     Room.entities.clear();
                     handler.getSounds().play("Music",handler.getGameVolume());

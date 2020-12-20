@@ -66,7 +66,7 @@ public class State_Pause extends State {
                     break;
                 case 2:
                     handler.getGame().alternatingMaps = true;
-                    handler.getStateManager().setState(Menu_Principal.ID);
+                    handler.getStateManager().changeState(Menu_Principal.ID);
                     handler.getGame().statesUseMaps=false;
                     handler.getStateManager().setPaused(false);
                     Room.entities.clear();

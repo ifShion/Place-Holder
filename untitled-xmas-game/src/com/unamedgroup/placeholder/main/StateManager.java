@@ -41,7 +41,7 @@ public class StateManager{
      * Ao trocar toda as variaváis do state serão reinicializadas
      * @param state
      */
-    public void setState(int state){
+    public void changeState(int state){
         currentState = state;
         states.get(currentState).init();
     }

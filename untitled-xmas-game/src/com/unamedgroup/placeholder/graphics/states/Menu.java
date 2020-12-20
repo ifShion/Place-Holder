@@ -33,7 +33,7 @@ public abstract class Menu extends State {
             break;
             case "getout":
                 if(Effects.TransitionDispose())
-                    handler.getStateManager().setState(screenDestiny);
+                    handler.getStateManager().changeState(screenDestiny);
             break;
             default:
             break;

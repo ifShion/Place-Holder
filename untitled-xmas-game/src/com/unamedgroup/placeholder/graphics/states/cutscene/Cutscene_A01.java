@@ -50,7 +50,7 @@ public class Cutscene_A01 extends State {
     @Override
     public void tick() {
         if(handler.getInputHandler().secondary.clicked)
-            handler.getStateManager().setState(0);
+            handler.getStateManager().changeState(0);
 
         alpha.tick();
 
@@ -59,7 +59,7 @@ public class Cutscene_A01 extends State {
         else
             alpha.getAnimation().setSpriteY(0);
         if(screenTime>=230)
-            handler.getStateManager().setState(0);
+            handler.getStateManager().changeState(0);
         screenTime++;
     }
     
