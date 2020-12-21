@@ -42,12 +42,9 @@ public class Gate extends Door {
     @Override
     public void tick() {
         if(isColliding(this, handler.getGame().getPlayer())){
-            for (int i = 0; i < locks.length; i++) {
-                if (!locks[i]) {
-                    break;
+                if (locks[0]&&locks[1]) {
+                    super.locked = false;
                 }
-                super.locked = false;
-            }
 
             if(!locked){
                 switch (getAnimation().getCurrentSpriteX()) {

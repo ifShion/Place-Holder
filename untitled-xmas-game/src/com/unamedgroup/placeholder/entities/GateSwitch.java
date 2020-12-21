@@ -22,7 +22,6 @@ public class GateSwitch extends Entity {
             if(handler.getInputHandler().up.clicked){
                 handler.getSounds().play("Interruptor1", handler.getGameVolume());
                 if(used){
-
                     gate.tolock(lockID);
                     used = false;
                 }else{
