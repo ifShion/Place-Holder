@@ -38,6 +38,7 @@ public class Sounds {
                         soundMap.put("Gate", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Gate.wav"));
                         soundMap.put("Door_locked", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Door_locked.wav"));
                         soundMap.put("Door_locked_2", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Door_locked2.wav"));
+                        soundMap.put("Locked_Gate", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/locked_gate.wav"));
                         soundMap.put("close_door", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/close_door_1.wav"));
                         soundMap.put("Exp1", soundinput.getAudio(diretorio+"res/audio/EfeitoExplosion1.wav"));
                         soundMap.put("Exp2", soundinput.getAudio(diretorio+"res/audio/EfeitoExplosion2.wav"));
