@@ -65,6 +65,9 @@ public class Gate extends Door {
                         break;
                 }
             }
+            else if(handler.getInputHandler().up.clicked){
+                handler.getSounds().play("Locked_Gate", handler.getGameVolume());
+            }
         }
         for (int i = 0; i < lamp.length; i++) {
             if(locks[i])
@@ -80,15 +83,6 @@ public class Gate extends Door {
         if(super.isColliding(this, handler.getGame().getPlayer())) {
             if(handler.getInputHandler().up.clicked){
                 if(locked){
-                    for(int i=0; i<handler.getGame().getPlayer().getInventario().size();i++){
-                        if(handler.getGame().getPlayer().getInventario().get(i) instanceof Key){
-                            locked = false;
-                            handler.getGame().getPlayer().getInventario().remove(i);
-                        }             
-                    }
-                    if (locked){
-                        handler.getSounds().play("Locked_Gate", handler.getGameVolume());
-                    } 
                     
                 }else{
                     handler.getGame().updateEntities();
