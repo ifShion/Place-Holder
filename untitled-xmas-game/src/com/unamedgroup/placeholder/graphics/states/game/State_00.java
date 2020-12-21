@@ -62,6 +62,8 @@ public class State_00 extends State {
             handler.getGame().setPlayer(alpha);
             handler.getGame().updateEntities();
             handler.getGame().setCurrentMapID(1000);
+            alpha.setHp(handler.getGame().getPlayer().MAX_LIFE);
+            alpha.getInventario().clear();
             fimDeJogo = new Toast("Você conseguiu!!!", Game.WIDTH/2, 25, 20, CustomFont.getFont("AtariSmall.ttf", 25));
             gateControl = new GateControl(handler);
             Effects.transparencia = 0;
