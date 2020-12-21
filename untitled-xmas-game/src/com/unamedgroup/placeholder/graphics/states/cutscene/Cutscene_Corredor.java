@@ -33,6 +33,7 @@ public class Cutscene_Corredor extends State {
 
         setPlayerCoordinatingByMap(false);
         handler.getGame().setCurrentMapID(0001);
+        handler.getSounds().tick("Music_Letter", handler.getGameVolume());
         alphinha.getAnimation().setPlay(true);
         handler.getGame().setPlayer(alphinha);
         handler.getGame().updateEntities();
@@ -46,7 +47,7 @@ public class Cutscene_Corredor extends State {
     private int esperar;
     @Override
     public void tick() {
-        butao.tick();
+        butao.tick();        
         switch(cena){
             case "inicio":
                 alphinha.toDown();
@@ -97,6 +98,7 @@ public class Cutscene_Corredor extends State {
             case "sair":
                 handler.getGame().alternatingMaps=true;
                 handler.getGame().updateEntities();
+                handler.getSounds().stop("Music_Letter");
                 handler.getStateManager().changeState(Cutscene_A01.ID); 
                 break;
 
