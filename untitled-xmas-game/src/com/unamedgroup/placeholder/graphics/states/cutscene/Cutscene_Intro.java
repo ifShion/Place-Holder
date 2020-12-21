@@ -49,6 +49,7 @@ public class Cutscene_Intro extends State {
     public void tick() {
         intro.tick();
         alphinha.tick();
+        handler.getSounds().tick("Ventania_1",handler.getGameVolume());
         switch(evento){
             case"comecar":
                 if(tick%3==0) 
@@ -96,7 +97,7 @@ public class Cutscene_Intro extends State {
                         alphinha.setSprite(new SpriteSheet("/spritesheet/Intro-moves.png"));
                         portaDoCativeiro.setSprite(new SpriteSheet("/spritesheet/Intro-moves.png"));
                         alphinha.getAnimation().setPlay(true);
-                        handler.getSounds().tick("Snow_walking", handler.getGameVolume());
+                        handler.getSounds().tick("Snow_walking4", handler.getGameVolume());
                     }
                 }
             break;
@@ -105,7 +106,8 @@ public class Cutscene_Intro extends State {
                     transparencia += 0.1f;
                 if(transparencia==1){
                     handler.getStateManager().changeState(Cutscene_Corredor.id);
-                    handler.getSounds().stop("Snow_walking");
+                    handler.getSounds().stop("Snow_walking4");
+                    handler.getSounds().stop("Ventania_1");
                 }
             break;
             default:

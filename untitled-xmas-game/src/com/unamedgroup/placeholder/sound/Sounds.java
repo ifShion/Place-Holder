@@ -63,6 +63,7 @@ public class Sounds {
                         soundMap.put("Menu_Navigate", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Menu_Navigate.wav"));
                         soundMap.put("Music",soundinput.getAudio(diretorio+"res/audio/Music_cut.wav"));
                         soundMap.put("Music_alpha", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Music_alpha.wav"));
+                        soundMap.put("Music_Letter", soundinput.getAudio(diretorio+"res/audio/Music_letter.wav"));
                         soundMap.put("pCoin1", soundinput.getAudio(diretorio+"res/audio/EfeitoPick_upCoin1.wav"));
                         soundMap.put("pCoin2", soundinput.getAudio(diretorio+"res/audio/EfeitoPick_upCoin2.wav"));
                         soundMap.put("pCoin3", soundinput.getAudio(diretorio+"res/audio/EfeitoPickup_Coin3.wav"));
@@ -73,7 +74,9 @@ public class Sounds {
                         soundMap.put("Select", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/Select.wav")); 
                         soundMap.put("Snow_walking", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/snow_walking_wind.wav"));
                         soundMap.put("Snow_walking2", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/snow_walking_wind_2.wav")); 
-                        soundMap.put("Snow_walking3", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/snow_walking_wind_3.wav"));  
+                        soundMap.put("Snow_walking3", soundinput.getAudio(diretorio+"res/audio/Audios_0.2/snow_walking_wind_3.wav"));
+                        soundMap.put("Snow_walking4", soundinput.getAudio(diretorio+"res/audio/snow_walking4.wav"));
+                        soundMap.put("Ventania_1", soundinput.getAudio(diretorio+"res/audio/ventania1.wav"));   
                 }
                 catch (Exception e) {
                         //TODO: handle exception
