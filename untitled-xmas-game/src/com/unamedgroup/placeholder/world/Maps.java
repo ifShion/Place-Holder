@@ -3,7 +3,7 @@ package com.unamedgroup.placeholder.world;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.unamedgroup.placeholder.main.Game;
+import com.unamedgroup.placeholder.main.Handler;
 
 /**
  * Essa parte do código é muito interessante. Oq ele faz aqui é cadastrar e armazenar todos os mapas do jogo
@@ -20,20 +20,26 @@ import com.unamedgroup.placeholder.main.Game;
  */
 public class Maps {
     private Map<Integer, Room> maps;
+    private Handler handler;
 
-    public Maps() {
+    public Maps(Handler handler) {
+        this.handler = handler;
         maps = new LinkedHashMap<>();
-        maps.put(1000, new Room("/worldnull.png", 1000));     // Coloquei esse como um mapa vazio so para fins de teste @nathan
-        maps.put(1001, new Room("/worldTest.png", 1001));
-        maps.put(1002, new Room("/worldTest2.png", 1002));
-
+        maps.put(0001, new Room("/map/worldCorredor.png", 0001,"/spriteSheetMapa1.png", 0, 0, handler)); // Cutscene do corredor
+        maps.put(0002, new Room("/map/world_AB_Final.png", 0002, "/spriteSheetMapa1.png", 2, 7, handler));
+        maps.put(1000, new Room("/map/world_AB_01.png", 1000, "/spriteSheetMapa1.png", 60, 27, handler));
+        maps.put(1001, new Room("/map/world_AB_02.png", 1001, "/spriteSheetMapa1.png", 61, 25, handler));
+        maps.put(1002, new Room("/map/world_AB_03.png", 1002, "/spriteSheetMapa1.png", 4, 75, handler));
+        maps.put(2000, new Room("/map/world_AB_01.png", 2000, "/spriteSheetMapa1.png", 60, 27, handler));
+        maps.put(2002, new Room("/map/world_AB_03.png", 2002, "/spriteSheetMapa1.png", 4, 75, handler));
+        maps.put(1003, new Room("/map/world_AB_04.png", 1003, "/spriteSheetMapa1.png", 3, 67, handler));
     }
 
     public void tick(){
-        Game.alternatingMaps = false;
-        Game.room = maps.get(Game.currentMapID);
-        System.out.println(maps.get(Game.currentMapID).path + " // " + Game.currentMapID);
-        Game.room.createDoors();
+        handler.getGame().alternatingMaps = false;
+        handler.getGame().setRoom(maps.get(handler.getGame().getCurrentMapID()));
+        handler.getGame().currentMap = handler.getGame().maps.getMaps().get(handler.getGame().getCurrentMapID()).getMap();
+        handler.getGame().getRoom().createEntities();
     }
 
     public Map<Integer, Room> getMaps() {

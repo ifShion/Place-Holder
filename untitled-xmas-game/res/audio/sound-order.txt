@@ -1,0 +1,16 @@
+Posição no arraylist
+
+ExpFall - Efeito Explosão queda4
+Exp1 - Efeito Explosão 1
+Exp2 - Efeito Explosão 2
+Exp3 - Efeito Explosão 3
+Hit - Efeito Hit_Hurt - Ataque
+HitFall2 - Efeito Hit_Hurt queda 2
+HitFall1 - Efeito Hit_Hurt queda 1
+Jump1 - Efeito Pulo 1
+Jump2 - Efeito Pulo 2
+Jump3 - Efeito Pulo 3 - Pulo
+pCoin1 - Efeito Pegar Moeda 1
+pCoin2 - Efeito Pegar Moeda 2
+pCoin3 - Efeito Pegar Moeda 3
+pCoin4 - Efeito Pegar Moeda 4 - Key

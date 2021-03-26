@@ -1,105 +1,126 @@
 package com.unamedgroup.placeholder.main;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.Random;
-import java.util.Set;
-import java.util.TreeSet;
+import java.awt.Toolkit;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import com.unamedgroup.placeholder.entities.Enemy;
 import com.unamedgroup.placeholder.entities.Entity;
 import com.unamedgroup.placeholder.entities.Player;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.graphics.states.*;
-import com.unamedgroup.placeholder.world.Camera;
+import com.unamedgroup.placeholder.graphics.screen_components.LabelList;
+import com.unamedgroup.placeholder.graphics.states.menu.Menu_Principal;
 import com.unamedgroup.placeholder.world.Maps;
 import com.unamedgroup.placeholder.world.Room;
 // euler esteve aq haha
 /**
- * Inicializa o jogo, comanda as ações q o projeto fará dependendo 
- * do estado do jogo.
+ * Inicializa o jogo, comanda as ações q o projeto fará dependendo do estado do
+ * jogo.
  * 
  * @version alpha 1.0
  * @author Daniel Neves
- * @author Nathan Ferraz
- * ...
+ * @author Daniel Nogueira
+ * @author Nathan ...
  */
 
 @SuppressWarnings("unused")
 public class Game implements Runnable {
 	private static final long serialVersionUID = 3L;
 
-	public static final String NAME = "Place Holder";	// Titulo da jogo
-	private static Display display; 					// Janela do jogo
-	public static InputHandler input; 					// input vai controlar toda entrada de comandos do jogador.
-	public static StateManager stateManager;		 	// stateManager vai gerenciar toda tela de pintura do jogo.
+	public static final String NAME = "O Segredo da Fábrica"; // Titulo da jogo
+	private Handler handler; // Uma classe para fazer a comunicação entre diferentes classes
 	/*---------------------------------------------------------------*/
-	//Inicializando variáveis do Display
-	public boolean isFullScreen;						// Estado do tela
-	private Thread thread;
-	private boolean isRunning;
-	public static final int WIDTH = 400;
-	public static final int HEIGHT = 300;
-	public static final int SCALE = 2;
+	// Inicializando variáveis do Display
+	public boolean isFullScreen; // Estado do tela
+	private Thread thread; // Thread onde o jogo roda
+	private boolean isRunning; // Booleano para verificar se o jogo está rodando
+	public static final int WIDTH = 240; // Variável que define a largura da tela do jogo
+	public static final int HEIGHT = 160; // Variável que define a altura da tela do jogo
+	public static final int SCALE = 3;
 
-	public boolean isPaused;
 	/*---------------------------------------------------------------*/
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
 
 	public static Random rand;
 
 	/*----------------------------------------------------------------*/
-	public static Camera camera;
-
 	// Adicionei um objeto de teste para construir o mundo com colisão
 
-	public static SpriteSheet spriteTeste;				 
-	/*----------------------------------------------------------------*/
-	public static Room room;
-	public static Maps maps;
+	public static SpriteSheet walkerEnemy;
+	public static SpriteSheet alpha;
+	public static SpriteSheet nutCracker;
+	public static SpriteSheet huggerEnemy;
+	public static SpriteSheet trackerEnemy;
+	public static SpriteSheet hud;
+	public static SpriteSheet key, sucker, rattles;
+	public static SpriteSheet forniture;
 
-	public static int currentMapID = 1001;	
-	// Conserta isso aqui depois DAN S2: Tá resolvido. Se quisermos começar de outro mapa é só mudar isso, ou, quando tivermos um sistema de 
-	// save e load pronto, sobrescrever essa variável.
-	public static boolean alternatingMaps;
+	public SpriteSheet currentMap;
 	/*----------------------------------------------------------------*/
-	//Adicionei um conjunto q deve conter todas as entidades do jogo para executar seu tick e render
-	public static Comparator<Entity> nodeSorter = (new Comparator<Entity>(){
-		public int compare(Entity o1, Entity o2) {
-			return o1.depth - o2.depth;
-		};
-	});
-	public static Set<Entity> entities = new TreeSet<>(nodeSorter);	
-	public static Player player;	// Player é instanciado pelo State
-	
+	private Room room;
+	public Maps maps;
+	private int currentMapID;
+
+
+	public boolean alternatingMaps;
+	public boolean statesUseMaps;
 	/*----------------------------------------------------------------*/
-	
+
+	private Player player; // Player é instanciado pelo State
+
+	/*----------------------------------------------------------------*/
+
 	/**
-	 * Inicializa todas as variáveis e objetos do jogo, como as entidades,
-	 * menus e sprites.
+	 * Inicializa todas as variáveis e objetos do jogo, como as entidades, menus e
+	 * sprites.
+	 * 
+	 * @throws UnsupportedAudioFileException
 	 */
-	public Game() {
-		spriteTeste = new SpriteSheet("/testSpriteSheet1.png");
-
-		display = new Display(Game.NAME, WIDTH, HEIGHT, SCALE);
-		input = new InputHandler(display);
-		stateManager = new StateManager();
-		stateManager.init();
-		rand = new Random();
-
-		// setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //fullscreen
-		
-		camera = new Camera();
-		
-		entities.add(player);
-
-		maps = new Maps();
+	public Game() throws UnsupportedAudioFileException {
+		init();
 		alternatingMaps = true;
 	}
 
-	public static void main(String[] args) {
+	private void init() throws UnsupportedAudioFileException {
+		walkerEnemy = new SpriteSheet("/spritesheet/walkerEnemySprite.png");
+		alpha = new SpriteSheet("/spritesheet/alphaTestbackup.png");
+		nutCracker = new SpriteSheet("/spritesheet/nutCracker.png");
+		currentMap = new SpriteSheet("/spriteSheetMapa1.png");
+		hud = new SpriteSheet("/spritesheet/hud.png");
+		key = new SpriteSheet("/spritesheet/key.png");
+		sucker = new SpriteSheet("/spritesheet/sucker.png");
+		huggerEnemy = new SpriteSheet("/spritesheet/HuggerEnemy.png");
+		trackerEnemy = new SpriteSheet("/spritesheet/trackerEnemySprite.png");
+		forniture = new SpriteSheet("/spritesheet/armazem.png");
+		rattles = new SpriteSheet("/spritesheet/rattles.png");
+
+		rand = new Random();
+
+		handler = new Handler(this);
+		maps = new Maps(handler);
+
+	}
+
+	/**
+	 * Atualiza a lista de entidades 
+	 * É util caso eu troque de jogador em mudanças de state
+	 */
+	public void updateEntities(){
+		Room.entities = new LinkedList<>();
+		Room.entities.add(player);
+	}
+	
+	public static void main(String[] args) throws UnsupportedAudioFileException {
 		Game game = new Game();
 		game.start();
 	}
@@ -109,30 +130,28 @@ public class Game implements Runnable {
 	 * Executa todas as ações e macânicas de jogo.
 	 */
 	public void tick() {
-		if(!alternatingMaps) {
-			room.tick();
-			entities.forEach(entity -> entity.tick());
-		}else
-			maps.tick();
-		
-		if(!stateManager.currentStateExist()) return;
-		stateManager.tick();
-		input.tick();
+		handler.tick();
+		if(statesUseMaps){
+			if(!alternatingMaps) {
+				if (!handler.getStateManager().isPaused()){
+					for (int i = 0; i < Room.entities.size(); i++) Room.entities.get(i).tick();
+				}
+			}else
+				maps.tick();
+		}
 	}
 
 	/**
 	 * Desenha na tela os gráficos do jogo.
 	 */
 	public void render() {
-		BufferStrategy bs = display.getBufferStrategy();
+		BufferStrategy bs = handler.getDisplay().getBufferStrategy();
 		if (bs == null) {
-			display.createBufferStrategy();
-			bs = display.getBufferStrategy();
-			//requestFocus();
+			handler.getDisplay().createBufferStrategy();
+			bs = handler.getDisplay().getBufferStrategy();
 		}
 
 		Graphics g = image.getGraphics();
-
 		// Plano de fundo
 		g.setColor(new Color(45, 45, 40));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -140,15 +159,27 @@ public class Game implements Runnable {
 		// Passa o renderizador para o State corrente
 		if(!alternatingMaps)	
 			room.render(g);
-		
-		for (Entity entity : entities) entity.render(g);
-		if(stateManager.currentStateExist())	
-			stateManager.render(g);
-		
+
+		Room.sortEntities();
+		for (Entity entity : Room.entities) entity.render(g);
+			
+
+		if(handler.getStateManager().currentStateExist())	
+			handler.getStateManager().render(g);
+
+
 		g = bs.getDrawGraphics();
 		
 		//Desenho não pixelado (multiplicar as dimensões pela SCALE do jogo.)
-		g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+		if (isFullScreen){
+			Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, (int) d.getWidth(), (int) d.getHeight());
+			g.drawImage(image, 0, 0, (int) d.getWidth() , (int) d.getHeight(), null);
+			//Toolkit.getDefaultToolkit().getScreenSize()
+		} else {
+			g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+		}
 		
 		g.dispose();
 		bs.show();
@@ -185,6 +216,7 @@ public class Game implements Runnable {
 		long lastTimer1 = System.currentTimeMillis();
 
 		while (isRunning) {
+
 			long now = System.nanoTime();
 			unprocessed += (now - lastTime) / nsPerTick;
 			lastTime = now;
@@ -214,5 +246,44 @@ public class Game implements Runnable {
 				ticks = 0;
 			}
 		}
+	}
+
+
+	/**
+	 * Getters and Setters
+	 */
+	
+	public int getCurrentMapID() {
+		return this.currentMapID;
+	}
+
+	public void setCurrentMapID(int currentMapID) {
+		statesUseMaps = true;
+		this.currentMapID = currentMapID;
+	}
+
+	/**
+	 * Troca o ID do mapa corrente e ativa a condição para trocar de mapa
+	 * @param mapId
+	 */
+	public void changeCurrentMapID(int mapId){
+		alternatingMaps = true;
+		currentMapID = mapId;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+	
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+	
+	public Player getPlayer() {
+		return this.player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 }

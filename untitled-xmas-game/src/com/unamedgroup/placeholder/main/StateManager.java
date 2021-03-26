@@ -1,42 +1,61 @@
 package com.unamedgroup.placeholder.main;
 
-import java.util.ArrayList;
 import java.awt.Graphics;
-import com.unamedgroup.placeholder.interfaces.State;
-import com.unamedgroup.placeholder.graphics.states.*;
+import java.util.ArrayList;
 
+import com.unamedgroup.placeholder.graphics.states.*;
+import com.unamedgroup.placeholder.graphics.states.game.*;
+import com.unamedgroup.placeholder.graphics.states.menu.*;
+import com.unamedgroup.placeholder.graphics.states.cutscene.*;
 
 /**
  * Gerenciador de estados
  * @author Nathan
  */
-public class StateManager implements State{
+public class StateManager{
 
-    public static ArrayList<State> states = new ArrayList<>();
-    public static int currentState = 2;
+    private static ArrayList<State> states = new ArrayList<>();
+    private static int currentState = 4;
+    private boolean paused=false;
+
     /**
-     * CADA STATE CRIADO DEVE SER LISTADO NESSE CONTRUTOR
+     * CADA STATE CRIADO DEVE SER LISTADO NESSE CONSTRUTOR
+     * @param handler
      */
-    public StateManager() {
-        states.add(new State_00(states.size()));
-        states.add(new State_01(states.size()));
-        states.add(new State_null(states.size()));
+    public StateManager(Handler handler) {
+        states.add(new State_00(states.size(), handler));
+        states.add(new Cutscene_A01(states.size(), handler));
+        states.add(new Cutscene_Corredor(states.size(), handler));
+        states.add(new Cutscene_Intro(states.size(),handler));
+        states.add(new Menu_Principal(states.size(), handler));
+        states.add(new Menu_Creditos(states.size(), handler));
+        states.add(new State_Pause(states.size(), handler));
+        states.add(new State_MenuConfig(states.size(), handler));
+        states.add(new State_MenuConfig_Controle(states.size(), handler));
+        states.add(new State_MenuConfig_Audio(states.size(), handler));
+        states.add(new State_MenuConfig_Tela(states.size(), handler));
     }
 
     /**
      * Utilize para trocar os State atual
-     * Ao trocar toda as variavis do state sero reinicializadas
+     * Ao trocar toda as variavÃ¡is do state serÃ£o reinicializadas
+     * @param state
      */
-    public static void setState(int state){
+    public void changeState(int state){
         currentState = state;
         states.get(currentState).init();
     }
-    public static State getCurrentState(){
+
+    public void setStatePause(int state){
+        currentState = state;
+    }
+
+    public State getCurrentState(){
         return states.get(currentState);
     }
 
     /**
-     * Verifica a existncia de um estado atual
+     * Verifica a existÃªncia de um estado atual
      * @return Retorna se existe um estado atual
      */
     public boolean currentStateExist(){
@@ -44,22 +63,43 @@ public class StateManager implements State{
     }
 
 
-    @Override
+    
     public void init() {
         states.get(currentState).init();
-
     }
 
-    @Override
+
     public void tick() {
-        states.get(currentState).tick();
+        if (states.get(currentState).getClass() == State_Pause.class && paused){
+            states.get(currentState).tick();
+        }
+        else if (!paused){
+            //System.out.println("\nentrouTick\n");
+            states.get(currentState).tick();
+        }
 
     }
 
-    @Override
+  
     public void render(Graphics g) {
-        states.get(currentState).render(g);
-
+        if (states.get(currentState).getClass() == State_Pause.class && paused){
+            states.get(currentState).render(g);
+        }
+        else if (!paused){
+            //System.out.println("\nentrouRender\n");
+            states.get(currentState).render(g);
+        }
     }
-    
+
+    public ArrayList<State> getStates(){
+        return states;
+    }
+
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
 }

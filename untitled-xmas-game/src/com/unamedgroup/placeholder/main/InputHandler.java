@@ -51,6 +51,8 @@ public class InputHandler implements KeyListener {
 	public Key secondary = new Key();
 
 	public Key escape = new Key();
+
+	
 	
 	public void releaseAll() {
 		for (int i = 0; i < keys.size(); i++) {
@@ -64,6 +66,12 @@ public class InputHandler implements KeyListener {
 		}
 	}
 
+
+	/**
+	 * Cria uma instância de Input Handler
+	 * @param game
+	 * @param display
+	 */
 	public InputHandler(Display display) {
 		display.setKeyListener(this);
 	}

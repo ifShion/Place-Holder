@@ -2,22 +2,29 @@ package com.unamedgroup.placeholder.entities;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.List;
 
+import com.unamedgroup.placeholder.graphics.Animation;
 import com.unamedgroup.placeholder.graphics.SpriteSheet;
-import com.unamedgroup.placeholder.main.Game;
+import com.unamedgroup.placeholder.main.Handler;
+import com.unamedgroup.placeholder.world.Node;
+import com.unamedgroup.placeholder.world.Room;
+import com.unamedgroup.placeholder.world.Vector2i;
+import com.unamedgroup.placeholder.world.World;
 
 public class Entity {
 	/* Inicializar os sprites iniciais de todas entidades aqui */
     protected double x;           // Coordenada X na tela
 	protected double y;           // Coordenada Y na tela
 	public double speed;
-
+	protected List<Node> path;	  // caminho feito pelo algoritmo de A*
+	
 	private Animation animation;
 	private SpriteSheet sprite;
 	private boolean animated;
 
-	private int width;
-	private int height;
+	protected int width;
+	protected int height;
 
 	private int maskX;
 	private int maskY;
@@ -25,6 +32,8 @@ public class Entity {
 	private int maskH;
 
 	public int depth;
+
+	protected Handler handler;
 	/**
 	 * Detalhes dos parÂmetros:
 	 * @param x					posição de x da entidade
@@ -39,8 +48,9 @@ public class Entity {
 	 * @param numSpritesY		Detalhes em Animation
 	 * @param initPosX			Detalhes em Animation
 	 * @param initPosY			Detalhes em Animation
+	 * @param handler  			para comunicar com outras classes
 	 */
-	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY){
+	public Entity(int x, int y, int width, int height, SpriteSheet spriteSheet, int depth, int speed, int animationSpeed, int numSpritesX, int numSpritesY, int initPosX, int initPosY, Handler handler){
 		animation = new Animation(animationSpeed, width, height, numSpritesX, numSpritesY, initPosX, initPosY);
 		this.x = x;
 		this.y = y;
@@ -58,6 +68,11 @@ public class Entity {
 		
 		this.depth = depth;
 		this.speed = speed;
+
+		this.handler = handler;
+
+		
+        this.animation.setPlay(true);
 	}
 
 	/**
@@ -67,12 +82,14 @@ public class Entity {
 	 * @param width
 	 * @param height
 	 */
-	public Entity(double x, double y, int width, int height) {
+	public Entity(double x, double y, int width, int height, Handler handler) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		
+		this.handler = handler;
 	}
 
 
@@ -80,6 +97,10 @@ public class Entity {
 
 	public SpriteSheet getSprite() {
 		return sprite;
+	}
+
+	public void setSprite(SpriteSheet spriteSheet){
+		this.sprite = spriteSheet;
 	}
 
 	public double getSpeed() {
@@ -112,6 +133,14 @@ public class Entity {
 	
 	public int getHeight() {
 		return (int)height;
+	}
+	
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	
+	public void setHeight(int height) {
+		this.height = height;
 	}
 	
 	public int getMaskX() {
@@ -147,11 +176,24 @@ public class Entity {
 		this.maskH = maskH;
 	 }
 	 
+	 /**
+	  * Calcula a distância euclidiana entre dois pontos
+	  * @param x1
+	  * @param x2
+	  * @param y1
+	  * @param y2
+	  * @return
+	  */
 	 public double calculateDistance(int x1 , int x2 , int y1 , int y2) {
 		 double distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2 , 2));
 		 return distance;
 	 }
-	 
+	 /**
+	  * Verifica se duas entidades se colidem
+	  * @param e1
+	  * @param e2
+	  * @return se duas entidades estão se colidindo
+	  */
 	public static boolean isColliding(Entity e1,Entity e2){
 		Rectangle e1Mask = new Rectangle(e1.getX() + e1.getMaskX() , e1.getY() + e1.getMaskY() , e1.getMaskW() , e1.getMaskH());
 		Rectangle e2Mask = new Rectangle(e2.getX() + e2.getMaskX() , e2.getY() + e2.getMaskY() , e2.getMaskW() , e2.getMaskH());
@@ -159,23 +201,67 @@ public class Entity {
 		return e1Mask.intersects(e2Mask);
 	}
 	
+	/**
+	 * Executa o algoritmo A* e procura um caminho favorável até o jogador
+	 * @param path
+	 */
+	public void followPath(List<Node> path) {
+		if(path != null) {
+			if(path.size() > 0) {
+				Vector2i target = path.get(path.size() - 1).tile;
+				if(x < target.x * World.TILE_SIZE && handler.getGame().getRoom().isFree((int)x + 1 , (int)y, maskW, maskH) && !isColliding((int)(x + speed), this.getY())) {
+					x+=speed;
+				}else if(x > target.x * World.TILE_SIZE && handler.getGame().getRoom().isFree(this.getX() - 1 , this.getY(),maskW, maskH) && !isColliding((int)(x - speed), this.getY())) {
+					x-=speed;
+				}
+				
+				if(y < target.y * World.TILE_SIZE && handler.getGame().getRoom().isFree(this.getX() , this.getY() + 1, maskW, maskH) && !isColliding(this.getX(), (int)(y + speed))) {
+					y+=speed;
+				}else if(y > target.y * World.TILE_SIZE && handler.getGame().getRoom().isFree(this.getX() , this.getY() - 1, maskW, maskH) && !isColliding(this.getX(), (int)(y - speed))) {
+					y-=speed;
+				}
+				
+				if(x == target.x * World.TILE_SIZE && y == target.y * World.TILE_SIZE) {
+					path.remove(path.size() - 1);
+				}
+			}
+		}
+	}
+	
+	public boolean isColliding(int xnext,int ynext){
+		Rectangle enemyCurrent = new Rectangle(xnext + maskX,ynext + maskY,maskW,maskH);
+		for(int i = 0; i < Room.entities.size(); i++){
+			Enemy e;
+			if(Room.entities.get(i) instanceof Enemy){
+					e = (Enemy) Room.entities.get(i);
+				if(e == this)
+					continue;
+				Rectangle targetEnemy = new Rectangle(e.getX()+ maskX,e.getY()+ maskY,maskW,maskH);
+				if(enemyCurrent.intersects(targetEnemy)){
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
 	public void tick(){
-		animation.tick();
+		if(animated) animation.tick();
 	}
 
 	public void render(Graphics g) {
 		if(animated)
 			g.drawImage(sprite.getSpriteSheet(),
-				this.getX() - Game.camera.getX(),					// Coordenada X na tela
-				this.getY() - Game.camera.getY(),					// Coordenada Y na tela
-				(int) (this.getX() - Game.camera.getX()+width),		// Largura do Sprite
-				(int) (this.getY() - Game.camera.getY()+height),	// Altura do sprite
-				(int) animation.getSpriteX() + animation.getInitPosX(),	// Coordenada X1 na imagem
-				(int) animation.getSpriteY() + animation.getInitPosY(),	// Coordenada Y1 na imagem
-				(int) (animation.getSpriteX() + animation.getInitPosX()+width),	// Coordenada X2 na imagem
-				(int) (animation.getSpriteY() + animation.getInitPosY()+height),	// Coordenada Y2 na imagem
+				this.getX() + animation.getOffX() - handler.getCamera().getX(),							// Coordenada X na tela
+				this.getY() + animation.getOffY() - handler.getCamera().getY(),							// Coordenada Y na tela
+				(int) (this.getX() + animation.getOffX() - handler.getCamera().getX()+width),			// Largura do Sprite
+				(int) (this.getY() + animation.getOffY() - handler.getCamera().getY()+height),			// Altura do sprite
+				(int) animation.getSpriteX() + animation.getInitPosX(),									// Coordenada X1 na imagem
+				(int) animation.getSpriteY() + animation.getInitPosY(),									// Coordenada Y1 na imagem
+				(int) (animation.getSpriteX() + animation.getInitPosX()+width),							// Coordenada X2 na imagem
+				(int) (animation.getSpriteY() + animation.getInitPosY()+height),						// Coordenada Y2 na imagem
 				null);
 	}
 	
 }
-
